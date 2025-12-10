@@ -5,10 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 import Lottie from "lottie-react";
-import {
-  VerticalTimeline,
-  VerticalTimelineElement,
-} from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Lenis from "@studio-freight/lenis";
@@ -20,8 +16,6 @@ import { Sparkles } from "lucide-react";
 import ParticleBackground from "../components/ParticleBackground";
 
 // images
-import hero4 from "../../../public/images/hero4.jpeg";
-import client from "../../../public/images/client.jpg";
 import aboutMission01 from "../../../public/images/aboutMission01.jpg";
 import aboutMission02 from "../../../public/images/aboutMission02.jpg";
 import aboutMission03 from "../../../public/images/aboutMission03.jpg";
@@ -31,8 +25,6 @@ import aboutScrollingText from "../../../public/images/aboutScrollingText.jpg";
 import rocket from "../../../public/animation/rocket.json";
 
 // icons
-import operationalsystem from "../../../public/icons/operationalsystem.png";
-import chat from "../../../public/icons/chat.png";
 import aboutDigitalGrowth from "../../../public/icons/aboutDigitalGrowth.png";
 import aboutBuiltWithPresison from "../../../public/icons/aboutBuiltWithPresison.png";
 import aboutScalable from "../../../public/icons/aboutScalable.png";
@@ -189,172 +181,10 @@ function page() {
     };
   }, []);
 
-  const timelineData = [
-    {
-      id: 1,
-      date: "2008",
-      description:
-        "Proactive Solution Services began with a vision delivering Bulk SMS and voice solutions that laid the foundation for future innovations.",
-      iconBg: "#BCD2E8",
-      contentStyle: {
-        // background: '#F3F7FC',
-        background: "#D6E4FA",
-        color: "#000",
-        borderRadius: "15px",
-
-        // boxShadow: ' #b7afaf 0px 6px 8px'
-      },
-      contentArrowStyle: {
-        border: "9px solid #C0C9EE",
-      },
-    },
-    {
-      id: 2,
-      date: "2010",
-      description:
-        " We stepped into web development and digital marketing, helping businesses build stronger digital identities and measurable growth online.",
-      iconBg: "#aed6f1",
-      contentStyle: {
-        background: "#CFE6FC",
-        color: "#000",
-        borderRadius: "15px",
-      },
-      contentArrowStyle: {
-        borderRight: "7px solid rgb(245, 158, 11)",
-      },
-    },
-    {
-      id: 3,
-      date: "2012",
-      description:
-        " Our story expanded to Delhi, where we partnered with trusted names like Meru, Godrej, and Elegant Group, strengthening our reputation.",
-      iconBg: "#B6D0F2",
-      contentStyle: {
-        // background: "#A3B9F0",
-        background: "#90CAF9",
-        color: "#000",
-        borderRadius: "15px",
-      },
-      contentArrowStyle: {
-        borderRight: "7px solid rgb(16, 185, 129)",
-      },
-    },
-    {
-      id: 4,
-      date: "2018",
-      description:
-        " A decade of dedication turned into achievement our team grew beyond 30 members, serving 250+ clients with reliable, scalable solutions.",
-      iconBg: "#89c5fd",
-      contentStyle: {
-        // background: "#91BBF2",
-        background: "#D6EAF8",
-        color: "#000",
-        borderRadius: "15px",
-      },
-      contentArrowStyle: {
-        borderRight: "7px solid rgb(236, 72, 153)",
-      },
-    },
-    {
-      id: 5,
-      date: "2021",
-      description:
-        " We sharpened our focus on digital marketing and Google Ads, driving ROI-focused campaigns that exceeded performance benchmarks.",
-      // iconBg: "#0229bf",
-      iconBg: "#85c1e9",
-      contentStyle: {
-        // background: "#72A9F2",
-        background: "#CCE5FF",
-        color: "#000",
-        borderRadius: "15px",
-      },
-      contentArrowStyle: {
-        borderRight: "7px solid rgb(139, 92, 246)",
-      },
-    },
-    {
-      id: 6,
-      date: "2024",
-      description:
-        " A landmark chapter Launch of Celitix  , our CPaaS Platform unifying WhatsApp API, Chatbots, RCS, SMS, and more into one ecosystem for modern business communication.",
-      // iconBg: "#011f99",
-      iconBg: "#3498db",
-      contentStyle: {
-        // background: "#5DADE2",
-        background: "#AEDFF7",
-        color: "#000",
-        borderRadius: "15px",
-      },
-      contentArrowStyle: {
-        borderRight: "7px solid rgb(239, 68, 68)",
-      },
-    },
-  ];
-
-  // without element text scroll animation start
-
-  // // 1. Create a ref for the main container
-  // const containerRef = useRef(null);
-
-  // const lines = [
-  //   'Fuel Your', // Line 1 (Odd: Move from Left)
-  //   'Business',  // Line 2 (Even: Move from Right)
-  //   'Expansion', // Line 3 (Odd: Move from Left)
-  // ];
-
-  // useEffect(() => {
-  //   // Select all the 'Text-Line' divs within the main container
-  //   const linesToAnimate = gsap.utils.toArray(".text-line", containerRef.current);
-
-  //   // Set the initial properties based on odd/even index
-  //   linesToAnimate.forEach((line, index) => {
-  //       const isOdd = index % 2 === 0; // index 0, 2 are odd-positioned lines
-  //       const initialX = isOdd ? -100 : 100; // -100px for Left (Odd), 100px for Right (Even)
-
-  //       // Use gsap.set for initial state (hidden and positioned)
-  //       gsap.set(line, {
-  //           x: initialX,
-  //           opacity: 0
-  //       });
-  //   });
-
-  //   // 2. Create the main GSAP timeline
-  //   const tl = gsap.timeline({
-  //     scrollTrigger: {
-  //       trigger: containerRef.current, // The section that triggers the animation
-  //       start: 'top 85%',             // Start when the top of the element hits 85% down the viewport
-  //       end: 'bottom top',            // Defines the end of the scroll area (optional, but good practice)
-  //       // **Crucial for repeatable animation:**
-  //       // play: on enter, reverse: on leave, none: on enter back, reverse: on leave back
-  //       toggleActions: 'play reverse play reverse',
-  //       // markers: true, // Uncomment for debugging
-  //     },
-  //   });
-
-  //   // 3. Define the animation for all lines in the timeline
-  //   // The animation moves them from their initial x/opacity set above, to x: 0 and opacity: 1
-  //   tl.to(linesToAnimate, {
-  //     x: 0,          // Move to original position (center)
-  //     opacity: 1,    // Fade in
-  //     duration: 1,
-  //     ease: 'power2.out',
-  //     // Apply stagger to all lines at once for the sequential timing
-  //     stagger: 0.15
-  //   });
-
-  //   // Clean up function using GSAP context for better memory management
-  //   const ctx = gsap.context(() => {}, containerRef);
-  //   return () => ctx.revert();
-  // }, []);
 
   // without element text scroll animation ends
 
   const containerRef = useRef(null);
-  const lines = [
-    "Fuel Your", // Line 1 (Odd: Move from Left)
-    "Business", // Line 2 (Even: Move from Right)
-    "Expansion", // Line 3 (Odd: Move from Left)
-  ];
 
   useEffect(() => {
     // 1. Set up GSAP Context for proper cleanup
@@ -413,43 +243,12 @@ function page() {
     return () => ctx.revert();
   }, []);
 
-  const features = [
-    {
-      id: "01",
-      title: "Businesses",
-      desc: "Start publish listings to show everyone the details and goodies of your establishment.",
-      img: "https://cdn-icons-png.flaticon.com/128/921/921591.png",
-    },
-    {
-      id: "02",
-      title: "Customers",
-      desc: "Easily find interesting places by local experts, save time by checking listing features.",
-      img: "https://cdn-icons-png.flaticon.com/512/3414/3414151.png",
-    },
-    {
-      id: "03",
-      title: "Feedback",
-      desc: "Visitors discuss listings to share experiences, so businesses get reputation consolidated.",
-      img: "https://cdn-icons-png.flaticon.com/512/3412/3412953.png",
-    },
-    {
-      id: "04",
-      title: "Feedback",
-      desc: "Visitors discuss listings to share experiences, so businesses get reputation consolidated.",
-      img: "https://cdn-icons-png.flaticon.com/512/3412/3412953.png",
-    },
-  ];
+
 
   return (
     <div>
       {/* hero section */}
-      {/* <section className="bg-[linear-gradient(to_right_top,#e7eaf8,#eff0f9)] relative"> */}
-      <section
-        className="bg-[#e0ecff] relative bg-cover bg-no-repeat"
-        // style={{
-        //   backgroundImage: "url('/images/aboutBg03.png')",
-        // }}
-      >
+      <section className="bg-[#e0ecff] relative bg-cover bg-no-repeat">
         <div className="relative w-full py-12 overflow-hidden">
           {/* Particle Background */}
           <ParticleBackground />
@@ -496,133 +295,7 @@ function page() {
             </div>
           </div>
         </div>
-        {/* card section */}
-        {/* <div className="absolute -bottom-28 left-1/2 transform -translate-x-1/2 w-full px-4 max-w-7xl">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 text-black ">
-            <div className="group bg-gray-100 flex flex-col p-4 justify-center items-center rounded-lg">
-              <div className="relative z-10 w-20 h-20 rounded-full flex items-center justify-center transition-all duration-1000 ease-in-out">
-                <Image
-                  src={operationalsystem}
-                  width={40}
-                  height={40}
-                  alt="icon"
-                  className="transition-transform duration-1000 group-hover:rotate-y-180"
-                />
-              </div>
-              <div className="flex flex-col gap-2 justify-center text-center md:text-left">
-                <h2 className="poppins text-center text-black text-lg ">
-                  Driving Digital Growth
-                </h2>
-                <p className="open-sans text-gray-700 text-sm leading-relaxed text-justify">
-                  We design powerful Digital experiences from websites and apps to marketing and communication tools that help businesses Grow online and Achieve measurable results.
-                </p>
-              </div>
-            </div>
-            <div className="group bg-gray-100 flex flex-col p-4 justify-center items-center rounded-lg">
-              <div className="relative z-10 w-20 h-20 rounded-full flex items-center justify-center transition-all duration-1000 ease-in-out">
-                <Image
-                  src={operationalsystem}
-                  width={40}
-                  height={40}
-                  alt="icon"
-                  className="transition-transform duration-1000 group-hover:rotate-y-180"
-                />
-              </div>
-              <div className="flex flex-col gap-2 justify-center text-center md:text-left">
-                <h2 className="poppins text-center text-black text-lg ">
-                  Built with Precision
-
-                </h2>
-                <p className="open-sans text-gray-700 text-sm leading-relaxed text-justify">
-                  Every solution is crafted with detail, ensuring top-notch performance, usability, and long-term value to make your brand stand out.
-                </p>
-              </div>
-            </div>
-            <div className="group bg-gray-100 flex flex-col p-4 justify-center items-center rounded-lg">
-              <div className="relative z-10 w-20 h-20 rounded-full flex items-center justify-center transition-all duration-1000 ease-in-out">
-                <Image
-                  src={operationalsystem}
-                  width={40}
-                  height={40}
-                  alt="icon"
-                  className="transition-transform duration-1000 group-hover:rotate-y-180"
-                />
-              </div>
-              <div className="flex flex-col gap-2 justify-center text-center md:text-left">
-                <h2 className="poppins text-center text-black text-lg ">
-                  A Partner You Can Trust
-                </h2>
-                <p className="open-sans text-gray-700 text-sm leading-relaxed text-justify">
-                  We go beyond launch working with you at every stage so your digital presence stays strong, relevant, and impactful.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div> */}
       </section>
-
-      {/* Half Circle cards */}
-      {/* <section className=" pt-10 pb-40 overflow-hidden ">
-        <div className="max-w-7xl mx-auto space-y-10">
-
-          <div className="flex flex-col items-center  justify-center text-center ">
-            <h2 className="poppins text-[22px] md:text-2xl lg:text-4xl  text-black leading-relaxed">
-              <span className="heroTextGredient">Features </span>
-            </h2>
-          </div>
-
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-32 sm:gap-28 md:gap-36 lg:gap-10 px-4 sm:px-6 lg:px-8">
-            {features.map((f) => (
-              <div
-                key={f.id}
-                className="relative flex flex-col items-center text-center group gap-8 sm:gap-10"
-              >
- 
-                <div className="absolute top-14 sm:top-16 w-56 sm:w-64 md:w-72 h-56 sm:h-64 md:h-72 border-[4px] sm:border-[5px] md:border-[6px] border-blue-500 rounded-full border-l-transparent border-t-transparent -rotate-45"></div>
-
-                <div className="relative w-20 sm:w-24 md:w-28 h-20 sm:h-24 md:h-28 rounded-full bg-white shadow-lg flex items-center justify-center z-10 [perspective:1000px]">
-                  <div className="relative w-10 sm:w-12 md:w-14 h-10 sm:h-12 md:h-14 transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
-                     
-                    <img
-                      src={f.img}
-                      alt={f.title}
-                      className="absolute inset-0 w-full h-full [backface-visibility:hidden]"
-                    />
-                     
-                    <img
-                      src={f.img}
-                      alt={f.title}
-                      className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)]"
-                    />
-                  </div>
-                </div>
-
-                
-                <div className="flex flex-col items-center justify-center gap-3 sm:gap-4 max-w-68">
-                   
-                  <div className="bg-white px-4 sm:px-5 py-2 rounded-full shadow-md flex items-center gap-2 z-10">
-                    <span className="w-8 sm:w-9 md:w-10 h-8 sm:h-9 md:h-10 flex items-center justify-center rounded-full bg-white shadow-lg text-xs sm:text-sm font-semibold">
-                      {f.id}
-                    </span>
-                    <span className="poppins font-semibold text-gray-800 text-sm sm:text-base">
-                      {f.title}
-                    </span>
-                  </div>
-
-                  
-                  <p className="open-sans px-10 sm:px-4 text-gray-600 text-sm md:text-base sm:max-w-xs">
-                    {f.desc}
-                  </p>
-                </div>
-
-                 
-                <div className="absolute -bottom-16 sm:-bottom-20 md:-bottom-20 w-10 sm:w-11 md:w-12 h-10 sm:h-11 md:h-12 rounded-full bg-white shadow-lg animate-ripple"></div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section> */}
 
       <section className="container mx-auto py-12 px-6 lg:px-20">
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-10">
@@ -665,128 +338,11 @@ function page() {
         </div>
       </section>
 
-      {/* OUR Mission  Flip cards */}
-      {/* <section
-        className="w-full mx-auto py-10 px-4 bg-[#eff0f9] sm:px-6 lg:px-0"
-        // style={{
-        //   backgroundImage: "url('/images/diagonalStripes.svg')", // place svg in public folder
-        //   backgroundRepeat: "repeat",
-        //   backgroundSize: "auto",
-        // }}
-      >
-        <div className="max-w-7xl mx-auto">
-          <h1 className="text-[35px] font-semibold text-[#3e66f3] text-center mb-10">
-            Our Mission
-          </h1>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="group perspective-1000 h-80">
-              <div className="relative w-full h-full transition-transform duration-700 transform-style-preserve-3d group-hover:rotate-y-180">
- 
-                <div className="absolute inset-0 w-full h-full backface-hidden bg-[url('/images/bgCard12.jpg')] bg-cover px-4 rounded-xl shadow-xl">
-                  <h3 className="text-2xl pt-15 font-bold text-white text-center">
-                    Driving Digital Growth
-                  </h3>
-                </div>
-
-                <div className="absolute inset-0 w-full h-full backface-hidden bg-[url('/images/bgCard11.jpg')] bg-cover rounded-xl shadow-xl p-6 flex items-center justify-center rotate-y-180">
-                  <p className="text-white text-lg text-center leading-relaxed">
-                    We design impactful websites and offer digital marketing
-                    solutions that help businesses grow online and achieve
-                    measurable success.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="group perspective-1000 h-80">
-              <div className="relative w-full h-full transition-transform duration-700 transform-style-preserve-3d group-hover:rotate-y-180">
-
-                <div className="absolute inset-0 w-full h-full backface-hidden bg-[url('/images/bgCard10.jpg')] bg-cover rounded-xl shadow-xl ">
-                  <h3 className="text-2xl pt-15 font-bold text-white text-center">
-                    Built with Precision
-                  </h3>
-
-                </div>
-
-                <div className="absolute inset-0 w-full h-full backface-hidden bg-[url('/images/bgCard11.jpg')] bg-cover rounded-xl shadow-xl p-6 flex items-center justify-center rotate-y-180">
-                  <p className="text-white text-lg text-center leading-relaxed">
-                    Every solution is crafted with care, ensuring high
-                    performance, seamless usability, and long-term brand value
-                    that stands out.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="group perspective-1000 h-80">
-              <div className="relative w-full h-full transition-transform duration-700 transform-style-preserve-3d group-hover:rotate-y-180">
-                <div className="absolute inset-0 w-full h-full backface-hidden bg-[url('/images/bgCard14.jpg')] bg-cover rounded-xl shadow-xl px-4">
-                  <h3 className="text-2xl font-bold pt-15 text-white text-center">
-                    Simple & Scalable
-                  </h3>
-                </div>
-
-                <div className="absolute inset-0 w-full h-full backface-hidden bg-[url('/images/bgCard11.jpg')] bg-cover rounded-xl shadow-xl p-6 flex items-center justify-center rotate-y-180">
-                  <p className="text-white text-center leading-relaxed">
-                    Our web and digital marketing solutions adapt as your
-                    business grows, ensuring a smooth, scalable, and
-                    future-ready presence.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="group perspective-1000 h-80">
-              <div className="relative w-full h-full transition-transform duration-700 transform-style-preserve-3d group-hover:rotate-y-180">
-
-
-                <div className="absolute inset-0 w-full h-full backface-hidden bg-[url('/images/bgCard15.jpg')] bg-cover rounded-xl shadow-xl px-6 ">
-                  <h3 className="text-2xl font-bold pt-15 text-white text-center">
-                    Trustable Partners
-                  </h3>
-                </div>
-
-                <div className="absolute inset-0 w-full h-full backface-hidden bg-[url('/images/bgCard11.jpg')] bg-cover rounded-xl shadow-xl p-6 flex items-center justify-center rotate-y-180">
-                  <p className="text-white text-center leading-relaxed">
-                    We support you beyond launch helping your digital presence
-                    remain strong, relevant, and impactful at every stage of
-                    growth.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <style jsx>{`
-          .perspective-1000 {
-            perspective: 1000px;
-          }
-
-          .transform-style-preserve-3d {
-            transform-style: preserve-3d;
-          }
-
-          .backface-hidden {
-            backface-visibility: hidden;
-          }
-
-          .rotate-y-180 {
-            transform: rotateY(180deg);
-          }
-
-          .group:hover .group-hover\\:rotate-y-180 {
-            transform: rotateY(180deg);
-          }
-        `}</style>
-      </section> */}
-
       {/* text on scroll */}
       <section>
         <div
           ref={targetRef}
           className="p-8 sm:p-12 md:p-16 w-full flex justify-center mx-auto overflow-hidden bg-cover bg-center"
-          // style={{ backgroundImage: `url(${})` }}
         >
           <div className="flex flex-col space-y-6 sm:space-y-20 md:space-y-10">
             <motion.div
@@ -832,103 +388,6 @@ function page() {
         </div>
       </section>
 
-      {/* Our Vision */}
-      {/* <div className="text-white p-4 ">
-
-        <div id="section-0">
-         
-          <div className=" items-center justify-center flex">
-            <div className="h-full w-full max-w-7xl mx-auto md:p-18 mt-18 md:mt-8 lg:mt-5  grid grid-cols-1 md:grid-cols-[40%_60%] gap-6  text-[18px] bg-[#f5f9ff]">
-              <div className="text-center text-black flex justify-around gap-6 ">
-                <div className="text-[100px] font-bold text-transparent stroke-black stroke-[1px]">
-                  01
-                </div>
-                <div className="text-[16px] md:text-[22px] poppins text-gray-400 mt-18">
-                  Mission{" "}
-                </div>
-              </div>
-              <div className="flex flex-col justify-between gap-8 ">
-                <div className="poppins text-[20px] lg:text-[30px] text-black mt-6">
-                  <h1>
-                    We envision a digital-first world, empowering businesses to
-                    grow.Innovate. Connect and Transform.
-                  </h1>
-                </div>
-                <div className="h-full max-w-2xl">
-                  <Image
-                    src={hero4}
-                    alt="our mission"
-                    className="rounded-2xl object-cover h-full w-full"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
- 
-        <div id="section-1">
-          <div className=" items-center justify-center flex">
-            <div className="h-full w-full max-w-7xl mx-auto md:p-18 mt-18 md:mt-8 lg:mt-5 grid grid-cols-1 md:grid-cols-[40%_60%]  text-[18px] bg-[#f5f9ff]">
-              <div className="text-center text-black flex justify-around mr-8 ">
-                <div className="text-[100px] font-bold text-transparent stroke-black stroke-[1px]">
-                  02
-                </div>
-                <div className="text-[16px] md:text-[22px] poppins text-gray-400 mt-18">
-                  Mission{" "}
-                </div>
-              </div>
-              <div className="flex flex-col justify-between gap-8 ">
-                <div className="poppins text-[28px] lg:text-[30px] text-black mt-6">
-                  <h1>
-                    We transform ideas into impactful digital experiences,
-                    crafting websites that inspire, engage, and deliver results.
-                  </h1>
-                </div>
-                <div className="h-full max-w-2xl">
-                  <Image
-                    src={hero4}
-                    alt="our mission"
-                    className="rounded-2xl object-cover h-full w-full"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-    
-        <div id="section-2">
-          <div className=" items-center justify-center flex">
-            <div className="h-full w-full max-w-7xl mx-auto sm:p-10 md:p-18 mt-24 grid grid-cols-1 md:grid-cols-[40%_60%]  text-[18px] bg-[#f5f9ff]">
-              <div className="text-center text-black flex justify-around mr-8 ">
-                <div className="text-[100px] font-bold text-transparent stroke-black stroke-[1px]">
-                  03
-                </div>
-                <div className="text-[16px] md:text-[22px]  poppins text-gray-400 mt-18">
-                  Mission{" "}
-                </div>
-              </div>
-              <div className="flex flex-col justify-between gap-6 max-w-2xl">
-                <div className="poppins text-[20px] lg:text-[30px] text-black mt-6">
-                  <h1>
-                    We drive measurable growth through smart marketing, helping
-                    brands expand their reach and achieve lasting success.
-                  </h1>
-                </div>
-                <div className="h-full">
-                  <Image
-                    src={hero4}
-                    alt="our mission"
-                    className="rounded-2xl object-cover h-full w-full"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> */}
-
       <div className="text-white p-4">
         {visionData.map((item, index) => (
           <div id={`section-${index}`} key={index} className="my-10">
@@ -963,102 +422,6 @@ function page() {
           </div>
         ))}
       </div>
-
-      {/* // scrolling text */}
-      {/* <div className="flex flex-col items-center justify-center h-[100vh] bg-white">
-        <div className="flex-grow"></div> 
-      <div 
-        ref={containerRef} 
-        className="max-w-4xl px-4"
-      >
-        <div className="text-left leading-none text-black">
-          {lines.map((line, index) => (
-            // Apply the shared class 'text-line' for GSAP to target
-            // Use 'text-center' to align the text within its own block for a clean movement
-            <div 
-              key={index} 
-              className="text-line text-7xl md:text-8xl lg:text-9xl font-extrabold text-[#110134] overflow-hidden whitespace-nowrap" 
-            >
-              {line}
-            </div>
-          ))}
-        </div>
-        
-        <button 
-          className="mt-8 ml-auto w-16 h-16 border-2 border-[#110134] rounded-full flex items-center justify-center transition-all duration-300 hover:bg-[#110134] group"
-          aria-label="Expand Business"
-        >
-          <svg 
-            className="w-6 h-6 text-[#110134] transition-colors duration-300 group-hover:text-white" 
-            xmlns="http://www.w3.org/2000/svg" 
-            fill="none" 
-            viewBox="0 0 24 24" 
-            stroke="currentColor"
-            strokeWidth={2}
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18" />
-          </svg>
-        </button>
-
-        <div className="flex items-center mt-4">
-            <div className="w-48 h-24 bg-gray-200 rounded-lg shadow-md mr-4 overflow-hidden">
-            </div>
-        </div>
-
-      </div>
-      <div className="flex-grow"></div> 
-    </div> */}
-
-      {/* without element text scroll animation */}
-      {/* <div ref={containerRef} className="flex flex-col items-center justify-center py-10  bg-white"
-                     style={{
-          backgroundImage: "url('/images/bg-img.png')", // place svg in public folder
-          backgroundRepeat: "repeat",
-          backgroundSize: "contain",
-          
-        }}
-      
-      >
-        <div className="flex-grow"></div>
-        <div
-          
-          className="max-w-4xl px-4 lg:px-0  flex flex-col justify-center"
-        >
-          <div className="text-left text-black flex flex-col justify-center ">
-            {lines.map((line, index) => (
-              // Use 'overflow-hidden' on the parent of the lines to prevent scrollbar issues
-              <div
-                key={index}
-                // The 'text-line' class is what GSAP targets
-                className="text-line text-7xl md:text-8xl lg:text-9xl font-semibold text-[#110134] whitespace-nowrap flex flex-col justify-center"
-              >
-                {line}
-              </div>
-            ))}
-          </div>
-
-          <button
-            className="mt-8 ml-auto w-14 h-14 border-2 border-[#110134] rounded-full flex items-center justify-center transition-all duration-300 hover:bg-[#110134] group"
-            aria-label="Expand Business"
-          >
-            <svg
-              className="w-6 h-6 text-[#110134] transition-colors duration-300 group-hover:text-white"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M5 10l7-7m0 0l7 7m-7-7v18"
-              />
-            </svg>
-          </button>
-        </div>
-        <div className="flex-grow"></div>
-      </div> */}
 
       {/* Timeline */}
       {/* bg-[radial-gradient(circle_at_20%_20%,#f9fbff_0%,#eef6ff_40%,#f7f9ff_90%)] */}
@@ -1151,107 +514,6 @@ function page() {
 
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.4),transparent_70%)] pointer-events-none"></div>
       </section>
-
-      {/* Timeline Section */}
-      {/* <div
-        className="h-auto  py-10 px-4 overflow-hidden"
-        style={{
-          backgroundImage: "url('/images/diagonalStripes.svg')", // place svg in public folder
-          backgroundRepeat: "repeat",
-          backgroundSize: "auto",
-        }}
-      >
-        <div className="max-w-6xl mx-auto ">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold text-[#3e66f3] mb-4">
-              Our Journey
-            </h1>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              From a small vision to a trusted web and digital marketing
-              solutions provider, our journey is built on innovation, growth .
-            </p>
-          </div>
-
-          <VerticalTimeline lineColor="#000">
-            {timelineData.map((item, index) => (
-              <VerticalTimelineElement
-                key={item.id}
-                className="vertical-timeline-element--work"
-                contentStyle={{
-                  ...item.contentStyle,
-                  background: "transparent",
-                  boxShadow: "none",
-                  padding: "0",
-                }}
-                contentArrowStyle={{ display: "none" }}
-                date={item.date}
-                iconStyle={{
-                  background: item.iconBg,
-                  color: "#fff",
-                  display: "flex",
-                  alignItems: "center",
-
-                  // justifyContent: 'center',
-                  // width: '30px',
-                  // height: '30px',
-                  // marginLeft: '-15px' // keeps it aligned with timeline line
-                }}
-                icon={item.icon}
-              >
-                
-                <motion.div
-                  initial={{ opacity: 0, x: index % 2 === 0 ? -100 : 100 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: index % 2 === 0 ? -100 : 100 }}
-                  viewport={{ once: false, amount: 0.3 }} // re-trigger on scroll up or down
-                  transition={{ duration: 0.6, ease: "easeOut" }}
-                  style={{
-                    background: item.contentStyle.background,
-                    borderRadius: item.contentStyle.borderRadius || "8px",
-                    padding: "12px",
-                    color: item.contentStyle.color,
-                    position: "relative",
-                    // boxShadow: '0 8px 16px rgba(0, 0, 0, 0.4)',
-                    boxShadow: "rgba(183, 175, 175, 1) 0px 6px 8px",
-                  }}
-                >
-                  <p className="text-base opacity-95 ">{item.description}</p>
-                </motion.div>
-              </VerticalTimelineElement>
-            ))}
-          </VerticalTimeline>
-
-        </div>
-
-        <style jsx global>{`
-          .vertical-timeline-element-icon {
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            box-shadow: rgba(183, 175, 175, 1) 0px 6px 8px !important;
-            border: 2px solid #fff !important;
-          }
-
-          .vertical-timeline-element-icon > * {
-            display: none !important;
-          }
-
-          .vertical-timeline-element-content p {
-            margin: 0px;
-          }
-
-          .vertical-timeline-element-date {
-            font-size: 1.5rem !important;
-            top: -8px !important;
-            color: #000;
-            opacity: 1 !important;
-          }
-
-          .vertical-timeline::before {
-            width: 2px; 
-          }
-        `}</style>
-      </div> */}
 
       <section className=" py-10  px-6 lg:px-20 ">
         <div className="max-w-6xl mx-auto">
@@ -1415,7 +677,6 @@ function page() {
       </section>
 
       {/* cta */}
-
       <section
         className="py-12 px-6"
         style={{

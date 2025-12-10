@@ -14,15 +14,7 @@ import ReactLenis from "lenis/react";
 import Lottie from "lottie-react";
 
 // images
-import textBlob2 from "../../../public/images/textBlob2.png";
-import pro6 from "../../../public/images/Pro6.png";
 import socialMediaAdsHero from "../../../public/images/socialMediaAdsHero.png";
-import caseStudy1 from "../../../public/images/caseStudy1.webp";
-import caseStudy3 from "../../../public/images/caseStudy3.webp";
-import caseStudy2 from "../../../public/images/caseStudy2.webp";
-import smm1 from "../../../public/images/smm1.jpeg";
-import smm2 from "../../../public/images/smm2.jpeg";
-import smm3 from "../../../public/images/smm3.jpeg";
 import socialMediaAdvertisement from "../../../public/images/socialMediaAdvertisement.jpg";
 import socialMediaAdvertisement01 from "../../../public/images/socialMediaAdvertisement01.jpg";
 import socialMediaAdsInterLinking from "../../../public/images/socialMediaAdsInterLinking.jpg";
@@ -153,56 +145,6 @@ const page = () => {
   ];
   // FAQs Ends
 
-  const caseStudies = [
-    {
-      id: 1,
-      image: caseStudy1,
-      alt: "Google Ads Campaign Management",
-      title: "Google Ads Campaign Management",
-      desc: "Our Google Ads campaigns reach the right audience through search, display, and retargeting. We focus on high-intent users to generate quality leads, boost engagement, and ensure every campaign delivers consistent growth and strong ROI for your business success.",
-      link: "#",
-    },
-    {
-      id: 2,
-      image: caseStudy2,
-      alt: "Audience & Keyword Research",
-      title: "Audience & Keyword Research",
-      desc: "We analyse audience demographics, interests, and behaviours to select the most effective keywords. Our research ensures your Google Ads reach the right users, improve conversions, and deliver measurable performance that drives long-term, sustainable marketing growth for your brand.",
-      link: "#",
-    },
-    {
-      id: 3,
-      image: caseStudy3,
-      alt: "Targeted Location Campaigns",
-      title: "Targeted Location Campaigns",
-      desc: "Reach ideal customers in specific cities, regions, or countries through precise location-based targeting. Our approach ensures your campaigns connect with relevant audiences, maximise ROI, and deliver steady engagement, generating consistent leads and sales for your growing business.",
-      link: "#",
-    },
-    {
-      id: 4,
-      image: caseStudy1,
-      alt: "Ad Copy & Creative Development",
-      title: "Ad Copy & Creative Development",
-      desc: "We craft engaging ad copy and visuals tailored for your audience. Each ad is tested and refined to improve clicks, conversions, and brand visibility, ensuring your message connects effectively and drives measurable marketing growth with every campaign.",
-      link: "#",
-    },
-    {
-      id: 5,
-      image: caseStudy2,
-      alt: "Negative Keywords & Budget Control",
-      title: "Negative Keywords & Budget Control",
-      desc: "We identify negative keywords to block irrelevant traffic and save ad spend. With precise budget control, your ads focus on valuable audiences, reduce waste, and maximise every click for higher conversions and long-term advertising efficiency.",
-      link: "#",
-    },
-    {
-      id: 6,
-      image: caseStudy3,
-      alt: "Ad Optimization & Performance Tracking",
-      title: "Ad Optimization & Performance Tracking",
-      desc: "We monitor and optimise your Google Ads using real-time insights. By analysing key metrics, we improve performance, lower costs, and ensure your campaigns consistently deliver better ROI, quality leads, and sustained business growth over time.",
-      link: "#",
-    },
-  ];
   // 3d carousel ends here
 
   // AlterNative Image section

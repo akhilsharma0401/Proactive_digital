@@ -382,7 +382,6 @@ import contentMarketingIconBoostsLeadGeneration from "../../../public/icons/cont
 import contentMarketingIconSupports from "../../../public/icons/contentMarketingIconSupports.png";
 
 // images
-import pro6 from "../../../public/images/Pro6.png";
 import contentMarketingHero from "../../../public/images/contentMarketingHero.png";
 import contentMarketingInterLinking from "../../../public/images/contentMarketingInterLinking.jpg";
 import contentMarketingInterLinking2 from "../../../public/images/contentMarketingInterLinking2.jpg";

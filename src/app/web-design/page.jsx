@@ -7,10 +7,7 @@ import Lottie from "lottie-react";
 import { motion, useInView } from "framer-motion";
 
 // images
-import hero4 from "../../../public/images/hero4.jpeg";
-import pro6 from "../../../public/images/Pro6.png";
 import webDesignHero from "../../../public/images/webDesignHero.png";
-import web_03 from "../../../public/images/web_03.png";
 import webDesignTargetAudience from "../../../public/images/webDesignTargetAudience.png";
 import webDesignWebsiteOptimization from "../../../public/images/webDesignWebsiteOptimization.png";
 import webDesignWebsitesSetting from "../../../public/images/webDesignWebsitesSetting.png";

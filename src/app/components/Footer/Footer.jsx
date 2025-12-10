@@ -148,7 +148,6 @@ import footerCertificateBatch from "../../../../public/images/footerCertificateB
 import celitixCpaasSolutionLogo from "../../../../public/images/celitixCpaasSolutionLogo.svg";
 import celitixCpaasSolutionLogoWhite from "../../../../public/images/celitixCpaasSolutionLogoWhite.svg";
 import metaTechWhite from "../../../../public/images/metaTechWhite.svg";
-import logo from "../../../../public/images/logo.jpg";
 import proactiveLogo from "../../../../public/images/proactiveLogo.png";
 import CelitixWhite from "../../../../public/icons/CelitixWhite.png";
 import proactiveLogoWhite from "../../../../public/icons/proactiveLogoWhite.png";

@@ -7,11 +7,7 @@ import Lottie from "lottie-react";
 import rocket from "../../../public/animation/rocket.json";
 
 // images
-import hero4 from "../../../public/images/hero4.jpeg";
-import pro6 from "../../../public/images/Pro6.png";
 import animationHero from "../../../public/images/animationHero.png";
-import animationWhyChoose04 from "../../../public/images/animationWhyChoose04.jpg";
-import web_03 from "../../../public/images/web_03.png";
 import animationWhyChoose01 from "../../../public/images/animationWhyChoose01.jpg";
 import animationWhyChoose02 from "../../../public/images/animationWhyChoose02.jpg";
 import animationWhyChoose03 from "../../../public/images/animationWhyChoose03.jpg";
@@ -117,22 +113,7 @@ const page = () => {
       question: "Will these videos boost my sales or lead generation?",
       answer:
         "Absolutely. Each video is produced with the intention to engage your clientele, deliver your value proposition convincingly and encourage immediate action, all of which contribute to real results and measurable ROI.",
-    },
-    // {
-    //   question: "How will your services help my business?",
-    //   answer:
-    //     "We help you build a stronger online presence, attract new customers, and grow your business through better websites and digital marketing.",
-    // },
-    // {
-    //   question: "Do I need to know anything technical?",
-    //   answer:
-    //     "Not at all. We handle all the technical work, so you can focus on running your business.",
-    // },
-    // {
-    //   question: "Do you provide support after the project is done?",
-    //   answer:
-    //     "Yes, we offer ongoing support and maintenance to ensure your website and campaigns keep running smoothly.",
-    // },
+    }, 
   ];
 
   return (
@@ -328,19 +309,8 @@ const page = () => {
             {faqs.map((faq, idx) => (
               <FaqItem
                 key={idx}
-                question={
-                  faq.question
-                  // <h4 className="text-sm md:text-base poppins  sub-heading hover:cursor-pointer ">
-                  //   {faq.question}
-                  // </h4>
-                }
-                // question={faq.question}
-                answer={
-                  faq.answer
-                  // <span className="text-[15px] text-gray-700 pera">
-                  //   {faq.answer}
-                  // </span>
-                }
+                question={ faq.question } 
+                answer={ faq.answer }
                 isOpen={openIndex === idx}
                 onClick={() => toggle(idx)}
               />

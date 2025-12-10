@@ -8,12 +8,9 @@ import Lottie from "lottie-react";
 import rocket from "../../../public/animation/rocket.json";
 
 // images
-import hero4 from "../../../public/images/hero4.jpeg";
-import web_03 from "../../../public/images/web_03.png";
 import brandingWhyChoose01 from "../../../public/images/brandingWhyChoose01.png";
 import brandingWhyChoose02 from "../../../public/images/brandingWhyChoose02.png";
 import brandingWhyChoose03 from "../../../public/images/brandingWhyChoose03.png";
-import pro6 from "../../../public/images/Pro6.png";
 import brandingHero from "../../../public/images/brandingHero.png";
 
 // components
@@ -21,56 +18,6 @@ import FaqItem from "../components/FaqItem.jsx";
 import AnimatedImage from "./../components/AnimatedImage";
 import AlternativeImage from "../components/AlternativeImage";
 
-// icons
-import cpassSolution from "../../../public/icons/cpassSolution.jpg";
-import { PiArrowElbowRightDown } from "react-icons/pi";
-
-const textVariant = {
-  hidden: { opacity: 0, y: 50 },
-  visible: (i) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: i * 0.3, duration: 0.5, ease: "easeOut" },
-  }),
-};
-
-const imageVariant = {
-  hidden: { opacity: 0, y: 80, scale: 0.95 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: { duration: 0.8, ease: "easeOut" },
-  },
-};
-
-// for tri section
-const sections = [
-  {
-    // title: ["Thoughtful UX", "Design."],
-    title: ["Intentional UX Design."],
-    text: "We create each experience with purpose. We align your website’s structure, flow, and functionality with your brand goals. Our approach makes sure every interaction feels natural, engaging, and meaningful to your audience.",
-    img: "/images/b1.jpg",
-    reverse: false,
-    rounded: "rounded-tr-[5rem] md:rounded-tr-[10rem]", // top-right
-  },
-  {
-    // title: ["Eye-catching", "interfaces."],
-    title: ["Eye-catching interface."],
-    text: "From wireframes to final design, we create interfaces that are clean, easy to use, and visually appealing. Every element is carefully designed to balance beauty, usability, and strategy. This approach makes sure your brand stands out with purpose.",
-    img: "/images/banner.jpg",
-    reverse: true,
-    rounded: "rounded-tl-[5rem] md:rounded-tl-[10rem]", // top-left
-  },
-  {
-    // title: ["Motion graphics", "& animation."],
-    title: ["Motion Graphics & Animation."],
-    text: "We bring your brand to life through dynamic motion and storytelling.Our animations captivate attention, enhance engagement, and inspire users to take action - making your message unforgettable.",
-    img: "/images/b3.jpg",
-    reverse: false,
-    rounded: "rounded-tr-[5rem] md:rounded-tr-[10rem]", // top-right
-  },
-];
 
 const section1 = [
   {

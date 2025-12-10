@@ -4,9 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Lottie from "lottie-react";
 import rocket from "../../../public/animation/rocket.json";
-import arrow from "../../../public/animation/arrow.json";
 
-import noodleArrow from "../../../public/images/noodleArrow.png";
 
 // components
 import FaqItem from "../components/FaqItem.jsx";
@@ -14,9 +12,7 @@ import AutoPlaySection from "./../components/AutoPlaySection";
 
 // images
 import webDevelopmentHero from "../../../public/images/webDevelopmentHero.png";
-import pro6 from "../../../public/images/Pro6.png";
 import webDevelopmentWhyChoose from "../../../public/images/webDevelopmentWhyChoose.jpg";
-import openSourceWordpress01 from "../../../public/images/openSourceWordpress01.jpg";
 // ecommerce
 import webDevelopmentEcommerce01 from "../../../public/images/webDevelopmentEcommerce01.jpg";
 import webDevelopmentEcommerce02 from "../../../public/images/webDevelopmentEcommerce02.jpg";
@@ -47,7 +43,6 @@ import webDevelopmentPhp01 from "../../../public/images/webDevelopmentPhp01.jpg"
 import webDevelopmentPhp02 from "../../../public/images/webDevelopmentPhp02.jpg";
 import webDevelopmentPhp03 from "../../../public/images/webDevelopmentPhp03.jpg";
 
-import hero4 from "../../../public/images/hero4.jpeg";
 
 function page() {
   // FAQs

@@ -6,13 +6,8 @@ import Lottie from "lottie-react";
 import Conversation from "../../../public/animation/Conversation.json";
 
 // images
-import pro6 from "../../../public/images/Pro6.png";
 
 // icons
-import chat from "../../../public/icons/chat.png";
-import careerEvolveConstantly from "../../../public/icons/careerEvolveConstantly.png";
-import careerCollaborate from "../../../public/icons/careerCollaborate.png";
-import careerCommitment from "../../../public/icons/careerCommitment.png";
 import { RiUploadCloud2Line } from "react-icons/ri";
 import { HiOutlineLightBulb } from "react-icons/hi";
 import { FaCheckCircle } from "react-icons/fa";
@@ -552,17 +547,6 @@ function page() {
 
           {/* Right Image Section */}
           <div className="w-full lg:w-1/2 mt-10 lg:mt-0 flex justify-center lg:justify-end">
-            {/* <div className="relative">
-              <Image
-                src={pro6}
-                alt="Hero visual"
-                // width={400}
-                // height={400}
-                // className="w-[300px] h-[400px] md:w-[400px] lg:w-[450px] shadow-lg"
-                className="w-full h-full "
-                priority
-              />
-            </div> */}
             <div className="flex ">
               <Lottie animationData={Conversation} loop={true} />
             </div>
@@ -594,28 +578,14 @@ function page() {
                   {/* Front face (visible initially) */}
                   <div className="absolute inset-0 flex items-center justify-center [backface-visibility:hidden]">
                     <FaChartLine className="text-white w-9 h-9 lg:w-10 lg:h-10" />
-                    {/* <HiOutlineLightBulb className="text-white w-9 h-9 lg:w-10 lg:h-10" /> */}
-                    {/* <Image
-                      src={careerEvolveConstantly}
-                      alt="icon-back"
-                      width={20}
-                      height={20}
-                      className=" w-9 h-9 lg:w-12 lg:h-12"
-                    /> */}
+                    
                   </div>
 
                   {/* Back face (rotated so after the wrapper rotation it appears upright) */}
 
                   <div className="absolute inset-0 flex items-center justify-center [transform:rotateY(180deg)] [backface-visibility:hidden]">
                     <FaChartLine className="text-white w-9 h-9 lg:w-10 lg:h-10" />
-                    {/* <HiOutlineLightBulb className="text-white w-9 h-9 lg:w-10 lg:h-10" /> */}
-                    {/* <Image
-                      src={careerEvolveConstantly}
-                      alt="icon-back"
-                      width={20}
-                      height={20}
-                      className=" w-9 h-9 lg:w-12 lg:h-12"
-                    /> */}
+                    
                   </div>
                 </div>
               </div>
@@ -649,26 +619,13 @@ function page() {
                   {/* Front face */}
                   <div className="absolute inset-0 flex items-center justify-center [backface-visibility:hidden]">
                     <HiOutlineUsers className="text-white w-9 h-9 lg:w-10 lg:h-10" />
-                    {/* <HiOutlineLightBulb className="text-white w-9 h-9 lg:w-10 lg:h-10" /> */}
-                    {/* <Image
-                      src={careerCollaborate}
-                      alt="icon-back"
-                      width={20}
-                      height={20}
-                      className=" w-9 h-9 lg:w-12 lg:h-12"
-                    /> */}
+                    
+
                   </div>
                   {/* Back face */}
                   <div className="absolute inset-0 flex items-center justify-center [transform:rotateY(180deg)] [backface-visibility:hidden]">
                     <HiOutlineUsers className="text-white w-9 h-9 lg:w-10 lg:h-10" />
-                    {/* <HiOutlineLightBulb className="text-white w-9 h-9 lg:w-10 lg:h-10" /> */}
-                    {/* <Image
-                      src={careerCollaborate}
-                      alt="icon-back"
-                      width={20}
-                      height={20}
-                      className=" w-9 h-9 lg:w-12 lg:h-12"
-                    /> */}
+                    
                   </div>
                 </div>
               </div>
@@ -701,26 +658,14 @@ function page() {
                   {/* Front face */}
                   <div className="absolute inset-0 flex items-center justify-center [backface-visibility:hidden]">
                     <FaRegHandshake className="text-white w-9 h-9 lg:w-10 lg:h-10" />
-                    {/* <HiOutlineLightBulb className="text-white w-9 h-9 lg:w-10 lg:h-10" /> */}
-                    {/* <Image
-                      src={careerCommitment}
-                      alt="icon-back"
-                      width={20}
-                      height={20}
-                      className=" w-9 h-9 lg:w-12 lg:h-12"
-                    /> */}
+                    
+                    
                   </div>
                   {/* Back face */}
                   <div className="absolute inset-0 flex items-center justify-center [transform:rotateY(180deg)] [backface-visibility:hidden]">
                     <FaRegHandshake className="text-white w-9 h-9 lg:w-10 lg:h-10" />
-                    {/* <HiOutlineLightBulb className="text-white w-9 h-9 lg:w-10 lg:h-10" /> */}
-                    {/* <Image
-                      src={careerCommitment}
-                      alt="icon-back"
-                      width={20}
-                      height={20}
-                      className=" w-9 h-9 lg:w-16 lg:h-16"
-                    /> */}
+                    
+                    
                   </div>
                 </div>
               </div>

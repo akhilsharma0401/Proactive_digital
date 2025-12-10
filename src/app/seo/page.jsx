@@ -15,13 +15,8 @@ import AlternativeImage from "../components/AlternativeImage";
 import FeatureShowcase from "../components/FeatureShowcase";
 
 // images
-import pro6 from "../../../public/images/Pro6.png";
 import seoHero from "../../../public/images/seoHero.png";
-import smm1 from "../../../public/images/smm1.jpeg";
-import seo from "../../../public/images/seo.jpg";
-import seoInterLinking from "../../../public/images/seoInterLinking.jpg";
-import smm2 from "../../../public/images/smm2.jpeg";
-import smm3 from "../../../public/images/smm3.jpeg"; 
+import seoInterLinking from "../../../public/images/seoInterLinking.jpg"; 
 
 // feature ShowCase 01
 import seoFeature01EAT from "../../../public/images/seoFeature01EAT.jpg";
@@ -361,7 +356,7 @@ const page = () => {
               i={3}
               title="Improved User Experience & Engagement"
               description="SEO is more than just keywords. It builds a smooth fast and user friendly website that keeps visitors engaged through better structure speed and mobile responsiveness."
-              bgImage="/images/seo7.jpg" 
+              bgImage="/images/seo4.jpg" 
               progress={scrollYProgress}
               range={[0.75, 1]}
               targetScale={1}

@@ -7,10 +7,8 @@ import AutoPlaySection from "./../components/AutoPlaySection";
 import FaqItem from "../components/FaqItem.jsx";
 import Link from "next/link";
 // images
-import hero4 from "../../../public/images/hero4.jpeg";
 import whyChooseOpenSource from "../../../public/images/whyChooseOpenSource.jpg";
 import openSourceHero from "../../../public/images/openSourceHero.png";
-import pro6 from "../../../public/images/Pro6.png";
 import openSourceWordpress01 from "../../../public/images/openSourceWordpress01.jpg";
 import openSourceWordpress02 from "../../../public/images/openSourceWordpress02.jpg";
 import openSourceWordpress03 from "../../../public/images/openSourceWordpress03.jpg";

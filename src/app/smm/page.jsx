@@ -8,15 +8,8 @@ import ReactLenis from "lenis/react";
 import Lottie from "lottie-react";
 
 // images
-import smm1 from "../../../public/images/smm1.jpeg";
-import smm2 from "../../../public/images/smm2.jpeg";
 import smm3 from "../../../public/images/smm3.jpeg";
-import smm4 from "../../../public/images/smm4.avif";
-import smmInterLinking from "../../../public/images/smmInterLinking.jpg";
-import smmInterLinking02 from "../../../public/images/smmInterLinking02.jpg";
 import smmInterLinking03 from "../../../public/images/smmInterLinking03.png";
-import textBlob2 from "../../../public/images/textBlob2.png";
-import pro6 from "../../../public/images/Pro6.png";
 import smmHero from "../../../public/images/smmHero.png";
 import smmSocialMediaMarketing from "../../../public/images/smmSocialMediaMarketing.jpg";
 // feature 01
@@ -180,7 +173,6 @@ const page = () => {
     {
       title: ["Instagram The house of visuals, reels and trends"],
       text: "We generate scroll-stopping content-reels, photos, carousels and videos-that embodies your brand’s character and affirms who you are as a brand.",
-      // img: "/images/sideimg.png",
       img: "/images/smmAlternative01.png",
       reverse: true,
       // rounded: "rounded-tr-[5rem] md:rounded-tr-[10rem]", // top-right
@@ -194,7 +186,6 @@ const page = () => {
     {
       title: ["Facebook The best systems for community and conversion"],
       text: "We run pages, groups, ad campaigns, and events to get to the right people at the right moment.Our mission is to convert our casual followers into loyal customers who identify with your brand's story.",
-      // img: "/images/sideimg.png",
       img: "/images/smmAlternativeImage02.jpg",
       reverse: true,
       // rounded: "rounded-tr-[5rem] md:rounded-tr-[10rem]", // top-right
@@ -396,7 +387,6 @@ const page = () => {
               i={0}
               title="Plan & Schedule Smarter"
               description=" We create a content calendar that keeps your brand identity consistent and active across all platforms, from Instagram to Facebook, where converting audiences consumes content - shown at the right place, the right time, every time, and any time."
-              // bgImage="/images/smmScrollStackCards01.jpg"
               bgImage="/images/smmStackCards01.jpg"
               progress={scrollYProgress}
               range={[0, 1]}
@@ -415,7 +405,6 @@ const page = () => {
               i={2}
               title="Track Real Performance"
               description=" Our detailed analytics reveal the statistics that help generate better versions of products or services, which help you understand your audience and their pattern of engagement, reach, and ROI to make smarter marketing decisions."
-              // bgImage="/images/smmScrollStackCards03.jpg"
               bgImage="/images/smmStackCards03.png"
               progress={scrollYProgress}
               range={[0.5, 1]}
@@ -425,7 +414,6 @@ const page = () => {
               i={3}
               title="Stay Ahead of the Curve"
               description=" Trends change fast. Our team continuously monitors insights and social conversations to keep your brand fresh, relevant, and ahead of competitors."
-              // bgImage="/images/smmScrollStackCards04.jpg"
               bgImage="/images/smmStackCards04.png"
               progress={scrollYProgress}
               range={[0.75, 1]}
@@ -637,45 +625,6 @@ const page = () => {
           </div>
         </div>
       </section>
-
-      {/* FAQs With right side Image */}
-      {/* <section className=" bg-[#eff0f9] flex justify-center items-center py-12 px-6 lg:px-10">
-        <div className="w-full container mx-auto  bg-[#F7F4F9] border border-[#D1CDE3] rounded-xl p-4 md:p-6 shadow-lg space-y-6">
-          <h2 className="poppins text-2xl md:text-3xl lg:text-4xl font-semibold text-center text-gray-900 heading">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2b40b0] to-[#3e66f3]">
-              {" "}
-              Have more questions?
-            </span>{" "}
-            <p>We’ve answers.</p>
-          </h2>
-
-          <div className="grid grid-cols-1 lg:grid-cols-[38%_58%] gap-10   ">
-
-            <div className="hidden lg:flex">
-              <Image
-                // src="https://thrillarkdev.imgix.net/attractions/ED1056/87f8c9b1be89eaeac8fa056fd9268e6c.jpg?auto=true,format&fit=min&crop=faces&w=720&h=1120"
-                src={smm4}
-                alt="Digital Marketing"
-                width={490}
-                height={400}
-                // w-[400px] h-[300px] md:h-[550px] md:w-[400px] lg:w-[500px]
-                className="lg:h-[420px] object-cover rounded-lg shadow-lg "
-              />
-            </div>
-            <div className="flex flex-col gap-4 bg-white rounded-xl py-4 px-6  sm:px-6">
-            {faqs.map((faq, idx) => (
-              <FaqItem
-                key={idx}
-                question={ faq.question }
-                answer={ faq.answer }
-                isOpen={openIndex === idx}
-                onClick={() => toggle(idx)}
-              />
-            ))}
-            </div>
-          </div>
-        </div>
-      </section> */}
 
       {/* cta */}
       <section

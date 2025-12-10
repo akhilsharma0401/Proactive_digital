@@ -3,30 +3,9 @@ import React from "react";
 import Link from "next/link";
 
 // icons
-import { RxArrowTopRight } from "react-icons/rx";
 import { HiMiniArrowTopRightOnSquare } from "react-icons/hi2";
 
 // images
-
-import portfolio3 from "../../../public/images/portfolio3.png";
-import kavassuHeritageHaveli from "../../../public/images/kavassuHeritageHaveli.png";
-import kavasu2 from "../../../public/images/kavasu2.png";
-import tirupati from "../../../public/images/tirupati.png";
-import tirupatiSpriklers from "../../../public/images/tirupatiSpriklers.png";
-import sjtSchool from "../../../public/images/sjtSchool.png";
-import kavassu from "../../../public/images/kavassu.png";
-import healthSquare from "../../../public/images/healthSquare.png";
-import favoHardware from "../../../public/images/favoHardware.png";
-import urbanDesignStory from "../../../public/images/urbanDesignStory.png";
-import digiBima from "../../../public/images/digiBima.png";
-import altusInterioJaipur from "../../../public/images/altusInterioJaipur.png";
-// import portfolioAltus from "../../../public/images/portfolioAltus.jpg";
-// import portfolioAltus2 from "../../../public/images/portfolioAltus2.jpg";
-// import portfolioAltus3 from "../../../public/images/portfolioAltus3.png";
-import beaConPublicSchool from "../../../public/images/beaConPublicSchool.png";
-import laranza from "../../../public/images/laranza.png";
-import laranza2 from "../../../public/images/laranza2.png";
-import laranza3 from "../../../public/images/laranza3.jpg";
 import portfolioKavassu from "../../../public/images/portfolioKavassu.png";
 import portfolioTirupati from "../../../public/images/portfolioTirupati.png";
 import portfolioDigiBima from "../../../public/images/portfolioDigiBima.png";

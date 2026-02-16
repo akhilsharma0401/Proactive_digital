@@ -112,9 +112,9 @@
 
 
 "use client";
-import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import Image from "next/image";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 const AnimatedImage = ({ src, alt, className }) => {
   const ref = useRef(null);

@@ -1,8 +1,14 @@
 
 "use client";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useMemo, useEffect, useRef } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+
 // import celitixlogo from "../public/logo/celitixlogo.svg";
 import proactiveLogo from "../../../../../public/images/proactiveLogo.png";
+import proactivedigital_logo from "../../../../../public/images/proactivedigital_logo.png";
 // import MetaLogowhite from "../public/logo/MetaLogowhite.webp";
 // import footerimg from "../public/image/footerimg.svg";
 import {
@@ -14,24 +20,10 @@ import {
   Palette,
   Layers,
 } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
-// import { href } from "react-router-dom";
 // import BookDemoDialog from "./../components/BookDemoDialog";
 import BookDemoDialog from "../../BookDemoDialog";
-import NavbarWebDesign from "../../../../../public/icons/NavbarWebDesign.png";
-import navbarOpenSource from "../../../../../public/icons/navbarOpenSource.png";
-import navbarEcommerce from "../../../../../public/icons/navbarEcommerce.png";
-import navbarSeo from "../../../../../public/icons/navbarSeo.png";
-import navbarSmm from "../../../../../public/icons/navbarSmm.png";
-import navbarSocialMediaAds from "../../../../../public/icons/navbarSocialMediaAds.png";
-import navbarContentMarketing from "../../../../../public/icons/navbarContentMarketing.png";
-import navbarBranding from "../../../../../public/icons/navbarBranding.png";
-import navbarAnimation from "../../../../../public/icons/navbarAnimation.png";
-import navbarAffiliateMarketing from "../../../../../public/icons/navbarAffiliateMarketing.png";
-import navbarCelitix from "../../../../../public/icons/navbarCelitix.png";
 
-// navbar icons
+// icons 
 // web solutions
 import { FaLaptopCode } from "react-icons/fa";
 import { TbSourceCode } from "react-icons/tb";
@@ -39,27 +31,52 @@ import { TbShoppingCartCog } from "react-icons/tb";
 
 // design
 import { RiTerminalWindowLine } from "react-icons/ri";
-import { MdAnimation } from "react-icons/md";
-import { IoMdPricetags } from "react-icons/io";
 
-// digital Marketing
-import { MdOutlineScreenSearchDesktop } from "react-icons/md";
-import { FaSearch } from "react-icons/fa";
-import { RiAdvertisementLine } from "react-icons/ri";
-import { BsMegaphone } from "react-icons/bs";
-import { BsMegaphoneFill } from "react-icons/bs";
-import { IoIosPeople } from "react-icons/io";
-import { LuClipboardPenLine } from "react-icons/lu";
+// solutions
+import { MdOutlineEngineering } from "react-icons/md";
+import { LuBadgePercent } from "react-icons/lu";
+import { PiCarProfileBold } from "react-icons/pi";
 
-function page() {
+// cpass
+import navbarCelitix from "../../../../../public/icons/navbarCelitix.png";
+
+
+const navLinks = [
+  { name: "Home", href: "/" },
+  { name: "About", href: "/about-us" },
+  { name: "Services", href: "/services", dropdown: true },
+  { name: "Solution", dropdown: true },
+  { name: "Portfolio", href: "/portfolio" },
+  { name: "Blog", href: "/blog" },
+  { name: "Career", href: "/career" },
+  { name: "Contact", href: "/contact-us" },
+];
+
+const routeParentMap = {
+  // SOLUTIONS
+  "/sms-based-coupon-management-system": "Solution",
+  "/employee-cab-management-system": "Solution",
+  "/worker-loyalty-reward-app": "Solution",
+
+  // SERVICES
+  "/web-development": "Services",
+  "/custom-development": "Services",
+  "/ecommerce": "Services",
+  "/web-design": "Services",
+};
+
+
+function Navbar() {
   const [visible, setVisible] = useState(false);
   const [open, setOpen] = useState(false);
-  const [activeLink, setActiveLink] = useState("Home");
+  // const [activeLink, setActiveLink] = useState("Home");
   const [activeSub, setActiveSub] = useState(null);
   const [scrolled, setScrolled] = useState(false);
   const [dropdown, setDropdown] = useState(null);
   const underlineRef = useRef(null);
   const navRef = useRef(null);
+  const pathname = usePathname();
+
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -67,16 +84,17 @@ function page() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = [
-    { name: "Home", href: "/" },
-    { name: "About", href: "/about-us" },
-    { name: "Services", href: "/services", dropdown: true },
-    { name: "Solution", href: "/solutions" },
-    { name: "Portfolio", href: "/portfolio" },
-    { name: "Blog", href: "/blog" },
-    { name: "Career", href: "/career" },
-    { name: "Contact", href: "/contact-us" },
-  ];
+  // const navLinks = [
+  //   { name: "Home", href: "/" },
+  //   { name: "About", href: "/about-us" },
+  //   { name: "Services", href: "/services", dropdown: true },
+  //   { name: "Solution", href: "/solutions" },
+  //   { name: "Portfolio", href: "/portfolio" },
+  //   { name: "Blog", href: "/blog" },
+  //   { name: "Career", href: "/career" },
+  //   { name: "Contact", href: "/contact-us" },
+  // ];
+
 
   //  Floating Grid Dropdown Data
   const dropdownItems = {
@@ -94,16 +112,14 @@ function page() {
             icon: <FaLaptopCode size={20} className="text-[#3e66f3]" />,
           },
           {
-            name: "Open Source Development",
-            href: "/open-source-development",
+            name: "Custom Development",
+            href: "/custom-development",
             icon: <TbSourceCode size={20} className="text-[#3e66f3]" />,
-            // image: navbarOpenSource,
           },
           {
             name: "E-commerce",
             href: "/ecommerce",
             icon: <TbShoppingCartCog size={20} className="text-[#3e66f3]" />,
-            // image: navbarEcommerce,
           },
         ],
       },
@@ -116,61 +132,51 @@ function page() {
             name: "Website Design",
             href: "/web-design",
             icon: <RiTerminalWindowLine size={20} className="text-[#3e66f3]" />,
-            // image: NavbarWebDesign,
-          },
-          {
-            name: "Branding",
-            href: "/branding",
-            icon: <IoMdPricetags size={20} className="text-[#3e66f3]" />,
-            // image: navbarBranding,
-          },
-          {
-            name: "Animation",
-            href: "/animation",
-            icon: <MdAnimation size={20} className="text-[#3e66f3]" />,
-            // image: navbarAnimation,
           },
         ],
       },
+      // {
+      //   name: "CPaaS",
+      //   desc: "All-in-one Communication.",
+      //   icon: <Layers size={22} className="text-[#3e66f3]" />,
+      //   sub: [
+      //     {
+      //       name: "Celitix.com",
+      //       href: "https://celitix.com/",
+      //       image: navbarCelitix,
+      //     },
+      //   ],
+      // },
+    ],
+    Solution: [
       {
-        name: "DIGITAL MARKETING",
-        desc: "Our business is marketing your business.",
-        icon: <Palette size={22} className="text-[#3e66f3]" />,
+        name: "APPLICATION",
+        desc: "Custom Solution for enterprises.",
+        icon: <Code size={22} className="text-[#3e66f3]" />,
+        // sub: ["Web development", "Open Source", "Ecommerce"],
+
         sub: [
           {
-            name: "Search Engine Optimization",
-            href: "/seo",
-            icon: <FaSearch size={18} className="text-[#3e66f3]" />,
-            // image: navbarSeo,
+            name: "Sms Based Coupon Management System",
+            href: "/sms-based-coupon-management-system",
+            icon: <LuBadgePercent size={20} className="text-[#3e66f3]" />,
           },
           {
-            name: "Social Media Marketing",
-            href: "/smm",
-            icon: <BsMegaphoneFill size={18} className="text-[#3e66f3]" />,
-            // image: navbarSmm,
+            name: "Employee Cab Management System",
+            href: "/employee-cab-management-system",
+            icon: <PiCarProfileBold size={20} className="text-[#3e66f3]" />,
+            // image: navbarOpenSource,
           },
           {
-            name: "Social Media Advertising",
-            href: "/social-media-ads",
-            icon: <RiAdvertisementLine size={20} className="text-[#3e66f3]" />,
-            // image: navbarSocialMediaAds,
+            name: "Worker Loyalty Reward App",
+            href: "/worker-loyalty-reward-app",
+            icon: <MdOutlineEngineering size={20} className="text-[#3e66f3]" />,
+            // image: navbarEcommerce,
           },
-          {
-            name: "Content Marketing",
-            href: "/content-marketing",
-            icon: <LuClipboardPenLine size={20} className="text-[#3e66f3]" />,
-            // image: navbarContentMarketing,
-          },
-          // {
-          //   name: "Affiliate Marketing",
-          //   href: "/affiliate-marketing",
-          //   icon: <IoIosPeople size={20} className="text-[#3e66f3]" />,
-          //   // image: navbarAffiliateMarketing,
-          // },
         ],
       },
       {
-        name: "CPASS",
+        name: "CPaaS",
         desc: "All-in-one Communication.",
         icon: <Layers size={22} className="text-[#3e66f3]" />,
         sub: [
@@ -194,30 +200,95 @@ function page() {
     }
   };
 
-  const handleClick = (e, link) => {
-    setActiveLink(link.name);
+  // const handleClick = (e, link) => {
+  //   setActiveLink(link.name);
+  //   moveUnderline(e.currentTarget);
+  // };
+
+  const handleClick = (e) => {
     moveUnderline(e.currentTarget);
   };
 
-  useEffect(() => {
-    const activeElement = navRef.current?.querySelector(
-      `[data-link='${activeLink}']`
+
+  // const getActiveLink = () => {
+  //   return navLinks.find(link =>
+  //     link.href === "/"
+  //       ? pathname === "/"
+  //       : pathname.startsWith(link.href)
+  //   );
+  // };
+  const getActiveLink = () => {
+    // Exact top-level match
+    const direct = navLinks.find(link =>
+      link.href === "/"
+        ? pathname === "/"
+        : pathname === link.href
     );
-    if (activeElement) moveUnderline(activeElement);
-  }, [activeLink]);
+
+    if (direct) return direct;
+
+    // Dropdown child → parent match
+    const parentName = routeParentMap[pathname];
+
+    if (parentName) {
+      return navLinks.find(link => link.name === parentName);
+    }
+
+    return null;
+  };
+ 
+
+  useEffect(() => {
+    const active = getActiveLink();
+    if (!active) return;
+
+    if (active) {
+      const activeElement = navRef.current?.querySelector(
+        `[data-link='${active.name}']`
+      );
+
+      if (activeElement) moveUnderline(activeElement);
+    }
+  }, [pathname]);
+
+
+
+  // useEffect(() => {
+  //   const activeElement = navRef.current?.querySelector(
+  //     `[data-link='${activeLink}']`
+  //   );
+  //   if (activeElement) moveUnderline(activeElement);
+  // }, [activeLink]);
+
+  // useEffect(() => {
+  //   const current = navLinks.find(link => link.href === pathname);
+
+  //   if (current) {
+  //     setActiveLink(current.name);
+
+  //     const activeElement = navRef.current?.querySelector(
+  //       `[data-link='${current.name}']`
+  //     );
+
+  //     if (activeElement) moveUnderline(activeElement);
+  //   }
+  // }, [pathname]);
+
 
   return (
     <>
       {/* Navbar */}
-      <nav className="w-full sticky top-0 left-0 px-4 z-[1000] bg-blue-100 shadow-md transition-all duration-300">
+      {/* <nav className="w-full sticky top-0 left-0 px-4 z-[1000] bg-[#F3F4F6] shadow-md transition-all duration-300"> */}
+      <nav className="w-full sticky top-0 left-0 px-6 z-[1000] bg-white shadow-md transition-all duration-300">
         <div className="container mx-auto py-4 flex justify-between items-center">
           {/* Logo */}
           <div className="flex items-center">
-            <Link href="/">
+            <Link href="/" aria-label="Home Page">
               <Image
-                src={proactiveLogo}
-                alt="Logo"
-                className="w-32 sm:w-40 lg:w-36 xl:w-48"
+                // src={proactiveLogo}
+                src={proactivedigital_logo}
+                alt="Proactive Digital Logo"
+                className="w-40 lg:w-36 xl:w-44"
               />
             </Link>
           </div>
@@ -230,7 +301,7 @@ function page() {
             {/* Animated underline */}
             <span
               ref={underlineRef}
-              className="absolute bottom-0 h-[3px] bg-blue-700 transition-all duration-700 ease-in-out rounded-full"
+              className="absolute bottom-0 h-[3px] bg-[#3e66f3] transition-all duration-700 ease-in-out rounded-full"
               style={{
                 width: 0,
                 transform: "translateX(0px)",
@@ -241,18 +312,36 @@ function page() {
             {navLinks.map((link) => (
               <li
                 key={link.name}
-                className="relative text-[16px] xl:text-[18px] text-gray-800 cursor-pointer h-full p-2 "
+                className="relative text-[16px] xl:text-[18px] text-gray-800 cursor-pointer h-full p-2"
                 data-link={link.name}
                 onMouseEnter={(e) => {
                   moveUnderline(e.currentTarget);
                   if (link.dropdown) setDropdown(link.name);
                 }}
+                // onMouseLeave={() => {
+                //   if (link.dropdown) setDropdown(null);
+                //   // moveUnderline(
+                //   //   navRef.current.querySelector(`[data-link='${activeLink}']`)
+                //   // );
+                //   const active = getActiveLink();
+                //   const el = navRef.current?.querySelector(`[data-link='${active?.name}']`);
+                //   if (el) moveUnderline(el);
+
+                // }}
                 onMouseLeave={() => {
                   if (link.dropdown) setDropdown(null);
-                  moveUnderline(
-                    navRef.current.querySelector(`[data-link='${activeLink}']`)
+
+                  const active = getActiveLink();
+                  if (!active) return;
+
+                  const el = navRef.current?.querySelector(
+                    `[data-link='${active.name}']`
                   );
+
+                  if (el) moveUnderline(el);
                 }}
+
+
                 onClick={(e) => handleClick(e, link)}
               >
                 <div className="flex items-center">
@@ -264,9 +353,8 @@ function page() {
                     {link.dropdown && (
                       <ChevronDown
                         size={16}
-                        className={`ml-1 transition-transform duration-400 ${
-                          dropdown === link.name ? "rotate-180" : ""
-                        }`}
+                        className={`ml-1 transition-transform duration-400 ${dropdown === link.name ? "rotate-180" : ""
+                          }`}
                       />
                     )}
                   </Link>
@@ -274,13 +362,35 @@ function page() {
 
                 {/* Dropdown Menu */}
                 {link.dropdown && (
+                  // <div
+                  //   className={`absolute left-4/2 -translate-x-1/2 mt-3 w-[95vw] sm:w-[700px] md:w-[1000px] lg:w-[1200px] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 bg-white/80 backdrop-blur-sm border border-blue-100 shadow-lg rounded-2xl p-4 transition-all duration-500 ${
+                  //     dropdown === link.name
+                  //       ? "opacity-100 translate-y-0 scale-100"
+                  //       : "opacity-0 -translate-y-3 scale-95 pointer-events-none"
+                  //   }`}
+                  // >
+
+
+                  // <div
+                  //   className={`absolute left-4/2 -translate-x-1/2 mt-3 lg:w-[900px] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 bg-white/70 backdrop-blur-sm border border-blue-100 shadow-lg rounded-2xl p-4 transition-all duration-500 ${dropdown === link.name
+                  //     ? "opacity-100 translate-y-0 scale-100"
+                  //     : "opacity-0 -translate-y-3 scale-95 pointer-events-none"
+                  //     }`}
+                  // >
                   <div
-                    className={`absolute left-4/2 -translate-x-1/2 mt-3 w-[95vw] sm:w-[700px] md:w-[1000px] lg:w-[1200px] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 bg-white/80 backdrop-blur-sm border border-blue-100 shadow-lg rounded-2xl p-4 transition-all duration-500 ${
-                      dropdown === link.name
-                        ? "opacity-100 translate-y-0 scale-100"
-                        : "opacity-0 -translate-y-3 scale-95 pointer-events-none"
-                    }`}
+                    className={`absolute left-1/2 -translate-x-1/2 mt-2.5  lg:w-[850px] grid md:grid-cols-2 gap-4 bg-white/70 backdrop-blur-sm border border-blue-100 shadow-lg rounded-2xl p-4 transition-all duration-500 ${dropdown === link.name
+                      ? "opacity-100 translate-y-0 scale-100"
+                      : "opacity-0 -translate-y-3 scale-95 pointer-events-none"
+                      }`}
                   >
+                    {/* // <div
+                  //   className={`absolute left-1/2 -translate-x-1/2 mt-3 inline-grid grid-flow-col auto-cols-max gap-4 bg-white/70 backdrop-blur-sm border border-blue-100 shadow-lg rounded-2xl p-4 transition-all duration-500
+                  //     ${dropdown === link.name
+                  //       ? "opacity-100 translate-y-0 scale-100"
+                  //       : "opacity-0 -translate-y-3 scale-95 pointer-events-none"
+                  //     }`}
+                  // > */}
+
                     {dropdownItems[link.name]?.map((item, index) => (
                       <div
                         key={index}
@@ -342,6 +452,7 @@ function page() {
           <div className="hidden lg:flex items-center space-x-4">
             <div className="flex items-center justify-center gap-4">
               <button
+                aria-label="Book Demo"
                 onClick={() => setVisible(true)}
                 className="relative poppins inline-flex items-center justify-center px-4 py-2 text-base open-sans rounded-lg text-white bg-[#3e66f3] cursor-pointer overflow-hidden transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:text-white active:scale-95 group"
               >
@@ -356,22 +467,23 @@ function page() {
 
           {/* Mobile & Tablet Menu Button */}
           <button
+            aria-label="Open menu"
             className="lg:hidden text-gray-700"
             onClick={() => setOpen(!open)}
           >
+
             {open ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
 
         {/* ===== Off-Canvas Menu (Mobile & Tablet) ===== */}
         <div
-          className={`fixed top-0 right-0 h-full w-72 sm:w-80 bg-white shadow-2xl border-l border-blue-100 transform transition-transform duration-500 ease-in-out z-[9999] ${
-            open ? "translate-x-0" : "translate-x-full"
-          } lg:hidden`}
+          className={`fixed top-0 right-0 h-full w-72 sm:w-80 bg-white shadow-2xl border-l border-blue-100 transform transition-transform duration-500 ease-in-out z-[9999] ${open ? "translate-x-0" : "translate-x-full"
+            } lg:hidden`}
         >
           <div className="flex justify-between items-center p-4 border-b border-gray-200">
             <h2 className="text-lg font-semibold text-gray-800">Menu</h2>
-            <button onClick={() => setOpen(false)}>
+            <button aria-label="Close Menu" onClick={() => setOpen(false)}>
               <X size={24} />
             </button>
           </div>
@@ -394,6 +506,7 @@ function page() {
                   {/* Clicking arrow = open submenu */}
                   {link.dropdown && (
                     <button
+                      aria-label="DropDown Button"
                       onClick={(e) => {
                         e.preventDefault();
                         e.stopPropagation();
@@ -403,9 +516,8 @@ function page() {
                     >
                       <ChevronDown
                         size={16}
-                        className={`transition-transform duration-300 ${
-                          dropdown === link.name ? "rotate-180" : ""
-                        }`}
+                        className={`transition-transform duration-300 ${dropdown === link.name ? "rotate-180" : ""
+                          }`}
                       />
                     </button>
                   )}
@@ -418,6 +530,7 @@ function page() {
                       <div key={index} className="flex flex-col gap-1">
                         {/* Subcategory Title */}
                         <button
+                          aria-label="Sub Category Dropdown"
                           onClick={() =>
                             setActiveSub(
                               activeSub === `${link.name}-${item.name}`
@@ -432,11 +545,10 @@ function page() {
                           {item.sub && (
                             <ChevronDown
                               size={14}
-                              className={`transition-transform duration-300 ${
-                                activeSub === `${link.name}-${item.name}`
-                                  ? "rotate-180"
-                                  : ""
-                              }`}
+                              className={`transition-transform duration-300 ${activeSub === `${link.name}-${item.name}`
+                                ? "rotate-180"
+                                : ""
+                                }`}
                             />
                           )}
                         </button>
@@ -491,6 +603,7 @@ function page() {
             {/* Book Demo Button */}
             <div className="flex items-center justify-start gap-4 mt-4">
               <button
+                aria-label="Book Demo"
                 onClick={() => {
                   setOpen(false);
                   setVisible(true);
@@ -500,7 +613,7 @@ function page() {
                 <span className="relative z-10">Book Demo</span>
                 <span className="absolute left-0 top-1/2 w-full h-[10px] bg-black opacity-0 transition-all duration-[800ms] ease-[cubic-bezier(0.23,1,0.32,1)] -translate-y-1/2 group-hover:h-full group-hover:opacity-100 rounded"></span>
               </button>
-              <BookDemoDialog visible={visible} setVisible={setVisible} />
+              {/* <BookDemoDialog visible={visible} setVisible={setVisible} /> */}
             </div>
           </div>
         </div>
@@ -517,4 +630,4 @@ function page() {
   );
 }
 
-export default page;
+export default Navbar;

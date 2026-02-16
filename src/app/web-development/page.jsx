@@ -13,20 +13,21 @@ import AutoPlaySection from "./../components/AutoPlaySection";
 // images
 import webDevelopmentHero from "../../../public/images/webDevelopmentHero.png";
 import webDevelopmentWhyChoose from "../../../public/images/webDevelopmentWhyChoose.jpg";
-// ecommerce
-import webDevelopmentEcommerce01 from "../../../public/images/webDevelopmentEcommerce01.jpg";
-import webDevelopmentEcommerce02 from "../../../public/images/webDevelopmentEcommerce02.jpg";
-import webDevelopmentEcommerce03 from "../../../public/images/webDevelopmentEcommerce03.jpg";
 
-// cms
-import webDevelopmentCms01 from "../../../public/images/webDevelopmentCms01.jpg";
-import webDevelopmentCms02 from "../../../public/images/webDevelopmentCms02.jpg";
-import webDevelopmentCms03 from "../../../public/images/webDevelopmentCms03.jpg";
+// React
+import reactWebDevelopment01 from "../../../public/images/reactWebDevelopment01.jpg";
+import reactWebDevelopment02 from "../../../public/images/reactWebDevelopment02.jpg";
+import reactWebDevelopment03 from "../../../public/images/reactWebDevelopment03.jpg";
 
-// dotNet
-import webDevelopmentDotNet01 from "../../../public/images/webDevelopmentDotNet01.jpg";
-import webDevelopmentDotNet02 from "../../../public/images/webDevelopmentDotNet02.jpg";
-import webDevelopmentDotNet03 from "../../../public/images/webDevelopmentDotNet03.jpg";
+// NextJS
+import nextJSWebDevelopment01 from "../../../public/images/nextJSWebDevelopment01.jpg";
+import nextJSWebDevelopment02 from "../../../public/images/nextJSWebDevelopment02.jpg";
+import nextJSWebDevelopment03 from "../../../public/images/nextJSWebDevelopment03.jpg";
+
+// NodeJS
+import nodeJSWebDevelopment01 from "../../../public/images/nodeJSWebDevelopment01.jpg";
+import nodeJSWebDevelopment02 from "../../../public/images/nodeJSWebDevelopment02.jpg";
+import nodeJSWebDevelopment03 from "../../../public/images/nodeJSWebDevelopment03.jpg";
 
 // Html
 import webDevelopmentHtml01 from "../../../public/images/webDevelopmentHtml01.jpg";
@@ -54,174 +55,114 @@ function page() {
 
   const faqs = [
     {
-      question: "Which services come under web development?",
+      question: "What makes Proactive a trusted web development company?",
       answer:
-        "Web development covers website design, front-end coding, back-end programming, adaptive layouts, performance enhancements, and basic SEO setup.",
+        "Proactive is a trusted web development company offering custom website development, e-commerce solutions, responsive design, CMS development, and high-performing business websites tailored for growth.",
     },
     {
-      question: "How long does it generally take to develop a website?",
+      question: "Do you provide custom ecommerce website development services?",
       answer:
-        "A simple website usually takes days, while more sophisticated ones can take as long as 2-4 weeks, based on the complexity of the features and design.",
+        "Yes, We specialize in custom ecommerce website development, delivering secure payment integration, product catalogs, shopping carts, and scalable online store solutions optimized for sales.",
     },
     {
-      question: "Will my site work across all devices?",
+      question: "Will my website be responsive, fast, and mobile-optimized?",
       answer:
-        "Indeed every website we develop is fully responsive and optimized for desktops, tablets, and smartphones.",
+        "Absolutely, We build responsive websites that load fast, offer seamless mobile experiences, and meet Google’s mobile-first standards for better SEO and user engagement.",
     },
     {
-      question: "Is custom web site design?",
+      question: "What platforms do you use for professional website development?",
       answer:
-        "Indeed, we build websites: from scratch, tailored to represent your brand's identity and preferences.",
+        "We use top website development platforms such as WordPress, Shopify, WooCommerce, Magento, Laravel, PHP, React, and Node.js to create advanced business and e-commerce websites.",
     },
     {
-      question: "Is it possible to redesign my website?",
+      question: "How long does professional website development take?",
       answer:
-        "Of course, we could update the design, enhance functionality, and give your website an appearance and experience.",
+        "A standard business website development project usually takes 1-2 weeks, while a fully customized e-commerce website development project may take 4-6 weeks depending on features and complexity.",
     },
     {
-      question: "Will my website be SEO-friendly?",
+      question: "Do you offer website maintenance and performance optimization?",
       answer:
-        "Indeed we adhere to standards for on-page SEO, quick loading times, and well-organized code architecture.",
+        "Yes, We provide complete website maintenance, including security updates, speed optimization, technical fixes, backups, and ongoing support to keep your website performing at its best.",
     },
     {
-      question: "Which technologies does your development process involve?",
+      question: "Are your websites SEO-friendly and optimized for higher rankings?",
       answer:
-        "We utilize tools such as HTML, CSS, JavaScript, React, PHP, Node.js, and others depending on the requirements of the project.",
-    },
-    {
-      question: "What do you do to ensure a website is secure?",
-      answer:
-        "We apply SSL follow coding methods, perform updates, and monitor performance to ensure your website stays safe.",
-    },
-    {
-      question:
-        "After my website has been developed, would I be able to make changes to it?",
-      answer:
-        "Of course, you will be given the facility to manage your pages, content, images, and basic settings with ease.",
-    },
-    {
-      question: "Do you provide support and maintenance?",
-      answer:
-        "Indeed, we offer maintenance packages on an annual basis covering updates, backups, security checks, and performance enhancements.",
-    },
-    {
-      question: "Can you integrate tools into my website?",
-      answer:
-        "Of course, we are able to integrate APIs, such as chat platforms, maps, analytics, forms, reservation tools, and many more.",
-    },
-    {
-      question: "What is the cost of web development?",
-      answer:
-        "The pricing depends on the number of pages, features, and customization required. We provide a clear quote after we have understood your needs.",
+        "Yes, Every website we develop includes SEO-friendly website development features like optimized structure, meta tags, fast loading speeds, schema markup, and mobile responsiveness to boost search engine visibility.",
     },
   ];
   // FAQs Ends
 
   // Section Data (Keeping all your section data as is)
-  // ecommerce
-  const sections1 = [
-    // ... sections1 data ...
+
+  // nodeJS
+  const nodeJS = [
     {
       id: 0,
-      title: "Responsive & Mobile-Optimized Design",
+      title: "Backend & Restful API Development",
       description:
-        "Designed websites are mobile-friendly, and we also develop layouts that are easy for customers to navigate.",
-      color: "border-[#3e66f3]",
+        "Our backend solutions are designed to deliver seamless data exchange, scalable architecture .Using Node.js and Express.js, we build robust, secure, and high-performance RESTful APIs that power your web applications.",
+      color: "border-teal-400",
       bgColor: "bg-gray-50",
-      image: webDevelopmentEcommerce01,
+      image: nodeJSWebDevelopment01,
     },
     {
       id: 1,
-      title: "User-Friendly Navigation & Engagement",
+      title: "Microservices Architecture Development",
       description:
-        "An effortless design encourages visitors to spend more time scrolling through the website.",
-      color: "border-blue-700",
+        "We leverage Node.js to design and implement scalable microservices architectures, enabling the development of distributed, modular, and independently deployable components.Our approach ensures greater flexibility, improved system resilience.",
+      color: "border-teal-500",
       bgColor: "bg-gray-50",
-      image: webDevelopmentEcommerce02,
+      image: nodeJSWebDevelopment02,
     },
     {
       id: 2,
-      title: "Seamless E-Commerce Experience",
+      title: "Serverless Architecture & Cloud Integration",
       description:
-        "We design websites that provide customers with a hassle-free online shopping experience.",
-      color: "border-blue-700",
+        "We help businesses adopt forward-thinking serverless solutions built with Node.js and deployed on leading cloud platforms.From AWS Lambda and Google Cloud Functions to Azure Functions, cost-efficient, and high-performance cloud integrations that reduce infrastructure overhead.",
+      color: "border-teal-600",
       bgColor: "bg-gray-50",
-      image: webDevelopmentEcommerce03,
+      image: nodeJSWebDevelopment03,
     },
   ];
 
-  // cms
-  const sections2 = [
-    // ... sections2 data ...
+  // react
+  const react = [
     {
       id: 0,
-      title: "Advanced Themes & Custom Control",
+      title: "Modern & Interactive User Interfaces",
       description:
-        "CMS provides a vast variety of theme options, content management, and customization.",
+        "Our developers craft modern, visually engaging, and highly intuitive user interfaces using React.js to deliver seamless digital experiences.",
       color: "border-blue-700",
       bgColor: "bg-gray-50",
-      image: webDevelopmentCms01,
+      image: reactWebDevelopment01,
     },
     {
       id: 1,
-      title: "High-Performance, Scalable Architecture",
+      title: "Single Page Application (SPA) Development",
       description:
-        "We create websites that provide consumers greater scalability and a back-end that optimizes performance. It allows websites to rank faster and handle databases more securely.",
+        "We build high-performance, fast-loading Single Page Applications (SPAs) that deliver seamless navigation and dynamic user experiences.",
       color: "border-blue-700",
       bgColor: "bg-gray-50",
-      image: webDevelopmentCms02,
+      image: reactWebDevelopment02,
     },
     {
       id: 2,
-      title: "Enterprise-Ready",
+      title: "API Integration & Backend Connectivity",
       description:
-        "It's a wonderful tool for creating complicated websites and is ideal for those with significant budgets and long-term web projects.",
+        "We seamlessly connect your frontend applications with backend systems and third-party APIs to create dynamic, real-time web experiences.",
       color: "border-blue-700",
       bgColor: "bg-gray-50",
-      image: webDevelopmentCms03,
-    },
-  ];
-
-  // DOT NET
-  const sections3 = [
-    // ... sections3 data ...
-    {
-      id: 0,
-      title: "Right Framework",
-      description:
-        "The success of a website or application largely depends on the framework it’s built on. Among the many options available, the .NET framework.",
-      color: "border-blue-700",
-      bgColor: "bg-gray-50",
-      image: webDevelopmentDotNet01,
-    },
-    {
-      id: 1,
-      title: "Scalable Solutions",
-      description:
-        ".NET can be used for every business to build websites and apps.It is reliable and easy to scale. It helps businesses to keep up with changing business need.",
-      color: "border-blue-700",
-      bgColor: "bg-gray-50",
-      image: webDevelopmentDotNet02,
-    },
-    {
-      id: 2,
-      title: "Multi-Version Deployment",
-      description:
-        ".NET's flexibility is its biggest strength, and it can be deployed within your application or run on multiple versions on the same computer.",
-      color: "border-blue-700",
-      bgColor: "bg-gray-50",
-      image: webDevelopmentDotNet03,
+      image: reactWebDevelopment03,
     },
   ];
 
   // html
-  const sections4 = [
-    // ... sections4 data ...
+  const html = [
     {
       id: 0,
-      title: "Cost-Effective and Multi-platform development",
+      title: "Cost-Effective and Multi-platform development-",
       description:
-        "HTML helps in structuring your data across web browsers and meets the increasing demand, such as cross-platform mobile application or website development.",
+        "HTML helps in structuring your data across web browsers and meets the increasing demand, such as cross-platform mobile application or website development. Our expert team builds HTML websites that are both effective on mobile and PCS as well as cost-effective.",
       color: "border-blue-700",
       bgColor: "bg-gray-50",
       image: webDevelopmentHtml01,
@@ -230,7 +171,7 @@ function page() {
       id: 1,
       title: "Better User Experience",
       description:
-        "E-commerce sites require quick and responsive sites for the customer to be retained and sales to be made .HTML sites are highly responsive, and our team integrates built-in support that is highly responsive on all devices.",
+        "E-commerce sites require quick and responsive sites for the customer to be retained and sales to be made .HTML sites are highly responsive, and our team integrates built-in support that is highly responsive on all devices and engaging.",
       color: "border-blue-700",
       bgColor: "bg-gray-50",
       image: webDevelopmentHtml02,
@@ -247,31 +188,30 @@ function page() {
   ];
 
   // javascript
-  const sections5 = [
-    // ... sections5 data ...
+  const javaScript = [
     {
       id: 0,
-      title: "Module Alpha",
+      title: "Dynamic, Scalable & Efficient Solutions",
       description:
-        "E-commerce sites require quick and responsive sites for the customer to be retained and sales to be made .HTML sites are highly responsive, and our team integrates built-in support that is highly responsive on all devices.",
+        "Our JavaScript solutions enable fast, flexible, and multi-platform development for web and mobile. We build responsive JS-powered websites that perform smoothly across all devices - delivering cost-effective scalability and strong performance for every business.",
       color: "border-blue-700",
       bgColor: "bg-gray-50",
       image: webDevelopmentJavaScript01,
     },
     {
       id: 1,
-      title: "Module Beta",
+      title: "Interactive Design & Seamless Performance",
       description:
-        "E-commerce sites require quick and responsive sites for the customer to be retained and sales to be made .HTML sites are highly responsive, and our team integrates built-in support that is highly responsive on all devices.",
+        "We develop interactive and high-performing interfaces that keep users engaged. With JavaScript, we create smooth animations, real-time updates, and quick navigation - ensuring a seamless, responsive, and enjoyable experience for your customers across all platforms.",
       color: "border-blue-700",
       bgColor: "bg-gray-50",
       image: webDevelopmentJavaScript02,
     },
     {
       id: 2,
-      title: "Module Gamma",
+      title: "Optimized for Speed & Search Visibility",
       description:
-        "E-commerce sites require quick and responsive sites for the customer to be retained and sales to be made .HTML sites are highly responsive, and our team integrates built-in support that is highly responsive on all devices.",
+        "Our team refines JavaScript code and rendering for maximum performance and SEO compatibility. Using modern frameworks and optimized structures, we ensure faster loading, higher rankings, and improved online visibility for your website and brand.",
       color: "border-blue-700",
       bgColor: "bg-gray-50",
       image: webDevelopmentJavaScript03,
@@ -279,8 +219,7 @@ function page() {
   ];
 
   // php
-  const sections6 = [
-    // ... sections6 data ...
+  const php = [
     {
       id: 0,
       title: "Secure Sites",
@@ -310,13 +249,44 @@ function page() {
     },
   ];
 
+  // nextJS
+  const nextJS = [
+    {
+      id: 0,
+      title: "Modern React Framework",
+      description:
+        "Next.js is a powerful React framework used to build high-performance, scalable, and SEO-friendly websites.",
+      color: "border-teal-400",
+      bgColor: "bg-gray-50",
+      image: nextJSWebDevelopment01,
+    },
+    {
+      id: 1,
+      title: "Multiple Rendering Methods",
+      description:
+        "Supports Server-Side Rendering (SSR), Static Site Generation (SSG), and Client-Side Rendering, enabling faster load times and better search engine visibility.",
+      color: "border-teal-500",
+      bgColor: "bg-gray-50",
+      image: nextJSWebDevelopment02,
+    },
+    {
+      id: 2,
+      title: "Scalable Architecture",
+      description:
+        "Designed to scale effortlessly as your website traffic and content grow.Structured architecture ensures easier maintenance, upgrades, and long-term stability.",
+      color: "border-teal-600",
+      bgColor: "bg-gray-50",
+      image: nextJSWebDevelopment03,
+    },
+  ];
+
   return (
     <>
       {/* Hero Section */}
       <section
         className="bg-cover bg-center bg-no-repeat lg:px-10"
         style={{ backgroundImage: "url('/images/heroAnimateBg.svg')" }}
-      >
+        >
         <div className=" container mx-auto flex flex-col md:flex-row gap-10 items-center justify-between px-6 lg:px-10 xl:px-20 lg:py-12 py-10  ">
           {/* Left Text Section */}
           <div className="w-full md:w-1/2 flex items-center justify-center ">
@@ -328,8 +298,8 @@ function page() {
 
               {/* Main Heading */}
               <h1 className="poppins text-3xl  lg:text-4xl xl:text-5xl 2xl:text-6xl font-medium leading-tight text-gray-900 mb-3">
-                Web Development That Drives Growth For
-                <span className="text-[#3e66f3]"> Ambitious Brands </span> &
+                Web Development That Drives  
+                <span className="text-[#3e66f3]"> Growth </span> For
                 <span className="text-[#3e66f3]"> Businesses. </span>
               </h1>
 
@@ -369,7 +339,8 @@ function page() {
       </section>
 
       {/* why choose web development */}
-      <section className="bg-gradient-to-r from-[#f2f6ff] via-[#f5f6fe] to-[#e8edfd]">
+      {/* <section className="bg-gradient-to-r from-[#f2f6ff] via-[#f5f6fe] to-[#e8edfd]"> */}
+      <section className="">
         <div className="container mx-auto  py-10 md:py-12 px-6 lg:px-10 xl:px-20">
           <h2 className="poppins text-center text-3xl md:text-4xl font-medium mb-12">
             Why Choose <span className="text-[#0047FF]">Web Development ?</span>
@@ -388,13 +359,12 @@ function page() {
                     Feature 1
                   </p>
                   <h3 className=" poppins text-[18px] md:text-[20px] font-medium text-[#3e66f3]">
-                    Custom-Built Solutions
+                    Backend Development
                   </h3>
                   <p className="open-sans text-[14px] leading-relaxed text-gray-600">
-                    Our Services are tailored as per customer requirements,
-                    Business and products and services each individual is
-                    selling. To meet that expectation and objective, we offer
-                    custom-built solutions.
+                    We build robust and scalable backend systems using technologies such as Node.js, PHP, Python, and Laravel, ensuring secure data handling and high-performance application operations.
+
+
                   </p>
                 </div>
               </div>
@@ -410,13 +380,10 @@ function page() {
                     Feature 2
                   </p>
                   <h3 className=" poppins text-[18px] md:text-[20px] font-medium text-[#3e66f3]">
-                    SEO Friendly Website
+                    Full Stack Development
                   </h3>
                   <p className="open-sans text-[14px] leading-relaxed text-gray-600">
-                    Integrating SEO can boost site rank and visibility. Our team
-                    ensures that whether it’s a blog or website content, our
-                    experts use best SEO practices to ensure the website ranks
-                    higher and attracts organic traffic.
+                    Our full stack development combines frontend and backend expertise to deliver seamless, end-to-end solutions that are efficient, scalable, and user-focused.
                   </p>
                 </div>
               </div>
@@ -432,13 +399,10 @@ function page() {
                     Feature 3
                   </p>
                   <h3 className=" poppins text-[18px] md:text-[20px] font-medium text-[#3e66f3]">
-                    Secure and Reliable
+                    Custom Web Applications
                   </h3>
                   <p className="open-sans text-[14px] leading-relaxed text-gray-600">
-                    A secure website with SSL integration attracts loyal and
-                    returning customers or clients. We create secure websites
-                    that have layers of security that protect your data and
-                    trust.
+                    We design and develop custom web applications tailored specifically to your business processes, and operational workflows. Our solutions are built from scratch to match your exact requirements ensuring Business Growth.
                   </p>
                 </div>
               </div>
@@ -460,45 +424,46 @@ function page() {
         </div>
       </section>
 
-        {/* Pass the specific activeTabId state and its setter to each section */}
-        
+      {/* Pass the specific activeTabId state and its setter to each section */}
+
       <section className=" container mx-auto py-10 md:py-12 px-6 lg:px-10 xl:px-20 ">
         <div className="flex flex-col gap-10">
-          <AutoPlaySection
-            heading="Ecommerce"
-            sections={sections1}
-            intervalDuration={5000}
-          />
-
-          <AutoPlaySection
-            heading="CMS"
-            sections={sections2}
-            intervalDuration={5000}
-            reverse={true}
-          />
-
-          <AutoPlaySection
-            heading=".Net"
-            sections={sections3}
-            intervalDuration={5000}
-          />
-
-          <AutoPlaySection
-            heading="HTML"
-            sections={sections4}
-            intervalDuration={5000}
-            reverse={true}
-          />
 
           <AutoPlaySection
             heading="Javascript "
-            sections={sections5}
+            sections={javaScript}
             intervalDuration={5000}
+            />
+
+          <AutoPlaySection
+            heading="React"
+            sections={react}
+            intervalDuration={5000}
+            reverse={true}
+          />
+
+          <AutoPlaySection
+            heading="NextJS"
+            sections={nextJS}
+            intervalDuration={5000}
+            />
+ 
+          <AutoPlaySection
+            heading="Node JS"
+            sections={nodeJS}
+            intervalDuration={5000}
+            reverse={true}
           />
 
           <AutoPlaySection
             heading="PHP"
-            sections={sections6}
+            sections={php}
+            intervalDuration={5000}
+            />
+
+          <AutoPlaySection
+            heading="HTML"
+            sections={html}
             intervalDuration={5000}
             reverse={true}
           />
@@ -507,7 +472,7 @@ function page() {
 
       {/* FAQs */}
       <section className="  flex justify-center items-center py-10 px-4 lg:px-0">
-        <div className="w-full max-w-5xl mx-auto  bg-[#eff0f9] border border-[#D1CDE3] rounded-xl p-4 md:p-6 shadow-lg space-y-6">
+        <div className="w-full max-w-5xl mx-auto  bg-[#f9fafc] border border-[#D1CDE3] rounded-xl p-4 md:p-6 shadow-lg space-y-6">
           <h2 className="poppins text-2xl md:text-3xl lg:text-4xl font-semibold text-center text-gray-900 heading">
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2b40b0] to-[#3e66f3]">
               {" "}
@@ -516,7 +481,7 @@ function page() {
             <p>We’ve answers.</p>
           </h2>
 
-          <div className="flex flex-col gap-4 bg-white rounded-xl py-4 px-4  sm:px-4 ">
+          <div className="flex flex-col gap-4 bg-white  border border-gray-100 rounded-xl py-4 px-4  sm:px-4 ">
             {faqs.map((faq, idx) => (
               <FaqItem
                 key={idx}
@@ -558,9 +523,9 @@ function page() {
             {/* content */}
             <div className="flex flex-col  justify-center py-10 md:py-0 px-10 md:px-18  gap-4  h-full ">
               <div className="flex flex-col gap-2">
-                <h1 className="text-[24px] md:text-[30px] lg:text-[35px] text-center md:text-start font-medium poppins text-[#1d4ed8]">
+                <h2 className="text-[24px] md:text-[30px] lg:text-[35px] text-center md:text-start font-medium poppins text-[#1d4ed8]">
                   Improve Your Customer Experience
-                </h1>
+                </h2>
                 <p className="text-[16px] lg:text-[18px] text-black open-sans  text-center md:text-start">
                   Your online presence needs more than a website. It needs real
                   growth. Let us work together to build, refine, and scale your

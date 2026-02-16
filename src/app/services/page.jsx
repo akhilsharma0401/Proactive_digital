@@ -1,10 +1,10 @@
 "use client";
-// pre defined
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Lottie from "lottie-react";
-import { motion, AnimatePresence, useAnimation } from "framer-motion";
+import { motion, AnimatePresence, useAnimation, useScroll, useTransform } from "framer-motion";
+
 
 // import CardSwap, { Card } from "./components/CardSwap";
 // import { ClipPathCard } from "../components/ClipPathCard";
@@ -21,8 +21,9 @@ import { FaCode } from "react-icons/fa6";
 import { FaGears } from "react-icons/fa6";
 import { FaBullhorn } from "react-icons/fa";
 import { LuClipboardPenLine } from "react-icons/lu";
-import { FaChartLine } from "react-icons/fa";
-import { FaHashtag } from "react-icons/fa";
+import { FaChartLine } from "react-icons/fa"; 
+import { RiRobot2Line } from "react-icons/ri";
+import { FaNetworkWired } from "react-icons/fa";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 
 // lottie animation
@@ -32,113 +33,67 @@ import arrow from "../../../public/animation/arrow.json";
 // images
 import servicesExpertise from "../../../public/images/servicesExpertise.jpg";
 import servicesDesign from "../../../public/images/servicesDesign.jpg";
-import servicesDigitalMarketing from "../../../public/images/servicesDigitalMarketing.jpg";
+import cpassSolutionServices from "../../../public/images/cpassSolutionServices.jpg";
+import webDesignServices from "../../../public/images/webDesignServices.jpg";
+import webSolutionServices from "../../../public/images/webSolutionServices.jpg";
 import servicesWebSolutions from "../../../public/images/servicesWebSolutions.jpg";
 import servicesBuildTrust from "../../../public/images/servicesBuildTrust.jpg";
 import servicesProcess from "../../../public/images/servicesProcess.png";
 import overview from "../../../public/images/overview.png";
 import product4 from "../../../public/images/product4.png";
+import servicesInterLinking from "../../../public/images/servicesInterLinking.jpg";
 
 // icons
 import cpassSolution from "../../../public/icons/cpassSolution.jpg";
 import servicesIconDeliver from "../../../public/icons/servicesIconDeliver.png";
 import servicesIconScale from "../../../public/icons/servicesIconScale.png";
 
+
 // components
 import { ClipPathCard } from "../components/ClipPathCard";
 import FaqItem from "./../components/FaqItem";
 
 // icons
+import { FaArrowRightLong } from "react-icons/fa6";
 import { BsArrowRight } from "react-icons/bs";
 import { PiArrowElbowRightDown } from "react-icons/pi";
 
 // image pass for rotating cards
-const data = [servicesWebSolutions, servicesDesign, servicesDigitalMarketing];
+const data = [webSolutionServices, webDesignServices, cpassSolutionServices, ];
 
-// Our services On Mobile Screen
-const services = [
+// our Process
+const ourProcess = [
   {
-    id: 1,
-    title: "Web Development",
-    icon: "/icons/servicesIconWebDevelopment.png",
-    href: "/web-development",
+    number: "01",
+    title: "Discover",
+    desc: "We uncover your goals, audience, and market that drives.",
   },
   {
-    id: 2,
-    title: "Ecommerce",
-    icon: "/icons/servicesIconEcommerce.png",
-    href: "/ecommerce",
+    number: "02",
+    title: "Design",
+    desc: "We craft user experiences that attract, engage, convert.",
   },
   {
-    id: 3,
-    title: "Open Source Development",
-    icon: "/icons/servicesIconOpenSourceDevelopment.png",
-    href: "/open-source-development",
+    number: "03",
+    title: "Develop",
+    desc: "We build fast, secure platform for long-term success.",
   },
   {
-    id: 4,
-    title: "Website Redesign",
-    icon: "/icons/servicesIconWebDesign.png",
-    href: "/web-design",
+    number: "04",
+    title: "Deliver",
+    desc: "We ensure seamless deployment, performance optimization, and measurable results from day one.",
   },
   {
-    id: 5,
-    title: "Branding",
-    icon: "/icons/servicesIconBranding.png",
-    href: "/branding",
-  },
-  {
-    id: 6,
-    title: "Animation",
-    icon: "/icons/servicesIconAnimation.png",
-    href: "/animation",
+    number: "05",
+    title: "Scale",
+    desc: "We help you expand your digital footprint and maximize ROI through continuous innovation and analytics.",
   },
 ];
 
-const extraServices = [
-  {
-    id: 7,
-    title: "Affiliate Marketing",
-    icon: "/icons/servicesIconAffiliateMarketing.png",
-    href: "/affiliate-marketing",
-  },
-  {
-    id: 8,
-    title: "Social Media Ads",
-    icon: "/icons/servicesIconSocialMediaAds.png",
-    href: "/social-media-ads",
-  },
-  {
-    id: 9,
-    title: "Social Media Marketing",
-    icon: "/icons/servicesIconSocialMediaMarketing.png",
-    href: "/smm",
-  },
-  {
-    id: 10,
-    title: "Search Engine Optimization",
-    icon: "/icons/servicesIconSeo.png",
-    href: "/seo",
-  },
-  {
-    id: 11,
-    title: "Content Marketing",
-    icon: "/icons/servicesIconContentMarketing.png",
-    href: "/content-marketing",
-  },
-  {
-    id: 12,
-    title: "Cpass Solutions",
-    icon: "/icons/servicesIconCelitix.png",
-    href: "https://celitix.com/",
-  },
-];
-
-// Ends Our Services
+// Our Process Ends
 
 const App = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [viewMoreCard, setViewMoreCard] = useState(false);
 
   // FAQs start
   const [openIndex, setOpenIndex] = useState(null);
@@ -215,30 +170,53 @@ const App = () => {
   const controls4 = useAnimation();
 
   useEffect(() => {
-    const sequence = async () => {
+    let isMounted = true;
+
+    const runAnimation = async () => {
+      if (!isMounted) return;
+
       await controls2.start({ rotate: -10, transition: { duration: 0.6 } });
       await controls3.start({ rotate: -25, transition: { duration: 0.6 } });
       await controls4.start({ rotate: -40, transition: { duration: 0.6 } });
+
       await new Promise((res) => setTimeout(res, 800));
 
-      // REVERSE (band karna)
+      if (!isMounted) return;
+
       await controls1.start({ rotate: 0, transition: { duration: 0.6 } });
       await controls2.start({ rotate: 0, transition: { duration: 0.6 } });
       await controls3.start({ rotate: 0, transition: { duration: 0.6 } });
       await controls4.start({ rotate: 0, transition: { duration: 0.6 } });
-
-      // Repeat cycle
-      sequence();
     };
 
-    sequence();
+    runAnimation();
+
+    const interval = setInterval(runAnimation, 3500);
+
+    return () => {
+      isMounted = false;
+      clearInterval(interval);
+    };
   }, []);
 
+  // Our Process (Timeline)
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"],
+    // or ["top center", "bottom top"] based on how you want the fill to progress
+  });
+  const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+
+  // Timeline ends
+
+
   return (
-    <>
-      <section className="bg-linear-to-t from-[#EBF3FF] to-[#DDE8FF] ">
+    <div className="space-y-14">
+      {/* <section className="bg-linear-to-t from-[#EBF3FF] to-[#DDE8FF] "> */}
+      <section className=" ">
         {/* <div className="bg-linear-to-t from-[#accbee] to-[#e7f0fd]"> */}
-        <div className=" overflow-hidden py-19 2xl:py-25 ">
+        <div className=" overflow-hidden pt-10 lg:py-20 2xl:py-25 ">
           <div className="grid grid-cols-1 lg:grid-cols-[60%_40%] relative ">
             {/* left content */}
             <div className=" relative flex items-center justify-end mb-28 md:mb-45 lg:mb-0 px-6 md:px-20 2xl:px-0 2xl:ps-90  ">
@@ -252,35 +230,41 @@ const App = () => {
                 <FaGears className="text-4xl 2xl:text-[42px] text-[#9276ff] float-medium " />
               </div>
               <div className="hidden lg:block absolute right-70 xl:right-90 2xl:right-110  top-0 2xl:-top-10  ">
-                <FaBullhorn className="text-4xl text-[#ab4aff] float-medium " />
+                <FaLaptopCode className="text-4xl text-[#ab4aff] float-medium " />
               </div>
               <div className="hidden lg:block absolute right-35 xl:right-70 2xl:right-30 bottom-5  2xl:bottom-5 ">
-                <LuClipboardPenLine className="text-4xl text-[#55a0ff] float-medium " />
+                {/* <LuClipboardPenLine className="text-4xl text-[#55a0ff] float-medium " /> */}
+                <RiRobot2Line className="text-4xl text-[#55a0ff] float-medium " />
               </div>
               <div className="hidden lg:block absolute right-40 bottom-57 xl:right-40 xl:bottom-35 2xl:right-25 2xl:bottom-70   ">
                 <FaChartLine className="text-3xl text-[#ff52f2] float-medium " />
               </div>
               <div className="hidden lg:block absolute top-15 xl:right-40 xl:top-25 2xl:right-50 2xl:top-10">
-                <FaHashtag className="text-4xl text-[#fc4453] float-medium " />
+                <FaNetworkWired className="text-4xl text-[#fc4453] float-medium " />
               </div>
               {/* content */}
               <div className="flex flex-col gap-4  max-w-4xl 2xl:min-w-4xl  z-100 ">
                 <div className="">
-                  <h1 className="text-[35px] md:text-[42px] 2xl:text-[52px] text-center lg:text-start poppins font-medium text-gray-900">
+                  <h1 className="text-[30px] md:text-[42px] 2xl:text-[52px] text-center lg:text-start poppins font-medium text-gray-900">
                     Website{" "}
-                    <span className="font-bold text-[#3e66f3]">
+                    <span className="font-semibold text-[#3e66f3]">
                       Development,{" "}
+                      Redesign
                     </span>
-                    <span className="inline-block">
-                      Redesign & Digital Marketing
+                    {" "} & {" "}
+                    <span className="font-semibold text-[#3e66f3]">
+
+                      CPaaS
                     </span>
+                    {" "} Solution {" "}
+                    {/* <span className="inline-block">
+                      Redesign &  CPaaS Solution
+                    </span> */}
                   </h1>
                 </div>
                 <div className=" space-y-2">
                   <p className="text-[14px] md:text-[16px] 2xl:text-[22px] text-gray-700 open-sans text-center lg:text-start pe-2">
-                    Offering website design, web solutions, digital marketing &
-                    CPaaS services to help businesses grow online with strategy,
-                    creativity & technology
+                    Offering  website design, web solutions & CPaaS services to help businesses grow online with strategy, creativity & technology.
                   </p>
                 </div>
                 <div className="flex w-full justify-center lg:justify-start">
@@ -298,11 +282,11 @@ const App = () => {
               </div>
             </div>
             {/* right scroll cards */}
-            <div className=" w-full flex justify-start sm:justify-center lg:justify-end mt-10 lg:mt-0 mx-4 ">
-              <div className="relative w-[350px] h-[300px] md:h-[360px]  lg:w-[500px] lg:h-[500px] ">
+            <div className=" w-full flex justify-start sm:justify-center lg:justify-end mt-5 lg:mt-0 mx-4 ps-3 ">
+              <div className="relative w-[350px] h-[300px] md:h-[360px] lg:w-[500px] lg:h-[500px] ">
                 <CardSwap
-                  cardDistance={30}
-                  verticalDistance={60}
+                  cardDistance={35}
+                  verticalDistance={65}
                   skewAmount={5}
                   delay={3000}
                   pauseOnHover={false}
@@ -325,15 +309,14 @@ const App = () => {
                       />
                     </div>
                   </Card>
-                  <Card>
-                    <div className="w-full h-full rounded-xl overflow-hidden">
-                      {/* Top Title Bar */}
+
+                  {/* <Card>
+                    <div className="w-full h-full rounded-xl overflow-hidden"> 
                       <div className="flex items-center gap-2 px-3 py-2 bg-linear-to-r from-purple-500 via-blue-400 to-indigo-700 border-b border-white">
                         <span className="w-2 h-2 bg-white rounded-full"></span>
                         <p className="text-white text-xl">Digital Marketing</p>
                       </div>
-
-                      {/* Image */}
+ 
                       <Image
                         // src={serviceSwapCardHero}
                         src={servicesHeroDigitalMarketing}
@@ -341,7 +324,8 @@ const App = () => {
                         className="w-full h-[calc(100%-45px)] object-cover  "
                       />
                     </div>
-                  </Card>
+                  </Card> */}
+
                   <Card>
                     <div className="w-full h-full rounded-xl overflow-hidden">
                       {/* Top Title Bar */}
@@ -358,19 +342,20 @@ const App = () => {
                       />
                     </div>
                   </Card>
+
                   <Card>
                     <div className="w-full h-full rounded-xl overflow-hidden">
                       {/* Top Title Bar */}
                       <div className="flex items-center gap-2 px-3 py-2 bg-linear-to-r from-[rgba(255,66,148,1)] via-[rgba(133,149,255,1)] to-[rgba(29,65,245,1)] border-b border-white">
                         <span className="w-2 h-2 bg-white rounded-full"></span>
-                        <p className="text-white text-xl">Cpass Solution</p>
+                        <p className="text-white text-xl">CPaaS Solution</p>
                       </div>
 
                       {/* Image */}
                       <Image
                         // src={serviceSwapCardHero}
                         src={servicesHeroCpassSolution}
-                        alt="Services Hero Cpass Solution"
+                        alt="Services Hero CPaaS Solution"
                         className="w-full h-[calc(100%-45px)] object-cover  "
                       />
                     </div>
@@ -383,14 +368,14 @@ const App = () => {
       </section>
 
       {/*  rotating cards */}
-      <section className=" container mx-auto pt-10 lg:py-12 px-6 lg:px-20">
+      <section className=" container mx-auto px-6 lg:px-20 ">
         {/* <div className="container mx-auto md:h-[600px] h-[500px]  [@media(max-width:1024px)_and_(min-width:659px)]:h-[500px] [@media(max-width:320px)]:h-[600px] [@media(max-width:768px)_and_(min-width:659px)]:h-[360px] flex flex-col sm:flex-row items-center justify-center overflow-hidden p-4 font-inter"> */}
-        <div className="font-inter flex flex-col sm:flex-row items-center justify-center overflow-hidden h-[560px] sm:h-[400px] md:h-[450px] lg:h-[500px] ">
+        <div className="font-inter flex flex-col sm:flex-row items-center justify-center overflow-hidden h-[570px] sm:h-[350px] lg:h-[500px] ">
           <div className="w-full sm:w-1/2 h-1/2 sm:h-1/2  relative flex items-center justify-center">
             {visibleCards.map((cardIndex, i) => (
               <div
                 key={cardIndex}
-                className="absolute rounded-3xl  overflow-hidden sm:mt-0 mt-12"
+                className="absolute rounded-3xl overflow-hidden sm:mt-0 mt-14"
                 style={cardStyle(rotations[i], i, i === 0)}
               >
                 <Image
@@ -413,21 +398,11 @@ const App = () => {
                   transition={{ duration: 0.7 }}
                   className="absolute w-full"
                 >
-                  <h2 className="md:text-[38px] text-[35px]  text-center sm:text-start poppins font-medium mb-4 text-[#3e66f3] mt-25 sm:mt-0">
-                    Web solution
+                  <h2 className="text-[28px] md:text-[38px] text-center sm:text-start poppins font-medium mb-2 text-[#3e66f3] mt-30 sm:mt-0">
+                    Web Development
                   </h2>
                   <p className="md:text-[16px] text-[14px] text-center sm:text-start text-black open-sans leading-relaxed">
-                    Boost your digital presence with responsive and high
-                    performing websites designed to support real business
-                    growth. These websites are crafted to create smooth user
-                    experiences that load quickly and adapt to every device with
-                    ease. From professional corporate sites and engaging product
-                    showcases to fully customized web solutions, each project is
-                    built with a focus on performance visibility and long-term
-                    impact. With clear structure, thoughtful design and
-                    user-friendly layouts, your website becomes a reliable space
-                    where visitors can understand and connect with your services
-                    effortlessly.
+                    Boost your digital presence with responsive, high-performing websites built for businesses - from corporate sites and product showcases to custom web solutions
                   </p>
                 </motion.div>
               )}
@@ -441,20 +416,11 @@ const App = () => {
                   transition={{ duration: 0.7 }}
                   className="absolute w-full"
                 >
-                  <h2 className="md:text-[38px] text-[35px] text-center sm:text-start poppins font-medium mb-4 text-[#3e66f3] mt-25 sm:mt-0">
-                    Design
+                  <h2 className="text-[28px] md:text-[38px] text-center sm:text-start poppins font-medium mb-2 text-[#3e66f3] mt-30 sm:mt-0">
+                    Web Design
                   </h2>
-                  <p className="md:text-[16px] text-[14px] text-center sm:text-start open-sans text-black leading-relaxed">
-                    A well-designed website does more than show who you are. It
-                    works silently in the background, loading quickly, guiding
-                    users with ease and helping them find the right information
-                    without confusion. Good web design focuses on clarity
-                    structure and user comfort so visitors feel informed,
-                    confident and ready to move forward. With responsive
-                    layouts, simple navigation and a clear message, the website
-                    creates a smooth experience that keeps people engaged. When
-                    a website functions with purpose, users stay longer, trust
-                    grows, and results improve naturally.
+                  <p className="md:text-[16px] text-[14px] text-center sm:text-start open-sans text-black leading-relaxed ">
+                    Build a strong brand identity with creative design solutions. Convert PSD to responsive HTML and boost engagement with impactful animations.
                   </p>
                 </motion.div>
               )}
@@ -468,142 +434,184 @@ const App = () => {
                   transition={{ duration: 0.7 }}
                   className="absolute w-full"
                 >
-                  <h2 className="text-[35px] md:text-[38px] text-center sm:text-start poppins font-medium mb-4 text-[#3e66f3] mt-25 sm:mt-0">
-                    Digital Marketing
+                  <h2 className="text-[28px] md:text-[38px] text-center sm:text-start poppins font-medium mb-2 text-[#3e66f3] mt-30 sm:mt-0">
+                    Cpass Solutions
                   </h2>
-                  <p className="md:text-[16px] text-[14px] text-center sm:text-start open-sans text-black">
-                    Enhance your visibility with effective SEO and strategic
-                    social media marketing that positions your brand in front of
-                    the right audience. Drive developed ROI through
-                    result-driven announcement juggernauts, in-app elevations,
-                    compelling content marketing, and targeted chapter
-                    strategies. Strengthen your digital presence, reach more
-                    guests, and grow your business with a combination of
-                    performance marketing and targeted outreach across every
-                    channel.
+                  <p className="md:text-[16px] text-[14px] text-center sm:text-start open-sans text-black leading-relaxed">
+                    Celitix CPaaS empowers businesses with SMS, WhatsApp, RCS, and voice solutions - enabling seamless communication, lead management, automation, and customer engagement.
                   </p>
                 </motion.div>
               )}
+
             </AnimatePresence>
           </div>
         </div>
       </section>
 
-      {/*  Our Services */}
-      <section className="container mx-auto">
-        <div className=" px-6 xl:px-0 py-10 ">
-          <div>
-            <h2 className="poppins text-[35px] md:text-[38px] font-medium text-center text-[#3e66f3] w-full mb-10">
-              Our Services
-            </h2>
+      {/* Inter Linking */}
+      <section className=" max-w-7xl mx-auto  px-6 lg:px-10 xl:px-20">
+        {/* <div className="  "> */}
+        <div className="  grid grid-cols-1 md:grid-cols-2 items-center gap-5 lg:gap-10">
+          {/* Left Image */}
+          <div className="w-full hidden md:flex md:justify-center lg:justify-start">
+            <Image
+              src={servicesInterLinking}
+              alt="interlinking text"
+              width={500}
+              height={550}
+              className=" h-[300px] md:w-[450px] md:h-[400px] lg:w-[500px] lg:h-[450px] object-cover rounded-xl"
+            />
           </div>
 
-          {/* Desktop */}
-          <div className="hidden md:block ">
-            <ClipPathCard />
-          </div>
-
-          {/* Mobile */}
-          <div className="flex flex-col gap-3 md:hidden">
-            {/* Main Services */}
-            <div className="grid grid-cols-2 gap-3">
-              {services.map((s) => (
-                <Link
-                  key={s.id}
-                  href={s.href}
-                  className="flex flex-col justify-center bg-blue-50 rounded-lg shadow-lg items-center border p-4 gap-2"
-                >
-                  <Image
-                    src={s.icon}
-                    alt={s.title}
-                    width={100}
-                    height={100}
-                    className="w-10 h-10"
-                  />
-                  <h3 className="text-[16px] font-medium text-[#3e66f3] text-center">
-                    {s.title}
-                  </h3>
-                </Link>
-              ))}
+          {/* Right Side */}
+          <div className="w-full flex flex-col gap-4">
+            <div className="flex flex-col gap-3">
+              <h2 className="text-[28px] lg:text-[35px] poppins font-medium  text-center lg:text-start">
+                Elevate Your Brand with
+                <span className=" text-[#3e66f3] ">
+                  {" "}
+                  Our Web Solutions {" "}
+                </span>
+              </h2>
+              <p className="text-gray-700 text-[14px] md:text-[16px] open-sans">
+                We design and develop high-performance websites and web applications that help businesses grow. From modern UI/UX design to scalable development solutions, we combine creativity with technology.
+              </p>
             </div>
 
-            {/* Expandable Extra Section */}
-            <AnimatePresence>
-              {viewMoreCard && (
-                <motion.div
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: "auto", opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.4 }}
-                  className="grid grid-cols-2 gap-3"
-                >
-                  {extraServices.map((s) => (
-                    <Link
-                      key={s.id}
-                      href={s.href}
-                      className="flex flex-col justify-center bg-blue-50 rounded-lg shadow-lg items-center border p-4 gap-2"
-                    >
-                      <Image
-                        src={s.icon}
-                        alt={s.title}
-                        width={100}
-                        height={100}
-                        className="w-10 h-10"
-                      />
-                      <h3 className="text-[16px] font-medium text-[#3e66f3] text-center">
-                        {s.title}
-                      </h3>
-                    </Link>
-                  ))}
-                </motion.div>
-              )}
-            </AnimatePresence>
+            {/* Each link separately */}
+            <div className="flex flex-col gap-2">
+              {/* card1 */}
+              <Link
+                href="/web-development"
+                className="relative py-2 flex justify-between items-center border-b border-gray-400 group cursor-pointer overflow-hidden before:absolute before:bottom-0 before:left-0 before:w-full before:h-0 before:bg-[#E5F0FF] before:rounded-t-2xl before:transition-all before:duration-500 before:ease-[cubic-bezier(0.25,1,0.5,1)] before:z-0 hover:before:h-full" >
+                {/* Heading text */}
+                <h3 className="relative z-10 text-[16px] md:text-[18px] poppins font-medium text-[#3e66f3] transition-all duration-300 group-hover:translate-x-3">
+                  Website Development
+                </h3>
 
-            {/* Toggle Button */}
-            <div className="flex justify-center mt-2">
-              <button
-                className="text-[18px] px-4 py-2 w-36 rounded-lg bg-black text-white"
-                onClick={() => setViewMoreCard(!viewMoreCard)}
-              >
-                {viewMoreCard ? "View Less" : "View More..."}
-              </button>
+                {/* Button */}
+                <div className="relative z-10 poppins inline-flex items-center justify-center w-9 h-9  me-3 text-base open-sans rounded-full text-white bg-[#3e66f3] overflow-hidden transition-all duration-600 ease-[cubic-bezier(0.23,1,0.32,1)] active:scale-95 group-hover:scale-105">
+                  {/* Arrow that moves right and hides */}
+                  <span className="absolute z-10 transition-all duration-500 transform group-hover:translate-x-5 group-hover:opacity-0">
+                    <FaArrowRightLong className="font-semibold text-lg lg:text-base" />
+                  </span>
+
+                  {/* New arrow coming from left */}
+                  <span className="absolute z-10 opacity-0 transition-all duration-500 transform -translate-x-5 group-hover:translate-x-0 group-hover:opacity-100">
+                    <FaArrowRightLong className="font-semibold text-lg lg:text-base" />
+                  </span>
+
+                  {/* Expanding background */}
+                  <span className="absolute left-0 top-1/2 w-full h-[10px] bg-black opacity-0 transition-all duration-[800ms] ease-[cubic-bezier(0.23,1,0.32,1)] -translate-y-1/2 group-hover:h-full group-hover:opacity-100 rounded-full"></span>
+                </div>
+              </Link>
+
+              {/* card 2  */}
+              <Link
+                href="/web-design"
+                className="relative py-2 flex justify-between items-center border-b border-gray-400 group cursor-pointer overflow-hidden before:absolute before:bottom-0 before:left-0 before:w-full before:h-0 before:bg-[#E5F0FF] before:rounded-t-2xl  before:transition-all before:duration-500 before:ease-[cubic-bezier(0.25,1,0.5,1)] before:z-0 hover:before:h-full " >
+                <h3 className="relative z-10 text-[16px] md:text-[18px] poppins font-medium text-[#3e66f3] transition-all duration-300 group-hover:translate-x-3">
+                  Website Design
+                </h3>
+
+                <div className="relative z-10 poppins inline-flex items-center justify-center w-9 h-9 me-3 text-base open-sans rounded-full text-white bg-[#3e66f3] overflow-hidden transition-all duration-600 ease-[cubic-bezier(0.23,1,0.32,1)] active:scale-95 group-hover:scale-105">
+                  <span className="absolute z-10 transition-all duration-500 transform group-hover:translate-x-5 group-hover:opacity-0">
+                    <FaArrowRightLong className="font-semibold text-lg lg:text-base" />
+                  </span>
+                  <span className="absolute z-10 opacity-0 transition-all duration-500 transform -translate-x-5 group-hover:translate-x-0 group-hover:opacity-100">
+                    <FaArrowRightLong className="font-semibold text-lg lg:text-base" />
+                  </span>
+                  <span className="absolute left-0 top-1/2 w-full h-[10px] bg-black opacity-0 transition-all duration-[800ms] ease-[cubic-bezier(0.23,1,0.32,1)] -translate-y-1/2 group-hover:h-full group-hover:opacity-100 rounded-full"></span>
+                </div>
+              </Link>
+
+              {/* card 3 */}
+              <Link
+                href="/ecommerce"
+                className="relative py-2 flex justify-between items-center border-b border-gray-400 group cursor-pointer overflow-hidden before:absolute before:bottom-0 before:left-0 before:w-full before:h-0 before:bg-[#E5F0FF] before:rounded-t-2xl before:transition-all before:duration-500 before:ease-[cubic-bezier(0.25,1,0.5,1)] before:z-0 hover:before:h-full" >
+                <h3 className="relative z-10 text-[16px] md:text-[18px] poppins font-medium text-[#3e66f3] transition-all duration-300 group-hover:translate-x-3">
+                  Ecommerce
+                </h3>
+
+                <div className="relative z-10 poppins inline-flex items-center justify-center w-9 h-9 me-3 text-base open-sans rounded-full text-white bg-[#3e66f3] overflow-hidden transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] active:scale-95 group-hover:scale-105">
+                  <span className="absolute z-10 transition-all duration-500 transform group-hover:translate-x-5 group-hover:opacity-0">
+                    <FaArrowRightLong className="font-semibold text-lg lg:text-base" />
+                  </span>
+                  <span className="absolute z-10 opacity-0 transition-all duration-500 transform -translate-x-5 group-hover:translate-x-0 group-hover:opacity-100">
+                    <FaArrowRightLong className="font-semibold text-lg lg:text-base" />
+                  </span>
+                  <span className="absolute left-0 top-1/2 w-full h-[10px] bg-black opacity-0 transition-all duration-[800ms] ease-[cubic-bezier(0.23,1,0.32,1)] -translate-y-1/2 group-hover:h-full group-hover:opacity-100 rounded-full"></span>
+                </div>
+              </Link>
+
+              {/* card 4 */}
+              <Link
+                href="/custom-development"
+                className="relative py-2 flex justify-between items-center border-b border-gray-400 group cursor-pointer overflow-hidden before:absolute before:bottom-0 before:left-0 before:w-full before:h-0 before:bg-[#E5F0FF] before:rounded-t-2xl before:transition-all before:duration-500 before:ease-[cubic-bezier(0.25,1,0.5,1)] before:z-0 hover:before:h-full" >
+                <h3 className="relative z-10 text-[16px] md:text-[18px] poppins font-medium text-[#3e66f3] transition-all duration-300 group-hover:translate-x-3">
+                  Custom Development
+                </h3>
+
+                <div className="relative z-10 poppins inline-flex items-center justify-center w-9 h-9 me-3 text-base open-sans rounded-full text-white bg-[#3e66f3] overflow-hidden transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] active:scale-95 group-hover:scale-105">
+                  <span className="absolute z-10 transition-all duration-500 transform group-hover:translate-x-5 group-hover:opacity-0">
+                    <FaArrowRightLong className="font-semibold text-lg lg:text-base" />
+                  </span>
+                  <span className="absolute z-10 opacity-0 transition-all duration-500 transform -translate-x-5 group-hover:translate-x-0 group-hover:opacity-100">
+                    <FaArrowRightLong className="font-semibold text-lg lg:text-base" />
+                  </span>
+                  <span className="absolute left-0 top-1/2 w-full h-[10px] bg-black opacity-0 transition-all duration-[800ms] ease-[cubic-bezier(0.23,1,0.32,1)] -translate-y-1/2 group-hover:h-full group-hover:opacity-100 rounded-full"></span>
+                </div>
+              </Link>
             </div>
           </div>
+        </div>
+        {/* </div> */}
+      </section>
+
+      {/*  Our Technology Expertise */}
+      <section className="max-w-7xl mx-auto px-6 xl:px-0 ">
+        <div>
+          <h2 className="poppins text-[28px] md:text-[38px] font-medium text-center text-[#3e66f3] w-full mb-10">
+            Our Technology Expertise
+          </h2>
+        </div>
+
+        {/* Desktop */}
+        <div className="  ">
+          <ClipPathCard />
         </div>
       </section>
 
       {/* our expertise */}
-      <section className="w-full  py-10  px-6 lg:px-20 container mx-auto flex flex-col md:flex-row items-center justify-between gap-10 ">
+      <section className="w-full px-6 lg:px-20 max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-10 ">
         {/* Left Content */}
-        <div className="w-full md:w-1/2 flex flex-col items-start md:text-left">
-          <h2 className="text-[35px] md:text-[38px] font-medium poppins text-[#3e66f3] w-full mb-10 md:mb-4 text-center md:text-start">
-            Expertise
+        <div className="w-full md:w-1/2 flex flex-col items-start gap-6 md:text-left">
+          <h2 className="text-[28px] md:text-[38px] font-medium poppins text-[#3e66f3] w-full text-center md:text-start">
+            {/* Expertise */}
+            We deliver impactful Web Solutions 
           </h2>
 
-          <h3 className="text-[18px] md:text-[20px] poppins w-full text-center md:text-start mb-6">
+          {/* <h3 className="text-[18px] md:text-[20px] poppins w-full text-center md:text-start mb-6">
             We deliver impactful digital solutions
-          </h3>
+          </h3> */}
 
-          <p className="text-gray-900 text-[14px] open-sans md:text-[16px] mb-8 leading-relaxed w-full text-center md:text-start">
-            At Proactive Digital Solutions, we combine expertise in website
-            development, app solutions, branding, SEO, performance marketing,
-            and CPaaS communication tools to build digital experiences that
-            boost visibility, strengthen brand identity, and drive measurable
-            business growth. Our solutions are designed to be scalable,
-            responsive, and future-ready, ensuring long-term success for every
-            client.
-          </p>
+          <div className="flex flex-col gap-4">
+            <p className="text-gray-900 text-[14px] open-sans md:text-[16px]  leading-relaxed w-full text-center md:text-start">
+              At Proactive Digital Solutions, we specialize in website development, modern web design, and CPaaS communication solutions to help businesses build a strong and reliable digital presence. We create websites that are visually engaging, performance-driven, and built to scale, while enabling seamless communication through API-powered messaging platforms.
+            </p>
 
-          <div className="w-full flex justify-center md:justify-start ">
-            <Link href="/contact-us">
-              <button className="relative inline-flex items-center justify-center px-5 py-2 text-[16px] font-semibold rounded-lg text-white bg-[#3e66f3] cursor-pointer overflow-hidden transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:text-white active:scale-95 group">
-                <span className="poppins relative z-10">Let's Talk</span>
+            <div className="w-full flex justify-center md:justify-start ">
+              <Link href="/contact-us">
+                <button className="relative inline-flex items-center justify-center px-5 py-2 text-[16px] font-semibold rounded-lg text-white bg-[#3e66f3] cursor-pointer overflow-hidden transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:text-white active:scale-95 group">
+                  <span className="poppins relative z-10">Let's Talk</span>
 
-                {/* Vertical expanding background */}
-                <span className="absolute left-0 top-1/2 w-full h-[10px] bg-black opacity-0 transition-all duration-[800ms] ease-[cubic-bezier(0.23,1,0.32,1)] -translate-y-1/2 group-hover:h-full group-hover:opacity-100 rounded"></span>
-              </button>
-            </Link>
+                  {/* Vertical expanding background */}
+                  <span className="absolute left-0 top-1/2 w-full h-[10px] bg-black opacity-0 transition-all duration-[800ms] ease-[cubic-bezier(0.23,1,0.32,1)] -translate-y-1/2 group-hover:h-full group-hover:opacity-100 rounded"></span>
+                </button>
+              </Link>
+            </div>
           </div>
+
         </div>
 
         {/* Right Image */}
@@ -616,17 +624,66 @@ const App = () => {
         </div>
       </section>
 
+      {/* Our Process */}
+      <section
+        ref={containerRef}
+        className="relative px-6 lg:px-10 xl:px-20  max-w-7xl mx-auto" >
+        <div className="grid grid-cols-1 lg:grid-cols-[30%_65%] gap-15 ">
+          {/* Left label */}
+          <div className="lg:sticky top-30 text-center lg:text-start lg:self-start text-4xl lg:text-5xl font-semibold  text-[#3e66f3]  lg:text-gray-900">
+            {/* Working */}
+            Our Process
+          </div>
+
+          {/* Timeline items container */}
+          <div className="relative">
+            {/* Vertical grey line */}
+            <div className="absolute left-27 lg:left-35 top-0 bottom-0 w-1 bg-gray-400"></div>
+            {/* Blue animated fill */}
+            <motion.div
+              style={{ height: lineHeight }}
+              className="absolute left-27 lg:left-35 top-0 w-1 bg-[#3e66f3] origin-top " >
+              <motion.div
+                style={{ y: lineHeight }}
+                className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-[#3e66f3]"
+              />
+            </motion.div>
+            {/* Items */}
+            {/* space-y-10 */}
+            <div className="">
+              {ourProcess.map((item, idx) => (
+                <motion.div
+                  key={item.number}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: idx * 0.2 }}
+                  viewport={{ once: true, margin: "-100px 0px -100px 0px" }}
+                  className="grid grid-cols-[80px_1fr] items-start gap-10 lg:gap-x-20 border-b-2 border-gray-400 p-4 lg:p-6 "
+                >
+                  {/* Number */}
+                  <div className="poppins flex items-start justify-start text-5xl lg:text-6xl font-semibold text-[#3e66f3] w-full h-full ">
+                    {item.number}
+                  </div>
+
+                  {/* Content */}
+                  <div className="flex flex-col justify-center gap-2">
+                    <h3 className="poppins text-3xl lg:text-4xl  font-medium text-gray-900">
+                      {item.title}
+                    </h3>
+                    <p className="open-sans text-base lg:text-lg text-gray-600 leading-relaxed">
+                      {item.desc}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Process */}
-      <section className="container mx-auto py-10 lg:py-16 px-6 lg:px-20 ">
-        <div className="flex flex-col gap-10 lg:gap-15  ">
-          <div className="grid grid-cols-1 md:grid-cols-[28%_68%] gap-3 lg:gap-6 ">
-            {/* <div className="flex justify-center md:justify-start">
-                  <Image
-                    src={cpassSolution}
-                    alt="img7"
-                    className="w-14 h-14 sm:w-22 sm:h-22"
-                  />
-                </div> */}
+      {/* <section className="max-w-7xl mx-auto lg:py-16 px-6 lg:px-20 ">
+        <div className="flex flex-col gap-10 lg:gap-15  "> 
             <div className="">
               <span className="poppins text-lg lg:text-4xl font-medium  ">
                 We Build trust through clarity.
@@ -675,9 +732,7 @@ const App = () => {
                       We build fast, secure platform for long-term success.
                     </p>
                   </div>
-                  {/* <div className="flex w-full h-full justify-center items-center">
-                    <BsArrowRight size={60} className=" text-gray-700 " />
-                  </div> */}
+                   
                 </div>
               </div>
             </div>
@@ -685,13 +740,7 @@ const App = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 ">
             <div className="flex flex-col gap-8 ">
               <div className=" flex flex-col gap-3">
-                {/* <div className="flex justify-center md:justify-start">
-                   <Image
-                    src={cpassSolution}
-                    alt="img7"
-                    className="w-14 h-14 lg:w-16 lg:h-16"
-                  />
-                </div> */}
+                 
                 <div className="">
                   <h2 className="poppins text-xl md:text-2xl text-center md:text-start font-medium text-[#3e66f3]">
                     Built to offer services that create future brands climb the
@@ -753,15 +802,7 @@ const App = () => {
                   </div>
                 </div>
               </div>
-            </div>
-            {/* <div className=" flex justify-center lg:justify-end items-center  "> */}
-            {/* <div className="h-130">
-                <Image
-                  src={product4}
-                  alt="Expertise illustration"
-                  className="rounded-3xl shadow-2xl w-full h-full object-contain"
-                />
-              </div> */}
+            </div> 
             <div className="hidden lg:flex  justify-center items-center  ">
               <div className="group overflow-hidden rounded-xl hover:cursor-pointer">
                 <Image
@@ -773,26 +814,23 @@ const App = () => {
                   className="object-fit rounded-xl lg:h-110 2xl:h-100 transform transition-transform duration-700 group-hover:scale-110"
                 />
               </div>
-            </div>
-            {/* </div> */}
+            </div> 
           </div>
         </div>
-      </section>
-
-    
+      </section> */}
 
       {/* FAQs */}
-      <section className=" bg-[#eff0f9] flex justify-center items-center py-10 px-4 lg:px-0">
-        <div className="w-full max-w-5xl mx-auto  bg-[#F7F4F9] border border-[#D1CDE3] rounded-xl p-4 md:p-6 shadow-lg space-y-6">
+      <section className="  flex justify-center items-center px-6 lg:px-20">
+        <div className="w-full max-w-5xl mx-auto  bg-[#f9fafc] border border-[#D1CDE3] rounded-xl p-4 md:p-6 shadow-lg space-y-6">
           <h2 className="poppins text-2xl md:text-3xl lg:text-4xl font-semibold text-center text-gray-900 heading">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2b40b0] to-[#3e66f3]">
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-[#2b40b0] to-[#3e66f3]">
               {" "}
               Have more questions?
             </span>{" "}
             <p>We’ve answers.</p>
           </h2>
 
-          <div className="flex flex-col gap-4 bg-white rounded-xl py-4 px-4  sm:px-4 ">
+          <div className="flex flex-col gap-4 bg-white border border-gray-100 rounded-xl py-4 px-4  sm:px-4 ">
             {faqs.map((faq, idx) => (
               <FaqItem
                 key={idx}
@@ -819,14 +857,13 @@ const App = () => {
 
       {/* cta */}
       <section
-        className="py-12 px-6"
+        className="py-12 px-6 lg:px-20 "
         style={{
           backgroundImage: "url('/images/diagonalStripes.svg')",
           backgroundRepeat: "repeat",
           backgroundSize: "auto",
-        }}
-      >
-        <div className="relative flex flex-col md:flex-row bg-gradient-to-r from-blue-50 to-blue-50 shadow-lg h-auto md:h-[300px] max-w-5xl 2xl:max-w-6xl mx-auto rounded-3xl md:rounded-4xl overflow-hidden justify-between">
+        }} >
+        <div className="relative flex flex-col md:flex-row bg-linear-to-r from-blue-50 to-blue-50 shadow-lg h-auto md:h-[320px] max-w-7xl 2xl:max-w-7xl mx-auto rounded-3xl md:rounded-4xl overflow-hidden justify-between">
           {/* background svg */}
           <svg
             className="absolute top-15 left-0 w-[500px] h-[350px] opacity-10 pointer-events-none -translate-y-1/4 -translate-x-1/4"
@@ -845,10 +882,10 @@ const App = () => {
             {/* content */}
             <div className="flex flex-col  justify-center py-10 md:py-0 px-10 md:px-18  gap-4  h-full ">
               <div className="flex flex-col gap-2">
-                <h1 className="text-[24px] md:text-[30px] lg:text-[35px] text-center md:text-start font-medium poppins text-[#1d4ed8]">
+                <h2 className="text-[24px] md:text-[30px] lg:text-[32px] text-center md:text-start font-medium poppins text-[#1d4ed8]">
                   Improve Your Customer Experience
-                </h1>
-                <p className="text-[16px] lg:text-[18px] text-black open-sans  text-center md:text-start">
+                </h2>
+                <p className="text-[16px] lg:text-[18px] text-gray-700   open-sans  text-center md:text-start">
                   Your online presence needs more than a website. It needs real
                   growth. Let us work together to build, refine, and scale your
                   digital success.
@@ -896,7 +933,7 @@ const App = () => {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 };
 

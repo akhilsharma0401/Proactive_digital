@@ -6,20 +6,31 @@
 @custom-variant dark (&:is(.dark *));
 @source "../../.flowbite-react/class-list.json";
 
-body{
+body {
   width: 100%;
   height: 100%;
-  background-color: #f5f9ff !important;
+  /* background-color: #f5f9ff !important; */
+  background-color: white !important;
 }
 
+::selection {
+  /* background: #0d6efd; */
+  /* background: #333; */
+  /* background: #2d2d2d; */
+  background: #3b82f6;
+  color: #ffffff;
+  border-radius: 2px;
+}
 
 /* hide scrollBar */
 html {
-  scrollbar-width: none;   /* Firefox */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 html::-webkit-scrollbar {
-  display: none;           /* Chrome, Safari */
+  display: none;
+  /* Chrome, Safari */
 }
 
 .stroke-black {
@@ -44,10 +55,12 @@ html::-webkit-scrollbar {
   font-style: normal;
 }
 
+
 /* otpModal */
 /* Force border visibility for PrimeReact InputOtp */
 .p-inputotp-input {
-  border: 2px solid #9ca3af !important; /* gray border */
+  border: 2px solid #9ca3af !important;
+  /* gray border */
   border-radius: 8px !important;
   background: white !important;
   width: 2.5rem !important;
@@ -66,17 +79,18 @@ html::-webkit-scrollbar {
 }
 
 .blueTextGradient {
-   background: linear-gradient(to right, #2b40b0, #8447c6, #36bae2);
+  background: linear-gradient(to right, #2b40b0, #8447c6, #36bae2);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   -background-clip: text;
   -text-fill-color: transparent;
 }
-.heroTextGredient{
-background: #1C9CCF;
-background: linear-gradient(to right, #1C9CCF 0%, #0306CF 100%);
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
+
+.heroTextGredient {
+  background: #1C9CCF;
+  background: linear-gradient(to right, #1C9CCF 0%, #0306CF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 
 }
 
@@ -85,7 +99,7 @@ background: linear-gradient(to right, #1C9CCF 0%, #0306CF 100%);
 /* hero */
 .scroller {
   will-change: transform;
-    transform: translateZ(0);
+  transform: translateZ(0);
   backface-visibility: hidden;
 }
 
@@ -94,6 +108,7 @@ background: linear-gradient(to right, #1C9CCF 0%, #0306CF 100%);
     transform: scale(0);
     opacity: 1;
   }
+
   100% {
     transform: scale(2.2);
     opacity: 0;
@@ -103,18 +118,28 @@ background: linear-gradient(to right, #1C9CCF 0%, #0306CF 100%);
 .animateServiceRipple {
   animation: ServiceRipple 5s ease-out infinite;
 }
+
 /* Ends Here */
 
 /* animated moving ball for home page hero section  */
 @keyframes movingX {
-  0%   { transform: translateX(0); }
-  50%  { transform: translateX(20px); }
-  100% { transform: translateX(0); }
+  0% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(20px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
 }
 
 .animate-movingX {
   animation: movingX 3s ease-in-out infinite;
 }
+
 /* ends here animated moving ball for home page hero section  */
 
 /* seo page   */
@@ -122,24 +147,43 @@ background: linear-gradient(to right, #1C9CCF 0%, #0306CF 100%);
 /* 3d carousel */
 @layer utilities {
   @keyframes rotateCW {
-    0% { transform: translate3d(0,-50%,-1px) rotate(-45deg); }
-    100% { transform: translate3d(0,-50%,0) rotate(-315deg); }
+    0% {
+      transform: translate3d(0, -50%, -1px) rotate(-45deg);
+    }
+
+    100% {
+      transform: translate3d(0, -50%, 0) rotate(-315deg);
+    }
   }
+
   @keyframes rotateCCW {
-    0% { transform: rotate(45deg); }
-    100% { transform: rotate(315deg); }
+    0% {
+      transform: rotate(45deg);
+    }
+
+    100% {
+      transform: rotate(315deg);
+    }
   }
+
   @keyframes pulseGlow {
-    0% { background-size: 60%; }
-    100% { background-size: 100%; }
+    0% {
+      background-size: 60%;
+    }
+
+    100% {
+      background-size: 100%;
+    }
   }
 
   .animate-rotateCW {
-    animation: rotateCW calc(var(--rotate-speed, 40) * 1s) cubic-bezier(0.37,0,0.63,1) infinite;
+    animation: rotateCW calc(var(--rotate-speed, 40) * 1s) cubic-bezier(0.37, 0, 0.63, 1) infinite;
   }
+
   .animate-rotateCCW {
-    animation: rotateCCW calc(var(--rotate-speed, 40) * 1s) cubic-bezier(0.37,0,0.63,1) infinite;
+    animation: rotateCCW calc(var(--rotate-speed, 40) * 1s) cubic-bezier(0.37, 0, 0.63, 1) infinite;
   }
+
   .animate-pulseGlow {
     animation: pulseGlow 5s linear infinite alternate;
   }
@@ -150,10 +194,12 @@ background: linear-gradient(to right, #1C9CCF 0%, #0306CF 100%);
   0% {
     left: -40%;
   }
+
   100% {
     left: 140%;
   }
 }
+
 /* 
 ---break--- */
 @theme inline {
@@ -194,43 +240,52 @@ background: linear-gradient(to right, #1C9CCF 0%, #0306CF 100%);
   --color-sidebar-ring: var(--sidebar-ring);
   --animate-marquee: marquee var(--duration) linear infinite;
   --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
+
   /* 
 ---break--- */
   @keyframes marquee {
     from {
       transform: translateX(0);
     }
+
     to {
       transform: translateX(calc(-100% - var(--gap)));
     }
   }
+
   /* 
 ---break--- */
   @keyframes marquee-vertical {
     from {
       transform: translateY(0);
     }
+
     to {
       transform: translateY(calc(-100% - var(--gap)));
     }
   }
+
   @keyframes marquee {
-  from {
-    transform: translateX(0);
+    from {
+      transform: translateX(0);
     }
-  to {
-    transform: translateX(calc(-100% - var(--gap)));
+
+    to {
+      transform: translateX(calc(-100% - var(--gap)));
     }
   }
+
   @keyframes marquee-vertical {
-  from {
-    transform: translateY(0);
+    from {
+      transform: translateY(0);
     }
-  to {
-    transform: translateY(calc(-100% - var(--gap)));
+
+    to {
+      transform: translateY(calc(-100% - var(--gap)));
     }
   }
 }
+
 /* 
 ---break--- */
 :root {
@@ -267,6 +322,7 @@ background: linear-gradient(to right, #1C9CCF 0%, #0306CF 100%);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
 }
+
 /* 
 ---break--- */
 .dark {
@@ -302,12 +358,14 @@ background: linear-gradient(to right, #1C9CCF 0%, #0306CF 100%);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
 }
+
 /* 
 ---break--- */
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
@@ -328,7 +386,7 @@ background: linear-gradient(to right, #1C9CCF 0%, #0306CF 100%);
   height: 150px;
   border-radius: 10px;
   /* background: linear-gradient(0deg, #0029C7 0%, rgba(0, 41, 199, 0) 97.73%); */
-  background:rgba(62, 102, 243, 0.2) ;
+  background: rgba(62, 102, 243, 0.2);
   /* background-color: #134987; */
   animation-name: slide-vertical;
 }
@@ -337,34 +395,42 @@ background: linear-gradient(to right, #1C9CCF 0%, #0306CF 100%);
   left: 10%;
   animation-delay: 0s;
 }
+
 .glowing-line-vertical-2 {
   left: 20%;
   animation-delay: 0.5s;
 }
+
 .glowing-line-vertical-3 {
   left: 30%;
   animation-delay: 0s;
 }
+
 .glowing-line-vertical-4 {
   left: 40%;
   animation-delay: 0.5s;
 }
+
 .glowing-line-vertical-5 {
   left: 50%;
   animation-delay: 0s;
 }
+
 .glowing-line-vertical-6 {
   left: 60%;
   animation-delay: 0.5s;
 }
+
 .glowing-line-vertical-7 {
   left: 70%;
   animation-delay: 0s;
 }
+
 .glowing-line-vertical-8 {
   left: 80%;
   animation-delay: 0.5s;
 }
+
 .glowing-line-vertical-9 {
   left: 90%;
   animation-delay: 0s;
@@ -381,22 +447,24 @@ background: linear-gradient(to right, #1C9CCF 0%, #0306CF 100%);
 }
 
 /* rippel effect on our mission cards  */
- @keyframes ripple {
+@keyframes ripple {
   0% {
     box-shadow: 0 0 0 0 rgba(37, 139, 213, 0.3),
-                0 0 0 0.6em rgba(37, 139, 213, 0.15),
-                0 0 0 1.2em rgba(37, 139, 213, 0.05);
+      0 0 0 0.6em rgba(37, 139, 213, 0.15),
+      0 0 0 1.2em rgba(37, 139, 213, 0.05);
   }
+
   100% {
     box-shadow: 0 0 0 0.6em rgba(37, 139, 213, 0.15),
-                0 0 0 1.2em rgba(37, 139, 213, 0.05),
-                0 0 0 2em rgba(37, 139, 213, 0.01);
+      0 0 0 1.2em rgba(37, 139, 213, 0.05),
+      0 0 0 2em rgba(37, 139, 213, 0.01);
   }
 }
 
 .animate-ripple {
   animation: ripple 1.8s linear infinite;
-} 
+}
+
 /* ends here  rippel effect on social media marketing page  */
 
 /* text Shimmer effect */
@@ -404,6 +472,7 @@ background: linear-gradient(to right, #1C9CCF 0%, #0306CF 100%);
   0% {
     background-position: 200% 0;
   }
+
   100% {
     background-position: -200% 0;
   }
@@ -441,33 +510,34 @@ background: linear-gradient(to right, #1C9CCF 0%, #0306CF 100%);
   height: 280px !important;
 }
 
-@media (min-width: 640px) { 
+@media (min-width: 640px) {
   .swapCard {
     width: 260px !important;
     height: 320px !important;
   }
 }
 
-@media (min-width: 768px) { 
+@media (min-width: 768px) {
   .swapCard {
-    width: 480px !important;
+    width: 500px !important;
     height: 380px !important;
   }
 }
 
-@media (min-width: 1024px) { 
+@media (min-width: 1024px) {
   .swapCard {
     width: 700px !important;
-    height: 400px !important;
+    height: 380px !important;
   }
 }
 
 @media (min-width: 1280px) {
   .swapCard {
-    width: 950px !important;
-    height: 450px !important;
+    width: 850px !important;
+    height: 400px !important;
   }
 }
+
 @media (min-width: 1536px) {
   .swapCard {
     width: 950px !important;
@@ -479,9 +549,12 @@ background: linear-gradient(to right, #1C9CCF 0%, #0306CF 100%);
 /* services Hero Icons Floating */
 
 @keyframes float {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-12px);
   }
@@ -503,15 +576,19 @@ background: linear-gradient(to right, #1C9CCF 0%, #0306CF 100%);
   0% {
     transform: translate(0, 0) rotate(0deg);
   }
+
   25% {
     transform: translate(10px, -12px) rotate(3deg);
   }
+
   50% {
     transform: translate(-8px, 10px) rotate(-3deg);
   }
+
   75% {
     transform: translate(12px, 8px) rotate(2deg);
   }
+
   100% {
     transform: translate(0, 0) rotate(0deg);
   }
@@ -523,4 +600,31 @@ background: linear-gradient(to right, #1C9CCF 0%, #0306CF 100%);
 
 
 
+.inputcls {
+  width: 100%;
+  background: #ffffffb0;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 0.65rem 0.9rem;
+  color: #374151;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0, 112, 201, 0.05);
+}
 
+.inputcls:focus {
+  outline: none;
+  border-color: #0E76CD;
+  box-shadow: 0 0 0 3px rgba(0, 112, 201, 0.15);
+}
+
+.thmbtn{
+  background-color:#0E76CD;
+  color:#FFF;
+  transition: background-color .25s ease, color .25s ease;
+  cursor: pointer;
+}
+
+.thmbtn:hover{
+  background-color:#03AA67;
+  color:#FFF;
+}

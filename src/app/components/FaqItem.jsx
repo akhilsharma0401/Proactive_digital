@@ -58,6 +58,8 @@
 
 "use client";
 import React, { useRef, useEffect } from "react";
+
+// icons
 import { FaPlus } from "react-icons/fa6";
 import { FaMinus } from "react-icons/fa6";
 
@@ -82,9 +84,10 @@ const FaqItem = ({ question, answer, isOpen, onClick }) => {
 
       {/* Header button */}
       <button
+      aria-label="Open Faq"
         onClick={onClick}
         className={`w-full gap-4 flex justify-between items-center text-left py-3 px-4 transition duration-300 ease-in-out ${
-          isOpen ? "bg-[#f8f8f8]" : "bg-[#FAF9FC]"
+          isOpen ? "bg-[#f9fafc]" : "bg-[#faf9fc]"
         }`}>
 
         <span
@@ -114,7 +117,7 @@ const FaqItem = ({ question, answer, isOpen, onClick }) => {
       <div
         ref={contentRef}
         className="transition-max-height duration-500 ease-in-out overflow-hidden bg-white px-5 text-sm text-[#3C3C43] border-t border-[#E1E1EA]"
-      >
+        >
         <div className="py-4">
           
           {Array.isArray(answer) ? (

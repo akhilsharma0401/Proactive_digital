@@ -1,24 +1,29 @@
 "use client";
 // default
 import React from "react";
-import Image from "next/image";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { useEffect, useRef } from "react";
+import Image from "next/image";
 import Lottie from "lottie-react";
-import "react-vertical-timeline-component/style.min.css";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Lenis from "@studio-freight/lenis";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Sparkles } from "lucide-react";
+import "react-vertical-timeline-component/style.min.css";
+
 
 // components
+import FaqItem from "../components/FaqItem.jsx";
 import ParticleBackground from "../components/ParticleBackground";
 
 // images
 import aboutMission01 from "../../../public/images/aboutMission01.jpg";
 import aboutMission02 from "../../../public/images/aboutMission02.jpg";
 import aboutMission03 from "../../../public/images/aboutMission03.jpg";
+import growthAbout from "../../../public/images/growthAbout.jpg";
+import transformAbout from "../../../public/images/transformAbout.jpg";
+import envisionAbout from "../../../public/images/envisionAbout.jpg";
 import aboutScrollingText from "../../../public/images/aboutScrollingText.jpg";
 
 // lottie animation
@@ -65,34 +70,35 @@ const timeline = [
 const hoverCards = [
   {
     id: 1,
-    title: " Digital Growth",
+    title: "Growth Excellence",
     description:
-      "We design impactful websites and offer digital marketing solutions that help businesses grow online and achieve success.",
-    link: "/contact-us",
+      // "We design impactful websites and offer digital marketing solutions that help businesses grow online and achieve success.",
+      "We build high-performance, responsive websites designed to strengthen your online presence and drive measurable business growth. Our solutions are strategically crafted.",
+    link: "/services",
     image: aboutDigitalGrowth,
   },
   {
     id: 2,
-    title: "Built with Precision",
+    title: "Engineered Precision",
     description:
-      "Every solution is crafted with care, ensuring high performance, seamless usability, and long-term brand value that stands out.",
-    link: "/contact-us",
+      "Every website is developed with clean code, optimized performance, seamless navigation, and modern UI/UX design to deliver an exceptional user experience.",
+    link: "/services",
     image: aboutBuiltWithPresison,
   },
   {
     id: 3,
-    title: "Scalable. Effective.",
+    title: "Future Ready",
     description:
-      "Our web and digital marketing solutions adapt as your business grows, ensuring a smooth, scalable, and future-ready presence.",
-    link: "/contact-us",
+      "Our custom web development solutions are built to scale as your business grows, ensuring flexibility, speed, and long-term digital stability.We implement modern technologies.",
+    link: "/services",
     image: aboutScalable,
   },
   {
     id: 4,
-    title: "Trustable Partners",
+    title: "Reliable Technology",
     description:
-      "We support you beyond launch helping your digital presence remain strong, relevant, and impactful at every stage of growth.",
-    link: "/contact-us",
+      "We support you beyond launch with continuous updates, security enhancements, and performance optimization to keep your website strong and competitive.",
+    link: "/services",
     image: aboutTrustablePartners,
   },
 ];
@@ -102,24 +108,63 @@ const visionData = [
   {
     number: "01",
     title: "Envision",
-    text: "We envision a digital-first world, empowering businesses to grow. Innovate. Connect and Transform.",
-    img: aboutMission01,
+    text: "Our mission is to design, develop, and deliver high-performance web solutions that help businesses scale, innovate, and lead in the digital world.",
+    // img: aboutMission01,
+    img: envisionAbout,
   },
   {
     number: "02",
     title: "Transform",
-    text: "We transform ideas into impactful digital experiences, crafting websites that inspire, engage, and deliver results.",
-    img: aboutMission02,
+    // text: "We transform ideas into impactful digital experiences, crafting websites that inspire, engage, and deliver results.",
+    text: "Your website works 24/7 to attract, engage, and convert visitors. With optimized landing pages, clear CTAs, and SEO-friendly structure.",
+    img: transformAbout,
   },
   {
     number: "03",
     title: "Growth",
-    text: "We drive measurable growth through smart marketing, helping brands expand their reach and achieve lasting success.",
-    img: aboutMission03,
+    text: "Automated follow-ups, instant replies, and personalized messaging help nurture leads effectively. Faster responses build trust.",
+    img: growthAbout,
   },
 ];
 
 function page() {
+
+  // FAQs
+  const [openIndex, setOpenIndex] = useState(null);
+
+  const toggle = (index) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
+  const faqs = [
+    {
+      question: "What services does Proactive offer?",
+      answer:
+        " Proactive offers custom website development, responsive web design, UI/UX design, and scalable web application development for startups and enterprises.",
+    },
+    {
+      question: "Why choose Proactive as your web development company?",
+      answer:
+        " We build fast, secure, SEO-friendly, and mobile-responsive websites using modern technologies and scalable architecture.",
+    },
+    {
+      question: " Do you develop SEO-optimized websites?",
+      answer:
+        " Yes, our websites are built with clean code, fast loading speed, structured design, and search engine optimization best practices.",
+    },
+    {
+      question: "Do you provide custom website solutions?",
+      answer:
+        "Yes, we create fully customized websites and web application solutions tailored to your business goals and industry needs.",
+    },
+    {
+      question: "Do you offer website maintenance and support?",
+      answer:
+        " Yes, we provide ongoing website maintenance, performance optimization, security updates, and technical support after launch.",
+    }, 
+  ];
+  // FAQs Ends
+
   // our vision
   const lenisRef = useRef(null);
 
@@ -243,24 +288,23 @@ function page() {
     return () => ctx.revert();
   }, []);
 
-
-
   return (
     <div>
       {/* hero section */}
-      <section className="bg-[#e0ecff] relative bg-cover bg-no-repeat">
-        <div className="relative w-full py-12 overflow-hidden">
+      {/* <section className="bg-[#e0ecff] relative bg-cover bg-no-repeat"> */}
+      <section className="bg-white relative bg-cover bg-no-repeat">
+        <div className="relative w-full py-0 md:py-12 overflow-hidden">
           {/* Particle Background */}
           <ParticleBackground />
 
-          <div className="relative flex flex-col gap-10 justify-center items-center h-full w-full z-10 py-10 px-5 ">
+          <div className="relative flex flex-col gap-10 justify-center items-center h-full w-full z-10 py-10 px-5 lg:px-10  ">
             {/* title */}
-            <div className="flex flex-col gap-4 text-center max-w-6xl">
+            <div className="flex flex-col gap-4 text-center max-w-7xl ">
               {/* title */}
               <p className="poppins text-[#3e66f3] font-semibold text-[20px] lg:text-[22px] ">
                 OUTSMART YOUR COMPETITORS{" "}
               </p>
-              <h2 className="poppins text-[38px] lg:text-[42px] font-semibold text-black leading-sung">
+              <h1 className="poppins text-[38px] lg:text-[42px] font-semibold text-black leading-sung">
                 Proactive Professional Services{" "}
                 <span className="bg-gradient-to-r from-[#0EA5E9] to-[#3B82F6] bg-clip-text text-transparent ">
                   Turning ideas into Reality.{" "}
@@ -269,24 +313,24 @@ function page() {
                 <span className="bg-gradient-to-r from-[#0EA5E9] to-[#3B82F6] bg-clip-text text-transparent inline-block">
                   Strategy Matters.
                 </span>
-              </h2>
+              </h1>
 
               {/* description */}
               <div className="hidden md:block">
                 <p className="open-sans text-[14px] md:text-[20px] text-gray-800 text-center">
-                  We Grown Brands Online Custom Website, Branding and Digital
-                  Marketing
+                  We Create and Design Custom Website.Your one-stop destination for all Web Solutions.
                 </p>
 
                 <p className="open-sans text-[14px] md:text-[20px] text-gray-800 text-center">
-                  Your one-stop destination for all digital solutions.
+                  {/* Your one-stop destination for all digital solutions. */}
+                  From strategy to launch, we build scalable, high-performance websites
                 </p>
               </div>
             </div>
 
             {/* button */}
             <div>
-              <Link href="/contact-us">
+              <Link href="/services">
                 <button className="poppins relative bg-[#3e66f3] inline-flex items-center justify-center px-4 py-2 md:px-8 md:py-3 text-[16px] rounded-lg cursor-pointer overflow-hidden transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] text-white active:scale-95 group">
                   <span className="relative z-10 text-[16px]">Learn More</span>
                   <span className="absolute left-0 top-1/2 w-full h-[0px] bg-black opacity-0 transition-all duration-[800ms] ease-[cubic-bezier(0.23,1,0.32,1)] -translate-y-1/2 group-hover:h-full group-hover:opacity-100 rounded-none"></span>
@@ -297,13 +341,14 @@ function page() {
         </div>
       </section>
 
-      <section className="container mx-auto py-12 px-6 lg:px-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-10">
+      {/* process */}
+      <section className="container mx-auto py-5 px-6 lg:px-10 ">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 md:gap-10 h-full ">
           {hoverCards.map((card) => (
-            <div key={card.id} className="relative group">
-              <div className="absolute inset-0 rounded-2xl bg-[#3e66f3] scale-100 opacity-0 transition-all duration-500 ease-in-out group-hover:opacity-100 group-hover:rotate-[10deg]" />
+            <div key={card.id} className="relative group flex h-full">
+              <div className="absolute inset-0 rounded-2xl bg-[#3e66f3] scale-100 opacity-0 transition-all duration-500 ease-in-out group-hover:opacity-100 group-hover:rotate-10" />
 
-              <div className="relative z-10 flex flex-col gap-4 p-6 lg:p-4 2xl:p-6 bg-white rounded-2xl shadow-md">
+              <div className="relative z-10 flex flex-col h-auto gap-4 p-6 lg:p-4 2xl:p-6 bg-white rounded-2xl shadow-md">
                 <div className="flex justify-center">
                   <div className="flex items-center justify-center bg-[#3e66f3] w-18 h-18 rounded-full">
                     <Image
@@ -316,13 +361,15 @@ function page() {
                   </div>
                 </div>
 
-                <div className="flex flex-col gap-3 text-center  ">
-                  <h3 className="poppins text-[22px] font-medium text-[#3e66f3]">
-                    {card.title}
-                  </h3>
-                  <p className="open-sans text-[16px] text-gray-600 text-justify">
-                    {card.description}
-                  </p>
+                <div className="flex flex-col justify-between h-full gap-3 text-center  ">
+                  <div className="flex flex-col gap-3 text-center  ">
+                    <h3 className="poppins text-[22px] font-medium text-[#3e66f3]">
+                      {card.title}
+                    </h3>
+                    <p className="open-sans text-[16px] text-gray-600 text-justify">
+                      {card.description}
+                    </p>
+                  </div>
                   <div className="flex justify-center">
                     <Link
                       href={card.link}
@@ -342,21 +389,21 @@ function page() {
       <section>
         <div
           ref={targetRef}
-          className="p-8 sm:p-12 md:p-16 w-full flex justify-center mx-auto overflow-hidden bg-cover bg-center"
+          className="px-8 sm:px-12 md:px-16 pt-10 md:pt-16 w-full flex justify-center mx-auto overflow-hidden bg-cover bg-center"
         >
           <div className="flex flex-col space-y-6 sm:space-y-20 md:space-y-10">
             <motion.div
               style={{ x: xFuelYour }}
               className="flex justify-between items-start gap-4"
             >
-              <h1
+              <h2
                 className={`text-5xl sm:text-7xl md:text-8xl lg:text-[7.5rem] font-extrabold leading-none ${textColor}`}
               >
                 Fuel Your
-              </h1>
+              </h2>
               <Link href="/contact-us">
                 <button className="poppins relative border border-gray-600 text-blue-600 inline-flex items-center justify-center lg:mt-10 mt-0 md:mt-6 px-5 py-2 md:px-8 md:py-3 text-[20px] rounded-full cursor-pointer overflow-hidden transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:text-white active:scale-95 group">
-                  <span className="relative z-10 text-[16px]">🡥</span>
+                  <span className="relative z-10 text-[20px]">🡥</span>
                   <span className="absolute left-0 top-1/2 w-full h-[0px] bg-black opacity-0 transition-all duration-[800ms] ease-[cubic-bezier(0.23,1,0.32,1)] -translate-y-1/2 group-hover:h-full group-hover:opacity-100 rounded-none"></span>
                 </button>
               </Link>
@@ -388,34 +435,33 @@ function page() {
         </div>
       </section>
 
-      <div className="text-white p-4">
+      {/* Our Vision */}
+      <div className="text-white p-4 lg:p-0 space-y-4 ">
         {visionData.map((item, index) => (
-          <div id={`section-${index}`} key={index} className="my-10">
-            <div className="items-center justify-center flex">
-              <div className="h-full w-full max-w-7xl mx-auto sm:p-10 md:p-18 mt-10 grid grid-cols-1 md:grid-cols-[40%_60%] gap-6 text-[18px] bg-[#f5f9ff]">
-                {/* Number + Title */}
-                <div className="text-center text-black flex gap-6 justify-around mr-8">
-                  <div className="text-[100px] font-bold text-transparent stroke-black stroke-[1px]">
-                    {item.number}
-                  </div>
-                  <div className="text-[16px] md:text-[22px] poppins text-[#3e66f3] mt-18">
-                    {item.title}
-                  </div>
+          <div id={`section-${index}`} key={index} className="flex items-center justify-center my-0 lg:my-0">
+            <div className="h-full w-full container mx-auto sm:px-10 md:px-18 md:py-16 lg:p-6 mt-30 md:mt-30 grid grid-cols-1 md:grid-cols-[40%_60%] gap-0 md:gap-8 text-[18px] bg-white">
+              {/* Number + Title */}
+              <div className="text-center text-black flex gap-6 justify-around h-auto">
+                <div className="text-[100px] font-bold text-transparent stroke-black stroke-[1px]">
+                  {item.number}
+                </div>
+                <div className="text-[16px] md:text-[22px] poppins text-[#3e66f3] mt-18">
+                  {item.title}
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="flex flex-col  gap-6 max-w-2xl">
+                <div className="poppins text-[20px] lg:text-[26px] text-black mt-6">
+                  <h3>{item.text}</h3>
                 </div>
 
-                {/* Content */}
-                <div className="flex flex-col justify-between gap-8 max-w-2xl">
-                  <div className="poppins text-[20px] lg:text-[30px] text-black mt-6">
-                    <h1>{item.text}</h1>
-                  </div>
-
-                  <div className="h-full">
-                    <Image
-                      src={item.img}
-                      alt="our mission"
-                      className="rounded-2xl object-cover h-full w-full"
-                    />
-                  </div>
+                <div className="h-90">
+                  <Image
+                    src={item.img}
+                    alt="our mission"
+                    className="rounded-2xl object-cover h-full w-full"
+                  />
                 </div>
               </div>
             </div>
@@ -426,18 +472,18 @@ function page() {
       {/* Timeline */}
       {/* bg-[radial-gradient(circle_at_20%_20%,#f9fbff_0%,#eef6ff_40%,#f7f9ff_90%)] */}
       <section className="relative py-10 lg:py-12 px-6 md:px-16  overflow-hidden">
-        <motion.div
+        {/* <motion.div
           animate={{ x: [0, 30, -30, 0], y: [0, 20, -20, 0] }}
           transition={{ repeat: Infinity, duration: 15, ease: "easeInOut" }}
           className="absolute -top-40 -left-40 w-[400px] h-[400px] bg-gradient-to-br from-[#0E76CD]/40 to-[#FF4C4C]/25 rounded-full blur-[150px]"
-        />
-        <motion.div
+        /> */}
+        {/* <motion.div
           animate={{ x: [0, -25, 25, 0], y: [0, -15, 15, 0] }}
           transition={{ repeat: Infinity, duration: 12, ease: "easeInOut" }}
-          className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-gradient-to-tr from-[#FF4C4C]/25 to-[#0E76CD]/30 rounded-full blur-[160px]"
-        />
+          className="absolute bottom-20 right-0 w-[500px] h-[500px] bg-gradient-to-tr from-[#FF4C4C]/25 to-[#0E76CD]/30 rounded-full blur-[160px]"
+        /> */}
 
-        <div className="relative text-center mb-24 z-10">
+        <div className="relative text-center mb-10 md:mb-16 z-10">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -469,9 +515,8 @@ function page() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className={` mb-10 lg:mb-20 flex flex-col md:flex-row items-center ${
-                index % 2 === 0 ? "md:flex-row-reverse" : ""
-              }`}
+              className={`flex flex-col md:flex-row items-center ${index % 2 === 0 ? "md:flex-row-reverse" : ""
+                }`}
             >
               <div className="md:w-1/2 p-4 relative group">
                 <div className="absolute inset-0 bg-gradient-to-br from-[#0E76CD]/15 via-transparent to-[#FF4C4C]/10 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
@@ -517,7 +562,7 @@ function page() {
 
       <section className=" py-10  px-6 lg:px-20 ">
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-10 border-1 rounded-2xl p-6 border-[#3e66f3] bg-gray-50 ">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-10 border rounded-2xl p-6 border-[#3e66f3] bg-[#f9fafc] ">
             <div className="flex  ">
               <h2 className="poppins text-[30px] lg:text-[35px] text-center md:text-start  ">
                 Accelerating Your{" "}
@@ -568,9 +613,9 @@ function page() {
       <section className=" container mx-auto py-10 px-6 lg:px-20 space-y-10">
         <div className="flex flex-col gap-4 ">
           <div className="flex flex-col ">
-            <h1 className="poppins text-[35px] lg:text-[38px] font-bold text-center  text-[#3e66f3]">
-              Our Branches
-            </h1>
+            <h2 className="poppins text-[35px] lg:text-[38px] font-bold text-center  text-[#3e66f3]">
+              Our Presence
+            </h2>
             <div className="flex justify-center">
               <div className="h-1 w-30 bg-[#3e66f3] border"></div>
             </div>
@@ -587,17 +632,17 @@ function page() {
           {/* jaipur */}
           <div className="w-full flex flex-col gap-6 border bg-blue-50 border-gray-300 shadow-xl rounded-xl p-4">
             {/* Image at the top */}
-            <div className="flex w-full justify-center">
+            <div className="flex w-full justify-center ">
               <Image
                 src="/images/hawa.jpg"
                 alt="Jaipur"
                 width={350}
                 height={160}
-                className="  rounded-xl object-cover "
+                className="  rounded-xl object-cover h-40"
               />
             </div>
 
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2 ">
               {/* Title */}
               <h2 className="text-2xl font-bold text-center ">Jaipur</h2>
 
@@ -619,17 +664,17 @@ function page() {
           {/* Delhi */}
           <div className="w-full flex flex-col gap-6 border bg-blue-50 border-gray-300 shadow-xl rounded-xl p-4">
             {/* Image at the top */}
-            <div className="flex w-full justify-center">
+            <div className="flex w-full justify-center ">
               <Image
                 src="/images/fortred.png"
-                alt="Jaipur"
+                alt="Delhi"
                 width={350}
                 height={160}
-                className="  rounded-lg object-cover "
+                className="  rounded-xl object-cover h-40 "
               />
             </div>
 
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2 ">
               {/* Title */}
               <h2 className="text-2xl font-bold text-center ">Delhi</h2>
 
@@ -649,17 +694,17 @@ function page() {
           {/* Kolkata */}
           <div className="w-full flex flex-col gap-6 border bg-blue-50 border-gray-300 shadow-xl rounded-xl p-4">
             {/* Image at the top */}
-            <div className="flex w-full justify-center">
+            <div className="flex w-full justify-center ">
               <Image
                 src="/images/victoria.jpg"
                 alt="Jaipur"
                 width={350}
                 height={160}
-                className="  rounded-lg object-cover "
+                className="  rounded-xl object-cover h-40"
               />
             </div>
 
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2 ">
               {/* Title */}
               <h2 className="text-2xl font-bold text-center ">Kolkata</h2>
 
@@ -683,9 +728,8 @@ function page() {
           backgroundImage: "url('/images/diagonalStripes.svg')",
           backgroundRepeat: "repeat",
           backgroundSize: "auto",
-        }}
-      >
-        <div className="relative flex flex-col md:flex-row bg-gradient-to-r from-blue-50 to-blue-50 shadow-lg h-auto md:h-[300px]  max-w-6xl mx-auto rounded-3xl md:rounded-4xl overflow-hidden justify-between">
+        }} >
+        <div className="relative flex flex-col md:flex-row bg-linear-to-r from-blue-50 to-blue-50 shadow-lg h-auto md:h-[300px]  max-w-6xl mx-auto rounded-3xl md:rounded-4xl overflow-hidden justify-between">
           {/* background svg */}
           <svg
             className="absolute top-15 left-0 w-[500px] h-[350px] opacity-10 pointer-events-none -translate-y-1/4 -translate-x-1/4"
@@ -704,9 +748,9 @@ function page() {
             {/* content */}
             <div className="flex flex-col  justify-center py-10 md:py-0 px-10 md:px-18  gap-4  h-full ">
               <div className="flex flex-col gap-2">
-                <h1 className="text-[24px] md:text-[30px] lg:text-[35px] text-center md:text-start font-medium poppins text-[#1d4ed8]">
+                <h3 className="text-[24px] md:text-[30px] lg:text-[35px] text-center md:text-start font-medium poppins text-[#1d4ed8]">
                   Improve Your Customer Experience
-                </h1>
+                </h3>
                 <p className="text-[16px] lg:text-[18px] text-black open-sans  text-center md:text-start">
                   Your online presence needs more than a website. It needs real
                   growth. Let us work together to build, refine, and scale your
@@ -752,6 +796,31 @@ function page() {
               <circle cx="1200" cy="500" r="400" fill="#2563EB" opacity="0.8" />
               <circle cx="1200" cy="500" r="200" fill="#324CA2" opacity="0.8" />
             </svg>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQs */}
+      <section className="  flex justify-center items-center py-10 px-4 lg:px-0">
+        <div className="w-full max-w-5xl mx-auto  bg-[#f9fafc] border border-[#D1CDE3] rounded-xl p-4 md:p-6 shadow-lg space-y-6">
+          <h2 className="poppins text-2xl md:text-3xl lg:text-4xl font-semibold text-center text-gray-900 heading">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2b40b0] to-[#3e66f3]">
+              {" "}
+              Have more questions?
+            </span>{" "}
+            <p>We’ve answers.</p>
+          </h2>
+
+          <div className="flex flex-col gap-4 bg-white  border border-gray-100 rounded-xl py-4 px-4  sm:px-4 ">
+            {faqs.map((faq, idx) => (
+              <FaqItem
+                key={idx}
+                question={faq.question}
+                answer={faq.answer}
+                isOpen={openIndex === idx}
+                onClick={() => toggle(idx)}
+              />
+            ))}
           </div>
         </div>
       </section>

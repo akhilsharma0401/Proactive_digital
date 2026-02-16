@@ -5,6 +5,10 @@ export const metadata = {
   alternates: {
     canonical: "",
   },
+    openGraph: {
+    title: "E-Commerce & Business Website Development Services",
+    description: "Proactive offers expert website development services with custom Ecommerce and CMS solutions. Fast, secure, responsive websites built for business growth.",
+  },
 };
 
 export default function Layout({ children }) {

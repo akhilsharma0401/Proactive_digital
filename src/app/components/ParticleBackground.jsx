@@ -18,10 +18,10 @@ const ParticleBackground = () => {
         fullScreen: { enable: false },
         background: { color: { value: "transparent" } },
         particles: {
-          number: { value: 30 },    //60
-          color: { value: "#3e66f3" }, //"#3e66f3
+          number: { value: 70 },    //60
+          color: { value: "#BFDBFE" }, //"#3e66f3
           shape: { type: "circle" },
-          opacity: { value: 0.4 },
+          opacity: { value: 0.6 },
           size: { value: { min: 7, max: 15 } },
           move: {
             enable: true,
@@ -35,7 +35,7 @@ const ParticleBackground = () => {
             onHover: { enable: true, mode: "repulse" },
           },
           modes: {
-            repulse: { distance: 60 },
+            repulse: { distance: 120 },
           },
         },
       }}

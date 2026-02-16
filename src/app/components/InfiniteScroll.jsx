@@ -1,8 +1,8 @@
 "use client";
 import { useRef, useEffect } from "react";
+import Image from "next/image";
 import { gsap } from "gsap";
 import { Observer } from "gsap/Observer";
-import Image from "next/image";
 
 gsap.registerPlugin(Observer);
 

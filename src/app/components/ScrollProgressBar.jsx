@@ -43,11 +43,11 @@ export default function ScrollProgressBar() {
         position: "fixed",
         top: 0,
         left: 0,
-        height: "6px",
+        height: "8px",
         width: "0%",
         background: "#3e66f3",
         zIndex: 999999,
-        borderRadius: "2px",
+        borderRadius: "1px",
       }}
     ></div>
   );

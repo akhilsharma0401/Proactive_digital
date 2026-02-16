@@ -1,17 +1,21 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import toast from "react-hot-toast";
 import Lottie from "lottie-react";
+import "primereact/resources/themes/lara-light-blue/theme.css";
+import "primereact/resources/primereact.min.css";
+import "primeicons/primeicons.css";
+
 import Conversation from "../../../public/animation/Conversation.json";
 
 // images
 
 // icons
+import { CheckCircle } from "lucide-react";
 import { RiUploadCloud2Line } from "react-icons/ri";
 import { HiOutlineLightBulb } from "react-icons/hi";
 import { FaCheckCircle } from "react-icons/fa";
-import { CheckCircle } from "lucide-react";
 import { FaRegHandshake } from "react-icons/fa6";
 import { HiOutlineUsers } from "react-icons/hi";
 import { FaChartLine } from "react-icons/fa";
@@ -21,6 +25,7 @@ import FaqItem from "../components/FaqItem";
 import { Dialog } from "primereact/dialog";
 import { InputOtp } from "primereact/inputotp";
 import CareerOpeningItem from "./../components/CareerOpeningItem";
+import { axiosInstance } from "@/lib/axios";
 
 function page() {
   // Job Application Form
@@ -121,7 +126,7 @@ function page() {
     firstName: "",
     lastName: "",
     email: "",
-    phone: "",
+    mobile: "",
     designation: "",
     selectExpyrs: "",
     resume: null,
@@ -131,11 +136,15 @@ function page() {
   const [errors, setErrors] = useState({});
   const [touched, setTouched] = useState({});
   const [otp, setOtp] = useState("");
+  const [otpId, setOtpId] = useState(null);
+  const [isSendingOtp, setIsSendingOtp] = useState(false);
   const [showOtpInput, setShowOtpInput] = useState(false);
   const [isPhoneVerified, setIsPhoneVerified] = useState(false);
-
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [timer, setTimer] = useState(30);
   const [canResend, setCanResend] = useState(false);
+  const [isVerifyingOtp, setIsVerifyingOtp] = useState(false);
+  const otpRef = useRef(null);
 
   // resend attempt tracking
   const [resendAttempts, setResendAttempts] = useState(0);
@@ -184,7 +193,7 @@ function page() {
           return "Invalid email format";
         break;
 
-      case "phone":
+      case "mobile":
         if (!value.trim()) return "Phone number is required";
         if (!/^[0-9]{10}$/.test(value)) return "Phone number must be 10 digits";
         break;
@@ -199,6 +208,7 @@ function page() {
 
       case "message":
         if (!value.trim()) return "Message field cannot be empty";
+        if (value.trim().length < 30) return "Message must be at least 30 characters";
         break;
 
       default:
@@ -231,7 +241,7 @@ function page() {
       return;
     }
 
-    if (name === "phone" && /[^0-9]/.test(newValue)) {
+    if (name === "mobile" && /[^0-9]/.test(newValue)) {
       return;
     }
 
@@ -243,8 +253,8 @@ function page() {
           ? !files?.[0]
             ? "Please upload your resume"
             : files[0].size > 2 * 1024 * 1024
-            ? "File size should not exceed 2MB"
-            : ""
+              ? "File size should not exceed 2MB"
+              : ""
           : validateField(name, newValue);
 
       setErrors({ ...errors, [name]: error });
@@ -253,37 +263,117 @@ function page() {
 
   const handleBlur = (e) => {
     const { name } = e.target;
+
     setTouched({ ...touched, [name]: true });
-    const error =
-      name === "resume"
-        ? !formData.resume
-          ? "Please upload your resume"
-          : formData.resume.size > 2 * 1024 * 1024
-          ? "File size should not exceed 2MB"
-          : ""
-        : validateField(name, formData[name]);
+
+    const error = validateField(name, formData[name]);
 
     setErrors({ ...errors, [name]: error });
+
+    if (error) {
+      toast.error(error);
+    }
   };
 
-  const handleVerifyClick = () => {
-    if (!formData.phone || formData.phone.length !== 10) {
+  const handleVerifyClick = async () => {
+    if (isSendingOtp) return;
+
+    if (!formData.mobile || formData.mobile.length !== 10) {
       toast.error("Please enter a valid 10-digit phone number");
       return;
     }
-    setShowOtpInput(true);
-    toast.success("OTP sent successfully! (use 123456)");
-  };
 
-  const handleOtpVerify = () => {
-    if (otp === "123456") {
-      toast.success("Phone number verified successfully!");
-      setIsPhoneVerified(true);
+
+    setShowOtpInput(true);
+    setTimer(30);
+    setCanResend(false);
+
+    try {
+      setIsSendingOtp(true);
+
+      const payload = {
+        mobile: formData.mobile,
+        otp,
+        otpId,
+      };
+
+
+      const res = await axiosInstance.post("/otp/sendOtp", payload);
+
+      if (!res?.data?.status) {
+        toast.error(res?.data?.message || "Failed to send OTP");
+
+
+        setShowOtpInput(false);
+        return;
+      }
+
+      toast.success("OTP sent successfully!");
+      if (res?.data?.otpId) {
+        setOtpId(res.data.otpId);
+      }
+    } catch (err) {
+      toast.error("Failed to send OTP. Try again.");
+
       setShowOtpInput(false);
-    } else {
-      toast.error("Invalid OTP! Please try again.");
+
+    } finally {
+      setIsSendingOtp(false);
     }
   };
+
+  const handleOtpVerify = async () => {
+    if (isVerifyingOtp) return;
+
+    if (!otp || otp.length !== 6) {
+      toast.error("Please enter a valid 6-digit OTP");
+      return;
+    }
+
+    if (!otpId) {
+      toast.error("OTP expired. Please resend OTP.");
+      return;
+    }
+
+    try {
+      setIsVerifyingOtp(true);
+
+      const payload = {
+        mobile: formData.mobile,
+        otp,
+        otpId,
+      };
+
+      const res = await axiosInstance.post("/otp/verifyOtp", payload);
+
+      if (!res?.data?.status) {
+        toast.error(res?.data?.message || "Invalid OTP");
+        return;
+      }
+
+      toast.success("Phone verified!");
+
+      setIsPhoneVerified(true);
+      setShowOtpInput(false);
+      setCanResend(false);
+      setOtp("");
+      setOtpId(null);
+
+    } catch {
+      toast.error("OTP verification failed");
+    } finally {
+      setIsVerifyingOtp(false);
+    }
+  };
+
+
+  useEffect(() => {
+    if (showOtpInput) {
+      setTimeout(() => {
+        otpRef.current?.focus();
+      }, 200);
+    }
+  }, [showOtpInput]);
 
   // handle resend otp
 
@@ -344,10 +434,13 @@ function page() {
     }
   }, [isLocked, lockTimer]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (isSubmitting) return; // prevent double click
+
     const validationErrors = validateAll();
+
     if (Object.keys(validationErrors).length > 0) {
       const firstError = Object.values(validationErrors)[0];
       toast.error(firstError);
@@ -356,24 +449,73 @@ function page() {
     }
 
     if (!isPhoneVerified) {
-      toast.error("Please verify your phone number before submitting.");
+      toast.error("Please verify your phone number first.");
       return;
     }
 
-    const payload = {
-      firstName: formData.firstName,
-      lastName: formData.lastName,
-      email: formData.email,
-      phone: formData.phone,
-      designation: formData.designation,
-      experienceYears: formData.selectExpyrs,
-      message: formData.message,
-      resumeName: formData.resume ? formData.resume.name : "",
-    };
+    try {
+      setIsSubmitting(true); // start loading
 
-    console.log("Payload ready to send:", payload);
-    toast.success("Form submitted successfully!");
+      // const payload = {
+      //   firstName: formData.firstName,
+      //   lastName: formData.lastName,
+      //   email: formData.email,
+      //   mobile: formData.mobile,
+      //   designation: formData.designation,
+      //   expInYears: formData.selectExpyrs,
+      //   message: formData.message,
+      //   resumeName: formData.resume?.name || "",
+      //   jobTitle: "-",
+      // };
+
+      if (!formData.resume) {
+      }
+      console.log("dviusdvuisd", formData.resume)
+      const form = new FormData();
+      form.append('firstName', formData.firstName)
+      form.append('lastName', formData.lastName)
+      form.append('email', formData.email)
+      form.append('mobile', formData.mobile)
+      form.append('designation', formData.designation)
+      form.append('expInYears', formData.selectExpyrs)
+      form.append('message', formData.message)
+      form.append('resume', formData.resume)
+      form.append('jobTitle', "-")
+
+
+      const res = await axiosInstance.post("/enquiry/career", form);
+
+      if (res?.data?.status) {
+        toast.success("Application submitted successfully! 🎉");
+
+        // reset
+        setFormData({
+          firstName: "",
+          lastName: "",
+          email: "",
+          mobile: "",
+          designation: "",
+          selectExpyrs: "",
+          resume: null,
+          message: "",
+        });
+
+        setIsPhoneVerified(false);
+        setShowOtpInput(false);
+        setOtp("");
+      } else {
+        toast.error(res?.data?.message || "Submission failed");
+      }
+
+    } catch (err) {
+      console.log("err", err);
+      toast.error("Server error. Please try again.");
+    } finally {
+      setIsSubmitting(false); // stop loading
+    }
   };
+
+
   // ends Job Application form
 
   // Otp Modal
@@ -504,13 +646,13 @@ function page() {
 
   // FAQs Ends
   return (
-    <div className="bg-[#e0ecff]">
+    <div className="">
       {/* Hero Section */}
       <section
-        className="bg-cover bg-center bg-no-repeat lg:px-10 bg-[#e0ecff] "
-        // style={{
-        //   backgroundImage: "url('/images/heroAnimateBg.svg')",
-        // }}
+        className="bg-cover bg-center bg-no-repeat lg:px-10  "
+      // style={{
+      //   backgroundImage: "url('/images/heroAnimateBg.svg')",
+      // }}
       >
         <div className=" container mx-auto flex flex-col md:flex-col lg:flex-row items-center justify-between px-6 md:px-12 lg:py-12 py-10 ">
           {/* Left Text Section */}
@@ -567,25 +709,25 @@ function page() {
         {/* cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-14 lg:gap-6 ">
           {/* card 1 */}
-          <div className="relative group flex flex-col gap-2 lg:gap-3 justify-center items-center px-6 py-5 lg:px-6 lg:py-7 border border-black rounded-xl bg-white transition-all duration-500 ease-in-out hover:-translate-y-2 hover:shadow-lg">
+          <div className="relative group flex flex-col gap-2 lg:gap-3 justify-center items-center px-6 py-5 lg:px-6 lg:py-7 border border-black rounded-xl bg-white transition-all duration-500 ease-in-out hover:-translate-y-2 shadow-lg hover:shadow-xl">
             {/* Icon circle (static) */}
             {/* bg-[#2b7fff] */}
             <div className="absolute -top-10 w-16 h-16  lg:w-20 lg:h-20 rounded-full bg-[#2b7fff] shadow-lg flex items-center justify-center">
               {/* Rotator: flips on hover of the parent group */}
-              <div className="w-full h-full flex items-center justify-center [perspective:1000px]">
+              <div className="w-full h-full flex items-center justify-center perspective-[1000px]">
                 {/* inner wrapper that rotates (only this rotates) */}
                 <div className="w-full h-full relative transition-transform duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
                   {/* Front face (visible initially) */}
                   <div className="absolute inset-0 flex items-center justify-center [backface-visibility:hidden]">
                     <FaChartLine className="text-white w-9 h-9 lg:w-10 lg:h-10" />
-                    
+
                   </div>
 
                   {/* Back face (rotated so after the wrapper rotation it appears upright) */}
 
                   <div className="absolute inset-0 flex items-center justify-center [transform:rotateY(180deg)] [backface-visibility:hidden]">
                     <FaChartLine className="text-white w-9 h-9 lg:w-10 lg:h-10" />
-                    
+
                   </div>
                 </div>
               </div>
@@ -611,21 +753,21 @@ function page() {
           </div>
 
           {/* card 2 */}
-          <div className="relative group flex flex-col gap-2 lg:gap-3 justify-center items-center px-6 py-5 lg:px-6 lg:py-7 border border-black rounded-xl bg-white transition-all duration-500 ease-in-out hover:-translate-y-2 hover:shadow-lg">
+          <div className="relative group flex flex-col gap-2 lg:gap-3 justify-center items-center px-6 py-5 lg:px-6 lg:py-7 border border-black rounded-xl bg-white transition-all duration-500 ease-in-out hover:-translate-y-2 shadow-lg hover:shadow-xl">
             {/* Icon circle */}
             <div className="absolute -top-10 w-16 h-16 lg:w-20 lg:h-20 rounded-full bg-[#2b7fff] shadow-lg flex items-center justify-center">
-              <div className="w-full h-full flex items-center justify-center [perspective:1000px]">
+              <div className="w-full h-full flex items-center justify-center perspective-[1000px]">
                 <div className="w-full h-full relative transition-transform duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
                   {/* Front face */}
                   <div className="absolute inset-0 flex items-center justify-center [backface-visibility:hidden]">
                     <HiOutlineUsers className="text-white w-9 h-9 lg:w-10 lg:h-10" />
-                    
+
 
                   </div>
                   {/* Back face */}
                   <div className="absolute inset-0 flex items-center justify-center [transform:rotateY(180deg)] [backface-visibility:hidden]">
                     <HiOutlineUsers className="text-white w-9 h-9 lg:w-10 lg:h-10" />
-                    
+
                   </div>
                 </div>
               </div>
@@ -650,22 +792,22 @@ function page() {
           </div>
 
           {/* card 3 */}
-          <div className="relative group flex flex-col gap-2 lg:gap-3 justify-center items-center px-6 py-5 lg:px-6 lg:py-7 border border-black rounded-xl bg-white transition-all duration-500 ease-in-out hover:-translate-y-2 hover:shadow-lg">
+          <div className="relative group flex flex-col gap-2 lg:gap-3 justify-center items-center px-6 py-5 lg:px-6 lg:py-7 border border-black rounded-xl bg-white transition-all duration-500 ease-in-out hover:-translate-y-2 shadow-lg hover:shadow-xl">
             {/* Icon circle */}
             <div className="absolute -top-10 w-16 h-16 lg:w-20 lg:h-20 rounded-full bg-[#2b7fff] shadow-lg flex items-center justify-center">
-              <div className="w-full h-full flex items-center justify-center [perspective:1000px]">
+              <div className="w-full h-full flex items-center justify-center perspective-[1000px]">
                 <div className="w-full h-full relative transition-transform duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
                   {/* Front face */}
                   <div className="absolute inset-0 flex items-center justify-center [backface-visibility:hidden]">
                     <FaRegHandshake className="text-white w-9 h-9 lg:w-10 lg:h-10" />
-                    
-                    
+
+
                   </div>
                   {/* Back face */}
                   <div className="absolute inset-0 flex items-center justify-center [transform:rotateY(180deg)] [backface-visibility:hidden]">
                     <FaRegHandshake className="text-white w-9 h-9 lg:w-10 lg:h-10" />
-                    
-                    
+
+
                   </div>
                 </div>
               </div>
@@ -1167,9 +1309,8 @@ function page() {
                       onChange={handleChange}
                       onBlur={handleBlur}
                       placeholder=" "
-                      className={`peer w-full border rounded-md p-2 placeholder-transparent focus:outline-none ${
-                        errors.firstName ? "border-red-500" : "border-gray-300"
-                      } focus:border-[#3e66f3]`}
+                      className={`peer w-full border rounded-md p-2 placeholder-transparent focus:outline-none ${errors.firstName ? "border-red-500" : "border-gray-300"
+                        } focus:border-[#3e66f3]`}
                     />
                     <label
                       // peer-placeholder-shown:text-gray-400
@@ -1195,9 +1336,8 @@ function page() {
                       onChange={handleChange}
                       onBlur={handleBlur}
                       placeholder=" "
-                      className={`peer w-full border rounded-md p-2 placeholder-transparent focus:outline-none ${
-                        errors.lastName ? "border-red-500" : "border-gray-300"
-                      } focus:border-[#3e66f3]`}
+                      className={`peer w-full border rounded-md p-2 placeholder-transparent focus:outline-none ${errors.lastName ? "border-red-500" : "border-gray-300"
+                        } focus:border-[#3e66f3]`}
                     />
                     <label
                       htmlFor="lastName"
@@ -1223,9 +1363,8 @@ function page() {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     placeholder=" "
-                    className={`peer w-full border rounded-md p-2 placeholder-transparent focus:outline-none ${
-                      errors.email ? "border-red-500" : "border-gray-300"
-                    } focus:border-[#3e66f3]`}
+                    className={`peer w-full border rounded-md p-2 placeholder-transparent focus:outline-none ${errors.email ? "border-red-500" : "border-gray-300"
+                      } focus:border-[#3e66f3]`}
                   />
                   <label
                     htmlFor="email"
@@ -1245,20 +1384,20 @@ function page() {
                     <div className="relative w-full">
                       <input
                         type="tel"
-                        name="phone"
+                        name="mobile"
                         id="phone"
-                        value={formData.phone}
+                        value={formData.mobile}
                         onChange={handleChange}
                         onBlur={handleBlur}
+                        maxLength={10}
                         placeholder=" "
                         disabled={isPhoneVerified}
                         className={`peer w-full border rounded-md p-2 placeholder-transparent  focus:outline-none 
-          ${errors.phone ? "border-red-500" : "border-gray-300"} 
-          focus:border-[#3e66f3] ${
-            isPhoneVerified
-              ? "bg-gray-100 text-gray-500 cursor-not-allowed"
-              : ""
-          }`}
+          ${errors.mobile ? "border-red-500" : "border-gray-300"} 
+          focus:border-[#3e66f3] ${isPhoneVerified
+                            ? "bg-gray-100 text-gray-500 cursor-not-allowed"
+                            : ""
+                          }`}
                       />
                       <label
                         htmlFor="phone"
@@ -1272,14 +1411,53 @@ function page() {
                       <button
                         type="button"
                         onClick={handleVerifyClick}
-                        disabled={showOtpInput}
-                        className="relative poppins text-nowrap inline-flex items-center justify-center py-2 px-4  text-base open-sans rounded-lg text-white bg-[#3e66f3] cursor-pointer overflow-hidden transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:text-white active:scale-95 group"
+                        disabled={showOtpInput || isSendingOtp}
+                        className={`relative poppins text-nowrap inline-flex items-center justify-center py-2 px-4 text-base open-sans rounded-lg text-white overflow-hidden transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] active:scale-95 group
+                          ${showOtpInput || isSendingOtp
+                            ? "bg-gray-400 cursor-not-allowed"
+                            : "bg-[#3e66f3] hover:text-white cursor-pointer"
+                          }
+                        `}
                       >
-                        <span className="relative z-10">
-                          {" "}
-                          {showOtpInput ? "OTP Sent" : "Verify"}{" "}
+                        <span className="relative z-10 flex items-center gap-2">
+
+                          {isSendingOtp ? (
+                            <>
+                              {/* Spinner */}
+                              <svg
+                                className="animate-spin h-6 w-10 text-white"
+                                viewBox="0 0 24 24"
+                              >
+                                <circle
+                                  className="opacity-25"
+                                  cx="12"
+                                  cy="12"
+                                  r="10"
+                                  stroke="currentColor"
+                                  strokeWidth="4"
+                                  fill="none"
+                                />
+                                <path
+                                  className="opacity-75"
+                                  fill="currentColor"
+                                  d="M4 12a8 8 0 018-8v8z"
+                                />
+                              </svg>
+
+
+                            </>
+                          ) : showOtpInput ? (
+                            "OTP Sent"
+                          ) : (
+                            "Verify"
+                          )}
+
                         </span>
-                        <span className="absolute left-0 top-1/2 w-full h-[10px] bg-black opacity-0 transition-all duration-[800ms] ease-[cubic-bezier(0.23,1,0.32,1)] -translate-y-1/2 group-hover:h-full group-hover:opacity-100 rounded"></span>
+
+                        {/* Hover Effect (Disable when loading) */}
+                        {!isSendingOtp && !showOtpInput && (
+                          <span className="absolute left-0 top-1/2 w-full h-[10px] bg-black opacity-0 transition-all duration-[800ms] ease-[cubic-bezier(0.23,1,0.32,1)] -translate-y-1/2 group-hover:h-full group-hover:opacity-100 rounded"></span>
+                        )}
                       </button>
                     ) : (
                       <CheckCircle className="text-green-500 w-6 h-6" />
@@ -1346,8 +1524,11 @@ function page() {
                       {/* OTP Input + Submit */}
                       <div className="flex flex-col md:flex-row gap-3">
                         <InputOtp
+                          ref={otpRef}
                           value={otp}
-                          onChange={(e) => setOtp(e.value)}
+                          onChange={(e) => {
+                            setOtp(e.value);
+                          }}
                           length={6}
                           integerOnly
                           inputStyle={{
@@ -1362,9 +1543,14 @@ function page() {
                           <button
                             type="button"
                             onClick={handleOtpVerify}
-                            className="relative poppins text-nowrap inline-flex items-center justify-center py-2 px-4 text-base open-sans rounded-lg text-white bg-[#3e66f3] cursor-pointer overflow-hidden transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:text-white active:scale-95 group"
+                            disabled={isVerifyingOtp}
+                            className={`relative poppins inline-flex items-center justify-center py-2 px-4 rounded-lg text-white
+  ${isVerifyingOtp
+                                ? "bg-gray-400 cursor-not-allowed"
+                                : "bg-[#3e66f3]"
+                              }`}
                           >
-                            <span className="relative z-10">Submit</span>
+                            <span className="relative z-10">{isVerifyingOtp ? "Verifying..." : "Submit"}</span>
                             <span className="absolute left-0 top-1/2 w-full h-[10px] bg-black opacity-0 transition-all duration-[800ms] ease-[cubic-bezier(0.23,1,0.32,1)] -translate-y-1/2 group-hover:h-full group-hover:opacity-100 rounded"></span>
                           </button>
 
@@ -1415,11 +1601,10 @@ function page() {
                       value={formData.designation}
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      className={`form-select w-full border rounded-md p-2 ${
-                        errors.designation
-                          ? "border-red-500"
-                          : "border-gray-300"
-                      }`}
+                      className={`form-select w-full border rounded-md p-2 ${errors.designation
+                        ? "border-red-500"
+                        : "border-gray-300"
+                        }`}
                     >
                       <option value="">Please Choose an option</option>
                       <option value="SEO Executive">SEO Executive</option>
@@ -1444,11 +1629,10 @@ function page() {
                       value={formData.selectExpyrs}
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      className={`form-select w-full border rounded-md p-2 ${
-                        errors.selectExpyrs
-                          ? "border-red-500"
-                          : "border-gray-300"
-                      }`}
+                      className={`form-select w-full border rounded-md p-2 ${errors.selectExpyrs
+                        ? "border-red-500"
+                        : "border-gray-300"
+                        }`}
                     >
                       <option value="">Please Choose an option</option>
                       {[...Array(11).keys()].map((num) => (
@@ -1513,9 +1697,8 @@ function page() {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     placeholder=" "
-                    className={`peer w-full border rounded-md p-2 placeholder-transparent resize-none focus:outline-none ${
-                      errors.message ? "border-red-500" : "border-gray-300"
-                    } focus:border-[#3e66f3]`}
+                    className={`peer w-full border rounded-md p-2 placeholder-transparent resize-none focus:outline-none ${errors.message ? "border-red-500" : "border-gray-300"
+                      } focus:border-[#3e66f3]`}
                   />
                   <label
                     htmlFor="message"
@@ -1546,10 +1729,48 @@ function page() {
                       </button> */}
                   <button
                     type="submit"
-                    className="relative poppins text-nowrap inline-flex items-center justify-center py-2 px-4  text-base open-sans rounded-lg text-white bg-[#3e66f3] cursor-pointer overflow-hidden transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:text-white active:scale-95 group"
+                    disabled={isSubmitting}
+                    className={`relative poppins inline-flex items-center justify-center py-2 px-4 text-base open-sans rounded-lg text-white overflow-hidden transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] active:scale-95 group
+    ${isSubmitting
+                        ? "bg-gray-400 cursor-not-allowed"
+                        : "bg-[#3e66f3] hover:text-white cursor-pointer"
+                      }
+  `}
                   >
-                    <span className="relative z-10"> Submit </span>
-                    <span className="absolute left-0 top-1/2 w-full h-[10px] bg-black opacity-0 transition-all duration-[800ms] ease-[cubic-bezier(0.23,1,0.32,1)] -translate-y-1/2 group-hover:h-full group-hover:opacity-100 rounded"></span>
+                    <span className="relative z-10 flex items-center gap-2">
+                      {isSubmitting ? (
+                        <>
+                          <svg
+                            className="animate-spin h-4 w-4 text-white"
+                            viewBox="0 0 24 24"
+                          >
+                            <circle
+                              className="opacity-25"
+                              cx="12"
+                              cy="12"
+                              r="10"
+                              stroke="currentColor"
+                              strokeWidth="4"
+                              fill="none"
+                            />
+                            <path
+                              className="opacity-75"
+                              fill="currentColor"
+                              d="M4 12a8 8 0 018-8v8z"
+                            />
+                          </svg>
+
+                          Submitting...
+                        </>
+                      ) : (
+                        "Submit"
+                      )}
+                    </span>
+
+                    {/* Hover Effect (disabled when loading) */}
+                    {!isSubmitting && (
+                      <span className="absolute left-0 top-1/2 w-full h-[10px] bg-black opacity-0 transition-all duration-[800ms] ease-[cubic-bezier(0.23,1,0.32,1)] -translate-y-1/2 group-hover:h-full group-hover:opacity-100 rounded"></span>
+                    )}
                   </button>
                 </div>
               </form>

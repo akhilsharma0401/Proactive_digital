@@ -1,6 +1,8 @@
 "use client";
 import React from "react";
 import Lottie from "lottie-react";
+
+// assets
 import privacyPolicyHero from "../../../public/animation/privacyPolicyHero.json";
 
 function page() {

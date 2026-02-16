@@ -7,21 +7,21 @@ import employee_cab from "../../../public/images/employee_cab.jpg";
 import Worker_app from "../../../public/images/Worker_app.jpg";
 const items = [
   {
-    href: "/custom-applications",
+    href: "/sms-based-coupon-management-system",
     img: sms_based,
     title: "SMS Based Coupon Management System",
     alt: "SMS Based Coupon Management System",
     edge: "from-emerald-400 via-teal-400 to-cyan-400",
   },
   {
-    href: "/custom-applications",
+    href: "/employee-cab-management-system",
     img: employee_cab,
     title: "Employee-Cab Management System",
     alt: "Employee-Cab Management System",
     edge: "from-sky-400 via-blue-400 to-indigo-400",
   },
   {
-    href: "/custom-applications",
+    href: "/worker-loyalty-reward-app",
     img: Worker_app,
     title: "Worker Loyalty Reward App",
     alt: "Worker Loyalty Reward App",

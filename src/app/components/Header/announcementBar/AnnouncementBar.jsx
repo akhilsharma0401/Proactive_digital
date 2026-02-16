@@ -1,4 +1,6 @@
 import React from "react";
+
+// icons
 import { CiMail } from "react-icons/ci";
 import { MdOutlineTextsms } from "react-icons/md";
 import { VscCallOutgoing } from "react-icons/vsc";
@@ -9,27 +11,27 @@ function AnnouncementBar() {
         {/* Email */}
         <div className="flex  items-center gap-2">
           <CiMail className="text-lg" />
-          <span className="">SMS, Voice & Digital Solutions</span>
+          <span className="">SMS, Voice & Web Solutions</span>
         </div>
 
         {/* Contact Details */}
         <div className="flex items-center gap-3">
           {/* call us  */}
-          <div className="flex items-center gap-2 px-4 border-r-1">
+          <div className="flex items-center gap-2 px-4 border-r">
             <VscCallOutgoing />
-            <a href="tel:+919999999999" className="hover:underline">
-              +91 9999999999
+            <a href="tel:+919680006460" className="hover:underline">
+              +91 96800-06460
             </a>
           </div>
 
           {/* Email  */}
-          <div className=" w-ful h-full flex items-center gap-2 px-4 border-r-1">
+          <div className=" w-ful h-full flex items-center gap-2 px-4 border-r">
             <MdOutlineTextsms />
             <a
-              href="mailto: example@proactivedigital.com"
+              href="mailto: info@proactivedigital.in"
               className="hover:underline"
             >
-              example@proactivedigital.com
+              info@proactivedigital.in
             </a>
           </div>
         </div>

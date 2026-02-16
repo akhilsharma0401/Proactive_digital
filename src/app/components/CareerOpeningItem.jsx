@@ -1,5 +1,7 @@
 "use client";
 import React, { useRef, useEffect } from "react";
+
+// icons
 import {  FaClock, FaChevronDown } from "react-icons/fa6";
 import { FaMapMarkerAlt } from "react-icons/fa";
 const CareerOpeningItem = ({ 

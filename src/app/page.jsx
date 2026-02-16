@@ -40,6 +40,7 @@ import {
 // images
 import whyChooseUs from "../../public/images/whyChooseUs.webp";
 import service_bg_2 from "../../public/images/service_bg_2.jpg";
+import service_bg from "../../public/images/service_bg.jpg";
 import homeHero1 from "../../public/images/homeHero1.jpg";
 import homeHero2 from "../../public/images/homeHero2.jpg";
 import homeHero3 from "../../public/images/homeHero3.jpg";
@@ -53,6 +54,11 @@ import homeHero10 from "../../public/images/homeHero10.png";
 
 import HeroExpand from "./components/HeroExpand.jsx";
 
+
+import { cn } from "@/lib/utils";
+// import { Marquee } from "@/components/ui/marquee";
+import { Marquee } from "./components/marquee";
+
 // Our Benifits
 import { CircularBenefits } from "./components/CircularBenefits";
 import FaqItem from "./components/FaqItem.jsx";
@@ -63,63 +69,109 @@ const Benefits = [
     title: "End-to-End Growth Management",
     des: "We plan, build, and manage every aspect of your digital growth, ensuring your website evolves seamlessly with your business needs.",
     // designation: "Restaurant Critic",
-    src: "/images/homeBenifits1.jpg",
+    src: "/images/endToEndGrowth.jpg",
   },
   {
     title: "Custom Web Design for Every Client",
     des: "Every site is uniquely designed to match your goals, with flexible options and tailored features that reflect your brand identity.",
     // designation: "Frequent Visitor",
-    src: "/images/homeBenifits2.jpg",
+    src: "/images/customWebDesign.jpg",
   },
   {
     title: "High-Performance & Scalable Platform",
     des: "Our platform powers fast, reliable, and scalable websites that adapt to your growth while delivering consistent top-level performance.",
     // designation: "Satisfied Customer",
-    src: "/images/homeBenifits3.jpg",
+    src: "/images/highPerformance.jpg",
   },
-  {
-    title: "Modern Features & Seamless Integration",
-    des: "From UI/UX design to WordPress and advanced tools, we integrate modern features to create websites that look great and work flawlessly.",
-    // designation: "Satisfied Customer",
-    src: "/images/homeBenifits4.jpg",
-  },
+  // {
+  //   title: "Modern Features & Seamless Integration",
+  //   des: "From UI/UX design to WordPress and advanced tools, we integrate modern features to create websites that look great and work flawlessly.",
+  //   // designation: "Satisfied Customer",
+  //   src: "/images/homeBenifits4.jpg",
+  // },
 ];
 // Our Benifits Ends
 
-import { cn } from "@/lib/utils";
-// import { Marquee } from "@/components/ui/marquee";
-import { Marquee } from "./components/marquee";
+const services = [
+  {
+    title: "Web Development",
+    description:
+      "We build fast, secure, and scalable websites using clean code, responsive layouts, and API-driven integrations to deliver high-performance digital experiences for your business.",
+    icon: homeIconWebSolutions,
+    link: "/web-development",
+    buttonText: "Learn More",
+    aria: "Let's Build With Web Development",
+  },
+  {
+    title: "E-commerce ",
+    description:
+      "We create powerful e-commerce platforms with smooth navigation, secure payments, and optimized checkout systems to help you grow sales and improve customer experience.",
+    icon: homeIconDigitalMarketing,
+    link: "/ecommerce",
+    buttonText: "Learn More",
+    aria: "Learn More",
+  },
+  {
+    title: "Web Design",
+    description:
+      "We design modern, user-friendly websites with creative layouts, branding, and responsive visuals that strengthen your online presence and connect with customers.",
+    icon: homeIconWebDesign,
+    link: "/web-design",
+    buttonText: "Let's Design",
+    aria: "Let's Design",
+  },
+  {
+    title: "CPaaS Solutions",
+    description:
+      "We deliver smart communication solutions using WhatsApp API, chatbots, RCS, and SMS to automate engagement and improve customer interactions.",
+    icon: homeIconCpassSolution,
+    link: "https://celitix.com/",
+    buttonText: "Let's Connect",
+    external: true,
+    aria: "Let's Connect",
+  },
+];
 
 const reviews = [
   {
     img: homeHero1,
+    alt: "Hero Image 1",
   },
   {
     img: homeHero2,
+    alt: "Hero Image 2",
   },
   {
     img: homeHero3,
+    alt: "Hero Image 3",
   },
   {
     img: homeHero4,
+    alt: "Hero Image 4",
   },
   {
     img: homeHero5,
+    alt: "Hero Image 5",
   },
   {
     img: homeHero6,
+    alt: "Hero Image 6",
   },
   {
     img: homeHero7,
+    alt: "Hero Image 7",
   },
   {
     img: homeHero8,
+    alt: "Hero Image 8",
   },
   {
     img: homeHero9,
+    alt: "Hero Image 9",
   },
   {
     img: homeHero10,
+    alt: "Hero Image 10",
   },
 ];
 
@@ -128,7 +180,7 @@ const middle = Math.ceil(reviews.length / 2);
 const firstRow = reviews.slice(0, middle); // first 5
 const secondRow = reviews.slice(middle); // next 5
 
-const ImageCard = ({ img }) => {
+const ImageCard = ({ img, alt }) => {
   return (
     <div
       className={cn(
@@ -137,9 +189,10 @@ const ImageCard = ({ img }) => {
     >
       <Image
         src={img}
-        alt=""
+        alt={alt}
         width={300}
         height={350}
+        priority
         className="h-full w-full object-cover"
       />
     </div>
@@ -152,41 +205,52 @@ export default function Home() {
   const [imageKey, setImageKey] = useState(0);
 
   const content = {
-    Marketing: {
-      title: "Accelerate Growth with Proactive Digital Solutions",
-      subtitle:
-        "Drive measurable results through precision-driven campaigns and smart digital strategies.",
+    ecommerce: {
+      catagory: "E-commerce & Retail",
+      title: "Accelerate Growth with Web Development for E-commerce",
+      subtitle: "Drive measurable results through precision-driven campaigns and smart digital strategies.",
       features: [
         {
-          name: "Integrated Campaign Builder",
-          description:
-            "Design impactful campaigns with a mix of SEO, social media, performance ads, and automation tailored to your goals.",
+          f: "High-conversion, user-friendly, and fast-performing eCommerce websites.",
         },
         {
-          name: "Smart Audience Targeting",
-          description:
-            "Reach the right audience at the right time with advanced targeting tools and market insights that maximize engagement.",
+          f: "Magento optimization for speed, performance, and scalability.",
         },
         {
-          name: "Data-Driven Performance",
-          description:
-            "Track, analyze, and optimize your marketing efforts in real-time to ensure higher ROI and sustainable growth.",
+          f: "Intuitive UI/UX with conversion-focused product and category pages.",
         },
         {
-          name: "Omnichannel Engagement",
-          description:
-            "Connect with customers across multiple touchpoints - from WhatsApp and email to social media and web - creating a seamless, unified brand experience that boosts loyalty and conversions.",
+          f: "Frictionless checkout flows with secure payment integration.",
         },
+        {
+          f: "Developed using HTML, CSS, JavaScript, Magento (PHP).",
+        }, 
       ],
-      image: "/images/useCase1.jpg",
+      image: "/images/ecommerce.jpg",
       ctaLink: "/contact-us",
       ctaText: "Contact us",
     },
 
-    Solutions: {
-      title: "Empowering Business with Proactive Digital Services",
+    healthcare: {
+      catagory: "Healthcare & Wellness",
+      title: "Accelerate Growth with Professional Web Development for Healthcare",
       subtitle: "Helping small and medium businesses grow smarter ",
       features: [
+        {
+          f: "Secure and easy-to-use websites for healthcare providers.",
+        },
+        {
+          f: "Web-based appointment booking and patient engagement systems.",
+        },
+        {
+          f: "Privacy-compliant data management and secure backend architecture.",
+        },
+        {
+          f: "Responsive design for seamless access across devices.",
+        },
+        {
+          f: "Built using HTML, CSS, JavaScript, Laravel (PHP).",
+        },
         {
           name: "Website Solutions",
           description:
@@ -208,15 +272,31 @@ export default function Home() {
             "Unify communication with WhatsApp Business API, chatbots, RCS, and SMS for faster response times and stronger customer engagement.",
         },
       ],
-      image: "/images/useCase4.jpg",
+      image: "/images/healthCareUseCase.jpg",
       ctaLink: "/contact-us",
       ctaText: "Contact-us ",
     },
 
-    Performance: {
-      title: "How Proactive Digital Services Elevate Your Business",
+    realEstate: {
+      catagory: "Real Estate & Construction",
+      title: "Accelerate Growth with Professional Web Development for Real Estate",
       subtitle: "Drive growth across every aspect of your digital presence.",
       features: [
+        {
+          f: "Property-focused websites with clean layouts and modern design.",
+        },
+        {
+          f: "High-quality image galleries, virtual tours, and rich media content.",
+        },
+        {
+          f: "Intuitive property listings with filters and easy navigation.",
+        },
+        {
+          f: "Lead capture and inquiry management features.",
+        },
+        {
+          f: "Developed using HTML, CSS, JavaScript, WordPress.",
+        },
         {
           name: "More Reviews Shared",
           description:
@@ -238,15 +318,31 @@ export default function Home() {
             "Boost visibility with advanced SEO and targeted campaigns that push you higher in search results.",
         },
       ],
-      image: "/images/useCase2.jpg",
+      image: "/images/realEstate.jpg",
       ctaLink: "/contact-us",
       ctaText: "Contact us",
     },
 
-    Strategy: {
-      title: "Build Smarter Strategies with Proactive Digital Solutions",
+    finance: {
+      catagory: "Finance & Legal Services",
+      title: "Accelerate Growth with Professional Web Development for Finance",
       subtitle: "Turn ambitious goals into measurable results.",
       features: [
+        {
+          f: "Professional, secure, and responsive website development.",
+        },
+        {
+          f: "Compliance-ready architecture for financial and legal standards.",
+        },
+        {
+          f: "Secure client onboarding and document handling systems.",
+        },
+        {
+          f: "Trust-focused UI design with strong brand credibility.",
+        },
+        {
+          f: "Developed using HTML, CSS, JavaScript, Java.",
+        },
         {
           name: "Roadmap to Success",
           description:
@@ -268,13 +364,18 @@ export default function Home() {
             "Maximize ROI with focused strategies designed to improve customer engagement, conversions, and sales.",
         },
       ],
-      image: "/images/useCase3.jpg",
+      image: "/images/finance.jpg",
       ctaLink: "/contact-us",
       ctaText: "Contact us",
     },
   };
 
-  const tabs = ["Marketing", "Solutions", "Performance", "Strategy"];
+  const tabs = [
+    { key: "ecommerce", label: "E-commerce" },
+    { key: "healthcare", label: "Healthcare" },
+    { key: "realEstate", label: "Real Estate" },
+    { key: "finance", label: "Finance" },
+  ]; 
 
   const handleTabChange = (newTab) => {
     if (newTab === activeTab) return;
@@ -334,7 +435,7 @@ export default function Home() {
   const [selected, setSelected] = useState(null);
   // const [open, setOpen] = useState(false);
 
-  const [activeTab, setActiveTab] = useState("Marketing");
+  const [activeTab, setActiveTab] = useState("ecommerce");
 
   // FAQs
   const [openIndex, setOpenIndex] = useState(null);
@@ -345,14 +446,14 @@ export default function Home() {
 
   const faqs = [
     {
-      question: "What kind of services do you offer?",
+      question: "What's the difference between web design and web development?",
       answer:
-        "We provide website design & redesign, web solutions, and digital marketing services like SEO, PPC, and social media management.",
+        "Web design covers layout, visuals, and user experience; web development handles coding, performance, and functionality. We deliver both under one roof.",
     },
     {
-      question: "How long will it take to finish my project?",
+      question: "Do you also have custom web development and UI/UX design services?",
       answer:
-        "Most projects take a few weeks, depending on what you need. We’ll give you a clear timeline before we start.",
+        "Yes, we provide unique custom solutions: website development and professional UI/UX design for your business that are guaranteed to have a fast performance, secure architecture and modern design.",
     },
     {
       question: "Can you improve my current website?",
@@ -360,24 +461,24 @@ export default function Home() {
         "Yes! We can redesign or upgrade your existing website to make it look modern, faster, and more user-friendly.",
     },
     {
-      question: "What type of websites can you redesign?",
+      question: "How much does professional web design and website development cost in India?",
       answer:
-        "We work with websites built on WordPress, HTML/CSS, Node.js, React, and other frameworks. Our team adapts the redesign to your current setup.",
+        "The cost of professional web design and website development in India depends on website size, custom features, and technical requirements. Basic business websites start from ₹20,000, while advanced custom websites may cost ₹70,000 or more.",
+    }, 
+    {
+      question: "How long does it take to design and develop a website?",
+      answer:
+        "The timeline depends on project complexity, but most websites are completed within 3–6 weeks including revisions, content uploads, and final SEO checks.",
     },
     {
-      question: "How will your services help my business?",
+      question: "Can you integrate third-party APIs or plugins?",
       answer:
-        "We help you build a stronger online presence, attract new customers, and grow your business through better websites and digital marketing.",
+        "Yes. We integrate payment gateways, CRMs, chatbots, and other APIs to extend your website’s functionality and automate business operations.",
     },
     {
-      question: "Do I need to know anything technical?",
+      question: "Which technologies do your developers use?",
       answer:
-        "Not at all. We handle all the technical work, so you can focus on running your business.",
-    },
-    {
-      question: "Do you provide support after the project is done?",
-      answer:
-        "Yes, we offer ongoing support and maintenance to ensure your website and campaigns keep running smoothly.",
+        "Our developers work with modern tech stacks like HTML5, CSS3, JavaScript, React, Node.js, PHP, and MySQL to create fast and secure web applications.",
     },
   ];
   // FAQs Ends
@@ -386,31 +487,41 @@ export default function Home() {
     <div className="overflow-hidden">
       {/* Scrolling hero section */}
 
-      <section className="bg-linear-to-b from-[#d0e2ff] to-[#f5f9ff] ">
-        <div className="grid grid-cols-1 lg:grid-cols-2  lg:gap-4 xl:gap-15 container mx-auto lg:h-[80vh] xl:h-[100vh] 2xl:h-[85vh] items-stretch relative  overflow-hidden ">
+      {/* <section className="bg-linear-to-b from-[#d0e2ff] to-[#f5f9ff] "> */}
+      <section className=" container mx-auto bg-[#FFFFFF] ">
+        <div className="relative grid grid-cols-1 lg:grid-cols-2 justify-center lg:gap-4 xl:gap-10 lg:h-[80vh] xl:h-[90vh] items-stretch overflow-hidden ">
           {/* left content */}
-          <div className="relative flex items-center justify-center lg:justify-start py-10 xl:py-15 2xl:py-15 px-6 lg:px-10 ">
+          <div className="relative flex items-center justify-center lg:justify-start py-16 lg:py-10 px-6 lg:px-8 ">
             <div className="w-full flex flex-col items-center lg:items-start text-center  lg:text-left">
               <p className="poppins text-xs sm:text-sm open-sans mb-3 inline-block bg-[#3e66f3] text-white text-md sub-heading font-bold px-4 py-1 rounded-full uppercase tracking-wide">
-                Proactive Digital Solutions
+                Proactive Web Solutions
               </p>
 
-              <h1 className="poppins text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-medium leading-tight text-gray-900 mb-3">
+              {/* <h1 className="poppins text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-medium leading-tight text-gray-900 mb-3">
                 Scalable, Secure & Optimized{" "}
-                <span className="text-blue-500 ">Website Development</span> &{" "}
-                <span className="text-blue-500 ">Digital Marketing</span>{" "}
+                <span className="text-blue-500 ">Website Development </span> 
+                Services
+              </h1> */}
+              <h1 className="poppins text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-medium leading-tight text-gray-900 mb-3">
+                Custom  {" "}
+                <span className="text-blue-500 ">Web Design </span>
+                {" "} & {" "}
+                <span className="text-blue-500 "> Development </span>
                 Services
               </h1>
 
               <p className="open-sans text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed mb-4 sm:mb-4 max-w-[600px]">
-                We offer digital solutions from Website Development and Software
-                Services to Social Media and Digital Marketing - designed to
-                drive innovation and accelerate your brand growth.
+                {/* Secure, scalable, and high-performance website development services delivering fast, responsive, and future-ready web solutions. */}
+
+                We provide custom web design and development that suits your business needs. Responsive websites to scalable web applications, we deliver them by design approach, putting smart design, clean code, and better performance in the service of creating experiences that help achieve your business goals.
               </p>
 
               <div className=" flex justify-center ">
                 <Link href="/contact-us">
-                  <button className="relative inline-flex items-center justify-center px-4 py-2 text-[16px] font-semibold rounded-lg text-white bg-[#3e66f3] cursor-pointer overflow-hidden transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:text-white active:scale-95 group">
+                  <button
+                    aria-label="Book Demo"
+                    className="relative inline-flex items-center justify-center px-4 py-2 text-[16px] font-semibold rounded-lg text-white bg-[#3e66f3] cursor-pointer overflow-hidden transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:text-white active:scale-95 group "
+                  >
                     <span className="poppins relative z-10">Book Demo</span>
 
                     {/* Vertical expanding background */}
@@ -420,176 +531,197 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="block lg:hidden pointer-events-none  absolute inset-x-0 bottom-0 h-1/5 bg-linear-to-t from-[#d0e2ff] dark:from-background"></div>
+            {/* <div className="block lg:hidden pointer-events-none  absolute inset-x-0 bottom-0 h-1/5 bg-linear-to-t from-[#d0e2ff] dark:from-background"></div> */}
+            <div className="block lg:hidden pointer-events-none absolute inset-x-0 bottom-0 h-1/4 bg-linear-to-t from-white/95 dark:from-background"></div>
           </div>
 
-          <div className="relative flex gap-4 h-[400px] md:h-[500px]  lg:h-full w-full flex-row items-center justify-center overflow-hidden px-2">
+          {/* Scrolling Cards */}
+          {/* <div className="flex justify-center"> */}
+          <div className="relative flex gap-4 h-[400px] md:h-[500px] lg:h-full w-full flex-row items-center justify-center overflow-hidden px-4 md:px-2">
             <Marquee vertical className="[--duration:25s]">
               {firstRow.map((review, id) => (
-                <ImageCard key={id} img={review.img} />
+                <ImageCard key={id} img={review.img} alt={review.alt} />
               ))}
             </Marquee>
 
             <Marquee reverse vertical className="[--duration:25s]">
               {secondRow.map((review, id) => (
-                <ImageCard key={id} img={review.img} />
+                <ImageCard key={id} img={review.img} alt={review.alt} />
               ))}
             </Marquee>
 
-            <div className="block lg:hidden pointer-events-none absolute inset-x-0 top-0 h-1/3 bg-linear-to-b from-[#d0e2ff] dark:from-background"></div>
+            {/* Fogg On Mobile Devices */}
+            {/* <div className="block lg:hidden pointer-events-none absolute inset-x-0 top-0 h-1/3 bg-linear-to-b from-[#d0e2ff] dark:from-background"></div> */}
+
+
+            {/* Fogg On large Devices */}
             {/* <div className="hidden lg:block pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-linear-to-t from-[#f5f9ff] dark:from-background"></div> */}
+
+            {/* Fogg On Mobile Devices */}
+            <div className="pointer-events-none absolute inset-x-0 top-0 h-1/4 bg-linear-to-b from-white/95 dark:from-background"></div>
+
+
+            {/* Fogg On large Devices */}
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/4 bg-linear-to-t from-white/95 dark:from-background"></div>
           </div>
+          {/* </div> */}
         </div>
       </section>
 
       {/* Work Process */}
-      <section
-        className="w-full mx-auto py-5 md:py-10 px-4 sm:px-6 lg:px-0 bg-gray-200"
-        style={{
-          backgroundImage: "url('/images/diagonalStripes.svg')", // place svg in public folder
-          backgroundRepeat: "repeat",
-          backgroundSize: "auto",
-        }}
-      >
-        {/* bg text */}
-        <div className="flex flex-col items-center justify-center">
-          {/* title */}
-          <div className="relative flex flex-col items-center justify-center ">
-            {/* Background big text */}
-            <h2 className="poppins absolute text-5xl md:text-7xl font-extrabold text-gray-300 opacity-40 whitespace-nowrap ">
-              PROACTIVE
+      <section className="bg-[url('/images/diagonalStripes.svg')] bg-repeat bg-auto w-full mx-auto " >
+        <div className="container mx-auto psace-y-2 px-10 lg:px-12 xl:px-6 py-10 ">
+
+          {/* bg text */}
+          <div className="flex flex-col items-center justify-center">
+            {/* title */}
+            <div className="relative flex flex-col items-center justify-center ">
+              {/* Background big text */}
+              {/* <h2 className="poppins absolute text-5xl md:text-7xl font-extrabold text-gray-300 opacity-40 whitespace-nowrap ">
+                  PROACTIVE
+                </h2> */}
+
+              {/* Foreground small label */}
+              {/* <div className="flex items-center gap-2 py-1 rounded">
+                  <div className="flex-shrink-0 flex justify-center">
+                    <HiMiniSquares2X2 className="text-3xl text-[#3e66f3] mt-8" />
+                  </div>
+                  <span className="poppins font-bold text-[#3e66f3] text-lg whitespace-nowrap mt-8">
+                    WORK PROCESS
+                  </span>
+                </div> */}
+              {/* Background big text */}
+              <h2 className="poppins text-5xl md:text-7xl font-extrabold text-blue-300 opacity-30 whitespace-nowrap ">
+                PROACTIVE
+              </h2>
+
+              {/* Foreground small label */}
+              <div className=" absolute flex items-center gap-2 mt-5  rounded">
+                <div className=" flex justify-center">
+                  <HiMiniSquares2X2 className="text-3xl text-[#3e66f3] " />
+                </div>
+                <span className="poppins font-bold text-[#3e66f3] text-lg whitespace-nowrap ">
+                  WORK PROCESS
+                </span>
+              </div>
+            </div>
+            <h2 className="poppins text-[35px] md:text-[38px] font-bold text-[#141d38] whitespace-nowrap mt-4">
+              How to work <span className="text-[#3E66F3]">it!</span>
             </h2>
-
-            {/* Foreground small label */}
-            <div className="flex items-center gap-2 py-1 rounded">
-              {/* Icon */}
-              <div className="flex-shrink-0 flex justify-center">
-                <HiMiniSquares2X2 className="text-3xl text-[#3e66f3] mt-8" />
-              </div>
-              <span className="poppins font-bold text-[#3e66f3] text-lg whitespace-nowrap mt-8">
-                WORK PROCESS
-              </span>
-            </div>
-          </div>
-          <h2 className="poppins text-[35px] md:text-[38px] font-bold text-[#141d38] whitespace-nowrap mt-4">
-            How to work <span className="text-[#3E66F3]">it!</span>
-          </h2>
-        </div>
-
-        {/* Cards */}
-        <div
-          className="relative flex flex-col md:flex-wrap md:flex-row lg:flex-row justify-center items-center my-10 md:my-12 gap-10 mx-auto w-full container
-            "
-        >
-          <div className="absolute top-20 left-20 2xl:left-40 inset-x-0 z-0 hidden lg:block">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-[80%] h-24"
-              viewBox="0 0 1000 100"
-              preserveAspectRatio="none"
-            >
-              <path
-                d="M0,50 
-         C150,0 350,100 500,50 
-         C650,0 850,100 1000,50"
-                stroke="#6366f1"
-                strokeWidth="3"
-                fill="transparent"
-              />
-            </svg>
           </div>
 
-          {/* Card 1 */}
-          <div className="relative bg-white shadow-md rounded-xl p-6 w-64 mx-4 z-10">
-            {/* Numbered Circle */}
-            <div className="absolute -top-6 -left-6">
-              <span className="absolute w-16 h-16 rounded-full bg-[#3E66F3] opacity-75 animate-[ping_2s_ease-in-out_infinite]"></span>
+          {/* Cards */}
+          <div className="relative grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-10 lg:gap-15 justify-center items-stretch pt-10  mx-auto w-full container  " >
+            <div className="absolute top-20 left-20 2xl:left-40 inset-x-0 z-0 hidden xl:block">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-[80%] h-24"
+                viewBox="0 0 1000 100"
+                preserveAspectRatio="none"
+              >
+                <path
+                  d="M0,50 
+                  C150,0 350,100 500,50 
+                  C650,0 850,100 1000,50"
+                  stroke="#6366f1"
+                  strokeWidth="3"
+                  fill="transparent"
+                />
+              </svg>
+            </div>
 
-              <div className="relative text-3xl w-16 h-16 flex items-center justify-center rounded-full bg-[#3E66F3] text-white font-bold">
-                01
+            {/* Card 1 */}
+            <div className="relative flex flex-col h-auto bg-white shadow-lg rounded-xl p-6 w-full z-10 ">
+              {/* Numbered Circle */}
+              <div className="absolute -top-6 -left-6">
+                <span className="absolute w-16 h-16 rounded-full bg-[#3E66F3] opacity-75 animate-[ping_2s_ease-in-out_infinite]"></span>
+
+                <div className="relative text-3xl w-16 h-16 flex items-center justify-center rounded-full bg-[#3E66F3] text-white font-bold">
+                  01
+                </div>
+              </div>
+              {/* Content */}
+              <div className="mt-6 text-center flex flex-col items-center">
+                <FaClipboardList className="text-4xl text-[#3E66F3] mb-4" />
+                <h3 className="font-bold text-[18px] poppins">
+                  Select the solution
+                </h3>
+                <p className="text-gray-500 text-md mt-2 open-sans">
+                  Choose the service you need to start your project. Lay the
+                  foundation for growth with the right solution.
+                </p>
               </div>
             </div>
-            {/* Content */}
-            <div className="mt-6 text-center flex flex-col items-center">
-              <FaClipboardList className="text-4xl text-[#3E66F3] mb-4" />
-              <h3 className="font-bold text-[18px] poppins">
-                Select the solution
-              </h3>
-              <p className="text-gray-500 text-md mt-2 open-sans">
-                Choose the service you need to start your project. Lay the
-                foundation for growth with the right solution.
-              </p>
-            </div>
-          </div>
 
-          {/* Card 2 */}
-          <div className="relative bg-white shadow-md rounded-xl p-6 w-64 mx-4 z-10">
-            <div className="absolute -top-6 -left-6">
-              <span className="absolute w-16 h-16 rounded-full bg-[#3E66F3] opacity-75 animate-[ping_2s_ease-in-out_infinite]"></span>
+            {/* Card 2 */}
+            <div className="relative flex flex-col h-auto bg-white shadow-lg rounded-xl p-6 w-full z-10 ">
+              <div className="absolute -top-6 -left-6">
+                <span className="absolute w-16 h-16 rounded-full bg-[#3E66F3] opacity-75 animate-[ping_2s_ease-in-out_infinite]"></span>
 
-              <div className="relative text-3xl w-16 h-16 flex items-center justify-center rounded-full bg-[#3E66F3] text-white font-bold">
-                02
+                <div className="relative text-3xl w-16 h-16 flex items-center justify-center rounded-full bg-[#3E66F3] text-white font-bold">
+                  02
+                </div>
+              </div>
+              <div className="mt-6 text-center flex flex-col items-center">
+                <FaProjectDiagram className="text-4xl text-[#3E66F3] mb-4" />
+                <h3 className="font-bold text-[18px] poppins">
+                  Project analysis
+                </h3>
+                <p className="text-gray-500 text-md mt-2 open-sans">
+                  We study your goals, needs, and market carefully. Our detailed
+                  analysis ensures the right plan for lasting success.
+                </p>
               </div>
             </div>
-            <div className="mt-6 text-center flex flex-col items-center">
-              <FaProjectDiagram className="text-4xl text-[#3E66F3] mb-4" />
-              <h3 className="font-bold text-[18px] poppins">
-                Project analysis
-              </h3>
-              <p className="text-gray-500 text-md mt-2 open-sans">
-                We study your goals, needs, and market carefully. Our detailed
-                analysis ensures the right plan for lasting success.
-              </p>
-            </div>
-          </div>
 
-          {/* Card 3 */}
-          <div className="relative bg-white shadow-md rounded-xl p-6 w-64 mx-4 z-10">
-            <div className="absolute -top-6 -left-6">
-              <span className="absolute w-16 h-16 rounded-full bg-[#3E66F3] opacity-75 animate-[ping_2s_ease-in-out_infinite]"></span>
+            {/* Card 3 */}
+            <div className="relative flex flex-col h-auto bg-white shadow-lg rounded-xl p-6 w-full z-10 ">
+              <div className="absolute -top-6 -left-6">
+                <span className="absolute w-16 h-16 rounded-full bg-[#3E66F3] opacity-75 animate-[ping_2s_ease-in-out_infinite]"></span>
 
-              <div className="relative text-3xl w-16 h-16 flex items-center justify-center rounded-full bg-[#3E66F3] text-white font-bold">
-                03
+                <div className="relative text-3xl w-16 h-16 flex items-center justify-center rounded-full bg-[#3E66F3] text-white font-bold">
+                  03
+                </div>
+              </div>
+              <div className="mt-6 text-center flex flex-col items-center">
+                <FaCogs className="text-4xl text-[#3E66F3] mb-4" />
+                <h3 className="font-bold text-lg poppins">Plan and execute</h3>
+                <p className="text-gray-500 text-md mt-2 open-sans">
+                  Our team creates a tailored strategy for your business. We
+                  implement each step with accuracy and precision.
+                </p>
               </div>
             </div>
-            <div className="mt-6 text-center flex flex-col items-center">
-              <FaCogs className="text-4xl text-[#3E66F3] mb-4" />
-              <h3 className="font-bold text-lg poppins">Plan and execute</h3>
-              <p className="text-gray-500 text-md mt-2 open-sans">
-                Our team creates a tailored strategy for your business. We
-                implement each step with accuracy and precision.
-              </p>
-            </div>
-          </div>
 
-          {/* Card 4 */}
-          <div className="relative bg-white shadow-md rounded-xl p-6 w-64 mx-4 z-10">
-            <div className="absolute -top-6 -left-6">
-              <span className="absolute w-16 h-16 rounded-full bg-[#3E66F3] opacity-75 animate-[ping_2s_ease-in-out_infinite]"></span>
+            {/* Card 4 */}
+            <div className="relative flex flex-col h-auto bg-white shadow-lg rounded-xl p-6 w-full z-10 ">
+              <div className="absolute -top-6 -left-6">
+                <span className="absolute w-16 h-16 rounded-full bg-[#3E66F3] opacity-75 animate-[ping_2s_ease-in-out_infinite]"></span>
 
-              <div className="relative text-3xl w-16 h-16 flex items-center justify-center rounded-full bg-[#3E66F3] text-white font-bold">
-                04
+                <div className="relative text-3xl w-16 h-16 flex items-center justify-center rounded-full bg-[#3E66F3] text-white font-bold">
+                  04
+                </div>
               </div>
-            </div>
-            <div className="mt-6 text-center flex flex-col items-center">
-              <FaChartLine className="text-4xl text-[#3E66F3] mb-4" />
-              <h3 className="font-bold text-lg poppins">Deliver result</h3>
-              <p className="text-gray-500 text-md mt-2 open-sans ">
-                We provide impactful outcomes that ensure growth and success.
-                Focused on long-term value for your business journey.
-              </p>
+              <div className="mt-6 text-center flex flex-col items-center">
+                <FaChartLine className="text-4xl text-[#3E66F3] mb-4" />
+                <h3 className="font-bold text-lg poppins">Deliver result</h3>
+                <p className="text-gray-500 text-md mt-2 open-sans ">
+                  We provide impactful outcomes that ensure growth and success.
+                  Focused on long-term value for your business journey.
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* services cards with ripple effect */}
-      <section className="">
+      <section className=" bg-white ">
         <div className="relative md:min-h-[600px] sm:min-h-[300px]">
           {/* Top Half - Background Image */}
           <div
             className="absolute top-0 left-0 w-full h-[500px] bg-cover bg-center bg-no-repeat"
-            style={{ backgroundImage: `url(${service_bg_2.src})` }}
+            style={{ backgroundImage: `url(${service_bg.src})` }}
           ></div>
 
           {/* Bottom Half - White Background */}
@@ -603,9 +735,9 @@ export default function Home() {
               <div className="relative flex flex-col items-center md:items-start justify-center mb-8">
                 {/* Background big text */}
                 <h2 className="absolute ">
-                  <div className="flex flex-shrink-0 items-center h-full gap-3 lg:gap-5 justify-center">
-                    <HiMiniSquares2X2 className="text-4xl lg:text-5xl text-[#2356fd]" />
-                    <span className="poppins text-[60px] lg:text-[72px] mb-3 font-extrabold text-gray-300  opacity-20 whitespace-nowrap">
+                  <div className="flex flex-shrink-0 items-center h-full gap-3 lg:gap-5 justify-center  mb-3 ">
+                    <HiMiniSquares2X2 className="text-3xl md:text-4xl lg:text-5xl text-[#2356fd]" />
+                    <span className="poppins text-[48px] md:text-[60px] lg:text-[72px] font-extrabold text-gray-500  opacity-30 whitespace-nowrap">
                       Services
                     </span>
                   </div>
@@ -625,16 +757,20 @@ export default function Home() {
             </div>
 
             <div className="flex flex-col md:flex-row justify-between items-center gap-6 mb-3">
-              <h1 className="poppins text-white text-3xl sm:text-4xl lg:text-5xl poppins text-center md:text-start">
+              <h2 className="poppins text-black text-3xl sm:text-4xl lg:text-5xl poppins text-center md:text-start">
                 Exclusive services for <br />
                 <span className="text-[#2356fd]">your Business</span>
-              </h1>
-              <Link href="/contact-us">
-                <button className="relative inline-flex items-center justify-center px-6 py-3 text-[16px] font-semibold rounded-lg text-white bg-[#3e66f3] cursor-pointer overflow-hidden transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-white hover:text-black active:scale-95 group">
-                  <span className="relative z-10">Contact us ➺ </span>
+              </h2>
+              <Link href="/services">
+                <button
+                  aria-label="Contact us"
+                  className="relative inline-flex items-center justify-center px-4 py-2 text-[16px] font-semibold rounded-lg text-white bg-[#3e66f3] cursor-pointer overflow-hidden transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-[#3e66f3] hover:text-white active:scale-95 group"
+                >
+                  {/* <span className="relative z-10">Contact us ➺ </span> */}
+                  <span className="relative z-10">Our Services </span>
 
                   {/* Vertical expanding background */}
-                  <span className="absolute left-0 top-1/2 w-full h-[10px] bg-white opacity-0 transition-all duration-[800ms] ease-[cubic-bezier(0.23,1,0.32,1)] -translate-y-1/2 group-hover:h-full group-hover:opacity-100 rounded"></span>
+                  <span className="absolute left-0 top-1/2 w-full h-[10px] bg-black opacity-0 transition-all duration-[800ms] ease-[cubic-bezier(0.23,1,0.32,1)] -translate-y-1/2 group-hover:h-full group-hover:opacity-100 rounded"></span>
                 </button>
               </Link>
             </div>
@@ -653,266 +789,128 @@ export default function Home() {
                 1024: { slidesPerView: 3, spaceBetween: 30 },
                 1280: { slidesPerView: 4, spaceBetween: 32 },
               }}
-              className="!overflow-hidden"
+              className="overflow-hidden! h-full "
             >
-              {/* -------- Card 1 -------- */}
-              <SwiperSlide className="pt-26 pb-12 ">
-                <div className="relative bg-white rounded-2xl shadow-xl w-full p-6 pt-16 text-center overflow-visible group transition-all duration-700 ease-in-out hover:bg-[#3e66f3] flex flex-col">
-                  {/* Ripple Icon Section */}
-                  <div className="absolute -top-10 left-1/2 -translate-x-1/2 flex items-center justify-center ">
-                    <div className="relative w-20 h-20 rounded-full flex items-center justify-center">
-                      <span className="absolute inset-0 rounded-full bg-[#3e66f3] opacity-40 animateServiceRipple"></span>
-                      <span
-                        className="absolute inset-0 rounded-full bg-[#3e66f3] opacity-30 animateServiceRipple"
-                        style={{ animationDelay: "1s" }}
-                      ></span>
-                      <span
-                        className="absolute inset-0 rounded-full bg-[#3e66f3] opacity-20 animateServiceRipple"
-                        style={{ animationDelay: "2s" }}
-                      ></span>
+              {services.map((service, index) => (
+                <SwiperSlide key={index} className="pt-26 pb-12 h-auto! flex">
+                  <div className="relative bg-white rounded-2xl shadow-xl w-full p-5 pt-16 text-center overflow-visible group transition-all duration-700 ease-in-out hover:bg-[#3e66f3] flex flex-col h-full  ">
 
-                      <div className="relative z-10 w-20 h-20 rounded-full bg-[#eff0f9] flex items-center justify-center group-hover:bg-white">
-                        <Image
-                          src={homeIconWebSolutions}
-                          width={40}
-                          height={40}
-                          alt="icon"
-                        />
+                    {/* Ripple Icon */}
+                    <div className="absolute -top-10 left-1/2 -translate-x-1/2 flex items-center justify-center">
+                      <div className="relative w-20 h-20 rounded-full flex items-center justify-center">
+                        <span className="absolute inset-0 rounded-full bg-[#3e66f3] opacity-40 animateServiceRipple"></span>
+                        <span
+                          className="absolute inset-0 rounded-full bg-[#3e66f3] opacity-30 animateServiceRipple"
+                          style={{ animationDelay: "1s" }}
+                        ></span>
+                        <span
+                          className="absolute inset-0 rounded-full bg-[#3e66f3] opacity-20 animateServiceRipple"
+                          style={{ animationDelay: "2s" }}
+                        ></span>
+
+                        <div className="relative z-10 w-20 h-20 rounded-full bg-[#eff0f9] flex items-center justify-center group-hover:bg-white">
+                          <Image src={service.icon} width={40} height={40} alt="icon" />
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  {/* content */}
-                  <div className="flex flex-col gap-4 mt-5">
-                    {/* Title */}
-                    <h2 className=" poppins text-[18px] md:text-[20px] text-black   group-hover:text-white">
-                      Web Solution
-                    </h2>
+                    {/* Content */}
+                    <div className="flex flex-col gap-4 mt-5 h-full">
+                      <div className="flex flex-col gap-4">
 
-                    {/* Description */}
-                    <p className="text-gray-600 md:text-[16px] text-[14px] group-hover:text-white open-sans">
-                      Tailored websites and apps – from coding and WordPress to
-                      custom app development. Scalable digital solutions built
-                      to grow with your business.
-                    </p>
+                        <h2 className="poppins text-[18px] md:text-[20px] text-black group-hover:text-white">
+                          {service.title}
+                        </h2>
 
-                    {/* Button - Fixed at Bottom */}
-                    <div className=" flex justify-center ">
-                      <Link href="/web-development">
-                        <button className="relative inline-flex items-center justify-center px-4 py-2 text-[16px] font-semibold rounded-lg text-white bg-[#3e66f3] cursor-pointer overflow-hidden transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:text-white active:scale-95 group">
-                          <span className="relative z-10">Let’s Build</span>
+                        <p className="text-gray-600 md:text-[16px] text-[14px] group-hover:text-white open-sans text-center">
+                          {service.description}
+                        </p>
+                      </div>
 
-                          {/* Vertical expanding background */}
-                          <span className="absolute left-0 top-1/2 w-full h-[10px] bg-black opacity-0 transition-all duration-[800ms] ease-[cubic-bezier(0.23,1,0.32,1)] -translate-y-1/2 group-hover:h-full group-hover:opacity-100 rounded"></span>
-                        </button>
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </SwiperSlide>
-
-              {/* -------- Card 2 -------- */}
-              <SwiperSlide className="pt-26 pb-12">
-                <div className="relative bg-white rounded-2xl shadow-xl w-full p-6 pt-16 text-center overflow-visible group transition-all duration-700 ease-in-out hover:bg-[#3e66f3] flex flex-col">
-                  {/* Ripple Icon Section */}
-                  <div className="absolute -top-10 left-1/2 -translate-x-1/2 flex items-center justify-center ">
-                    <div className="relative w-20 h-20 rounded-full flex items-center justify-center">
-                      <span className="absolute inset-0 rounded-full bg-[#3e66f3] opacity-40 animateServiceRipple"></span>
-                      <span
-                        className="absolute inset-0 rounded-full bg-[#3e66f3] opacity-30 animateServiceRipple"
-                        style={{ animationDelay: "1s" }}
-                      ></span>
-                      <span
-                        className="absolute inset-0 rounded-full bg-[#3e66f3] opacity-20 animateServiceRipple"
-                        style={{ animationDelay: "2s" }}
-                      ></span>
-
-                      <div className="relative z-10 w-20 h-20 rounded-full bg-[#eff0f9] flex items-center justify-center group-hover:bg-white">
-                        <Image
-                          src={homeIconDigitalMarketing}
-                          width={40}
-                          height={40}
-                          alt="icon"
-                        />
+                      <div className="flex justify-center mt-auto">
+                        <Link
+                          href={service.link}
+                          target={service.external ? "_blank" : "_self"}
+                          aria-label={`Learn More About ${service.link}`}
+                        >
+                          <button
+                            aria-label={service.aria}
+                            className="relative inline-flex items-center justify-center px-4 py-2 text-[16px] font-semibold rounded-lg text-white bg-[#3e66f3] cursor-pointer overflow-hidden transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:text-white active:scale-95 group"
+                          >
+                            <span className="relative z-10">{service.buttonText}</span>
+                            <span className="absolute left-0 top-1/2 w-full h-[10px] bg-black opacity-0 transition-all duration-[800ms] ease-[cubic-bezier(0.23,1,0.32,1)] -translate-y-1/2 group-hover:h-full group-hover:opacity-100 rounded"></span>
+                          </button>
+                        </Link>
                       </div>
                     </div>
-                  </div>
 
-                  {/* content */}
-                  <div className="flex flex-col gap-4 mt-5">
-                    {/* Title */}
-                    <h2 className="poppins text-[18px] md:text-[20px] text-black group-hover:text-white">
-                      Digital Marketing
-                    </h2>
+                    {/* 
+                      <div className="flex flex-col gap-4 mt-5 flex-1">
+                        
+                      
+                        <div className="flex flex-col gap-4">
+                          <h2 className="poppins text-[18px] md:text-[20px] text-black group-hover:text-white">
+                            {service.title}
+                          </h2>
 
-                    {/* Description */}
-                    <p className="text-gray-600 md:text-[16px] text-[14px] group-hover:text-white open-sans">
-                      From SEO and social media to paid ads and content, our
-                      marketing services drive visibility, boost engagement, and
-                      business growth.
-                    </p>
+                          <p className="text-gray-600 md:text-[16px] text-[14px] group-hover:text-white open-sans text-justify">
+                            {service.description}
+                          </p>
+                        </div>
 
-                    {/* Button - Fixed at Bottom */}
-                    <div className=" flex justify-center ">
-                      <Link href="/seo">
-                        <button className="relative inline-flex items-center justify-center px-4 py-2 text-[16px] font-semibold rounded-lg text-white bg-[#3e66f3] cursor-pointer overflow-hidden transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:text-white active:scale-95 group">
-                          <span className="relative z-10">Let’s convert</span>
+                      
+                        <div className="flex justify-center mt-auto pt-4">
+                          <Link
+                            href={service.link}
+                            target={service.external ? "_blank" : "_self"}
+                          >
+                            <button
+                              aria-label={service.aria}
+                              className="relative inline-flex items-center justify-center px-4 py-2 text-[16px] font-semibold rounded-lg text-white bg-[#3e66f3] cursor-pointer overflow-hidden transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:text-white active:scale-95 group"
+                            >
+                              <span className="relative z-10">
+                                {service.buttonText}
+                              </span>
+                              <span className="absolute left-0 top-1/2 w-full h-[10px] bg-black opacity-0 transition-all duration-[800ms] ease-[cubic-bezier(0.23,1,0.32,1)] -translate-y-1/2 group-hover:h-full group-hover:opacity-100 rounded"></span>
+                            </button>
+                          </Link>
+                        </div>
 
-                          {/* Vertical expanding background */}
-                          <span className="absolute left-0 top-1/2 w-full h-[10px] bg-black opacity-0 transition-all duration-[800ms] ease-[cubic-bezier(0.23,1,0.32,1)] -translate-y-1/2 group-hover:h-full group-hover:opacity-100 rounded"></span>
-                        </button>
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </SwiperSlide>
-
-              {/* -------- Card 3 -------- */}
-              <SwiperSlide className="pt-26 pb-12">
-                <div className="relative bg-white rounded-2xl shadow-xl w-full p-6 pt-16 text-center overflow-visible group transition-all duration-700 ease-in-out hover:bg-[#3e66f3] flex flex-col">
-                  {/* Ripple Icon Section */}
-                  <div className="absolute -top-10 left-1/2 -translate-x-1/2 flex items-center justify-center ">
-                    <div className="relative w-20 h-20 rounded-full flex items-center justify-center">
-                      <span className="absolute inset-0 rounded-full bg-[#3e66f3] opacity-40 animateServiceRipple"></span>
-                      <span
-                        className="absolute inset-0 rounded-full bg-[#3e66f3] opacity-30 animateServiceRipple"
-                        style={{ animationDelay: "1s" }}
-                      ></span>
-                      <span
-                        className="absolute inset-0 rounded-full bg-[#3e66f3] opacity-20 animateServiceRipple"
-                        style={{ animationDelay: "2s" }}
-                      ></span>
-
-                      <div className="relative z-10 w-20 h-20 rounded-full bg-[#eff0f9] flex items-center justify-center group-hover:bg-white">
-                        <Image
-                          // src={webDesign}
-                          src={homeIconWebDesign}
-                          width={40}
-                          height={40}
-                          alt="icon"
-                        />
                       </div>
-                    </div>
+
+                    */}
                   </div>
-                  {/* content */}
-                  <div className="flex flex-col gap-4 mt-5">
-                    {/* Title */}
-
-                    <h2 className="poppins text-[18px] md:text-[20px] text-black group-hover:text-white">
-                      Web Design
-                    </h2>
-
-                    {/* Description */}
-                    <p className="text-gray-600 md:text-[16px] text-[14px] group-hover:text-white open-sans">
-                      Creative design services – website redesign, branding, PSD
-                      to HTML, and animation to elevate your presence and
-                      connect with customers.
-                    </p>
-
-                    {/* Button - Fixed at Bottom */}
-                    <div className=" flex justify-center ">
-                      <Link href="/web-design">
-                        <button className="relative inline-flex items-center justify-center px-4 py-2 text-[16px] font-semibold rounded-lg text-white bg-[#3e66f3] cursor-pointer overflow-hidden transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:text-white active:scale-95 group">
-                          <span className="relative z-10">Let’s Design</span>
-
-                          {/* Vertical expanding background */}
-                          <span className="absolute left-0 top-1/2 w-full h-[10px] bg-black opacity-0 transition-all duration-[800ms] ease-[cubic-bezier(0.23,1,0.32,1)] -translate-y-1/2 group-hover:h-full group-hover:opacity-100 rounded"></span>
-                        </button>
-                      </Link>
-                    </div>
-                  </div>{" "}
-                </div>
-              </SwiperSlide>
-
-              {/* -------- Card 4 -------- */}
-              <SwiperSlide className="pt-26 pb-12">
-                <div className="relative bg-white rounded-2xl shadow-xl w-full p-6 pt-16 text-center overflow-visible group transition-all duration-700 ease-in-out hover:bg-[#3e66f3] flex flex-col">
-                  {/* Ripple Icon Section */}
-                  <div className="absolute -top-10 left-1/2 -translate-x-1/2 flex items-center justify-center ">
-                    <div className="relative w-20 h-20 rounded-full flex items-center justify-center">
-                      <span className="absolute inset-0 rounded-full bg-[#3e66f3] opacity-40 animateServiceRipple"></span>
-                      <span
-                        className="absolute inset-0 rounded-full bg-[#3e66f3] opacity-30 animateServiceRipple"
-                        style={{ animationDelay: "1s" }}
-                      ></span>
-                      <span
-                        className="absolute inset-0 rounded-full bg-[#3e66f3] opacity-20 animateServiceRipple"
-                        style={{ animationDelay: "2s" }}
-                      ></span>
-
-                      <div className="relative z-10 w-20 h-20 rounded-full bg-[#eff0f9] flex items-center justify-center group-hover:bg-white">
-                        <Image
-                          src={homeIconCpassSolution}
-                          width={40}
-                          height={40}
-                          alt="icon"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  {/* content */}
-                  <div className="flex flex-col gap-4 mt-5">
-                    {/* Title */}
-                    <h2 className="poppins text-[18px] md:text-[20px] text-black group-hover:text-white">
-                      CPaaS Solutions
-                    </h2>
-
-                    {/* Description */}
-                    <p className="text-gray-600 md:text-[16px] text-[14px] group-hover:text-white open-sans">
-                      Unify communication with WhatsApp Business API, chatbots,
-                      RCS, and SMS – streamline responses, engage faster
-                      seamlessly.
-                    </p>
-
-                    {/* Button - Fixed at Bottom */}
-                    <div className=" flex justify-center ">
-                      <Link href="https://celitix.com/" target="_blank">
-                        <button className="relative inline-flex items-center justify-center px-4 py-2 text-[16px] font-semibold rounded-lg text-white bg-[#3e66f3] cursor-pointer overflow-hidden transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:text-white active:scale-95 group">
-                          <span className="relative z-10">Let’s Connect</span>
-
-                          {/* Vertical expanding background */}
-                          <span className="absolute left-0 top-1/2 w-full h-[10px] bg-black opacity-0 transition-all duration-[800ms] ease-[cubic-bezier(0.23,1,0.32,1)] -translate-y-1/2 group-hover:h-full group-hover:opacity-100 rounded"></span>
-                        </button>
-                      </Link>
-                    </div>
-                  </div>{" "}
-                </div>
-              </SwiperSlide>
+                </SwiperSlide>
+              ))}
             </Swiper>
+
           </div>
         </div>
       </section>
 
       {/* Our Benefits */}
-      <section
-        className="bg-[#f7f7fa] py-10 md:py-16 rounded-lg flex flex-wrap gap-6 items-center justify-center relative overflow-hidden"
-        style={{
-          backgroundImage: "url('/images/diagonalStripes.svg')",
-          backgroundRepeat: "repeat",
-          backgroundSize: "auto",
-        }}
-      >
+      <section className="bg-[url('/images/diagonalStripes.svg')] bg-repeat bg-auto py-5 md:py-10 rounded-lg flex flex-wrap gap-6 items-center justify-center relative overflow-hidden" >
         <div className="items-center justify-center relative flex container">
           <CircularBenefits Benefits={Benefits} autoplay={true} />
         </div>
       </section>
 
       {/* Why Choose Us */}
-      <section className=" bg-[#eff0f9] py-8 md:py-16 px-6 lg:px-12">
+      {/* <section className=" bg-[#eff0f9] py-8 md:py-16 px-6 lg:px-12"> */}
+      <section className=" bg-white py-5 md:py-10 px-6 lg:px-12">
         <div className="container mx-auto">
           <div className="grid grid-cols-1 xl:grid-cols-[60%_40%] gap-10 ">
             {/* content */}
-            <div className=" flex flex-col justify-between gap-4 ">
+            <div className=" flex flex-col justify-between ">
               {/* title */}
-              <div className="relative flex items-center justify-center xl:justify-start py-5 md:py-10 mb-5 md:mb-0">
+              <div className="relative flex items-center justify-center xl:justify-start py-5 mb-0">
                 {/* Background big text */}
-                <h2 className="absolute text-6xl md:text-7xl font-extrabold text-gray-300 opacity-40  ">
+                {/* <h2 className="absolute text-6xl md:text-7xl font-extrabold text-gray-300 opacity-40  ">
                   CHOOSE US
-                </h2>
+                </h2> */}
 
                 {/* Foreground small label */}
-                <div className="absolute flex justify-center items-center xl:top-7 xl:left-5 gap-2 py-1 rounded">
-                  {/* Icon  */}
+                {/* <div className="absolute flex justify-center items-center xl:top-7 xl:left-5 gap-2 py-1 rounded">
                   <div className="flex-shrink-0 flex justify-center">
                     <Image
                       src={mindset}
@@ -921,6 +919,25 @@ export default function Home() {
                     />
                   </div>
                   <span className="poppins font-bold text-[#3e66f3] text-lg">
+                    WHY CHOOSE US?
+                  </span>
+                </div> */}
+
+                {/* Background big text */}
+                <h2 className="poppins text-6xl md:text-7xl font-extrabold text-blue-300 opacity-20 whitespace-nowrap    ">
+                  CHOOSE US
+                </h2>
+
+                {/* Foreground small label */}
+                <div className="absolute flex justify-center items-center ms-3 gap-1">
+                  <div className=" flex justify-center">
+                    <Image
+                      src={mindset}
+                      alt="Mindset Icon"
+                      className="w-6 xl:w-8 object-contain"
+                    />
+                  </div>
+                  <span className="poppins font-semibold text-[#3e66f3] text-xl mt-1">
                     WHY CHOOSE US?
                   </span>
                 </div>
@@ -1077,8 +1094,10 @@ export default function Home() {
               {/* Learn More Button */}
               <div className="flex justify-center xl:justify-start">
                 <Link href="/contact-us">
-                  <button className="relative poppins inline-flex items-center justify-center px-4 py-2 text-base open-sans rounded-lg text-white bg-[#3e66f3] cursor-pointer overflow-hidden transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:text-white active:scale-95 group">
-                    <span className="relative z-10">Learn More</span>
+                  <button
+                    aria-label="Learn More"
+                    className="relative poppins inline-flex items-center justify-center px-4 py-2 text-base open-sans rounded-lg text-white bg-[#3e66f3] cursor-pointer overflow-hidden transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:text-white active:scale-95 group">
+                    <span className="relative z-10">Contact us</span>
 
                     {/* Vertical expanding background */}
                     <span className="absolute left-0 top-1/2 w-full h-[10px] bg-black opacity-0 transition-all duration-[800ms] ease-[cubic-bezier(0.23,1,0.32,1)] -translate-y-1/2 group-hover:h-full group-hover:opacity-100 rounded"></span>
@@ -1118,19 +1137,12 @@ export default function Home() {
       </section>
 
       {/* Our Client Section */}
-      <section
-        className="w-full mx-auto "
-        style={{
-          backgroundImage: "url('/images/diagonalStripes.svg')",
-          backgroundRepeat: "repeat",
-          backgroundSize: "auto",
-        }}
-      >
+      <section className="bg-[url('/images/diagonalStripes.svg')] bg-repeat bg-auto w-full mx-auto "  >
         <div className="container mx-auto w-full py-8 md:py-10 px-4 lg:px-0 flex flex-col items-center justify-center">
           <div>
-            <h1 className="poppins text-5xl font-semibold text-[#3e66f3] mb-5 md:mb-8 max-w-4xl mx-auto leading-tight">
+            <h2 className="poppins text-5xl font-semibold text-[#3e66f3] mb-5 md:mb-8 max-w-4xl mx-auto leading-tight">
               Our Clients
-            </h1>
+            </h2>
           </div>
           {/* Outer box */}
           <div className=" w-full bg-white rounded-2xl shadow-lg py-6 px-3 mb-0 md:mb-5">
@@ -1175,7 +1187,7 @@ export default function Home() {
       </section>
 
       {/* Tab Section */}
-      <section className="container mx-auto px-4 lg:px-10 py-10 md:py-16 space-y-8   overflow-hidden">
+      <section className="container mx-auto px-4 lg:px-10 py-5 md:py-10 space-y-8  overflow-hidden">
         {/* Header */}
         <div className="flex flex-col gap-5 text-center ">
           <div>
@@ -1185,15 +1197,14 @@ export default function Home() {
           </div>
 
           <div className="text-center px-4 lg:px-0">
-            <h1 className="poppins text-[28px] md:text-[35px] font-medium leading-10 md:leading-12 ">
+            <h2 className="poppins text-[28px] md:text-[35px] font-medium leading-10 md:leading-12 ">
               How Proactive team can help grow your business with {""}
               <div className=" items-center gap-2">
                 <span className="text-[#3e66f3] inline md:block">
                   <Typewriter
                     options={{
                       strings: [
-                        "web design",
-                        "Digital Marketing",
+                        "Web Design",
                         "Web Solutions",
                         "CPaaS Solutions",
                       ],
@@ -1205,24 +1216,25 @@ export default function Home() {
                   />
                 </span>
               </div>
-            </h1>
+            </h2>
           </div>
 
           {/* Tab Navigation */}
           <div className="flex flex-wrap justify-center gap-2 sm:gap-3 ">
             {tabs.map((tab) => (
               <button
-                key={tab}
-                onClick={() => handleTabChange(tab)}
-                className={`poppins px-2 sm:px-3 py-2  rounded-full text-sm font-semibold transition-all duration-300 ${
-                  activeTab === tab
-                    ? "bg-[#3e66f3] text-white shadow-lg transform scale-105 "
-                    : "bg-blue-100 text-[#3e66f3] hover:bg-blue-200 cursor-pointer  "
-                }`}
+                key={tab.key}
+                onClick={() => handleTabChange(tab.key)}
+                className={`poppins px-2 sm:px-3 py-2 rounded-full text-sm font-semibold transition-all duration-300 -tracking-wider hover:cursor-pointer ${activeTab === tab.key
+                  ? "bg-[#3e66f3] text-white"
+                  : "bg-blue-50 hover:bg-blue-100 text-[#3e66f3]"
+                  }`}
               >
-                {tab}
+                {tab.label}
               </button>
             ))}
+
+
           </div>
         </div>
 
@@ -1233,20 +1245,37 @@ export default function Home() {
             <div className="space-y-4 ">
               <div className="flex flex-col gap-2">
                 <div>
-                  <p className="poppins inline-block bg-[#3e66f3] text-white text-sm sub-heading font-bold px-4 py-1 rounded-full uppercase tracking-wide">
-                    {activeTab.toUpperCase()}
+                  <p className="poppins inline-block bg-[#3e66f3] text-white text-sm sub-heading font-semibold px-4 py-1 rounded-full uppercase tracking-wide">
+                    {content[activeTab].catagory}
+                    {/* {activeTab.toUpperCase()} */}
                   </p>
                 </div>
                 <h2 className=" text-3xl md:text-[35px] font-semibold text-gray-900 leading-tight ">
                   {content[activeTab].title}
                 </h2>
-                <p className="open-sans text-gray-600 text-[16px]  ">
-                  {content[activeTab].subtitle}
-                </p>
+
+                {/* <p className="open-sans text-gray-600 text-[16px]  ">
+                  {content[activeTab].subtitle} 
+                </p> */}
+
+                {/* <ol className="" >
+                  <ul>
+                    {content[activeTab].p1}
+                  </ul>
+                  <ul>
+                    {content[activeTab].p2}
+                  </ul>
+                  <ul>
+                    {content[activeTab].p3}
+                  </ul>
+                  <ul>
+                    {content[activeTab].p4}
+                  </ul>
+                </ol> */}
               </div>
 
               {/* Features */}
-              <div className="space-y-4  ">
+              {/* <div className="space-y-4  ">
                 {content[activeTab].features.map((feature, index) => (
                   <div
                     key={index}
@@ -1260,12 +1289,36 @@ export default function Home() {
                     </p>
                   </div>
                 ))}
+              </div> */}
+              <div className="space-y-4  ">
+                {content[activeTab].features
+                  .filter(feature => feature.f)
+                  .map((feature, index) => (
+                    // <ol key={index} className="flex flex-col list-disc space-y-2 rounded-lg px-2 list-inside ">
+                    //   <li className="open-sans text-gray-600 text-[15px]">
+                    //     {feature.f}
+                    //   </li>
+                    // </ol>
+
+                    <div key={index} className="flex flex-col gap-2 items-start">
+                      <div className="flex gap-2 items-start ">
+                        <div className="w-1.25 h-1.25 rounded-full mt-2 bg-black"></div>
+                        <div className="">
+                          <p className="open-sans text-gray-600 text-[15px]">
+                            {feature.f}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
               </div>
 
               {/* Button - Fixed at Bottom */}
               <div className="flex ">
                 <Link href={content[activeTab].ctaLink}>
-                  <button className="relative inline-flex items-center justify-center px-4 py-2 text-[16px] font-semibold rounded-full text-white bg-[#3e66f3] cursor-pointer overflow-hidden transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:text-white active:scale-95 group">
+                  <button
+                    aria-label={content[activeTab].ctaText}
+                    className="relative inline-flex items-center justify-center px-4 py-2 text-[16px] font-semibold rounded-full text-white bg-[#3e66f3] cursor-pointer overflow-hidden transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:text-white active:scale-95 group">
                     {/* Dynamic CTA Text */}
                     <span className="relative z-10">
                       {content[activeTab].ctaText}
@@ -1295,41 +1348,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FAQs */}
-      <section className=" bg-[#eff0f9] flex justify-center items-center py-10 px-4 lg:px-0">
-        <div className="w-full max-w-5xl mx-auto  bg-[#F7F4F9] border border-[#D1CDE3] rounded-xl p-4 md:p-6 shadow-lg space-y-6">
-          <h2 className="poppins text-2xl md:text-3xl lg:text-4xl font-semibold text-center text-gray-900 heading">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2b40b0] to-[#3e66f3]">
-              {" "}
-              Have more questions?
-            </span>{" "}
-            <p>We’ve answers.</p>
-          </h2>
-
-          <div className="flex flex-col gap-4 bg-white rounded-xl py-4 px-4  sm:px-4 ">
-            {faqs.map((faq, idx) => (
-              <FaqItem
-                key={idx}
-                question={ faq.question }
-                answer={ faq.answer }
-                isOpen={openIndex === idx}
-                onClick={() => toggle(idx)}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* CTA  (Call to Action )*/}
-      <section
-        className="py-12 px-6"
-        style={{
-          backgroundImage: "url('/images/diagonalStripes.svg')",
-          backgroundRepeat: "repeat",
-          backgroundSize: "auto",
-        }}
-      >
-        <div className="relative flex flex-col md:flex-row bg-gradient-to-r from-blue-50 to-blue-50 shadow-lg h-auto md:h-[300px] max-w-5xl 2xl:max-w-6xl mx-auto rounded-3xl md:rounded-4xl overflow-hidden justify-between">
+      <section className="bg-[url('/images/diagonalStripes.svg')] bg-repeat bg-auto py-10 px-6 lg:px-10" >
+        <div className="relative flex flex-col md:flex-row bg-gradient-to-r from-blue-50 to-blue-50 shadow-lg h-auto md:h-[300px] max-w-6xl 2xl:max-w-7xl mx-auto rounded-3xl md:rounded-4xl overflow-hidden justify-between">
           {/* background svg */}
           <svg
             className="absolute top-15 left-0 w-[500px] h-[350px] opacity-10 pointer-events-none -translate-y-1/4 -translate-x-1/4"
@@ -1341,36 +1362,37 @@ export default function Home() {
 
           <div className="relative flex z-10 items-start">
             {/* rocket animation */}
-            <div className="md:flex absolute -top-7 -left-7 md:left-0 md:top-0 w-[150px] h-[150px] md:w-auto md:h-[110px] lg:h-[120px] opacity-25 md:opacity-100   ">
+            <div className="md:flex absolute -top-7 -left-7 md:-left-2 md:top-0 w-[150px] h-[150px] md:w-auto md:h-[110px] lg:h-[120px] opacity-25 md:opacity-100   ">
               <Lottie animationData={rocket} loop={true} />
             </div>
 
             {/* content */}
             <div className="flex flex-col  justify-center py-10 md:py-0 px-10 md:px-18  gap-4  h-full ">
               <div className="flex flex-col gap-2">
-                <h1 className="text-[24px] md:text-[30px] lg:text-[35px] text-center md:text-start font-medium poppins text-[#1d4ed8]">
-                  Improve Your Customer Experience
-                </h1>
+                <h2 className="text-[24px] md:text-[30px] lg:text-[35px] text-center md:text-start font-medium poppins text-[#1d4ed8]">
+                  Let's Get In Touch
+                </h2>
                 <p className="text-[16px] lg:text-[18px] text-black open-sans  text-center md:text-start">
-                  Your digital presence deserves more than just a website it
-                  deserves growth. Let’s discuss how we can create, optimize,
-                  and scale your online success.
+                  Your digital presence deserves more than just a website it deserves a performance web solution built to grow your business.Let's build, optimize, and scale your online success.
                 </p>
               </div>
 
               {/* cta button */}
               <div className="flex justify-center md:justify-start">
-                <button
-                  onClick={() => setVisible(true)}
-                  className="relative inline-flex items-center justify-center px-4 py-2 text-base md:text-[16px] open-sans rounded-lg text-white bg-[#1d4ed8] cursor-pointer overflow-hidden transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:text-white active:scale-95 group "
-                >
-                  <span className="relative z-10">Start Now</span>
+                <Link href="/contact-us" >
+                  <button
+                    aria-label="Start Now"
+                    onClick={() => setVisible(true)}
+                    className="relative inline-flex items-center justify-center px-4 py-2 text-base md:text-[16px] open-sans rounded-lg text-white bg-[#1d4ed8] cursor-pointer overflow-hidden transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:text-white active:scale-95 group "
+                  >
+                    <span className="relative z-10">Start Now</span>
 
-                  <span className="absolute left-0 top-1/2 w-full h-[10px] bg-black opacity-0 transition-all duration-[800ms] ease-[cubic-bezier(0.23,1,0.32,1)] -translate-y-1/2 group-hover:h-full group-hover:opacity-100 rounded"></span>
-                </button>
+                    <span className="absolute left-0 top-1/2 w-full h-[10px] bg-black opacity-0 transition-all duration-[800ms] ease-[cubic-bezier(0.23,1,0.32,1)] -translate-y-1/2 group-hover:h-full group-hover:opacity-100 rounded"></span>
+                  </button>
+                </Link>
 
                 {/* cta form component */}
-                <BookDemoDialog visible={visible} setVisible={setVisible} />
+                {/* <BookDemoDialog visible={visible} setVisible={setVisible} /> */}
               </div>
             </div>
           </div>
@@ -1404,6 +1426,33 @@ export default function Home() {
           </div>
         </div>
       </section>
-    </div>
+
+      {/* FAQs */}
+      {/* <section className=" bg-[#eff0f9] flex justify-center items-center py-10 px-4 lg:px-0"> */}
+      <section className=" bg-white flex justify-center items-center py-10 px-6 lg:px-10 ">
+        <div className="w-full max-w-6xl 2xl:max-w-7xl mx-auto  bg-[#f9fafc] border border-[#D1CDE3] rounded-xl p-4 md:p-6 shadow-lg space-y-6">
+          <h2 className="poppins text-2xl md:text-3xl lg:text-4xl font-semibold text-center text-gray-900 heading">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2b40b0] to-[#3e66f3]">
+              {" "}
+              Have more questions?
+            </span>{" "}
+            <p>We’ve answers.</p>
+          </h2>
+
+          <div className="flex flex-col gap-4 bg-white border border-gray-100 rounded-xl py-4 px-4  sm:px-4 ">
+            {faqs.map((faq, idx) => (
+              <FaqItem
+                key={idx}
+                question={faq.question}
+                answer={faq.answer}
+                isOpen={openIndex === idx}
+                onClick={() => toggle(idx)}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+    </div >
   );
 }

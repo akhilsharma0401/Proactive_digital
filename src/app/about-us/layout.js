@@ -1,9 +1,13 @@
 // src/app/cpaas-solutions/layout.js
 export const metadata = {
-  title: "About Proactive | Web Design & Digital Marketing Experts",
-  description: "Learn about Proactive - a full-service web design and digital marketing agency passionate about building brands, driving leads, and lasting impact.",
+  title: "About Proactive | Web Design & web development Experts",
+  description: " Learn about Proactive - a full-service web design and web development agency passionate about building brands and lasting impact.",
   alternates: {
     canonical: "",
+  },
+  openGraph: {
+    title: "About Proactive | Web Design & web development Experts",
+    description: "Learn about Proactive - a full-service web design and web development agency passionate about building brands and lasting impact.",
   },
 };
 

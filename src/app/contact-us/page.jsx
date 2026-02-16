@@ -1,8 +1,11 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import toast from "react-hot-toast";
 import Link from "next/link";
+import "primereact/resources/themes/lara-light-blue/theme.css";
+import "primereact/resources/primereact.min.css";
+import "primeicons/primeicons.css";
 import { InputOtp } from "primereact/inputotp";
 
 // icons
@@ -11,6 +14,7 @@ import { FaPhone } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
 import { CheckCircle } from "lucide-react";
 import { BiGlobe } from "react-icons/bi";
+import { axiosInstance } from "@/lib/axios";
 
 const page = () => {
   // real time validation
@@ -27,16 +31,17 @@ const page = () => {
   const [errors, setErrors] = useState({});
   const [touched, setTouched] = useState({});
   const [otp, setOtp] = useState("");
+  const [otpId, setOtpId] = useState(null);
   const [showOtpInput, setShowOtpInput] = useState(false);
   const [isPhoneVerified, setIsPhoneVerified] = useState(false);
-
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [timer, setTimer] = useState(30);
   const [canResend, setCanResend] = useState(false);
-
+  const [isSendingOtp, setIsSendingOtp] = useState(false);
   // resend attempt tracking
   const [resendAttempts, setResendAttempts] = useState(0);
   const MAX_ATTEMPTS = 5;
-
+  const otpRef = useRef(null);
   // lock for 1 hour (3600 sec)
   const [isLocked, setIsLocked] = useState(false);
   const [lockTimer, setLockTimer] = useState(3600);
@@ -88,6 +93,8 @@ const page = () => {
 
       case "message":
         if (!value.trim()) return "Message field cannot be empty";
+        if (value.trim().length < 30)
+          return "Message must be at least 30 characters long";
         break;
 
       default:
@@ -127,8 +134,8 @@ const page = () => {
           ? !files?.[0]
             ? "Please upload your resume"
             : files[0].size > 2 * 1024 * 1024
-            ? "File size should not exceed 2MB"
-            : ""
+              ? "File size should not exceed 2MB"
+              : ""
           : validateField(name, newValue);
 
       setErrors({ ...errors, [name]: error });
@@ -137,42 +144,113 @@ const page = () => {
 
   const handleBlur = (e) => {
     const { name } = e.target;
+
     setTouched({ ...touched, [name]: true });
-    const error =
-      name === "resume"
-        ? !formData.resume
-          ? "Please upload your resume"
-          : formData.resume.size > 2 * 1024 * 1024
-          ? "File size should not exceed 2MB"
-          : ""
-        : validateField(name, formData[name]);
+
+    const error = validateField(name, formData[name]);
 
     setErrors({ ...errors, [name]: error });
+
+    if (error) {
+      toast.error(error);
+    }
   };
 
-  const handleVerifyClick = () => {
+
+  const handleVerifyClick = async () => {
+    if (isSendingOtp) return;
+
     if (!formData.phone || formData.phone.length !== 10) {
       toast.error("Please enter a valid 10-digit phone number");
       return;
     }
-    setShowOtpInput(true);
-    toast.success("OTP sent successfully! (use 123456)");
-  };
 
-  const handleOtpVerify = () => {
-    if (otp === "123456") {
-      toast.success("Phone number verified successfully!");
-      setIsPhoneVerified(true);
+
+    setShowOtpInput(true);
+    setTimer(30);
+    setCanResend(false);
+
+    try {
+      setIsSendingOtp(true);
+
+      const payload = {
+        mobile: formData.phone,
+      };
+
+      const res = await axiosInstance.post("/otp/sendOtp", payload);
+
+      if (!res?.data?.status) {
+        toast.error(res?.data?.message || "Failed to send OTP");
+
+
+        setShowOtpInput(false);
+        return;
+      }
+
+      toast.success("OTP sent successfully!");
+      if (res?.data?.otpId) {
+        setOtpId(res.data.otpId);
+      }
+    } catch (err) {
+      toast.error("Failed to send OTP. Try again.");
+
       setShowOtpInput(false);
-    } else {
-      toast.error("Invalid OTP! Please try again.");
+
+    } finally {
+      setIsSendingOtp(false);
     }
   };
 
-  // handle resend otp
+
+
+  const handleOtpVerify = async () => {
+    if (!otp || otp.length !== 6) {
+      toast.error("Please enter a valid 6-digit OTP");
+      return;
+    }
+
+    if (!otpId) {
+      toast.error("OTP expired. Please resend OTP.");
+      return;
+    }
+
+    try {
+      const payload = {
+        mobile: formData.phone,
+        otp,
+        otpId,
+      };
+
+      const res = await axiosInstance.post("/otp/verifyOtp", payload);
+
+      if (!res?.data?.status) {
+        toast.error(res?.data?.message || "Invalid OTP");
+        return;
+      }
+
+      toast.success("Phone number verified successfully!");
+
+      setIsPhoneVerified(true);
+      setShowOtpInput(false);
+      setOtp("");
+      setOtpId(null); // reset
+
+    } catch (err) {
+      toast.error("OTP verification failed. Try again.");
+    }
+  };
+
+
+  useEffect(() => {
+    if (showOtpInput) {
+      setTimeout(() => {
+        otpRef.current?.focus();
+      }, 200);
+    }
+  }, [showOtpInput]);
+
 
   const handleResendOtp = () => {
-    // If already locked → always show limit message
     if (isLocked) {
       toast.error(
         "You have reached the resend OTP limit! Please try again after 1 hour..."
@@ -182,15 +260,15 @@ const page = () => {
 
     // If attempts reached
     if (resendAttempts >= MAX_ATTEMPTS) {
-      setIsLocked(true); // lock the user
-      setCanResend(false); // disable resend button
+      setIsLocked(true);
+      setCanResend(false);
       toast.error(
         "You have reached the resend OTP limit! Please try again after 1 hour..."
       );
       return;
     }
 
-    // Normal resend logic
+
     const remaining = MAX_ATTEMPTS - (resendAttempts + 1);
 
     setOtp("");
@@ -205,13 +283,13 @@ const page = () => {
         : "you have reached resend OTP limit! Please try again after 1 hour..."
     );
 
-    // If just used last attempt → lock the user
+
     if (remaining === 0) {
       setIsLocked(true);
     }
   };
 
-  // resend otp 1 hour disabled
+
   useEffect(() => {
     if (isLocked) {
       if (lockTimer > 0) {
@@ -228,36 +306,78 @@ const page = () => {
     }
   }, [isLocked, lockTimer]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const validationErrors = validateAll();
-    if (Object.keys(validationErrors).length > 0) {
-      const firstError = Object.values(validationErrors)[0];
-      toast.error(firstError);
-      setErrors(validationErrors);
-      return;
+    if (isSubmitting) return;
+
+    setIsSubmitting(true);
+
+    try {
+      const validationErrors = validateAll();
+
+      if (Object.keys(validationErrors).length > 0) {
+        const firstError = Object.values(validationErrors)[0];
+        toast.error(firstError);
+        setErrors(validationErrors);
+        return;
+      }
+
+      if (!isPhoneVerified) {
+        toast.error("Please verify your phone number before submitting.");
+        return;
+      }
+
+      const payload = {
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
+        mobile: formData.phone,
+        companyName: formData.companyName,
+        service: formData.service,
+        message: formData.message,
+        source: "contact",
+      };
+
+      const res = await axiosInstance.post("/enquiry/contact", payload);
+
+      if (!res?.data?.status) {
+        toast.error(res?.data?.message || "Something Went Wrong.");
+        return;
+      }
+
+      toast.success("Form submitted successfully!");
+
+
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        companyName: "",
+        service: "",
+        message: "",
+      });
+
+      setErrors({});
+      setTouched({});
+      setOtp("");
+      setShowOtpInput(false);
+      setIsPhoneVerified(false);
+      setResendAttempts(0);
+      setTimer(30);
+      setCanResend(false);
+      setIsLocked(false);
+      setLockTimer(3600);
+
+    } catch (error) {
+      toast.error("Something Went Wrong.");
+    } finally {
+      setIsSubmitting(false);
     }
-
-    if (!isPhoneVerified) {
-      toast.error("Please verify your phone number before submitting.");
-      return;
-    }
-
-    const payload = {
-      firstName: formData.firstName,
-      lastName: formData.lastName,
-      email: formData.email,
-      phone: formData.phone,
-      companyName: formData.companyName,
-      service: formData.service,
-      message: formData.message,
-    };
-
-    console.log("Payload ready to send:", payload);
-    toast.success("Form submitted successfully!");
   };
-  // ends Job Application form
+
+
 
   return (
     <div>
@@ -409,7 +529,7 @@ const page = () => {
                       support@proactivesms.in
                     </a>
                     <span className="open-sans text-sm text-white">
-                      We’ll respond within 24 hours 
+                      We’ll respond within 24 hours
                     </span>
                   </div>
                 </div>
@@ -444,24 +564,23 @@ const page = () => {
                       onChange={handleChange}
                       onBlur={handleBlur}
                       placeholder=" "
-                //    className={`peer w-full border rounded-md p-2 placeholder-transparent resize-none focus:outline-none 
-                //     ${
-                //       errors.message ? "border-red-500" : "border-gray-300"
-                //     } focus:border-[#3e66f3]`}
-                //   />
-                //   <label
-                //     htmlFor="message"
-                //     className="absolute left-3 top-2 bg-white px-1 text-gray-500 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-focus:-top-2 peer-focus:text-sm peer-focus:text-[#3e66f3] peer-[&:not(:placeholder-shown)]:-top-2 peer-[&:not(:placeholder-shown)]:text-sm peer-[&:not(:placeholder-shown)]:text-gray-500"
-                //   >
-                //     How can we help you?
-                //   </label>
-                // </div>
+                      //    className={`peer w-full border rounded-md p-2 placeholder-transparent resize-none focus:outline-none 
+                      //     ${
+                      //       errors.message ? "border-red-500" : "border-gray-300"
+                      //     } focus:border-[#3e66f3]`}
+                      //   />
+                      //   <label
+                      //     htmlFor="message"
+                      //     className="absolute left-3 top-2 bg-white px-1 text-gray-500 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-focus:-top-2 peer-focus:text-sm peer-focus:text-[#3e66f3] peer-[&:not(:placeholder-shown)]:-top-2 peer-[&:not(:placeholder-shown)]:text-sm peer-[&:not(:placeholder-shown)]:text-gray-500"
+                      //   >
+                      //     How can we help you?
+                      //   </label>
+                      // </div>
                       className={`peer w-full border rounded-md p-2 placeholder-transparent focus:border-[#3e66f3] focus:outline-none
-                            ${
-                              errors.firstName
-                                ? "border-red-500"
-                                : "border-gray-300"
-                            } `}
+                            ${errors.firstName
+                          ? "border-red-500"
+                          : "border-gray-300"
+                        } `}
                     />
                     <label
                       htmlFor="firstName"
@@ -498,7 +617,7 @@ const page = () => {
                 {/* Email */}
                 <div className="relative w-full">
                   <input
-                    type="email"
+                    type="text"
                     name="email"
                     id="email"
                     value={formData.email}
@@ -528,15 +647,15 @@ const page = () => {
                         value={formData.phone}
                         onChange={handleChange}
                         onBlur={handleBlur}
+                        maxLength={10}
                         placeholder=" "
                         disabled={isPhoneVerified}
                         className={`peer w-full border rounded-md p-2 placeholder-transparent  focus:outline-none 
           ${errors.phone ? "border-red-500" : "border-gray-300"} 
-          focus:border-[#3e66f3] ${
-            isPhoneVerified
-              ? "bg-gray-100 text-gray-500 cursor-not-allowed"
-              : ""
-          }`}
+          focus:border-[#3e66f3] ${isPhoneVerified
+                            ? "bg-gray-100 text-gray-500 cursor-not-allowed"
+                            : ""
+                          }`}
                       />
                       <label
                         htmlFor="phone"
@@ -550,18 +669,58 @@ const page = () => {
                       <button
                         type="button"
                         onClick={handleVerifyClick}
-                        disabled={showOtpInput}
-                        className="relative poppins text-nowrap inline-flex items-center justify-center py-2 px-4  text-base open-sans rounded-lg text-white bg-[#3e66f3] cursor-pointer overflow-hidden transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:text-white active:scale-95 group"
+                        disabled={showOtpInput || isSendingOtp}
+                        className={`relative poppins text-nowrap inline-flex items-center justify-center py-2 px-4 text-base open-sans rounded-lg text-white overflow-hidden transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] active:scale-95 group
+      ${showOtpInput || isSendingOtp
+                            ? "bg-gray-400 cursor-not-allowed"
+                            : "bg-[#3e66f3] hover:text-white cursor-pointer"
+                          }
+    `}
                       >
-                        <span className="relative z-10">
-                          {" "}
-                          {showOtpInput ? "OTP Sent" : "Verify"}{" "}
+                        <span className="relative z-10 flex items-center gap-2">
+
+                          {isSendingOtp ? (
+                            <>
+                              {/* Spinner */}
+                              <svg
+                                className="animate-spin h-6 w-10 text-white"
+                                viewBox="0 0 24 24"
+                              >
+                                <circle
+                                  className="opacity-25"
+                                  cx="12"
+                                  cy="12"
+                                  r="10"
+                                  stroke="currentColor"
+                                  strokeWidth="4"
+                                  fill="none"
+                                />
+                                <path
+                                  className="opacity-75"
+                                  fill="currentColor"
+                                  d="M4 12a8 8 0 018-8v8z"
+                                />
+                              </svg>
+
+
+                            </>
+                          ) : showOtpInput ? (
+                            "OTP Sent"
+                          ) : (
+                            "Verify"
+                          )}
+
                         </span>
-                        <span className="absolute left-0 top-1/2 w-full h-[10px] bg-black opacity-0 transition-all duration-[800ms] ease-[cubic-bezier(0.23,1,0.32,1)] -translate-y-1/2 group-hover:h-full group-hover:opacity-100 rounded"></span>
+
+                        {/* Hover Effect (Disable when loading) */}
+                        {!isSendingOtp && !showOtpInput && (
+                          <span className="absolute left-0 top-1/2 w-full h-[10px] bg-black opacity-0 transition-all duration-[800ms] ease-[cubic-bezier(0.23,1,0.32,1)] -translate-y-1/2 group-hover:h-full group-hover:opacity-100 rounded"></span>
+                        )}
                       </button>
                     ) : (
                       <CheckCircle className="text-green-500 w-6 h-6" />
                     )}
+
                   </div>
 
                   {/* OTP Section (unchanged) */}
@@ -572,60 +731,16 @@ const page = () => {
                         <span className="text-[#3e66f3]">6 Digit</span> OTP.
                       </p>
 
-                      {/* <div className="flex flex-col md:flex-row gap-3 items-center">
-                        <InputOtp
-                          value={otp}
-                          onChange={(e) => setOtp(e.value)}
-                          length={6}
-                          integerOnly
-                          inputStyle={{
-                            border: "1.5px solid #9ca3af",
-                            borderRadius: "8px",
-                            width: "45px",
-                            height: "45px",
-                            textAlign: "center",
-                          }}
-                        />
 
-                        <div className="flex gap-2">
-                          <button
-                            type="button"
-                            onClick={handleOtpVerify}
-                            className="relative poppins  text-nowrap inline-flex items-center justify-center py-2 px-4  text-base open-sans rounded-lg text-white bg-[#3e66f3] cursor-pointer overflow-hidden transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:text-white active:scale-95 group"
-                          >
-                            <span className="relative z-10">Submit</span>
-
-                            <span className="absolute left-0 top-1/2 w-full h-[10px] bg-black opacity-0 transition-all duration-[800ms] ease-[cubic-bezier(0.23,1,0.32,1)] -translate-y-1/2 group-hover:h-full group-hover:opacity-100 rounded"></span>
-                          </button>
-
-                         
-
-                          <button
-                            type="button"
-                            disabled={!canResend || isLocked}
-                            onClick={handleResendOtp}
-                            className={`rounded-md poppins flex flex-wrap text-nowrap px-3 py-1 ${
-                              !canResend || isLocked
-                                ? "bg-gray-100 text-gray-400 cursor-not-allowed"
-                                : "bg-gray-200"
-                            }`}
-                          >
-                            {isLocked
-                              ? `Try again in ${Math.floor(lockTimer / 60)}m ${
-                                  lockTimer % 60
-                                }s`
-                              : canResend
-                              ? "Resend"
-                              : `Resend in ${timer}s`}
-                          </button>
-                        </div>
-                      </div> */}
 
                       {/* OTP Input + Submit */}
                       <div className="flex flex-col md:flex-row gap-3">
                         <InputOtp
+                          ref={otpRef}
                           value={otp}
-                          onChange={(e) => setOtp(e.value)}
+                          onChange={(e) => {
+                            setOtp(e.value);
+                          }}
                           length={6}
                           integerOnly
                           inputStyle={{
@@ -638,25 +753,25 @@ const page = () => {
                         />
                         <div className="flex gap-3">
 
-                        <button
-                          type="button"
-                          onClick={handleOtpVerify}
-                          className="relative poppins text-nowrap inline-flex items-center justify-center py-2 px-4 text-base open-sans rounded-lg text-white bg-[#3e66f3] cursor-pointer overflow-hidden transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:text-white active:scale-95 group"
-                          >
-                          <span className="relative z-10">Submit</span>
-                          <span className="absolute left-0 top-1/2 w-full h-[10px] bg-black opacity-0 transition-all duration-[800ms] ease-[cubic-bezier(0.23,1,0.32,1)] -translate-y-1/2 group-hover:h-full group-hover:opacity-100 rounded"></span>
-                        </button>
-
-                        {/*  Show resend button ONLY when timer finished AND not locked */}
-                        {canResend && !isLocked && (
                           <button
-                          type="button"
-                            onClick={handleResendOtp}
-                            className=" rounded-md poppins text-nowrap px-4 py-2 bg-gray-200"
-                            >
-                            Resend
+                            type="button"
+                            onClick={handleOtpVerify}
+                            className="relative poppins text-nowrap inline-flex items-center justify-center py-2 px-4 text-base open-sans rounded-lg text-white bg-[#3e66f3] cursor-pointer overflow-hidden transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:text-white active:scale-95 group"
+                          >
+                            <span className="relative z-10">Submit</span>
+                            <span className="absolute left-0 top-1/2 w-full h-[10px] bg-black opacity-0 transition-all duration-[800ms] ease-[cubic-bezier(0.23,1,0.32,1)] -translate-y-1/2 group-hover:h-full group-hover:opacity-100 rounded"></span>
                           </button>
-                        )}
+
+                          {/*  Show resend button ONLY when timer finished AND not locked */}
+                          {canResend && !isLocked && (
+                            <button
+                              type="button"
+                              onClick={handleResendOtp}
+                              className=" rounded-md poppins text-nowrap px-4 py-2 bg-gray-200"
+                            >
+                              Resend
+                            </button>
+                          )}
                         </div>
                       </div>
 
@@ -714,16 +829,15 @@ const page = () => {
                     value={formData.service}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    className={`form-select w-full border rounded-md p-3 text-base  focus:outline-none focus:border-[#3e66f3] ${
-                      errors.service ? "border-red-500" : "border-gray-300"
-                    }`}
+                    className={`form-select w-full border rounded-md p-3 text-base  focus:outline-none focus:border-[#3e66f3] ${errors.service ? "border-red-500" : "border-gray-300"
+                      }`}
                   >
                     <option value="">Select Service</option>
                     <option value={"Web Solutions "}>Web Solutions</option>
                     <option value={" Web Design "}>Web Design</option>
-                    <option value={" Digital Marketing "}>
+                    {/* <option value={" Digital Marketing "}>
                       Digital Marketing
-                    </option>
+                    </option> */}
                     <option value={" WhatsApp Business API "}>
                       WhatsApp Business API
                     </option>
@@ -758,14 +872,14 @@ const page = () => {
                     name="message"
                     id="message"
                     rows="3"
+                    minLength={30}
                     value={formData.message}
                     onChange={handleChange}
                     onBlur={handleBlur}
                     placeholder=" "
                     className={`peer w-full border rounded-md p-2 placeholder-transparent resize-none focus:outline-none 
-                    ${
-                      errors.message ? "border-red-500" : "border-gray-300"
-                    } focus:border-[#3e66f3]`}
+                    ${errors.message ? "border-red-500" : "border-gray-300"
+                      } focus:border-[#3e66f3]`}
                   />
                   <label
                     htmlFor="message"
@@ -778,11 +892,50 @@ const page = () => {
                 <div className="flex justify-center">
                   <button
                     type="submit"
-                    className="relative poppins inline-flex items-center justify-center py-2 px-4  text-base open-sans rounded-lg text-white bg-[#3e66f3] cursor-pointer overflow-hidden transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:text-white active:scale-95 group"
+                    disabled={isSubmitting}
+                    className={`relative poppins inline-flex items-center justify-center py-2 px-4 text-base open-sans rounded-lg text-white overflow-hidden transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] active:scale-95 group
+    ${isSubmitting
+                        ? "bg-gray-400 cursor-not-allowed"
+                        : "bg-[#3e66f3] hover:text-white cursor-pointer"
+                      }
+  `}
                   >
-                    <span className="relative z-10"> Submit </span>
-                    <span className="absolute left-0 top-1/2 w-full h-[10px] bg-black opacity-0 transition-all duration-[800ms] ease-[cubic-bezier(0.23,1,0.32,1)] -translate-y-1/2 group-hover:h-full group-hover:opacity-100 rounded"></span>
+                    <span className="relative z-10 flex items-center gap-2">
+                      {isSubmitting ? (
+                        <>
+                          <svg
+                            className="animate-spin h-4 w-4 text-white"
+                            viewBox="0 0 24 24"
+                          >
+                            <circle
+                              className="opacity-25"
+                              cx="12"
+                              cy="12"
+                              r="10"
+                              stroke="currentColor"
+                              strokeWidth="4"
+                              fill="none"
+                            />
+                            <path
+                              className="opacity-75"
+                              fill="currentColor"
+                              d="M4 12a8 8 0 018-8v8z"
+                            />
+                          </svg>
+
+                          Submitting...
+                        </>
+                      ) : (
+                        "Submit"
+                      )}
+                    </span>
+
+                    {/* Hover Effect (disabled when loading) */}
+                    {!isSubmitting && (
+                      <span className="absolute left-0 top-1/2 w-full h-[10px] bg-black opacity-0 transition-all duration-[800ms] ease-[cubic-bezier(0.23,1,0.32,1)] -translate-y-1/2 group-hover:h-full group-hover:opacity-100 rounded"></span>
+                    )}
                   </button>
+
                 </div>
               </form>
             </div>

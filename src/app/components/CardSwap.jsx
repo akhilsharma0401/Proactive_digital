@@ -238,7 +238,7 @@ export const Card = forwardRef(({ customClass, ...rest }, ref) => (
   <div
     ref={ref}
     {...rest}
-    className={`absolute top-1/2 left-1/2 rounded-xl border border-white  bg-gray-300 transform-3d  will-change-transform backface-hidden h-10 swapCard  ${
+    className={`absolute top-1/2 left-1/2 rounded-xl border border-white  bg-gray-300 transform-3d  will-change-transform backface-hidden h-10 swapCard   ${
       customClass ?? ""
     } ${rest.className ?? ""}`.trim()}
     // style={{height:"300px !important"}}
@@ -442,7 +442,7 @@ const CardSwap = ({
     // updated Version
     <div
       ref={container}
-      className=" perspective-[900px] overflow-visible lg:absolute bottom-10 2xl:bottom-8 lg:right-0 lg:translate-x-[5%] lg:translate-y-[20%] lg:origin-bottom-right  sm:mx-auto relative "
+      className=" perspective-[900px] overflow-visible lg:absolute bottom-10 2xl:bottom-8 lg:right-0 lg:translate-x-[10%] lg:translate-y-[0%] lg:origin-bottom-right  sm:mx-auto relative "
       style={{ width, height }}
     >
       {rendered}

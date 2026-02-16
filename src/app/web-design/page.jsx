@@ -66,34 +66,39 @@ const page = () => {
 
   const faqs = [
     {
-      question: "What kinds of websites do you create?",
+      question: "What is web design?",
       answer:
-        "We create a variety of websites including corporate sites, e-commerce sites, portfolios, blogs, booking systems, and customized web applications that meet business needs.",
+        "Web design is the process of planning and creating visually appealing, responsive, and user-friendly websites. It focuses on layout, colors, typography, and user experience to ensure smooth navigation and strong online brand presence.",
     },
     {
-      question: "How long does it take to create a website?",
+      question: "What can I expect from your web design and UI/UX services?",
       answer:
-        "The duration of a project depends on complexity. A simple business website may take between 2–4 weeks, whereas a larger online store or custom build could take months.",
+        "You can expect modern, visually appealing designs, smooth navigation, mobile responsiveness, and user-focused layouts that help strengthen your brand and support business growth.",
     },
     {
-      question: "Will my website be mobile responsive?",
+      question: "How does UI/UX design improve my website’s performance?",
       answer:
-        "Yes. We build fully responsive web designs that will seamlessly adapt to desktops, tablets, and smartphones to ensure a great user experience on all devices.",
+        "Good UI/UX enhances user engagement, reduces bounce rates, boosts conversions, and creates a seamless experience that encourages visitors to stay longer and take action.",
     },
     {
-      question: "Can you redesign or upgrade an existing website?",
+      question: "Will my website be mobile-friendly?",
       answer:
-        "Of course. We offer website redesigns that update design, performance, and security, and offer SEO—without changing your brand identity.",
+        "Yes. Every website we create is fully responsive, ensuring it looks and functions perfectly across all devices-mobile, tablet, and desktop.",
     },
     {
-      question: "Do you offer e-commerce development?",
+      question: "Can you redesign my existing website?",
       answer:
-        "Yes. We develop fully scalable e-commerce applications with product management, secure payments, inventory management and customer engagement functionality.",
+        "Absolutely. We can transform your current website with updated visuals, improved structure, faster performance, and a more intuitive user experience.",
     },
     {
-      question: "How will you ensure my website is safe?",
+      question: "How long does it take to complete a website project?",
       answer:
-        "Not at all. We handle all the technical work, so you can focus on running your business.",
+        "Most projects are completed within 2-6 weeks depending on the complexity, features, and desired customizations.",
+    },
+    {
+      question: "Are your websites SEO-friendly?",
+      answer:
+        "Yes. We follow best SEO practices-clean code, fast loading, proper structure, and optimized design-to help your website rank better on search engines.",
     },
   ];
 
@@ -101,7 +106,12 @@ const page = () => {
     <>
       {/* Hero Section */}
       <section className="bg-cover bg-center bg-no-repeat lg:px-10"
-        style={{ backgroundImage: "url('/images/heroAnimateBg.svg')" }}
+        style={{ 
+          backgroundImage: "url('/images/heroAnimateBg.svg')" 
+
+          // light Theme Background
+        // backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.dev/svgjs' width='1440' height='560' preserveAspectRatio='none' viewBox='0 0 1440 560'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1253%26quot%3b)' fill='none'%3e%3crect width='1440' height='560' x='0' y='0' fill='rgba(255%2c 255%2c 255%2c 1)'%3e%3c/rect%3e%3cpath d='M1186.554%2c467.366C1211.006%2c465.812%2c1228.057%2c446.161%2c1240.546%2c425.082C1253.37%2c403.437%2c1265.12%2c377.6%2c1252.703%2c355.719C1240.185%2c333.659%2c1211.918%2c329.898%2c1186.554%2c329.938C1161.283%2c329.978%2c1134.613%2c334.787%2c1120.769%2c355.929C1105.722%2c378.909%2c1105.238%2c409.142%2c1119.202%2c432.796C1132.952%2c456.087%2c1159.561%2c469.082%2c1186.554%2c467.366' fill='rgba(191%2c 219%2c 254%2c 1)' class='triangle-float1'%3e%3c/path%3e%3cpath d='M143.763%2c415.281C190.823%2c413.262%2c223.102%2c373.992%2c247.188%2c333.513C272.039%2c291.748%2c293.267%2c243.462%2c271.999%2c199.764C248.471%2c151.422%2c197.508%2c119.594%2c143.763%2c121.011C92.059%2c122.375%2c51.323%2c160.73%2c26.731%2c206.232C3.475%2c249.261%2c-0.164%2c300.424%2c23.729%2c343.102C48.173%2c386.765%2c93.769%2c417.426%2c143.763%2c415.281' fill='rgba(191%2c 219%2c 254%2c 1)' class='triangle-float2'%3e%3c/path%3e%3cpath d='M1409.593%2c541.374C1443.357%2c541.972%2c1476.442%2c526.831%2c1493.376%2c497.615C1510.356%2c468.32%2c1507.609%2c431.736%2c1489.853%2c402.905C1472.94%2c375.442%2c1441.846%2c361.637%2c1409.593%2c361.572C1377.213%2c361.506%2c1345.258%2c374.712%2c1328.769%2c402.579C1311.999%2c430.921%2c1314.228%2c466.277%2c1330.8%2c494.735C1347.261%2c523.003%2c1376.886%2c540.795%2c1409.593%2c541.374' fill='rgba(191%2c 219%2c 254%2c 1)' class='triangle-float1'%3e%3c/path%3e%3cpath d='M1397.477%2c190.186C1420.321%2c189.198%2c1444.708%2c185.453%2c1456.731%2c166.004C1469.259%2c145.738%2c1464.936%2c120.347%2c1453.605%2c99.388C1441.593%2c77.17%2c1422.726%2c57.029%2c1397.477%2c56.404C1371.361%2c55.757%2c1349.723%2c74.062%2c1336.316%2c96.483C1322.481%2c119.62%2c1313.889%2c148.971%2c1328.624%2c171.546C1342.553%2c192.886%2c1372.017%2c191.287%2c1397.477%2c190.186' fill='rgba(191%2c 219%2c 254%2c 1)' class='triangle-float1'%3e%3c/path%3e%3cpath d='M1234.146%2c66.667C1260.816%2c68.058%2c1287.882%2c56.638%2c1301.103%2c33.434C1314.215%2c10.421%2c1308.621%2c-17.64%2c1295.184%2c-40.464C1281.973%2c-62.904%2c1260.167%2c-79.31%2c1234.146%2c-80.301C1206.336%2c-81.361%2c1177.331%2c-70.13%2c1164.482%2c-45.444C1152.313%2c-22.064%2c1164.372%2c4.642%2c1178.283%2c27.029C1191.199%2c47.815%2c1209.707%2c65.392%2c1234.146%2c66.667' fill='rgba(191%2c 219%2c 254%2c 1)' class='triangle-float2'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1253'%3e%3crect width='1440' height='560' fill='white'%3e%3c/rect%3e%3c/mask%3e%3cstyle%3e %40keyframes float1 %7b 0%25%7btransform: translate(0%2c 0)%7d 50%25%7btransform: translate(-10px%2c 0)%7d 100%25%7btransform: translate(0%2c 0)%7d %7d .triangle-float1 %7b animation: float1 5s infinite%3b %7d %40keyframes float2 %7b 0%25%7btransform: translate(0%2c 0)%7d 50%25%7btransform: translate(-5px%2c -5px)%7d 100%25%7btransform: translate(0%2c 0)%7d %7d .triangle-float2 %7b animation: float2 4s infinite%3b %7d %40keyframes float3 %7b 0%25%7btransform: translate(0%2c 0)%7d 50%25%7btransform: translate(0%2c -10px)%7d 100%25%7btransform: translate(0%2c 0)%7d %7d .triangle-float3 %7b animation: float3 6s infinite%3b %7d %3c/style%3e%3c/defs%3e%3c/svg%3e")`,
+        }}
       >
         <div className=" container mx-auto flex flex-col md:flex-row gap-10 items-center justify-between px-6 lg:px-10 xl:px-20 lg:py-18 py-10  ">
           {/* Left Text Section */}
@@ -288,8 +298,8 @@ const page = () => {
 
 
       {/* FAQs */}
-      <section className=" bg-[#eff0f9] flex justify-center items-center py-10 px-4 lg:px-0">
-        <div className="w-full max-w-5xl mx-auto  bg-[#F7F4F9] border border-[#D1CDE3] rounded-xl p-4 md:p-6 shadow-lg space-y-6">
+      <section className="  flex justify-center items-center py-10 px-4 lg:px-0">
+        <div className="w-full max-w-5xl mx-auto  bg-[#f9fafc] border border-[#D1CDE3] rounded-xl p-4 md:p-6 shadow-lg space-y-6">
           <h2 className="poppins text-2xl md:text-3xl lg:text-4xl font-semibold text-center text-gray-900 heading">
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2b40b0] to-[#3e66f3]">
               {" "}
@@ -298,7 +308,7 @@ const page = () => {
             <p>We've answers.</p>
           </h2>
 
-          <div className="flex flex-col gap-4 bg-white rounded-xl py-4 px-4  sm:px-4 ">
+          <div className="flex flex-col gap-4 bg-white  border border-gray-100 rounded-xl py-4 px-4  sm:px-4 ">
             {faqs.map((faq, idx) => (
               <FaqItem
                 key={idx}
@@ -351,9 +361,9 @@ const page = () => {
             {/* content */}
             <div className="flex flex-col  justify-center py-10 md:py-0 px-10 md:px-18  gap-4  h-full ">
               <div className="flex flex-col gap-2">
-                <h1 className="text-[24px] md:text-[30px] lg:text-[35px] text-center md:text-start font-medium poppins text-[#1d4ed8]">
+                <h2 className="text-[24px] md:text-[30px] lg:text-[35px] text-center md:text-start font-medium poppins text-[#1d4ed8]">
                   Improve Your Customer Experience
-                </h1>
+                </h2>
                 <p className="text-[16px] lg:text-[18px] text-black open-sans  text-center md:text-start">
                   Your online presence needs more than a website. It needs real growth. Let us work together to build, refine, and scale your digital success.
                 </p>

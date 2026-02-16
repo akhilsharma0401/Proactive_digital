@@ -86,7 +86,7 @@ export default function BackToTopButton() {
             transition-all duration-300 ease-in-out
             hover:scale-110
             focus:outline-none
-            z-50
+            z-50 hover:cursor-pointer
             ${clicked ? "scale-90 bg-[#2a4db7] shadow-inner" : ""}
             animate-float
           `}

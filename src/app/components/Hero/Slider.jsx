@@ -1,5 +1,6 @@
 "use client";
-
+import Image from "next/image";
+import Lottie from "lottie-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import {
   Navigation,
@@ -8,16 +9,16 @@ import {
   A11y,
   Autoplay,
 } from "swiper/modules";
-import Lottie from "lottie-react";
-import comanimation from "../../../../public/animation/comanimation.json";
-import graph from "../../../../public/animation/graph.json";
-import BulkSms from "../../../../public/animation/BulkSms.json";
-import media from "../../../../public/animation/media.json";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "/.css";
-import Image from "next/image";
+
+// assets
+import comanimation from "../../../../public/animation/comanimation.json";
+import graph from "../../../../public/animation/graph.json";
+import BulkSms from "../../../../public/animation/BulkSms.json";
+import media from "../../../../public/animation/media.json";
 import UniversalButton from "../Universalbutton/UniversalButton";
 
 export default function MySwiper() {

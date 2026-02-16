@@ -1006,7 +1006,7 @@ function page() {
       <section
         ref={containerRef}
         className="relative px-6 lg:px-10 xl:px-20 py-12  container mx-auto"
-      >
+       >
         {/* <div className="flex justify-center  ">
           <h2 className="poppins text-[35px] md:text-[42px] text-[#3e66f3] font-semibold text-center mb-10 ">
             Our Process 

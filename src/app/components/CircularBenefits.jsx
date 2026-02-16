@@ -1,13 +1,9 @@
 "use client";
-import React, {
-  useEffect,
-  useRef,
-  useState,
-  useMemo,
-  useCallback,
-} from "react";
-import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import React, { useEffect, useRef, useState, useMemo, useCallback, } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+
+// icons
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 function calculateGap(width) {
   const minWidth = 1024;
@@ -25,7 +21,7 @@ function calculateGap(width) {
 export const CircularBenefits = ({
   Benefits,
   autoplay = true,
- 
+
 }) => {
   // State
   const [activeIndex, setActiveIndex] = useState(0);
@@ -135,18 +131,18 @@ export const CircularBenefits = ({
     exit: { opacity: 0, y: -20 },
   };
 
-  return (  
-    <div className="w-full max-w-lg md:max-w-lg lg:max-w-5xl 2xl:max-w-6xl px-5 space-y-10 ">
+  return (
+    <div className="w-full max-w-lg md:max-w-lg lg:max-w-6xl 2xl:max-w-7xl px-5 space-y-10 ">
       <div className="text-center">
         <h2 className="poppins text-[37px] md:text-[42px]  text-[#3e66f3] leading-relaxed font-medium mb-10 md:mb-20">
           Our Benefits
         </h2>
-      </div>  
+      </div>
 
       <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-28 ">
         {/* Images */}
         <div
-          className="relative  h-66 md:h-80 lg:h-82 2xl:h-92 [perspective:500px]"
+          className="relative  h-66 md:h-80 lg:h-88 2xl:h-100 [perspective:500px]"
           ref={imageContainerRef}
         >
           {Benefits.map((Benefit, index) => (
@@ -154,7 +150,7 @@ export const CircularBenefits = ({
               key={Benefit.src}
               src={Benefit.src}
               alt={Benefit.title}
-              className="absolute w-full h-full object-fit rounded-2xl shadow-lg"
+              className="absolute w-full h-full object-cover rounded-2xl shadow-lg"
               data-index={index}
               style={getImageStyle(index)}
             />
@@ -162,70 +158,70 @@ export const CircularBenefits = ({
         </div>
 
         {/* Content */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeIndex}
-              variants={desVariants}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-              transition={{ duration: 0.2, ease: "easeInOut" }}
-              className="flex flex-col justify-center h-full gap-5"
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeIndex}
+            variants={desVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            transition={{ duration: 0.2, ease: "easeInOut" }}
+            className="flex flex-col justify-center h-full gap-5"
+          >
+            <h2
+              className="poppins text-[28px] md:text-[32px]  text-black leading-tight font-medium text-center md:text-left"
             >
-              <h2
-                className="poppins text-[28px] md:text-[32px]  text-black leading-tight font-medium text-center md:text-left"
-              >
-                {activeBenefit.title}
-              </h2>
+              {activeBenefit.title}
+            </h2>
 
-              <motion.p
-                className="open-sans text-gray-700 text-[16px] leading-7 text-center md:text-left"
-              >
-                {activeBenefit.des.split(" ").map((word, i) => (
-                  <motion.span
-                    key={i}
-                    initial={{
-                      filter: "blur(10px)",
-                      opacity: 0,
-                      y: 5,
-                    }}
-                    animate={{
-                      filter: "blur(0px)",
-                      opacity: 1,
-                      y: 0,
-                    }}
-                    transition={{
-                      duration: 0.15,
-                      ease: "easeInOut",
-                      delay: 0.015 * i,
-                    }}
-                    className="inline-block"
-                  >
-                    {word}&nbsp;
-                  </motion.span>
-                ))}
-              </motion.p>
-          {/* Arrows */}
-          <div className="flex gap-6 justify-center md:justify-start">
-            <button
-              className="w-9 h-9 rounded-full flex items-center justify-center cursor-pointer border-none transition-colors bg-[#141414] 
+            <motion.p
+              className="open-sans text-gray-700 text-[16px] leading-7 text-center md:text-left"
+            >
+              {activeBenefit.des.split(" ").map((word, i) => (
+                <motion.span
+                  key={i}
+                  initial={{
+                    filter: "blur(10px)",
+                    opacity: 0,
+                    y: 5,
+                  }}
+                  animate={{
+                    filter: "blur(0px)",
+                    opacity: 1,
+                    y: 0,
+                  }}
+                  transition={{
+                    duration: 0.15,
+                    ease: "easeInOut",
+                    delay: 0.015 * i,
+                  }}
+                  className="inline-block"
+                >
+                  {word}&nbsp;
+                </motion.span>
+              ))}
+            </motion.p>
+            {/* Arrows */}
+            <div className="flex gap-6 justify-center md:justify-start">
+              <button
+                aria-label="Previous Benefit"
+                className="w-9 h-9 rounded-full flex items-center justify-center cursor-pointer border-none transition-colors bg-[#141414] 
               hover:bg-[#3e66f3] "
-              onClick={handlePrev}
-              aria-label="Previous Benefit"
-            >
-              <FaArrowLeft size={20} className="text-[#f1f1f7]" />
-            </button>
-            <button
-              className="w-9 h-9 rounded-full flex items-center justify-center cursor-pointer border-none transition-colors bg-[#141414] 
+                onClick={handlePrev}
+              >
+                <FaArrowLeft size={20} className="text-[#f1f1f7]" />
+              </button>
+              <button
+                aria-label="Next Benefit"
+                className="w-9 h-9 rounded-full flex items-center justify-center cursor-pointer border-none transition-colors bg-[#141414] 
               hover:bg-[#3e66f3]"
-              onClick={handleNext}
-              aria-label="Next Benefit"
-            >
-              <FaArrowRight size={20} className="text-[#f1f1f7]" />
-            </button>
-          </div>
-            </motion.div>
-          </AnimatePresence>
+                onClick={handleNext}
+              >
+                <FaArrowRight size={20} className="text-[#f1f1f7]" />
+              </button>
+            </div>
+          </motion.div>
+        </AnimatePresence>
       </div>
     </div>
   );

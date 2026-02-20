@@ -59,9 +59,9 @@ const AutoPlaySection = ({
     // md:space-y-6 space-y-8  px-3 lg:px-0 pt-5
     <div className="flex flex-col gap-10 ">
       <div className="flex justify-center items-center ">
-        <h1 className="poppins text-[#3e66f3] text-[35px] font-semibold">
+        <h3 className="poppins text-[#3e66f3] text-[32px] font-medium">
           {heading}
-        </h1>
+        </h3>
       </div>
 
       {/* Desktop View */}
@@ -69,6 +69,7 @@ const AutoPlaySection = ({
           reverse ? "flex-row-reverse" : ""
         }`}
       >
+        
         {/* Text Column */}
         <div className="md:w-1/2 space-y-4">
           {sections.map((section) => (

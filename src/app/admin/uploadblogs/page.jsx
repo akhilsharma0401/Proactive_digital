@@ -65,6 +65,14 @@ function BlogUploadFormInner() {
   const [preview, setPreview] = useState(null);
 
 
+   useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      router.push("/admin")
+    }
+  }, [])
+
+
   const normalizeSlug = (s) =>
     String(s || "")
       .toLowerCase()

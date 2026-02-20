@@ -18,7 +18,7 @@ const ParticleBackground = () => {
         fullScreen: { enable: false },
         background: { color: { value: "transparent" } },
         particles: {
-          number: { value: 70 },    //60
+          number: { value: 55 },    //60
           color: { value: "#BFDBFE" }, //"#3e66f3
           shape: { type: "circle" },
           opacity: { value: 0.6 },

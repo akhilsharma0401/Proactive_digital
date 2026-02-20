@@ -18,7 +18,7 @@ const SKELETON_COUNT = 5;
 
 
 // Page Component
-const page = () => {
+const ViewAdmin = () => {
 
   const router = useRouter();
 
@@ -32,6 +32,13 @@ const page = () => {
   const [selectedId, setSelectedId] = useState(null);
   const [actionType, setActionType] = useState("delete"); // delete | trash
 
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      router.push("/admin")
+    }
+  }, [])
 
   function formatDateDDMMYYYY(dateStr) {
     if (!dateStr) return "—";
@@ -239,9 +246,7 @@ const page = () => {
   return (
     <>
 
-      <div className="p-6 pt-10 md:pt-20 max-w-7xl mx-auto mb-10">
-
-
+      <div className="max-w-7xl mx-auto mb-10">
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
 
@@ -262,8 +267,6 @@ const page = () => {
 
         </div>
 
-
-
         {/* Table */}
         <div className="overflow-x-auto bg-white rounded-2xl shadow-lg">
 
@@ -272,7 +275,6 @@ const page = () => {
 
             {/* Head */}
             <thead className="bg-gradient-to-r from-indigo-500 to-blue-500 text-white">
-
               <tr>
                 <th className="px-6 py-4">S.No.</th>
                 <th className="px-6 py-4">Title</th>
@@ -481,4 +483,4 @@ const page = () => {
 };
 
 
-export default page;
+export default ViewAdmin;

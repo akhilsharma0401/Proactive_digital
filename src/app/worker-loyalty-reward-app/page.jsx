@@ -16,6 +16,7 @@ import webDevelopmentHero from "../../../public/images/webDevelopmentHero.png";
 import introductionWorkerLoyalty from "../../../public/images/introductionWorkerLoyalty.jpg";
 import rewardWorkerLoyalty from "../../../public/images/rewardWorkerLoyalty.jpg";
 import introductionWorkerLoyalty02 from "../../../public/images/introductionWorkerLoyalty02.jpg";
+import heroWorkerLoyalty from "../../../public/images/heroWorkerLoyalty.png";
 
 
 const workerReward = [
@@ -33,7 +34,7 @@ const workerReward = [
   },
   {
     id: 4,
-    title: "The application also simplifies the reward redemption process for workers.  Workers can easily convert their accumulated points into monetary value once  target points are achieved, which can be: Transferred to their bank account or  Used for company-approved rewards or benefits.",
+    title: "The application also simplifies the reward redemption process for workers.  Workers can easily convert their accumulated points into monetary value once  target points are achieved, which can be: Transferred to their bank account or used for company-approved rewards or benefits.",
   },
 ];
 
@@ -61,14 +62,13 @@ const adminWebPortal = [
 
 const page = () => {
   return (
-    <div className="space-y-10 mb-10">
+    <div className="">
 
       {/* Hero Section */}
-      <section
-        className="bg-cover bg-center bg-no-repeat  lg:px-10"
-        // style={{ backgroundImage: "url('/images/heroAnimateBg.svg')" }}
+      <section className="bg-cover bg-center bg-no-repeat  lg:px-10"
+        style={{ backgroundImage: "url('/images/heroAnimateBg.svg')" }}
          >
-        <div className=" container mx-auto flex flex-col md:flex-row gap-10 items-center justify-between px-6 lg:px-10 xl:px-20 lg:py-12 py-10 ">
+        <div className=" container mx-auto flex flex-col md:flex-row gap-10 items-center justify-between px-6 lg:px-10 2xl:px-15 lg:py-12 py-10 ">
           {/* Left Text Section */}
           <div className="w-full md:w-1/2 flex items-center justify-center ">
             <div className="w-full flex flex-col gap-4 items-center md:items-start text-center md:text-left">
@@ -97,7 +97,7 @@ const page = () => {
           {/* Right Image Section */}
           <div className="w-full md:w-1/2 flex justify-center lg:justify-end">
             <Image
-              src={introductionWorkerLoyalty}
+              src={heroWorkerLoyalty}
               alt="Hero visual"
               width={600}
               height={500}
@@ -110,20 +110,20 @@ const page = () => {
       </section>
 
       {/* Introduction */}
-      <section className="max-w-7xl mx-auto px-6 lg:px-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-6 ">
+      <section className="container mx-auto px-6 lg:px-10 2xl:px-15 py-10 md:py-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-6 2xl:gap-10 ">
           <div className="flex items-center justify-center ">
             <Image
               alt="Introduction Image"
               src={introductionWorkerLoyalty02}
-              width={800}
+              width={500}
               height={300}
               className=" rounded-xl object-contain  "
             />
           </div>
           <div className="flex flex-col gap-4">
             <div className="flex justify-start ">
-              <h3 className="poppins text-4xl font-medium text-[#3e66f3] ">
+              <h3 className="poppins text-3xl lg:text-4xl font-medium text-[#3e66f3] ">
                 Introduction
               </h3>
             </div>
@@ -131,35 +131,26 @@ const page = () => {
               <div className="flex items-start gap-2">
                 <span className="inline-block w-2 h-2 rounded-full bg-[#3e66f3] shrink-0 mt-2"></span>
                 <p className="open-sans text-md leading-relaxed text-justify ">
-                  Welcome to the Worker Reward Management Application, a
-                  groundbreaking solution that transforms the way businesses
-                  manage and motivate their workers and enhance dealer and
-                  worker retention.
+                  Welcome to the Worker Reward Management Application, a groundbreaking solution that transforms how businesses manage and motivate their workers and enhances dealer and worker retention.
                 </p>
               </div>
 
               <div className="flex items-start gap-2">
                 <span className="inline-block w-2 h-2 rounded-full bg-[#3e66f3] shrink-0 mt-2"></span>
                 <p className="open-sans text-md leading-relaxed text-justify ">
-                  The application serves as a tool that not only manage your
-                  dealers and rewards workers for their work but also encourages
-                  them to stay engaged with a brand or business over the long
-                  term.
+                  The application serves as a tool that not only manages your dealers and rewards workers for their work but also encourages them to stay engaged with a brand or business over the long term.
                 </p>
               </div>
               <div className="flex items-start gap-2">
                 <span className="inline-block w-2 h-2 rounded-full bg-[#3e66f3] shrink-0 mt-2"></span>
                 <p className="open-sans text-md leading-relaxed text-justify ">
-                  This application encompasses an Admin Portal, Worker Mobile
-                  App, QR Code Integration, and a Reward Points System, all
-                  designed to streamline worker reward management.
+                  This application encompasses an admin portal, a worker mobile app, QR code integration, and a reward points system, all designed to streamline worker reward management.
                 </p>
               </div>
               <div className="flex items-start gap-2">
                 <span className="inline-block w-2 h-2 rounded-full bg-[#3e66f3] shrink-0 mt-2"></span>
                 <p className="open-sans text-md leading-relaxed text-justify ">
-                  This application encompasses an Admin Web Portal and Worker
-                  Mobile App where each workers can manage their reward points.
+                  This application encompasses an admin web portal and a worker mobile app, where each worker can manage their reward points.
                 </p>
               </div>
             </div>
@@ -168,13 +159,13 @@ const page = () => {
       </section>
 
       {/* Admin Web Portal */}
-      <section className="max-w-7xl mx-auto overflow-hidden px-6 lg:px-10 pb-30 ">
+      <section className="container mx-auto overflow-hidden px-6 lg:px-10 pb-30 ">
         <div className="flex flex-col gap-4 ">
           {/* title */}
           <div className="flex flex-col gap-2 items-center  justify-center text-center  ">
-            <h2 className="poppins text-[#3e66f3] font-medium  text-[22px] md:text-2xl lg:text-4xl leading-relaxed">
+            <h3 className="poppins text-[#3e66f3] font-medium  text-3xl lg:text-4xl leading-relaxed">
               Admin Web Portal
-            </h2>
+            </h3>
             <p className="open-sans max-w-3xl" >
               The Admin Portal serves as the central control hub of the application. Admins  have the power to create and manage dealers, generate and manage QR codes  and oversee workers’ point redemption activities.
             </p>
@@ -221,11 +212,11 @@ const page = () => {
         </div>
       </section>
 
-      <section className="max-w-7xl mx-auto px-6 lg:px-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-6 ">
+      <section className="container mx-auto px-6 lg:px-10 2xl:px-15  py-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-6 2xl:gap-10 ">
           <div className="flex flex-col gap-4">
             <div className="flex items-center justify-start">
-              <h3 className="poppins text-4xl font-medium leading-snug  ">
+              <h3 className="poppins text-3xl lg:text-4xl font-medium leading-snug  ">
                 <span className="text-[#3e66f3]"> Worker Reward </span>
                 Mobile App
               </h3>
@@ -242,35 +233,13 @@ const page = () => {
                   </span>{" "}
                 </li>
               ))}
-            </ol>
-            {/* <div className="flex flex-col gap-4 justify-center">
-              <div className="flex items-start gap-2">
-                <span className="inline-block w-2 h-2 rounded-full bg-[#3e66f3] shrink-0 mt-2"></span>
-                <p className="open-sans text-md leading-relaxed">
-                  SMS-Based Coupon Management System provides Product Managers and Coupon
-                  Managers with a comprehensive solution for creating their products,
-                  generating and managing reward coupons for every product directly
-                  through the application. The coupon redemption requests can be sent
-                  by customers via long code which can be verified automatically by the system.
-                </p>
-              </div>
-
-              <div className="flex items-start gap-2">
-                <span className="inline-block w-2 h-2 rounded-full bg-[#3e66f3] shrink-0 mt-2"></span>
-                <p className="open-sans text-md leading-relaxed">
-                  This platform enhances coupon verification while providing companies
-                  and coupon managers with tools to generate coupon codes, manage redemption
-                  requests, and share coupon redemption status with customers via SMS—all
-                  through a single application.
-                </p>
-              </div>
-            </div> */}
+            </ol> 
           </div>
           <div className="flex items-center justify-center ">
             <Image
               alt="Introduction Image"
               src={rewardWorkerLoyalty}
-              width={800}
+              width={500}
               height={300}
               className="rounded-xl object-contain  "
             />
@@ -280,13 +249,14 @@ const page = () => {
 
       {/* cta */}
       <section
-        className="py-12 px-6"
-        style={{
-          backgroundImage: "url('/images/diagonalStripes.svg')",
-          backgroundRepeat: "repeat",
-          backgroundSize: "auto",
-        }} >
-        <div className="relative flex flex-col md:flex-row bg-gradient-to-r from-blue-50 to-blue-50 shadow-lg h-auto md:h-[300px] max-w-5xl 2xl:max-w-6xl mx-auto rounded-3xl md:rounded-4xl overflow-hidden justify-between">
+        className="container mx-auto py-5 md:py-12 px-6 lg:px-10 2xl:px-15"
+        // style={{
+        //   backgroundImage: "url('/images/diagonalStripes.svg')",
+        //   backgroundRepeat: "repeat",
+        //   backgroundSize: "auto",
+        // }} 
+        >
+        <div className="relative flex flex-col md:flex-row bg-gradient-to-r from-blue-50 to-blue-50 shadow-lg h-auto md:h-[300px]  rounded-3xl md:rounded-4xl overflow-hidden justify-between">
           {/* background svg */}
           <svg
             className="absolute top-15 left-0 w-[500px] h-[350px] opacity-10 pointer-events-none -translate-y-1/4 -translate-x-1/4"
@@ -305,9 +275,9 @@ const page = () => {
             {/* content */}
             <div className="flex flex-col  justify-center py-10 md:py-0 px-10 md:px-18  gap-4  h-full ">
               <div className="flex flex-col gap-2">
-                <h1 className="text-[24px] md:text-[30px] lg:text-[35px] text-center md:text-start font-medium poppins text-[#1d4ed8]">
+                <h2 className="text-[24px] md:text-[30px] lg:text-[35px] text-center md:text-start font-medium poppins text-[#1d4ed8]">
                   Improve Your Customer Experience
-                </h1>
+                </h2>
                 <p className="text-[16px] lg:text-[18px] text-black open-sans  text-center md:text-start">
                   Your online presence needs more than a website. It needs real
                   growth. Let us work together to build, refine, and scale your

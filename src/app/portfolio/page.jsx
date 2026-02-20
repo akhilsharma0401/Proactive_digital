@@ -26,20 +26,20 @@ import portfolioMasalaMistri from "../../../public/images/portfolioMasalaMistri.
 const portfolioItems = [
   {
     id: 1,
-    image: portfolioShaktiHandiCrafts,
-    title: "SHAKTI HANDICRAFT",
-    link: "https://shaktihandicrafts.com/",
-  },
-  {
-    id: 2,
     image: portfolioDhorafab,
     title: "DHORA FAB",
     link: "https://dhorafab.com/",
   },
   {
+    id: 2,
+    image: portfolioHelthSquare,
+    title: "HEALTH SQUARE",
+    link: "https://healthsquare.in/",
+  },
+  {
     id: 3,
     image: portfolioInfinite,
-    title: "INFINITE",
+    title: "IFWPL",
     link: "https://ifwpl.com/",
   },
   {
@@ -50,76 +50,77 @@ const portfolioItems = [
   },
   {
     id: 5,
-    image: portfolioQueenslifts,
-    title: "QUEENS LIFTS",
-    link: "https://www.queenslifts.com/",
-  },
-  {
-    id: 6,
-    image: portfolioMasalaMistri,
-    title: "MASALA MISTRI",
-    link: "https://www.queenslifts.com/",
-  },
-  {
-    id: 7,
-    image: portfolioUrbanDesign,
-    title: "URBAN DESIGN STORY ",
-    link: "https://urbandesignstory.com/",
-  },
-  {
-    id: 8,
-    image: portfolioSJTSchool,
-    title: "SJT SCHOOL",
-    link: "https://www.sjtschool.in/",
-  },
-  {
-    id: 9,
-    image: portfolioFavoHardware,
-    title: "FAVO HARDWARE",
-    link: "https://www.favohardware.com/",
-  },
-  {
-    id: 10,
-    image: portfolioTirupati,
-    title: "TIRUPATI SPRIKLERS",
-    link: "https://www.tirupatisprinklers.com/",
-  },
-  {
-    id: 11,
-    image: portfolioLaranza,
-    title: "LARANZA ",
-    link: "https://laranza.in/",
-  },
-  {
-    id: 12,
-    image: portfolioKavassu,
-    title: "KAVASSU HERITAGE HAVELI",
-    link: "https://kavassuheritagehaveli.com/",
-  },
-  {
-    id: 13,
     image: portfolioDigiBima,
     title: "DIGIBIMA",
     link: "https://digibima.com/",
   },
   {
+    id: 6,
+    image: portfolioShaktiHandiCrafts,
+    title: "SHAKTI HANDICRAFT",
+    link: "https://shaktihandicrafts.com/",
+  },
+  {
+    id: 7,
+    image: portfolioQueenslifts,
+    title: "QUEENS LIFTS",
+    link: "https://www.queenslifts.com/",
+  },
+  {
+    id: 8,
+    image: portfolioMasalaMistri,
+    title: "MASALA MISTRI",
+    link: "https://masalamistri.com/",
+  },
+  {
+    id: 9,
+    image: portfolioUrbanDesign,
+    title: "URBAN DESIGN STORY ",
+    link: "https://urbandesignstory.com/",
+  },
+  {
+    id: 10,
+    image: portfolioSJTSchool,
+    title: "SJT SCHOOL",
+    link: "https://www.sjtschool.in/",
+  },
+  {
+    id: 11,
+    image: portfolioFavoHardware,
+    title: "FAVO HARDWARE",
+    link: "https://www.favohardware.com/",
+  },
+  {
+    id: 12,
+    image: portfolioTirupati,
+    title: "TIRUPATI SPRIKLERS",
+    link: "https://www.tirupatisprinklers.com/",
+  },
+  {
+    id: 13,
+    image: portfolioLaranza,
+    title: "LARANZA ",
+    link: "https://laranza.in/",
+  },
+  {
     id: 14,
+    image: portfolioKavassu,
+    title: "KAVASSU HERITAGE HAVELI",
+    link: "https://kavassuheritagehaveli.com/",
+  },
+  {
+    id: 15,
     image: portfolioAltus,
     title: "ALTUS INTERIO JAIPUR  ",
     link: "https://www.altusinteriojaipur.com/",
   },
   {
-    id: 15,
+    id: 16,
     image: portfolioBeaconPublicSchool,
     title: "BEACON PUBLIC SCHOOL ",
     link: "https://www.beaconpublicschool.com/",
   },
-  {
-    id: 16,
-    image: portfolioHelthSquare,
-    title: "HEALTH SQUARE",
-    link: "https://healthsquare.in/",
-  },
+  
 ];
 
 function page() {

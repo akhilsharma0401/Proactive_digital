@@ -93,11 +93,23 @@ const CareerOpeningItem = ({
     Responsibilities
   </h4>
 
-  <ul className="open-sans text-[14px] md:text-[16px] list-disc pl-6 space-y-1">
-    {Responsibilities.map((item, index) => (
-      <li key={index}>{item}</li>
-    ))}
-  </ul>
+  <div className="open-sans text-[14px] md:text-[16px] list-disc pl-6 space-y-1">
+  {Responsibilities?.split("\n").map((line, index) => {
+    const trimmed = line.trim();
+    if (!trimmed) return null;
+
+    if (trimmed.startsWith("-")) {
+      return (
+        <ul key={index} className="list-disc pl-6">
+          <li>{trimmed.replace(/^-/, "").trim()}</li>
+        </ul>
+      );
+    }
+
+    return <p key={index}>{trimmed}</p>;
+  })}
+</div>
+
 </div>
 
 <div>
@@ -105,11 +117,22 @@ const CareerOpeningItem = ({
     Qualifications
   </h4>
 
-  <ul className="open-sans text-[14px] md:text-[16px] list-disc pl-6 space-y-1">
-    {Qualifications.map((item, index) => (
-      <li key={index}>{item}</li>
-    ))}
-  </ul>
+  <div className="open-sans text-[14px] md:text-[16px] list-disc pl-6 space-y-1">
+  {Qualifications?.split("\n").map((line, index) => {
+    const trimmed = line.trim();
+    if (!trimmed) return null;
+
+    if (trimmed.startsWith("-")) {
+      return (
+        <ul key={index} className="list-disc pl-6">
+          <li>{trimmed.replace(/^-/, "").trim()}</li>
+        </ul>
+      );
+    }
+
+    return <p key={index}>{trimmed}</p>;
+  })}
+</div>
 </div>
 
 

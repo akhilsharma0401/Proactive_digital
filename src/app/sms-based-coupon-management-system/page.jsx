@@ -13,9 +13,11 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import service_bg from "../../../public/images/service_bg.jpg";
 
+// images
 import webDevelopmentHero from "../../../public/images/webDevelopmentHero.png";
 import introductionSmsBased from "../../../public/images/introductionSmsBased.jpg";
 import processSmsBased from "../../../public/images/processSmsBased.jpg";
+import heroSmsBased from "../../../public/images/heroSmsBased.png";
 
 const benifits = [
   {
@@ -112,12 +114,13 @@ const services = [
 
 const page = () => {
   return (
-    <div className='space-y-10' >
+    <div className=''>
       {/* Hero Section */}
       <section
-        className="bg-cover bg-center bg-no-repeat  lg:px-10"
-        style={{ backgroundImage: "url('/images/heroAnimateBg.svg')" }} >
-        <div className=" container mx-auto flex flex-col md:flex-row gap-10 items-center justify-between px-6 lg:px-10 xl:px-20 lg:py-12 py-10  ">
+        className="bg-cover bg-center bg-no-repeat lg:px-10 "
+        style={{ backgroundImage: "url('/images/heroAnimateBg.svg')" }}
+         >
+        <div className=" container mx-auto flex flex-col md:flex-row gap-10 items-center justify-between px-6 lg:px-10 2xl:px-15 lg:py-12 py-10  ">
           {/* Left Text Section */}
           <div className="w-full md:w-1/2 flex items-center justify-center ">
             <div className="w-full flex flex-col gap-4 items-center md:items-start text-center md:text-left">
@@ -138,7 +141,7 @@ const page = () => {
                 A secure and automatic SMS-based coupon management system for the generation, validation, and real-time tracking of coupons.
               </p>
               <div className='flex items-center justify-center px-3 py-1 rounded-full bg-linear-to-b from-[#157AFF] to-[#0D4999]' >
-                <span className="poppins text-white ">
+                <span className="poppins text-white text-sm text-center ">
                   Streamline Your Coupon Generation & Verification
                 </span>
               </div>
@@ -148,7 +151,8 @@ const page = () => {
           {/* Right Image Section */}
           <div className="w-full md:w-1/2 flex justify-center lg:justify-end">
             <Image
-              src={webDevelopmentHero}
+              // src={webDevelopmentHero}
+              src={heroSmsBased}
               alt="Hero visual"
               width={600}
               height={500}
@@ -161,20 +165,20 @@ const page = () => {
       </section>
 
       {/* Introduction */}
-      <section className='max-w-7xl mx-auto px-6 lg:px-10' >
-        <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-6 ">
+      <section className='container mx-auto px-6 lg:px-10 2xl:px-15 py-10 md:py-16' >
+        <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-6 ">
           <div className="flex items-center justify-center ">
             <Image
               alt='Introduction Image'
               src={introductionSmsBased}
-              width={800}
+              width={500}
               height={300}
               className="  object-contain  "
             />
           </div>
           <div className="flex flex-col gap-4">
             <div className="flex justify-start ">
-              <h3 className='poppins text-4xl font-medium text-[#3e66f3] ' >Introduction</h3>
+              <h3 className='poppins text-3xl lg:text-4xl font-medium text-[#3e66f3] ' >Introduction</h3>
             </div>
             <div className="flex flex-col gap-4 justify-center">
               <div className="flex items-start gap-2">
@@ -215,18 +219,18 @@ const page = () => {
           <div className="absolute bottom-0 left-0 w-full h-[40px] "></div>
 
           {/* Content Wrapper */}
-          <div className="relative container mx-auto px-6 text-center z-10 pt-14"> 
+          <div className="relative container mx-auto px-6 lg:px-10 2xl:px-15 text-center z-10 pt-0 md:pt-14"> 
 
             <div className="flex flex-col md:flex-row justify-between items-center gap-6 mb-3">
-              <div className="flex items-center text-start justify-start">
-                <h3 className='poppins text-4xl font-medium leading-snug  ' >
+              <div className="flex items-center text-center md:text-start justify-start">
+                <h3 className='poppins text-3xl lg:text-4xl font-medium leading-snug   ' >
                   Benefits of
                   <span className='text-[#3e66f3]' >
                     {" "} SMS Based Coupon {" "}
                   </span>
-                  <p>
+                  <span className="md:block" >
                     Management System
-                  </p>
+                  </span>
                 </h3>
               </div>
               <Link href="/contact-us">
@@ -255,8 +259,8 @@ const page = () => {
                 1280: { slidesPerView: 4, spaceBetween: 32 },
               }} >
               {services.map((service, index) => (
-                <SwiperSlide key={index} className="pt-26 pb-12  h-auto flex ">
-                  <div className="relative flex flex-col bg-white w-full rounded-2xl shadow-lg p-6 pt-16 text-center overflow-visible group transition-all duration-700 hover:bg-[#3e66f3] h-60 md:h-80 lg:h-85 xl:h-86 2xl:h-80 ">
+                <SwiperSlide key={index} className="pt-26 pb-2  h-auto flex ">
+                  <div className="relative flex flex-col bg-white w-full rounded-2xl shadow-lg p-6 pt-16 text-center overflow-visible group transition-all duration-700 hover:bg-[#3e66f3] h-full md:h-80 lg:h-85 xl:h-86 2xl:h-80 ">
 
 
                     {/* Ripple Icon */}
@@ -335,11 +339,11 @@ const page = () => {
       */}
 
 
-      <section className='max-w-7xl mx-auto px-6 lg:px-10' >
+      <section className='container mx-auto px-6 lg:px-10 2xl:px-15 py-10 md:py-16' >
         <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-6 ">
           <div className="flex flex-col gap-4">
-            <div className="flex items-center justify-start">
-              <h3 className='poppins text-4xl font-medium leading-snug  ' >
+            <div className="flex items-center text-center md:text-start justify-start">
+              <h3 className='poppins text-3xl lg:text-4xl font-medium leading-snug  ' >
                 How
                 <span className='text-[#3e66f3]' >
                   {" "} SMS Based Coupon {" "}
@@ -354,11 +358,9 @@ const page = () => {
               {couponWorking.map((couponWorking, index) => (
                 <li
                   key={couponWorking.id ?? index}
-                  className="open-sans text-gray-600  leading-relaxed"
+                  className="open-sans text-gray-800  leading-relaxed"
                 >
-                  <span className="font-semibold text-lg text-black">
-                    {couponWorking.title}
-                  </span>{" "}
+                    {couponWorking.title} 
                 </li>
               ))}
             </ol>
@@ -377,13 +379,14 @@ const page = () => {
 
       {/* cta */}
       <section
-        className="py-12 px-6"
-        style={{
-          backgroundImage: "url('/images/diagonalStripes.svg')",
-          backgroundRepeat: "repeat",
-          backgroundSize: "auto",
-        }} >
-        <div className="relative flex flex-col md:flex-row bg-gradient-to-r from-blue-50 to-blue-50 shadow-lg h-auto md:h-[300px] max-w-5xl 2xl:max-w-6xl mx-auto rounded-3xl md:rounded-4xl overflow-hidden justify-between">
+        className="container mx-auto px-6 lg:px-10 2xl:px-15 py-6 md:py-12"
+        // style={{
+        //   backgroundImage: "url('/images/diagonalStripes.svg')",
+        //   backgroundRepeat: "repeat",
+        //   backgroundSize: "auto",
+        // }}
+         >
+        <div className="relative flex flex-col md:flex-row bg-gradient-to-r from-blue-50 to-blue-50 shadow-lg h-auto md:h-[300px] rounded-3xl md:rounded-4xl overflow-hidden justify-between">
           {/* background svg */}
           <svg
             className="absolute top-15 left-0 w-[500px] h-[350px] opacity-10 pointer-events-none -translate-y-1/4 -translate-x-1/4"
@@ -402,9 +405,9 @@ const page = () => {
             {/* content */}
             <div className="flex flex-col  justify-center py-10 md:py-0 px-10 md:px-18  gap-4  h-full ">
               <div className="flex flex-col gap-2">
-                <h1 className="text-[24px] md:text-[30px] lg:text-[35px] text-center md:text-start font-medium poppins text-[#1d4ed8]">
+                <h2 className="text-[24px] md:text-[30px] lg:text-[35px] text-center md:text-start font-medium poppins text-[#1d4ed8]">
                   Improve Your Customer Experience
-                </h1>
+                </h2>
                 <p className="text-[16px] lg:text-[18px] text-black open-sans  text-center md:text-start">
                   Your online presence needs more than a website. It needs real
                   growth. Let us work together to build, refine, and scale your

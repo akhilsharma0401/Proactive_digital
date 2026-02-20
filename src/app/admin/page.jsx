@@ -92,7 +92,7 @@ const page = ({ usersData }) => {
             window.localStorage.setItem("token", res.data.token);
         }
       toast.success("Welcome to admin");
-      router.push("/admin/viewAdmin");
+      router.push("/admin/mainAdmin");
     } else {
       toast.error(res.data.message);
     }

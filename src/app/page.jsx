@@ -901,7 +901,7 @@ export default function Home() {
         <div className="container mx-auto">
           <div className="grid grid-cols-1 xl:grid-cols-[60%_40%] gap-10 ">
             {/* content */}
-            <div className=" flex flex-col justify-between ">
+            <div className=" flex flex-col  ">
               {/* title */}
               <div className="relative flex items-center justify-center xl:justify-start py-5 mb-0">
                 {/* Background big text */}
@@ -1092,18 +1092,18 @@ export default function Home() {
               </div>
 
               {/* Learn More Button */}
-              <div className="flex justify-center xl:justify-start">
+              {/* <div className="flex justify-center xl:justify-start">
                 <Link href="/contact-us">
                   <button
                     aria-label="Learn More"
                     className="relative poppins inline-flex items-center justify-center px-4 py-2 text-base open-sans rounded-lg text-white bg-[#3e66f3] cursor-pointer overflow-hidden transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:text-white active:scale-95 group">
                     <span className="relative z-10">Contact us</span>
 
-                    {/* Vertical expanding background */}
+                    
                     <span className="absolute left-0 top-1/2 w-full h-[10px] bg-black opacity-0 transition-all duration-[800ms] ease-[cubic-bezier(0.23,1,0.32,1)] -translate-y-1/2 group-hover:h-full group-hover:opacity-100 rounded"></span>
                   </button>
                 </Link>
-              </div>
+              </div> */}
             </div>
 
             {/* image */}

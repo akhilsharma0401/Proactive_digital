@@ -106,7 +106,7 @@ const App = () => {
     {
       question: "What kind of services do you offer?",
       answer:
-        "We provide website design & redesign, web solutions, and digital marketing services like SEO, PPC, and social media management.",
+        "We provide website design & redesign, web solutions, and cpass solution.",
     },
     {
       question: "How long will it take to finish my project?",
@@ -370,7 +370,7 @@ const App = () => {
       {/*  rotating cards */}
       <section className=" container mx-auto px-6 lg:px-20 ">
         {/* <div className="container mx-auto md:h-[600px] h-[500px]  [@media(max-width:1024px)_and_(min-width:659px)]:h-[500px] [@media(max-width:320px)]:h-[600px] [@media(max-width:768px)_and_(min-width:659px)]:h-[360px] flex flex-col sm:flex-row items-center justify-center overflow-hidden p-4 font-inter"> */}
-        <div className="font-inter flex flex-col sm:flex-row items-center justify-center overflow-hidden h-[570px] sm:h-[350px] lg:h-[500px] ">
+        <div className="font-inter flex flex-col gap-4 sm:flex-row items-center justify-center overflow-hidden h-[420px] sm:h-[350px] lg:h-[500px] ">
           <div className="w-full sm:w-1/2 h-1/2 sm:h-1/2  relative flex items-center justify-center">
             {visibleCards.map((cardIndex, i) => (
               <div

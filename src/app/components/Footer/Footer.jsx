@@ -642,7 +642,7 @@ const Footer = () => {
         </div>
 
         {/* Main Content */}
-        <div className="relative z-10 container mx-auto px-6 space-y-6 py-10">
+        <div className="relative z-10 container mx-auto px-6 lg:px-10 space-y-6 py-10">
           {/* Main Content Grid */}
           <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6  border-b pb-8 border-gray-400">
             {/* Left Side - Company Info */}
@@ -691,15 +691,15 @@ const Footer = () => {
                       key={label}
                       aria-label={label}
                       href={href}
-                      className="group relative w-14 h-14 bg-white rounded-xl shadow-md flex items-center justify-center hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
+                      className="group relative w-11 h-11 bg-white rounded-lg shadow-md flex items-center justify-center hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
                       target="_blank"
                     >
                       <Icon
                         className="w-6 h-6 transition-all duration-300 text-[#3e66f3]"
-                      // style={{ color: "#3e66f3" }} 
+                        // style={{ color: "#3e66f3" }} 
                       />
                       <div
-                        className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+                        className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
                         style={{ backgroundColor: color }}
                       >
                         <Icon className="w-6 h-6 text-white" />

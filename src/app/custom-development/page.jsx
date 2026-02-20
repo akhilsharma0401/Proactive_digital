@@ -11,6 +11,7 @@ import rocket from "../../../public/animation/rocket.json";
 import AutoPlaySection from "./../components/AutoPlaySection";
 import FaqItem from "../components/FaqItem.jsx";
 
+
 // images
 import whyChooseOpenSource from "../../../public/images/whyChooseOpenSource.jpg";
 import whyChooseCustomDevelopment from "../../../public/images/whyChooseCustomDevelopment.jpg";
@@ -28,7 +29,7 @@ import apiIntegration02 from "../../../public/images/apiIntegration02.jpg";
 import apiIntegration03 from "../../../public/images/apiIntegration03.jpg";
 
 function page() {
-  const apiIntegration = [ 
+  const apiIntegration = [
     {
       id: 0,
       title: "Seamless System Connectivity",
@@ -54,10 +55,10 @@ function page() {
       color: "border-[#3e66f3]",
       bgColor: "bg-gray-50",
       image: apiIntegration03,
-    }, 
+    },
   ];
 
-  const customDevelopment = [ 
+  const customDevelopment = [
     {
       id: 0,
       title: "Tailored Business Logic Implementation",
@@ -83,7 +84,7 @@ function page() {
       color: "border-[#3e66f3]",
       bgColor: "bg-gray-50",
       image: customDevelopment03,
-    }, 
+    },
   ];
 
   // FAQs
@@ -135,7 +136,7 @@ function page() {
       {/* Hero Section */}
       <section className="bg-cover bg-center bg-no-repeat lg:px-10"
         style={{ backgroundImage: "url('/images/heroAnimateBg.svg')" }}
-        >
+      >
         <div className=" container mx-auto flex flex-col md:flex-row gap-10 items-center justify-between px-6 lg:px-10 xl:px-20 lg:py-12 py-10  ">
           {/* Left Text Section */}
           <div className="w-full md:w-1/2 flex items-center justify-center ">
@@ -147,10 +148,10 @@ function page() {
 
               {/* Main Heading */}
               <h1 className="poppins text-3xl  lg:text-4xl xl:text-5xl 2xl:text-6xl font-medium leading-tight text-gray-900 mb-3">
-                <span className="text-[#3e66f3]"> Custom Development  </span> 
+                <span className="text-[#3e66f3]"> Custom Development  </span>
                 {" "} & {" "}
-                <span className="text-[#3e66f3]"> API Integration</span> 
-                  {" "} Services 
+                <span className="text-[#3e66f3]"> API Integration</span>
+                {" "} Services
                 {/* &
                 <span className="text-[#3e66f3]"> Robust Functionality. </span> */}
               </h1>
@@ -175,18 +176,19 @@ function page() {
 
           {/* Right Image Section */}
           <div className="w-full md:w-1/2 flex justify-center lg:justify-end">
-              <Image
-                src={customDevelopmentHero}
-                alt="Hero visual"
-                width={600}
-                height={500}
-                // lg:w-[500px]  lg:h-[280px]  xl:w-[580px]  xl:h-[400px] 
-                className=" h-full w-full object-contain  "
-                priority
-              />
+            <Image
+              src={customDevelopmentHero}
+              alt="Hero visual"
+              width={600}
+              height={500}
+              // lg:w-[500px]  lg:h-[280px]  xl:w-[580px]  xl:h-[400px] 
+              className=" h-full w-full object-contain  "
+              priority
+            />
           </div>
         </div>
       </section>
+
 
       {/* <section className="bg-gradient-to-r from-[#f2f6ff] via-[#f5f6fe] to-[#e8edfd]"> */}
       <section className="">
@@ -228,7 +230,7 @@ function page() {
                     Feature 2
                   </p>
                   <h3 className=" poppins text-[18px] md:text-[20px] font-medium text-[#3e66f3]">
-                     Control Over Performance & Security Stack
+                    Control Over Performance & Security Stack
                   </h3>
                   <p className="open-sans text-[14px] leading-relaxed text-gray-600">
                     With a custom-built solution, you gain complete control over the technology stack, infrastructure configuration. From JWT/Auth authentication and RBAC authorization models.
@@ -247,7 +249,7 @@ function page() {
                     Feature 3
                   </p>
                   <h3 className=" poppins text-[18px] md:text-[20px] font-medium text-[#3e66f3]">
-                     Scalable & Extensible System Design
+                    Scalable & Extensible System Design
                   </h3>
                   <p className="open-sans text-[14px] leading-relaxed text-gray-600">
                     Custom applications are built with extensibility in mind. Using service-oriented architecture, reusable modules, and cloud-ready deployment strategies, your platform can scale horizontally, integrate new services.
@@ -314,7 +316,7 @@ function page() {
         </div>
       </section>
 
-      {/* cta */} 
+      {/* cta */}
       <section className="py-12 px-6"
         style={{
           backgroundImage: "url('/images/diagonalStripes.svg')",
@@ -322,7 +324,7 @@ function page() {
           backgroundSize: "auto",
         }} >
         <div className="relative flex flex-col md:flex-row bg-gradient-to-r from-blue-50 to-blue-50 shadow-lg h-auto md:h-[300px] max-w-5xl 2xl:max-w-6xl mx-auto rounded-3xl md:rounded-4xl overflow-hidden justify-between">
-          
+
           {/* background svg */}
           <svg
             className="absolute top-15 left-0 w-[500px] h-[350px] opacity-10 pointer-events-none -translate-y-1/4 -translate-x-1/4"
@@ -352,10 +354,10 @@ function page() {
               {/* cta button */}
               <div className="flex justify-center md:justify-start">
                 <Link href="/contact-us" >
-                <button className="relative inline-flex items-center justify-center px-4 py-2 text-base md:text-[16px] open-sans rounded-lg text-white bg-[#1d4ed8] cursor-pointer overflow-hidden transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:text-white active:scale-95 group " >
-                  <span className="relative z-10">Start Now</span> 
-                  <span className="absolute left-0 top-1/2 w-full h-[10px] bg-black opacity-0 transition-all duration-[800ms] ease-[cubic-bezier(0.23,1,0.32,1)] -translate-y-1/2 group-hover:h-full group-hover:opacity-100 rounded"></span>
-                </button> 
+                  <button className="relative inline-flex items-center justify-center px-4 py-2 text-base md:text-[16px] open-sans rounded-lg text-white bg-[#1d4ed8] cursor-pointer overflow-hidden transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:text-white active:scale-95 group " >
+                    <span className="relative z-10">Start Now</span>
+                    <span className="absolute left-0 top-1/2 w-full h-[10px] bg-black opacity-0 transition-all duration-[800ms] ease-[cubic-bezier(0.23,1,0.32,1)] -translate-y-1/2 group-hover:h-full group-hover:opacity-100 rounded"></span>
+                  </button>
                 </Link>
               </div>
             </div>

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
 import toast from "react-hot-toast";
 import Lottie from "lottie-react";
@@ -133,6 +133,8 @@ function page() {
     message: "",
   });
 
+  const [jobs, setJobs] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
   const [touched, setTouched] = useState({});
   const [otp, setOtp] = useState("");
@@ -532,117 +534,44 @@ function page() {
     setOpenIndex(openIndex === index ? null : index);
   };
 
-  const opnings = [
-    {
-      question: "PHP Developer",
-      Location: "Jaipur",
-      Term: "Full Time",
+  const fetchJobs = useCallback(async () => {
+    try {
+      setLoading(true);
 
-      description:
-        "We’re looking for a skilled PHP Developer to join our growing development team. The ideal candidate will have hands-on experience in building dynamic web applications, maintaining databases, and delivering high-performance backend logic for websites and web portals. As a PHP Developer, you’ll work closely with our frontend developers, designers, and project managers to create seamless, responsive, and scalable web experiences.",
+      const res = await axiosInstance.get("/job?type=admin");
 
-      Responsibilities: [
-        "Develop, test, and maintain web  operations using PHP, MySQL, and  fabrics like Laravel or CodeIgniter.",
-        "Write clean, applicable, and optimized  law following stylish practices. ",
-        "Integrate third-party APIs and peaceful services.",
-        "Unite with frontend  brigades for responsive and smooth functionality. ",
-        "Debug, optimize, and enhance web systems.",
-        "Ensure security, speed, and scalability across all web platforms. ",
-      ],
+      if (!res?.data?.status) {
+        toast.error(res?.data?.message || "Failed to fetch jobs");
+        setJobs([]);
+        return;
+      }
 
-      Qualifications: [
-        "Bachelor’s degree in Computer Science, IT, or a related field.",
-        "1-3 years of hands-on experience in PHP development.",
-        "Strong grasp of Core PHP, OOP, and MVC architecture.",
-        "Proficiency in MySQL, HTML5, CSS3, and JavaScript.",
-        "Familiarity with RESTful APIs, JSON, and Git version control.",
-        "Excellent problem-solving and debugging abilities.",
-      ],
-    },
+      const rows = Array.isArray(res.data.data)
+        ? res.data.data
+        : [];
 
-    {
-      question: "Seo Executive",
-      Location: "Jaipur",
-      Term: "Full Time",
+      // ✅ Filter only PUBLISHED jobs
+      const publishedJobs = rows.filter(
+        (job) => job.status === "PUBLISHED"
+      );
 
-      description:
-        "We are seeking a talented SEO Executive to join our digital marketing team. The ideal candidate will be responsible for planning, implementing, and managing SEO strategies to improve website rankings, drive organic traffic, and enhance online visibility across all major search engines. You will play a key role in shaping our online presence and ensuring consistent growth through data-driven optimization.",
+      setJobs(publishedJobs);
 
-      Responsibilities: [
-        "Conduct keyword research and competitor analysis to identify growth opportunities.",
-        "Optimize website content, metadata, and landing pages to improve search rankings.",
-        "Manage on-page and off-page SEO strategies for better visibility and performance.",
-        "Track, analyze, and report SEO results using tools like Google Analytics, Search Console, and Ahrefs.",
-        "Collaborate with content and web teams to implement SEO best practices across all pages.",
-        "Stay updated with the latest Google algorithm changes and perform regular technical SEO audits to fix issues.",
-      ],
+    } catch (error) {
+      console.error("Fetch Jobs Error:", error);
+      toast.error("Something went wrong");
+      setJobs([]);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
 
-      Qualifications: [
-        "Bachelor’s degree in Marketing, Communications, IT, or a related field.",
-        "1-3 years of proven experience in SEO or a similar digital marketing role.",
-        "Solid understanding of search engine algorithms, ranking factors, and optimization strategies.",
-        "Proficiency with Google Analytics, Search Console, Ahrefs, SEMrush, or similar SEO tools.",
-        "Basic knowledge of HTML, CSS, and CMS platforms like WordPress or Shopify.",
-        "Strong communication, analytical, and problem-solving skills with attention to details. ",
-      ],
-    },
 
-    {
-      question: "Graphic Designer",
-      Location: "Jaipur",
-      Term: "Full Time",
 
-      description:
-        "We’re seeking a talented Graphic Designer who blends creativity with precision. If you have a passion for visual storytelling, a keen eye for detail, and the ability to turn ideas into stunning designs across digital and print platforms we’d love to have you on our team. You’ll collaborate with our marketing and content teams to produce visuals that strengthen brand identity and make every campaign stand out. ",
 
-      Responsibilities: [
-        "Create visually appealing designs for social media, websites, brochures, and digital campaigns.",
-        "Develop and maintain brand consistency across all visual materials and marketing platforms.",
-        "Collaborate with the marketing and content teams to turn ideas into impactful visuals.",
-        "Design promotional materials such as posters, banners, ads, and product packaging.",
-        "Stay updated on design trends and bring fresh, creative concepts to every project.",
-        "Use design tools like Adobe Photoshop, Illustrator, and Canva to deliver high-quality, on-time designs.",
-      ],
-
-      Qualifications: [
-        "Bachelor’s degree or diploma in Graphic Design, Fine Arts, or Visual Communication.",
-        "1-3 years of experience in graphic design (agency or brand experience preferred).",
-        "Proficiency in Adobe Creative Suite (Photoshop, Illustrator, InDesign) and tools like Canva or Figma.",
-        "Strong understanding of color theory, typography, and layout design principles.",
-        "Creative mindset with excellent attention to detail and visual storytelling skills.",
-        "Ability to manage multiple projects, meet deadlines, and collaborate effectively with cross-functional teams.",
-      ],
-    },
-
-    {
-      question: "Sales Executive",
-      Location: "Jaipur",
-      Term: "Full Time",
-
-      description:
-        "We’re looking for a dynamic Sales Executive who can drive website and digital solution sales by identifying leads, building strong client relationships, and closing deals. The ideal candidate should have a passion for digital marketing and web technologies, along with strong communication and negotiation skills. You’ll be responsible for connecting with potential clients, understanding their business needs, and offering customized website, branding, and digital marketing solutions that help them grow online. ",
-
-      Responsibilities: [
-        "Drive sales for website design, development, and digital marketing services.",
-        "Identify and convert qualified leads through calls, emails, and networking.",
-        "Understand client needs and propose customized digital solutions.",
-        "Collaborate with design and tech teams to prepare persuasive proposals.",
-        "Meet monthly sales targets and contribute to overall business growth.",
-        "Maintain sales reports, nurture client relationships, and track market trends.",
-      ],
-
-      Qualifications: [
-        "Bachelor’s degree in Business, Marketing, or a related field.",
-        "1-3 years of experience in sales (preferably in the IT or web development sector).",
-        "Excellent communication, presentation, and negotiation skills.",
-        "Understanding of website technologies and design process.",
-        "Self-motivated, target-driven, and skilled at client relationship management.",
-        "Proficiency in CRM tools and MS Office or Google Workspace.",
-      ],
-    },
-
-    // same for other jobs...
-  ];
+  useEffect(() => {
+    fetchJobs();
+  }, []);
 
   // FAQs Ends
   return (
@@ -697,7 +626,7 @@ function page() {
       </section>
 
       {/* why join Proactive */}
-      <section className="container mx-auto py-10  lg:py-12 space-y-15 px-6 lg:px-12">
+      <section className="container mx-auto py-10  lg:py-12 space-y-15 px-6 lg:px-10 2xl:px-15">
         <div className="flex justify-center ">
           <h2 className="poppins  text-[30px] lg:text-[35px]  ">
             {" "}
@@ -847,7 +776,7 @@ function page() {
       </section> */}
 
       {/* bg-[#f7ebfc] */}
-      <section className="container mx-auto py-10 lg:py-12 px-6 md:px-20">
+      <section className="container mx-auto py-10 lg:py-12 px-6 lg:px-10 2xl:px-15">
         <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-10 2xl:gap-10 ">
           <div className="w-full space-y-10 ">
             <h2 className="poppins text-[30px] md:text-[35px] heading text-center">
@@ -857,16 +786,27 @@ function page() {
                 Openings{" "}
               </span>
             </h2>
-            <div className="flex flex-col gap-4">
-              {opnings.map((job, idx) => (
+            {loading ? (
+              <p className="text-center text-gray-500">Loading jobs...</p>
+            ) : jobs.length === 0 ? (
+              <p className="text-center text-gray-500">No openings available</p>
+            ) : (
+              jobs.map((job, idx) => (
                 <CareerOpeningItem
-                  key={idx}
-                  {...job}
+                  key={job.id}
+                  question={job.title}
+                  Location={job.location}
+                  Term={job.type}
+                  description={job.jobDesc}
+                  Responsibilities={job.responsibilities}
+                  Qualifications={job.qualifications}
                   isOpen={openIndex === idx}
                   onClick={() => toggle(idx)}
                 />
-              ))}
-            </div>
+              ))
+            )}
+
+
           </div>
 
           <div className="w-full space-y-10  " id="form">
@@ -1392,9 +1332,10 @@ function page() {
                         maxLength={10}
                         placeholder=" "
                         disabled={isPhoneVerified}
-                        className={`peer w-full border rounded-md p-2 placeholder-transparent  focus:outline-none 
-          ${errors.mobile ? "border-red-500" : "border-gray-300"} 
-          focus:border-[#3e66f3] ${isPhoneVerified
+                        className={`peer w-full border rounded-md p-2 placeholder-transparent  focus:outline-none  
+                          ${errors.mobile ? "border-red-500" : "border-gray-300"} 
+                          focus:border-[#3e66f3] 
+                          ${isPhoneVerified
                             ? "bg-gray-100 text-gray-500 cursor-not-allowed"
                             : ""
                           }`}
@@ -1544,8 +1485,8 @@ function page() {
                             type="button"
                             onClick={handleOtpVerify}
                             disabled={isVerifyingOtp}
-                            className={`relative poppins inline-flex items-center justify-center py-2 px-4 rounded-lg text-white
-  ${isVerifyingOtp
+                            className={`relative poppins inline-flex items-center justify-center py-2 px-4 rounded-lg text-white 
+                              ${isVerifyingOtp
                                 ? "bg-gray-400 cursor-not-allowed"
                                 : "bg-[#3e66f3]"
                               }`}
@@ -1602,16 +1543,19 @@ function page() {
                       onChange={handleChange}
                       onBlur={handleBlur}
                       className={`form-select w-full border rounded-md p-2 ${errors.designation
-                        ? "border-red-500"
-                        : "border-gray-300"
+                          ? "border-red-500"
+                          : "border-gray-300"
                         }`}
                     >
                       <option value="">Please Choose an option</option>
-                      <option value="SEO Executive">SEO Executive</option>
-                      <option value="PHP Developer">PHP Developer</option>
-                      <option value="Graphic Designer">Graphic Designer</option>
-                      <option value="Sales Executive">Sales Executive</option>
+
+                      {jobs.map((job) => (
+                        <option key={job._id} value={job.title}>
+                          {job.title}
+                        </option>
+                      ))}
                     </select>
+
                     {/* {errors.designation && (
                       <p className="text-red-500 text-sm mt-1">
                         {errors.designation}
@@ -1730,12 +1674,11 @@ function page() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className={`relative poppins inline-flex items-center justify-center py-2 px-4 text-base open-sans rounded-lg text-white overflow-hidden transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] active:scale-95 group
-    ${isSubmitting
+                    className={`relative poppins inline-flex items-center justify-center py-2 px-4 text-base open-sans rounded-lg text-white overflow-hidden transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] active:scale-95 group 
+                      ${isSubmitting
                         ? "bg-gray-400 cursor-not-allowed"
                         : "bg-[#3e66f3] hover:text-white cursor-pointer"
-                      }
-  `}
+                      } `}
                   >
                     <span className="relative z-10 flex items-center gap-2">
                       {isSubmitting ? (

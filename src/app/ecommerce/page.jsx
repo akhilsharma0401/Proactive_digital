@@ -172,13 +172,33 @@ const page = () => {
     }
   ]
 
+  const benefits = [
+    {
+      step: "01",
+      title: "Startups",
+      des: "Launch fast with a scalable store, clean UX, secure payments, and an optimized checkout that improves conversions.",
+    },
+    {
+      step: "02",
+      // title: "Small & Medium Enterprises",
+      title: "SMEs",
+      des: "Scale sales with automation, CRM/ERP integrations, inventory sync, and analytics that help you optimize performance.",
+    },
+    {
+      step: "03",
+      // title: "Large Enterprises",
+      title: "Corporates",
+      des: "Enterprise-grade commerce with high-volume performance, multi-store management, advanced APIs, and secure scalable infrastructure.",
+    }
+  ]
+
   return (
     <>
       {/* Hero Section */}
       <section className="bg-cover bg-center bg-no-repeat lg:px-10"
         style={{ backgroundImage: "url('/images/heroAnimateBg.svg')" }}
       >
-        <div className=" container mx-auto flex flex-col md:flex-row gap-10 items-center justify-between px-6 lg:px-10 xl:px-20 lg:py-12 py-10  ">
+        <div className=" container mx-auto flex flex-col md:flex-row gap-10 items-center justify-between px-6 lg:px-10 xl:px-20 lg:py-12 py-10 ">
           {/* Left Text Section */}
           <div className="w-full md:w-1/2 flex items-center justify-center ">
             <div className="w-full flex flex-col items-center md:items-start text-center md:text-left">
@@ -191,7 +211,7 @@ const page = () => {
               <h1 className="poppins text-3xl  lg:text-4xl xl:text-5xl 2xl:text-6xl font-medium leading-tight text-gray-900 mb-3">
                 Professional E-commerce
                 <span className="text-[#3e66f3]"> Website </span> &
-                <span className="text-[#3e66f3]"> CMS Solutions. </span>
+                <span className="text-[#3e66f3]"> CMS Solutions </span>
               </h1>
 
               {/* Description */}
@@ -251,7 +271,7 @@ const page = () => {
                     Feature 1
                   </p>
                   <h3 className=" poppins text-[18px] md:text-[20px] font-medium text-[#3e66f3]">
-                    WooCommerce Integration:
+                    WooCommerce Integration
                   </h3>
                   <p className="open-sans text-[14px] leading-relaxed text-gray-600">
                     We integrate your store with WooCommerce to manage your
@@ -272,7 +292,7 @@ const page = () => {
                     Feature 2
                   </p>
                   <h3 className=" poppins text-[18px] md:text-[20px] font-medium text-[#3e66f3]">
-                    CMS-Based Control:
+                    CMS-Based Control
                   </h3>
                   <p className="open-sans text-[14px] leading-relaxed text-gray-600">
                     Easily control your website content, products, and
@@ -293,7 +313,7 @@ const page = () => {
                     Feature 3
                   </p>
                   <h3 className=" poppins text-[18px] md:text-[20px] font-medium text-[#3e66f3]">
-                    Payment Gateway Integration:
+                    Payment Gateway Integration
                   </h3>
                   <p className="open-sans text-[14px] leading-relaxed text-gray-600">
                     Facilitate secure and quick online payments through top
@@ -320,8 +340,105 @@ const page = () => {
         </div>
       </section>
 
+
       {/* who can get benifits */}
-      <div className="container mx-auto py-10 px-6 lg:px-10">
+
+      <section className="container mx-auto px-6 lg:px-10 2xl:px-15  ">
+        <div className=" grid grid-cols-1 lg:grid-cols-2 gap-10 items-center ">
+
+          {/* LEFT */}
+          <div className="lg:sticky lg:top-28">
+            <div className="inline-flex items-center gap-2 bg-blue-50 text-[#3e66f3] px-4 py-2 rounded-full text-sm font-semibold">
+              For Every Business Stage
+            </div>
+
+            <h2 className="poppins text-3xl sm:text-4xl xl:text-5xl font-semibold leading-tight mt-6">
+              Who can get Benefits
+              <span className="text-[#3e66f3] lg:block"> {" "} E-commerce Development {" "} </span> Services?
+            </h2>
+
+            <p className="open-sans text-gray-600 text-base lg:text-lg leading-relaxed mt-5 max-w-xl">
+              A structured eCommerce build for growth — whether you’re launching,
+              scaling, or managing enterprise-level operations.
+            </p>
+          </div>
+
+          {/* RIGHT - Vertical Steps */}
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-1 gap-3 h-full">
+            {benefits.map((benefit, idx) => (
+              <div className="flex flex-col gap-2 group bg-white rounded-2xl p-4 border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300 h-full">
+                <div className="flex items-start justify-between gap-2">
+                  <h4 className="poppins text-lg lg:text-xl font-medium group-hover:text-[#3e66f3] transition">
+                    {benefit.title}
+                  </h4>
+                  <span className="text-4xl font-bold text-gray-200 leading-none">{benefit.step}</span>
+                </div>
+
+                <p className="open-sans text-sm text-gray-600 leading-relaxed">
+                  {benefit.des}
+                </p>
+              </div>
+            ))}
+
+            {/* Step 1 */}
+
+            {/* <div className=" flex flex-col gap-2 group bg-white rounded-2xl p-4 border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300 h-full ">
+              <div className="flex items-start justify-between gap-2">
+                <h4 className="poppins text-xl font-medium group-hover:text-[#3e66f3] transition">
+                  Startups
+                </h4>
+                <span className="text-4xl font-bold text-gray-200 leading-none">01</span>
+              </div>
+
+              <p className="open-sans text-sm text-gray-600 leading-relaxed">
+                Launch fast with a scalable store, clean UX, secure payments,
+                and an optimized checkout that improves conversions.
+              </p>
+            </div> */}
+
+            {/* Step 2 */}
+            {/* <div className="group relative h-full">
+
+              <div className="bg-white rounded-2xl p-4 border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300">
+                <div className="flex items-start justify-between gap-4">
+                  <h4 className="poppins text-xl font-medium group-hover:text-[#3e66f3] transition">
+                    Small & Medium Enterprises
+                  </h4>
+                  <span className="text-4xl font-bold text-gray-200 leading-none">02</span>
+                </div>
+
+                <p className="open-sans text-sm text-gray-600 leading-relaxed">
+                  Scale sales with automation, CRM/ERP integrations, inventory sync,
+                  and analytics that help you optimize performance.
+                </p>
+              </div>
+            </div> */}
+
+            {/* Step 3 */}
+            {/* <div className="group relative h-full">
+
+              <div className="bg-white rounded-2xl p-4 border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300">
+                <div className="flex items-start justify-between gap-4">
+                  <h4 className="poppins text-xl font-medium group-hover:text-[#3e66f3] transition">
+                    Large Enterprises
+                  </h4>
+                  <span className="text-4xl font-bold text-gray-200 leading-none">03</span>
+                </div>
+
+                <p className="open-sans text-sm text-gray-600 leading-relaxed">
+                  Enterprise-grade commerce with high-volume performance, multi-store
+                  management, advanced APIs, and secure scalable infrastructure.
+                </p>
+              </div>
+            </div> */}
+          </div>
+
+        </div>
+      </section>
+
+
+
+      {/* <div className="container mx-auto py-10 px-6 lg:px-10">
         <div className="flex flex-col gap-10">
           <div className="flex">
             <h2 className="poppins text-4xl max-w-xl leading-relaxed">
@@ -375,7 +492,7 @@ const page = () => {
             </div>
           </div>
         </div>
-      </div> 
+      </div> */}
 
       {/* E-commerce process */}
       <div className="container mx-auto py-10 px-6 lg:px-10">
@@ -394,13 +511,13 @@ const page = () => {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-4">
             {process.map((process) => (
-              <div key={process.id}  className="flex flex-col gap-2 rounded-xl  p-4 hover:shadow-xl transition-all duration-500 hover:bg-[#f5f9ff] ">
+              <div key={process.id} className="flex flex-col gap-2 rounded-xl  p-4 hover:shadow-xl transition-all duration-500 hover:bg-[#f5f9ff] ">
                 <div className="flex flex-col gap-1.5 items-start">
                   <div className="flex justify-center items-center p-2 bg-[#3e66f3] rounded-lg ">
                     {/* <IoSearch className="text-xl text-white" /> */}
                     {process.icon}
                   </div>
-                  <span className="open-sans text-sm text-gray-600" >
+                  <span className="open-sans text-sm font-medium text-red-600" >
                     {process.step}
                   </span>
                 </div>
@@ -412,7 +529,7 @@ const page = () => {
                     {process.description}
                   </p>
                 </div>
-              </div> 
+              </div>
             ))}
           </div>
         </div>

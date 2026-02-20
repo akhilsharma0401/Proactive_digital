@@ -7,7 +7,7 @@ const axiosInstance = axios.create({
   },
 });
 
-axios.interceptors.request.use(
+axiosInstance.interceptors.request.use(
   (config) => {
     // Retrieve the token from storage
     const token = localStorage.getItem('token'); // Adjust the key as necessary

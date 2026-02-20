@@ -81,12 +81,12 @@ const driverBenefits = [
 
 const page = () => {
   return (
-    <div className="space-y-10">
+    <div className="">
       {/* Hero Section */}
       <section
         className="bg-cover bg-center bg-no-repeat  lg:px-10"
         style={{ backgroundImage: "url('/images/heroAnimateBg.svg')" }} >
-        <div className=" container mx-auto flex flex-col md:flex-row gap-10 items-center justify-between px-6 lg:px-10 xl:px-20 lg:py-12 py-10  ">
+        <div className=" container mx-auto flex flex-col md:flex-row gap-10 items-center justify-between px-6 lg:px-10 2xl:px-15 lg:py-12 py-10  ">
           {/* Left Text Section */}
           <div className="w-full md:w-1/2 flex items-center justify-center ">
             <div className="w-full flex flex-col gap-4 items-center md:items-start text-center md:text-left">
@@ -128,20 +128,20 @@ const page = () => {
       </section>
 
       {/* Introduction */}
-      <section className="max-w-7xl mx-auto px-6 lg:px-10 pt-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-6 ">
+      <section className="container mx-auto px-6 lg:px-10 2xl:px-15 py-10 md:py-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-6 ">
           <div className="flex items-center justify-center ">
             <Image
               alt="Introduction Image"
               src={introductionEmployeeCab}
-              width={800}
+              width={500}
               height={300}
               className="rounded-xl object-contain  "
             />
           </div>
           <div className="flex flex-col gap-4">
             <div className="flex justify-start ">
-              <h3 className="poppins text-4xl font-medium text-[#3e66f3] ">
+              <h3 className="poppins text-3xl lg:text-4xl font-medium text-[#3e66f3] ">
                 Introduction
               </h3>
             </div>
@@ -171,12 +171,205 @@ const page = () => {
         </div>
       </section>
 
+      
+
+      {/* Benefits */}
+      {/* <section className="max-w-7xl mx-auto  bg-white  px-6 lg:px-10">
+        <div className="flex flex-col gap-8 ">
+          <div className="flex justify-center ">
+            <div className="flex flex-col items-center bg-linear-to-b from-[#157AFF] to-[#0D4999] rounded-xl px-4 py-2 ">
+              <h3 className="poppins font-medium text-3xl text-white leading-relaxed " >
+                Benefits of Application
+              </h3>
+              <h3 className="poppins font-medium text-3xl text-white " >
+                For Organization
+              </h3>
+            </div>
+          </div>
+          <div className="max-w-5xl mx-auto space-y-10  ">
+            <div className="flex flex-col gap-8">
+              {Benefits.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <div key={item.id} className="relative flex items-center">
+             
+                    <div className="hidden md:flex items-center justify-center absolute -left-4 z-10 w-22 h-22 rounded-full border-2  border-blue-600 bg-gradient-to-br from-gray-200 to-white ">
+                      <Icon className="w-12 h-12 text-blue-600" />
+                    </div>
+
+                    <div className="w-full border border-[#cc2708] rounded-xl md:ml-8  px-3 md:pl-10 py-2">
+                      <p className="text-gray-700 leading-relaxed">{item.text}</p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </section> */}
+
+      <section className="relative py-5 md:py-10 overflow-hidden">
+        {/* Background Blur Shapes */}
+        {/* <div className="absolute top-25 left-0 w-72 h-60 bg-blue-300 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 right-0 w-72 h-72 bg-white/80 rounded-full blur-3xl"></div> */}
+
+        <div className="relative container mx-auto px-6 lg:px-10 2xl:px-15">
+
+          {/* Heading */}
+          <div className="text-center max-w-3xl mx-auto mb-5 md:mb-12">
+
+            <h2 className="text-3xl lg:text-4xl font-semibold text-[#3e66f3] ">
+              Benefits for Your Organization
+            </h2>
+
+            <p className="mt-4 text-blue-600 text-lg">
+              Power your business with secure, scalable, and smart digital solutions.
+            </p>
+
+          </div>
+
+          {/* Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8 2xl:gap-12">
+            {Benefits.map((item) => {
+              const Icon = item.icon;
+              return (
+                <div
+                  key={item.id}
+                  className="group bg-[#E0ECFF] backdrop-blur-md border border-black/20 rounded-2xl p-6 text-center hover:bg-white/20 hover:shadow-2xl transition-all duration-300"
+                >
+
+                  {/* Icon */}
+                  <div className="w-14 h-14 mx-auto mb-4 rounded-xl bg-white flex items-center justify-center group-hover:scale-110 group-hover:bg-[#3e66f3]  transition">
+                    <Icon className="w-7 h-7 text-indigo-700 group-hover:text-white " />
+                  </div>
+
+                  {/* Text */}
+                  <p className="text-black leading-relaxed text-base md:text-lg">
+                    {item.text}
+                  </p>
+
+                </div>
+              );
+            })}
+
+          </div>
+        </div>
+      </section>
+
+      {/* Benefits For Drivers */}
+      {/* <section className="max-w-7xl mx-auto  bg-white  px-6 lg:px-10">
+        <div className="flex flex-col gap-8 ">
+          <div className="flex justify-center ">
+            <div className="flex flex-col items-center bg-linear-to-b from-[#157AFF] to-[#0D4999] rounded-xl px-4 py-2 ">
+              <h3 className="poppins font-medium text-3xl text-white leading-relaxed " >
+                Benefits of Application
+              </h3>
+              <h3 className="poppins font-medium text-3xl text-white " >
+                For Driver
+              </h3>
+            </div>
+          </div>
+          <div className="max-w-5xl mx-auto space-y-10  ">
+            <div className="flex flex-col gap-8">
+              {driverBenefits.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <div key={item.id} className="relative flex items-center">
+                     
+                    <div className="hidden md:flex items-center justify-center absolute -left-4 z-10 w-22 h-22 rounded-full border-2  border-blue-600 bg-gradient-to-br from-gray-200 to-white ">
+                      <Icon className="w-12 h-12 text-blue-600" />
+                    </div>
+
+                     
+                    <div className="w-full border border-[#cc2708] rounded-xl md:ml-8  px-3 md:pl-10 py-2">
+                      <p className="text-gray-700 leading-relaxed">{item.desc}</p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </section> */}
+      <div className="container mx-auto px-6 lg:px-10 2xl:px-15 py-10 md:py-16">
+        <section className="relative p-10 overflow-hidden bg-[#e0ecff]  rounded-3xl">
+
+          {/* Decorative Circles */}
+          <div className="absolute -top-20 -left-20 w-72 h-72 bg-indigo-200 rounded-full"></div>
+          <div className="absolute -bottom-20 -right-20 w-72 h-72 bg-indigo-50 rounded-full"></div>
+
+
+          <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+            {/* Left Content */}
+            <div className="text-white">
+
+              <span className="inline-block mb-4 px-4 py-1 text-sm font-semibold bg-linear-to-b from-[#157AFF] to-[#0D4999] rounded-full text-white">
+                Smart Communication
+              </span>
+
+              <h2 className="poppins font-semibold text-black text-3xl md:text-4xl lg:text-5xl leading-tight">
+                <span className="text-[#3e66f3]" > Missed Call </span>
+
+                {" "} & {" "}
+                <span className="text-[#3e66f3]" > Long Code  </span>
+                {" "} System {" "}
+              </h2>
+
+              <p className="mt-5 text-gray-600 text-lg max-w-lg">
+                A secure and efficient way for employees to connect with drivers
+                without sharing personal contact details.
+              </p>
+
+            </div>
+
+
+            {/* Right Feature Cards */}
+            <div className="space-y-6">
+
+
+              {/* Card 1 */}
+              <div className="bg-white rounded-2xl p-6 shadow-xl flex gap-4 items-start">
+
+                {/* <div className="w-20 h-15 rounded-xl bg-blue-600 flex items-center justify-center text-white text-xl">
+                📞
+              </div> */}
+
+                <p className="open-sans text-gray-700 leading-relaxed text-base">
+                  The employee will be provided with a virtual number (92145XXXXX) and he/she can connect with the driver either by giving a missed call on this number or just by sending a predefined SMS on this number.
+                </p>
+
+              </div>
+
+
+              {/* Card 2 */}
+              <div className="bg-white rounded-2xl p-6 shadow-xl flex gap-4 items-start">
+
+                {/* <div className="20 h-15 rounded-xl bg-blue-600 flex items-center justify-center text-white text-xl">
+                🔐
+              </div> */}
+
+                <p className="open-sans text-gray-700 leading-relaxed text-base">
+                  The employee contact details won’t be shared with the driver and will be directly connected with the employee using a click-to-call facility via a virtual number.
+                </p>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </section>
+
+      </div>
+
+
       {/*  Application For Driver*/}
-      <section className="max-w-7xl mx-auto overflow-hidden px-6 lg:px-10 pb-28 pt-5">
+      <section className="container mx-auto overflow-hidden px-6 lg:px-10 2xl:px-15 pb-30 pt-5">
         <div className="flex flex-col gap-2  ">
           <div className="flex justify-center  ">
             <div className="flex flex-col items-center bg-linear-to-b from-[#157AFF] to-[#0D4999] rounded-xl px-4 py-2 ">
-              <h3 className="poppins font-medium text-3xl text-white leading-relaxed " >
+              <h3 className="poppins font-medium text-xl md:text-3xl text-white leading-relaxed " >
                 Benefits of Application For Driver
               </h3>
             </div>
@@ -223,205 +416,6 @@ const page = () => {
         </div>
       </section>
 
-      {/* Benefits */}
-      {/* <section className="max-w-7xl mx-auto  bg-white  px-6 lg:px-10">
-        <div className="flex flex-col gap-8 ">
-          <div className="flex justify-center ">
-            <div className="flex flex-col items-center bg-linear-to-b from-[#157AFF] to-[#0D4999] rounded-xl px-4 py-2 ">
-              <h3 className="poppins font-medium text-3xl text-white leading-relaxed " >
-                Benefits of Application
-              </h3>
-              <h3 className="poppins font-medium text-3xl text-white " >
-                For Organization
-              </h3>
-            </div>
-          </div>
-          <div className="max-w-5xl mx-auto space-y-10  ">
-            <div className="flex flex-col gap-8">
-              {Benefits.map((item) => {
-                const Icon = item.icon;
-                return (
-                  <div key={item.id} className="relative flex items-center">
-             
-                    <div className="hidden md:flex items-center justify-center absolute -left-4 z-10 w-22 h-22 rounded-full border-2  border-blue-600 bg-gradient-to-br from-gray-200 to-white ">
-                      <Icon className="w-12 h-12 text-blue-600" />
-                    </div>
-
-                    <div className="w-full border border-[#cc2708] rounded-xl md:ml-8  px-3 md:pl-10 py-2">
-                      <p className="text-gray-700 leading-relaxed">{item.text}</p>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-      </section> */}
-
-      <section className="relative py-0 px-6 lg:px-12 overflow-hidden">
-
-        {/* Background Blur Shapes */}
-        <div className="absolute top-0 left-0 w-72 h-72 bg-white/20 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 right-0 w-72 h-72 bg-white/20 rounded-full blur-3xl"></div>
-
-
-        <div className="relative max-w-7xl mx-auto">
-
-          {/* Heading */}
-          <div className="text-center max-w-3xl mx-auto mb-12">
-
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#3e66f3] ">
-              Benefits for Your Organization
-            </h2>
-
-            <p className="mt-4 text-blue-600 text-lg">
-              Power your business with secure, scalable, and smart digital solutions.
-            </p>
-
-          </div>
-
-
-          {/* Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-
-            {Benefits.map((item) => {
-              const Icon = item.icon;
-
-              return (
-                <div
-                  key={item.id}
-                  className="group bg-[#E0ECFF] backdrop-blur-md border border-black/20 rounded-2xl p-6 text-center hover:bg-white/20 hover:shadow-2xl transition-all duration-300"
-                >
-
-                  {/* Icon */}
-                  <div className="w-14 h-14 mx-auto mb-4 rounded-xl bg-white flex items-center justify-center group-hover:scale-110 group-hover:bg-[#3e66f3]  transition">
-                    <Icon className="w-7 h-7 text-indigo-700 group-hover:text-white " />
-                  </div>
-
-                  {/* Text */}
-                  <p className="text-black leading-relaxed text-base md:text-lg">
-                    {item.text}
-                  </p>
-
-                </div>
-              );
-            })}
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-
-
-
-      {/* Benefits For Drivers */}
-      {/* <section className="max-w-7xl mx-auto  bg-white  px-6 lg:px-10">
-        <div className="flex flex-col gap-8 ">
-          <div className="flex justify-center ">
-            <div className="flex flex-col items-center bg-linear-to-b from-[#157AFF] to-[#0D4999] rounded-xl px-4 py-2 ">
-              <h3 className="poppins font-medium text-3xl text-white leading-relaxed " >
-                Benefits of Application
-              </h3>
-              <h3 className="poppins font-medium text-3xl text-white " >
-                For Driver
-              </h3>
-            </div>
-          </div>
-          <div className="max-w-5xl mx-auto space-y-10  ">
-            <div className="flex flex-col gap-8">
-              {driverBenefits.map((item) => {
-                const Icon = item.icon;
-                return (
-                  <div key={item.id} className="relative flex items-center">
-                     
-                    <div className="hidden md:flex items-center justify-center absolute -left-4 z-10 w-22 h-22 rounded-full border-2  border-blue-600 bg-gradient-to-br from-gray-200 to-white ">
-                      <Icon className="w-12 h-12 text-blue-600" />
-                    </div>
-
-                     
-                    <div className="w-full border border-[#cc2708] rounded-xl md:ml-8  px-3 md:pl-10 py-2">
-                      <p className="text-gray-700 leading-relaxed">{item.desc}</p>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-      </section> */}
-
-      <section className="relative max-w-7xl mx-auto px-6 lg:px-12 py-16 overflow-hidden bg-[#e0ecff]  rounded-3xl">
-
-        {/* Decorative Circles */}
-        <div className="absolute -top-20 -left-20 w-72 h-72 bg-indigo-200 rounded-full"></div>
-        <div className="absolute -bottom-20 -right-20 w-72 h-72 bg-indigo-50 rounded-full"></div>
-
-
-        <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-
-          {/* Left Content */}
-          <div className="text-white">
-
-            <span className="inline-block mb-4 px-4 py-1 text-sm font-semibold bg-linear-to-b from-[#157AFF] to-[#0D4999] rounded-full text-white">
-              Smart Communication
-            </span>
-
-            <h2 className="poppins font-semibold text-black text-3xl md:text-4xl lg:text-5xl leading-tight">
-              <span className="text-[#3e66f3]" > Missed Call </span>
-
-              {" "} & {" "}
-              <span className="text-[#3e66f3]" > Long Code  </span>
-              {" "} System {" "}
-            </h2>
-
-            <p className="mt-5 text-gray-600 text-lg max-w-lg">
-              A secure and efficient way for employees to connect with drivers
-              without sharing personal contact details.
-            </p>
-
-          </div>
-
-
-          {/* Right Feature Cards */}
-          <div className="space-y-6">
-
-
-            {/* Card 1 */}
-            <div className="bg-white rounded-2xl p-6 shadow-xl flex gap-4 items-start">
-
-              {/* <div className="w-20 h-15 rounded-xl bg-blue-600 flex items-center justify-center text-white text-xl">
-                📞
-              </div> */}
-
-              <p className="open-sans text-gray-700 leading-relaxed text-base">
-                The employee will be provided with a virtual number (92145XXXXX) and he/she can connect with the driver either by giving a missed call on this number or just by sending a predefined SMS on this number.
-              </p>
-
-            </div>
-
-
-            {/* Card 2 */}
-            <div className="bg-white rounded-2xl p-6 shadow-xl flex gap-4 items-start">
-
-              {/* <div className="20 h-15 rounded-xl bg-blue-600 flex items-center justify-center text-white text-xl">
-                🔐
-              </div> */}
-
-              <p className="open-sans text-gray-700 leading-relaxed text-base">
-                The employee contact details won’t be shared with the driver and will be directly connected with the employee using a click-to-call facility via a virtual number.
-              </p>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </section>
-
 
 
       {/* Missed Called for Employee */}
@@ -459,14 +453,92 @@ const page = () => {
 
 
       {/* cta */}
-      <section
+      {/* <section
         className="py-12 px-6"
         style={{
           backgroundImage: "url('/images/diagonalStripes.svg')",
           backgroundRepeat: "repeat",
           backgroundSize: "auto",
-        }} >
+        }} 
+        >
         <div className="relative flex flex-col md:flex-row bg-gradient-to-r from-blue-50 to-blue-50 shadow-lg h-auto md:h-[300px] max-w-5xl 2xl:max-w-6xl mx-auto rounded-3xl md:rounded-4xl overflow-hidden justify-between">
+          <svg
+            className="absolute top-15 left-0 w-[500px] h-[350px] opacity-10 pointer-events-none -translate-y-1/4 -translate-x-1/4"
+            viewBox="0 0 16 16"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M10,1L3,9h4.5L6,15l7-8H8.5L10,1z" fill="#60A5FA" />
+          </svg>
+
+          <div className="relative flex z-10 items-start">
+            
+            <div className="md:flex absolute -top-7 -left-7 md:left-0 md:top-0 w-[150px] h-[150px] md:w-auto md:h-[110px] lg:h-[120px] opacity-25 md:opacity-100   ">
+              <Lottie animationData={rocket} loop={true} />
+            </div>
+
+           
+            <div className="flex flex-col  justify-center py-10 md:py-0 px-10 md:px-18  gap-4  h-full ">
+              <div className="flex flex-col gap-2">
+                <h2 className="text-[24px] md:text-[30px] lg:text-[35px] text-center md:text-start font-medium poppins text-[#1d4ed8]">
+                  Improve Your Customer Experience
+                </h2>
+                <p className="text-[16px] lg:text-[18px] text-black open-sans  text-center md:text-start">
+                  Your online presence needs more than a website. It needs real
+                  growth. Let us work together to build, refine, and scale your
+                  digital success.
+                </p>
+              </div>
+
+              <div className="flex justify-center md:justify-start">
+                <Link href="/contact-us">
+                  <button className="relative inline-flex items-center justify-center px-4 py-2 text-base md:text-[16px] open-sans rounded-lg text-white bg-[#1d4ed8] cursor-pointer overflow-hidden transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:text-white active:scale-95 group ">
+                    <span className="relative z-10">Start Now</span>
+                    <span className="absolute left-0 top-1/2 w-full h-[10px] bg-black opacity-0 transition-all duration-[800ms] ease-[cubic-bezier(0.23,1,0.32,1)] -translate-y-1/2 group-hover:h-full group-hover:opacity-100 rounded"></span>
+                  </button>
+                </Link>
+              </div>
+            </div>
+          </div>
+
+       
+          <div className="relative items-center justify-center hidden md:flex z-10">
+            <svg
+              className="h-full w-full"
+              viewBox="0 0 1200 1000"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                cx="1200"
+                cy="500"
+                r="1200"
+                fill="#DBEAFE"
+                opacity="0.8"
+              />
+              <circle
+                cx="1200"
+                cy="500"
+                r="1000"
+                fill="#93C5FD"
+                opacity="0.8"
+              />
+              <circle cx="1200" cy="500" r="800" fill="#60A5FA" opacity="0.8" />
+              <circle cx="1200" cy="500" r="600" fill="#3E66F3" opacity="0.8" />
+              <circle cx="1200" cy="500" r="400" fill="#2563EB" opacity="0.8" />
+              <circle cx="1200" cy="500" r="200" fill="#324CA2" opacity="0.8" />
+            </svg>
+          </div>
+        </div>
+      </section> */}
+
+      <section
+        className="container mx-auto px-6 lg:px-10 2xl:px-15 py-6 md:py-12"
+      // style={{
+      //   backgroundImage: "url('/images/diagonalStripes.svg')",
+      //   backgroundRepeat: "repeat",
+      //   backgroundSize: "auto",
+      // }}
+      >
+        <div className="relative flex flex-col md:flex-row bg-gradient-to-r from-blue-50 to-blue-50 shadow-lg h-auto md:h-[300px] rounded-3xl md:rounded-4xl overflow-hidden justify-between">
           {/* background svg */}
           <svg
             className="absolute top-15 left-0 w-[500px] h-[350px] opacity-10 pointer-events-none -translate-y-1/4 -translate-x-1/4"

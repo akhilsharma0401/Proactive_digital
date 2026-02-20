@@ -286,7 +286,7 @@ function page() {
       <section
         className="bg-cover bg-center bg-no-repeat lg:px-10"
         style={{ backgroundImage: "url('/images/heroAnimateBg.svg')" }}
-        >
+      >
         <div className=" container mx-auto flex flex-col md:flex-row gap-10 items-center justify-between px-6 lg:px-10 xl:px-20 lg:py-12 py-10  ">
           {/* Left Text Section */}
           <div className="w-full md:w-1/2 flex items-center justify-center ">
@@ -298,9 +298,9 @@ function page() {
 
               {/* Main Heading */}
               <h1 className="poppins text-3xl  lg:text-4xl xl:text-5xl 2xl:text-6xl font-medium leading-tight text-gray-900 mb-3">
-                Web Development That Drives  
+                Web Development That Drives
                 <span className="text-[#3e66f3]"> Growth </span> For
-                <span className="text-[#3e66f3]"> Businesses. </span>
+                <span className="text-[#3e66f3]"> Businesses </span>
               </h1>
 
               {/* Description */}
@@ -341,7 +341,7 @@ function page() {
       {/* why choose web development */}
       {/* <section className="bg-gradient-to-r from-[#f2f6ff] via-[#f5f6fe] to-[#e8edfd]"> */}
       <section className="">
-        <div className="container mx-auto  py-10 md:py-12 px-6 lg:px-10 xl:px-20">
+        <div className="container mx-auto py-5 md:py-10 px-6 lg:px-10 2xl:px-15">
           <h2 className="poppins text-center text-3xl md:text-4xl font-medium mb-12">
             Why Choose <span className="text-[#0047FF]">Web Development ?</span>
           </h2>
@@ -363,8 +363,6 @@ function page() {
                   </h3>
                   <p className="open-sans text-[14px] leading-relaxed text-gray-600">
                     We build robust and scalable backend systems using technologies such as Node.js, PHP, Python, and Laravel, ensuring secure data handling and high-performance application operations.
-
-
                   </p>
                 </div>
               </div>
@@ -426,14 +424,22 @@ function page() {
 
       {/* Pass the specific activeTabId state and its setter to each section */}
 
-      <section className=" container mx-auto py-10 md:py-12 px-6 lg:px-10 xl:px-20 ">
+      <section className=" container mx-auto py-5 md:py-6 px-6 lg:px-10 2xl:px-15 ">
+        <div className="flex flex-col gap-3 mb-4 items-center">
+          <h2 className="poppins font-semibold text-3xl lg:text-4xl" >
+            <span className="text-[#3e66f3]" >
+              Technologies {" "}
+            </span>
+            We Use
+          </h2>
+          <div className="flex w-30 h-1 rounded-lg bg-[#3e66f3]"></div>
+        </div>
         <div className="flex flex-col gap-10">
-
           <AutoPlaySection
             heading="Javascript "
             sections={javaScript}
             intervalDuration={5000}
-            />
+          />
 
           <AutoPlaySection
             heading="React"
@@ -446,8 +452,8 @@ function page() {
             heading="NextJS"
             sections={nextJS}
             intervalDuration={5000}
-            />
- 
+          />
+
           <AutoPlaySection
             heading="Node JS"
             sections={nodeJS}
@@ -459,7 +465,7 @@ function page() {
             heading="PHP"
             sections={php}
             intervalDuration={5000}
-            />
+          />
 
           <AutoPlaySection
             heading="HTML"
@@ -502,9 +508,8 @@ function page() {
           backgroundImage: "url('/images/diagonalStripes.svg')",
           backgroundRepeat: "repeat",
           backgroundSize: "auto",
-        }}
-      >
-        <div className="relative flex flex-col md:flex-row bg-gradient-to-r from-blue-50 to-blue-50 shadow-lg h-auto md:h-[300px] max-w-5xl 2xl:max-w-6xl mx-auto rounded-3xl md:rounded-4xl overflow-hidden justify-between">
+        }} >
+        <div className="relative flex flex-col md:flex-row bg-gradient-to-r from-blue-50 to-blue-50 shadow-lg h-auto md:h-[300px] max-w-6xl 2xl:max-w-7xl mx-auto rounded-3xl md:rounded-4xl overflow-hidden justify-between">
           {/* background svg */}
           <svg
             className="absolute top-15 left-0 w-[500px] h-[350px] opacity-10 pointer-events-none -translate-y-1/4 -translate-x-1/4"

@@ -783,15 +783,11 @@ function page() {
           // <p className="text-center text-2xl md:text-3xl text-gray-600">Sorry! No openings available</p>
           <div className="text-center py-16">
             <h2 className="text-3xl font-semibold mb-4">
-              Opportunities Coming Soon 🚀
+              Opportunities Coming Soon
             </h2>
             <p className="text-gray-500 mb-6">
               We're not hiring right now, but we’re always excited to meet talented people.
-            </p>
-
-            <button className="bg-[#3e66f3] text-white px-6 py-3 rounded-lg">
-              Join Our Talent Pool
-            </button>
+            </p> 
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-10 2xl:gap-10 ">

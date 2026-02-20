@@ -3,7 +3,7 @@ export const metadata = {
   title: "Custom Employee Cab Management Software | Proactive",
   description: "Proactive provides custom employee cab management system development with GPS tracking, route optimization, fleet monitoring, and automation solutions.",
   alternates: {
-    canonical: "",
+    canonical: "https://www.proactivedigital.in/employee-cab-management-system",
   },
     openGraph: {
     title: "Custom Employee Cab Management Software | Proactive",

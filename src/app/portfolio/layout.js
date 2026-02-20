@@ -3,7 +3,7 @@ export const metadata = {
   title: "Web Design & Custom Development Portfolio | Proactive",
   description: "Browse our portfolio of professional web design and custom web development projects, including business websites, web applications, and enterprise solutions.",
   alternates: {
-    canonical: "",
+    canonical: "https://www.proactivedigital.in/portfolio",
   },
     openGraph: {
     title: "Web Design & Custom Development Portfolio | Proactive",

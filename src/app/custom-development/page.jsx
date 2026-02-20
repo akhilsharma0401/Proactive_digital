@@ -293,8 +293,8 @@ function page() {
       </section>
 
       {/* FAQs */}
-      <section className="  flex justify-center items-center py-10 px-4 lg:px-0">
-        <div className="w-full max-w-5xl mx-auto  bg-[#f9fafc] border border-[#D1CDE3] rounded-xl p-4 md:p-6 shadow-lg space-y-6">
+      <section className=" bg-white flex justify-center items-center py-10 px-6 lg:px-10 ">
+        <div className="w-full max-w-6xl 2xl:max-w-7xl mx-auto  bg-[#f9fafc] border border-[#D1CDE3] rounded-xl p-4 md:p-6 shadow-lg space-y-6">
           <h2 className="poppins text-2xl md:text-3xl lg:text-4xl font-semibold text-center text-gray-900 heading">
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2b40b0] to-[#3e66f3]">
               {" "}

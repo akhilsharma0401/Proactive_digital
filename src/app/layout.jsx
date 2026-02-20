@@ -13,7 +13,7 @@ export const metadata = {
   title: "Custom Web Design & Development Services | Proactive",
   description: "Proactive offers custom website design and development services, including responsive web design, scalable web applications and UI/UX design solutions.",
   alternates: {
-    canonical: "",
+    canonical: "https://www.proactivedigital.in/",
   },
   icons: {
     icon: [

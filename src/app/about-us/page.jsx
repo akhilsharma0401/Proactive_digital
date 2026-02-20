@@ -442,7 +442,7 @@ function page() {
       <section className="container mx-auto px-6 lg:px-10 2xl:px-15 md:py-16 space-y-4 ">
         {visionData.map((item, index) => (
           <div id={`section-${index}`} key={index} className="flex items-center bg-white ">
-            <div className="grid grid-cols-1 md:grid-cols-3 h-full w-full mt-30  gap-0 md:gap-8 2xl:gap-20 text-[18px] bg-white">
+            <div className="grid grid-cols-1 md:grid-cols-3 h-full w-full mt-42 lg:mt-30  gap-0 md:gap-8 2xl:gap-20 text-[18px] bg-white">
               {/* Number + Title */}
               <div className="col-span-1 flex justify-between text-center text-black  gap-6 h-18 md:h-auto">
                 <div className="text-[60px] lg:text-[100px] font-bold text-transparent stroke-black stroke-[1px]">
@@ -455,7 +455,7 @@ function page() {
 
               {/* Content */}
               <div className="col-span-2 flex flex-col  gap-6 max-w-3xl">
-                <div className="poppins text-[20px] lg:text-[26px] text-black lg:mt-10">
+                <div className="poppins text-[20px] lg:text-[26px] text-black  lg:mt-10">
                   <h3>{item.text}</h3>
                 </div>
 

@@ -3,7 +3,7 @@ export const metadata = {
   title: "E-Commerce & Business Website Development Services",
   description: "Proactive offers expert website development services with custom Ecommerce and CMS solutions. Fast, secure, responsive websites built for business growth.",
   alternates: {
-    canonical: "",
+    canonical: "https://www.proactivedigital.in/web-development",
   },
     openGraph: {
     title: "E-Commerce & Business Website Development Services",

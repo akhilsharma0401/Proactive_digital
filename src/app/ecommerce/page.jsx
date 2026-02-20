@@ -554,10 +554,10 @@ const page = () => {
       </section> */}
 
       {/* FAQs */}
-      <section className="  flex justify-center items-center py-10 px-4 lg:px-0">
-        <div className="w-full max-w-5xl mx-auto  bg-[#f9fafc] border border-[#D1CDE3] rounded-xl p-4 md:p-6 shadow-lg space-y-6">
+      <section className=" bg-white flex justify-center items-center py-10 px-6 lg:px-10 ">
+        <div className="w-full max-w-6xl 2xl:max-w-7xl mx-auto  bg-[#f9fafc] border border-[#D1CDE3] rounded-xl p-4 md:p-6 shadow-lg space-y-6">
           <h2 className="poppins text-2xl md:text-3xl lg:text-4xl font-semibold text-center text-gray-900 heading">
-            <span className="text-transparent bg-clip-text bg-linear-to-r from-[#2b40b0] to-[#3e66f3]">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2b40b0] to-[#3e66f3]">
               {" "}
               Have more questions?
             </span>{" "}
@@ -578,6 +578,84 @@ const page = () => {
         </div>
       </section>
 
+          <section className="bg-[url('/images/diagonalStripes.svg')] bg-repeat bg-auto py-10 px-6 lg:px-10" >
+        <div className="relative flex flex-col md:flex-row bg-gradient-to-r from-blue-50 to-blue-50 shadow-lg h-auto md:h-[300px] max-w-6xl 2xl:max-w-7xl mx-auto rounded-3xl md:rounded-4xl overflow-hidden justify-between">
+          {/* background svg */}
+          <svg
+            className="absolute top-15 left-0 w-[500px] h-[350px] opacity-10 pointer-events-none -translate-y-1/4 -translate-x-1/4"
+            viewBox="0 0 16 16"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M10,1L3,9h4.5L6,15l7-8H8.5L10,1z" fill="#60A5FA" />
+          </svg>
+
+          <div className="relative flex z-10 items-start">
+            {/* rocket animation */}
+            <div className="md:flex absolute -top-7 -left-7 md:-left-2 md:top-0 w-[150px] h-[150px] md:w-auto md:h-[110px] lg:h-[120px] opacity-25 md:opacity-100   ">
+              <Lottie animationData={rocket} loop={true} />
+            </div>
+
+            {/* content */}
+            <div className="flex flex-col  justify-center py-10 md:py-0 px-10 md:px-18  gap-4  h-full ">
+              <div className="flex flex-col gap-2">
+                <h2 className="text-[24px] md:text-[30px] lg:text-[35px] text-center md:text-start font-medium poppins text-[#1d4ed8]">
+                  Let's Get In Touch
+                </h2>
+                <p className="text-[16px] lg:text-[18px] text-black open-sans  text-center md:text-start">
+                  Your digital presence deserves more than just a website it deserves a performance web solution built to grow your business.Let's build, optimize, and scale your online success.
+                </p>
+              </div>
+
+              {/* cta button */}
+              <div className="flex justify-center md:justify-start">
+                <Link href="/contact-us" >
+                  <button
+                    aria-label="Start Now"
+                    onClick={() => setVisible(true)}
+                    className="relative inline-flex items-center justify-center px-4 py-2 text-base md:text-[16px] open-sans rounded-lg text-white bg-[#1d4ed8] cursor-pointer overflow-hidden transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:text-white active:scale-95 group "
+                  >
+                    <span className="relative z-10">Start Now</span>
+
+                    <span className="absolute left-0 top-1/2 w-full h-[10px] bg-black opacity-0 transition-all duration-[800ms] ease-[cubic-bezier(0.23,1,0.32,1)] -translate-y-1/2 group-hover:h-full group-hover:opacity-100 rounded"></span>
+                  </button>
+                </Link>
+
+                {/* cta form component */}
+                {/* <BookDemoDialog visible={visible} setVisible={setVisible} /> */}
+              </div>
+            </div>
+          </div>
+
+          {/* right rounded svg */}
+          <div className="relative items-center justify-center hidden md:flex z-10">
+            <svg
+              className="h-full w-full"
+              viewBox="0 0 1200 1000"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                cx="1200"
+                cy="500"
+                r="1200"
+                fill="#DBEAFE"
+                opacity="0.8"
+              />
+              <circle
+                cx="1200"
+                cy="500"
+                r="1000"
+                fill="#93C5FD"
+                opacity="0.8"
+              />
+              <circle cx="1200" cy="500" r="800" fill="#60A5FA" opacity="0.8" />
+              <circle cx="1200" cy="500" r="600" fill="#3E66F3" opacity="0.8" />
+              <circle cx="1200" cy="500" r="400" fill="#2563EB" opacity="0.8" />
+              <circle cx="1200" cy="500" r="200" fill="#324CA2" opacity="0.8" />
+            </svg>
+          </div>
+        </div>
+      </section>
+
       {/* cta */}
       <section className="py-12 px-6"
         style={{
@@ -585,7 +663,7 @@ const page = () => {
           backgroundRepeat: "repeat",
           backgroundSize: "auto",
         }}
-      >
+        >
         <div className="relative flex flex-col md:flex-row bg-gradient-to-r from-blue-50 to-blue-50 shadow-lg h-auto md:h-[300px] max-w-5xl 2xl:max-w-6xl mx-auto rounded-3xl md:rounded-4xl overflow-hidden justify-between">
 
           {/* background svg */}

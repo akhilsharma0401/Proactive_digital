@@ -777,51 +777,64 @@ function page() {
 
       {/* bg-[#f7ebfc] */}
       <section className="container mx-auto py-10 lg:py-12 px-6 lg:px-10 2xl:px-15">
-        <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-10 2xl:gap-10 ">
-          <div className="w-full space-y-10 ">
-            <h2 className="poppins text-[30px] md:text-[35px] heading text-center">
-              Current{/* */}{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2b40b0] to-[#36bae2]">
-                {" "}
-                Openings{" "}
-              </span>
+        {loading ? (
+          <p className="text-center text-gray-500">Loading jobs...</p>
+        ) : jobs.length === 0 ? (
+          // <p className="text-center text-2xl md:text-3xl text-gray-600">Sorry! No openings available</p>
+          <div className="text-center py-16">
+            <h2 className="text-3xl font-semibold mb-4">
+              Opportunities Coming Soon 🚀
             </h2>
-            {loading ? (
-              <p className="text-center text-gray-500">Loading jobs...</p>
-            ) : jobs.length === 0 ? (
-              <p className="text-center text-gray-500">No openings available</p>
-            ) : (
-              jobs.map((job, idx) => (
-                <CareerOpeningItem
-                  key={job.id}
-                  question={job.title}
-                  Location={job.location}
-                  Term={job.type}
-                  description={job.jobDesc}
-                  Responsibilities={job.responsibilities}
-                  Qualifications={job.qualifications}
-                  isOpen={openIndex === idx}
-                  onClick={() => toggle(idx)}
-                />
-              ))
-            )}
+            <p className="text-gray-500 mb-6">
+              We're not hiring right now, but we’re always excited to meet talented people.
+            </p>
 
-
+            <button className="bg-[#3e66f3] text-white px-6 py-3 rounded-lg">
+              Join Our Talent Pool
+            </button>
           </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-10 2xl:gap-10 ">
+            <div className="w-full space-y-10 ">
+              <h2 className="poppins text-[30px] md:text-[35px] heading text-center">
+                Current{/* */}{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2b40b0] to-[#36bae2]">
+                  {" "}
+                  Openings{" "}
+                </span>
+              </h2>
+              {
+                jobs.map((job, idx) => (
+                  <div className="">
+                    <CareerOpeningItem
+                      key={job.id}
+                      question={job.title}
+                      Location={job.location}
+                      Term={job.type}
+                      description={job.jobDesc}
+                      Responsibilities={job.responsibilities}
+                      Qualifications={job.qualifications}
+                      isOpen={openIndex === idx}
+                      onClick={() => toggle(idx)}
+                    />
+                  </div>
+                ))
+              }
+            </div>
 
-          <div className="w-full space-y-10  " id="form">
-            <h2 className="poppins text-[30px] md:text-[35px] heading text-center">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2b40b0] to-[#36bae2]">
-                {" "}
-                {/* */}Apply{/* */}{" "}
-              </span>{" "}
-              {/* */}Now
-            </h2>
-            <div className="bg-white border border-gray-300 rounded-xl p-4 shadow-sm md:p-6">
-              {/* job application form  */}
+            <div className="w-full space-y-10  " id="form">
+              <h2 className="poppins text-[30px] md:text-[35px] heading text-center">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2b40b0] to-[#36bae2]">
+                  {" "}
+                  {/* */}Apply{/* */}{" "}
+                </span>{" "}
+                {/* */}Now
+              </h2>
+              <div className="bg-white border border-gray-300 rounded-xl p-4 shadow-sm md:p-6">
+                {/* job application form  */}
 
-              {/* without payload and without validation */}
-              {/* <form className="space-y-4">
+                {/* without payload and without validation */}
+                {/* <form className="space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="relative w-full">
                     <input
@@ -995,8 +1008,8 @@ function page() {
                 </div>
               </form> */}
 
-              {/* validate on submit */}
-              {/* <form className="space-y-4" onSubmit={handleSubmit}>
+                {/* validate on submit */}
+                {/* <form className="space-y-4" onSubmit={handleSubmit}>
                 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   
@@ -1235,185 +1248,185 @@ function page() {
                 </div>
               </form> */}
 
-              {/* form with resebd otp button  */}
-              <form className="space-y-4" onSubmit={handleSubmit}>
-                {/* first & last name */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {/* First Name */}
-                  <div className="relative w-full">
-                    <input
-                      type="text"
-                      id="firstName"
-                      name="firstName"
-                      value={formData.firstName}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      placeholder=" "
-                      className={`peer w-full border rounded-md p-2 placeholder-transparent focus:outline-none ${errors.firstName ? "border-red-500" : "border-gray-300"
-                        } focus:border-[#3e66f3]`}
-                    />
-                    <label
-                      // peer-placeholder-shown:text-gray-400
-                      htmlFor="firstName"
-                      className="absolute left-3 top-2 bg-white px-1 text-gray-500 transition-all duration-200 ease-in-out peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-focus:-top-2 peer-focus:text-sm peer-focus:text-[#3e66f3] peer-[&:not(:placeholder-shown)]:-top-2 peer-[&:not(:placeholder-shown)]:text-sm peer-[&:not(:placeholder-shown)]:text-gray-500"
-                    >
-                      First Name
-                    </label>
-                    {/* {errors.firstName && (
+                {/* form with resebd otp button  */}
+                <form className="space-y-4" onSubmit={handleSubmit}>
+                  {/* first & last name */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {/* First Name */}
+                    <div className="relative w-full">
+                      <input
+                        type="text"
+                        id="firstName"
+                        name="firstName"
+                        value={formData.firstName}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        placeholder=" "
+                        className={`peer w-full border rounded-md p-2 placeholder-transparent focus:outline-none ${errors.firstName ? "border-red-500" : "border-gray-300"
+                          } focus:border-[#3e66f3]`}
+                      />
+                      <label
+                        // peer-placeholder-shown:text-gray-400
+                        htmlFor="firstName"
+                        className="absolute left-3 top-2 bg-white px-1 text-gray-500 transition-all duration-200 ease-in-out peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-focus:-top-2 peer-focus:text-sm peer-focus:text-[#3e66f3] peer-[&:not(:placeholder-shown)]:-top-2 peer-[&:not(:placeholder-shown)]:text-sm peer-[&:not(:placeholder-shown)]:text-gray-500"
+                      >
+                        First Name
+                      </label>
+                      {/* {errors.firstName && (
                       <p className="text-red-500 text-sm mt-1">
                         {errors.firstName}
                       </p>
                     )} */}
-                  </div>
+                    </div>
 
-                  {/* Last Name */}
-                  <div className="relative w-full">
-                    <input
-                      type="text"
-                      id="lastName"
-                      name="lastName"
-                      value={formData.lastName}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      placeholder=" "
-                      className={`peer w-full border rounded-md p-2 placeholder-transparent focus:outline-none ${errors.lastName ? "border-red-500" : "border-gray-300"
-                        } focus:border-[#3e66f3]`}
-                    />
-                    <label
-                      htmlFor="lastName"
-                      className="absolute left-3 top-2 bg-white px-1 text-gray-500 transition-all duration-200 ease-in-out peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-focus:-top-2 peer-focus:text-sm peer-focus:text-[#3e66f3] peer-[&:not(:placeholder-shown)]:-top-2 peer-[&:not(:placeholder-shown)]:text-sm peer-[&:not(:placeholder-shown)]:text-gray-500"
-                    >
-                      Last Name
-                    </label>
-                    {/* {errors.lastName && (
+                    {/* Last Name */}
+                    <div className="relative w-full">
+                      <input
+                        type="text"
+                        id="lastName"
+                        name="lastName"
+                        value={formData.lastName}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        placeholder=" "
+                        className={`peer w-full border rounded-md p-2 placeholder-transparent focus:outline-none ${errors.lastName ? "border-red-500" : "border-gray-300"
+                          } focus:border-[#3e66f3]`}
+                      />
+                      <label
+                        htmlFor="lastName"
+                        className="absolute left-3 top-2 bg-white px-1 text-gray-500 transition-all duration-200 ease-in-out peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-focus:-top-2 peer-focus:text-sm peer-focus:text-[#3e66f3] peer-[&:not(:placeholder-shown)]:-top-2 peer-[&:not(:placeholder-shown)]:text-sm peer-[&:not(:placeholder-shown)]:text-gray-500"
+                      >
+                        Last Name
+                      </label>
+                      {/* {errors.lastName && (
                       <p className="text-red-500 text-sm mt-1">
                         {errors.lastName}
                       </p>
                     )} */}
+                    </div>
                   </div>
-                </div>
 
-                {/* Email */}
-                <div className="relative w-full">
-                  <input
-                    type="email"
-                    name="email"
-                    id="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    placeholder=" "
-                    className={`peer w-full border rounded-md p-2 placeholder-transparent focus:outline-none ${errors.email ? "border-red-500" : "border-gray-300"
-                      } focus:border-[#3e66f3]`}
-                  />
-                  <label
-                    htmlFor="email"
-                    className="absolute left-3 top-2 bg-white px-1 text-gray-500 transition-all duration-200 ease-in-out peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-focus:-top-2 peer-focus:text-sm peer-focus:text-[#3e66f3] peer-[&:not(:placeholder-shown)]:-top-2 peer-[&:not(:placeholder-shown)]:text-sm peer-[&:not(:placeholder-shown)]:text-gray-500"
-                  >
-                    Email Address
-                  </label>
-                  {/* {errors.email && (
+                  {/* Email */}
+                  <div className="relative w-full">
+                    <input
+                      type="email"
+                      name="email"
+                      id="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      placeholder=" "
+                      className={`peer w-full border rounded-md p-2 placeholder-transparent focus:outline-none ${errors.email ? "border-red-500" : "border-gray-300"
+                        } focus:border-[#3e66f3]`}
+                    />
+                    <label
+                      htmlFor="email"
+                      className="absolute left-3 top-2 bg-white px-1 text-gray-500 transition-all duration-200 ease-in-out peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-focus:-top-2 peer-focus:text-sm peer-focus:text-[#3e66f3] peer-[&:not(:placeholder-shown)]:-top-2 peer-[&:not(:placeholder-shown)]:text-sm peer-[&:not(:placeholder-shown)]:text-gray-500"
+                    >
+                      Email Address
+                    </label>
+                    {/* {errors.email && (
                     <p className="text-red-500 text-sm mt-1">{errors.email}</p>
                   )} */}
-                </div>
+                  </div>
 
-                {/* Phone */}
+                  {/* Phone */}
 
-                <div className="flex flex-col gap-2">
-                  <div className="flex gap-2 items-center">
-                    <div className="relative w-full">
-                      <input
-                        type="tel"
-                        name="mobile"
-                        id="phone"
-                        value={formData.mobile}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        maxLength={10}
-                        placeholder=" "
-                        disabled={isPhoneVerified}
-                        className={`peer w-full border rounded-md p-2 placeholder-transparent  focus:outline-none  
+                  <div className="flex flex-col gap-2">
+                    <div className="flex gap-2 items-center">
+                      <div className="relative w-full">
+                        <input
+                          type="tel"
+                          name="mobile"
+                          id="phone"
+                          value={formData.mobile}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          maxLength={10}
+                          placeholder=" "
+                          disabled={isPhoneVerified}
+                          className={`peer w-full border rounded-md p-2 placeholder-transparent  focus:outline-none  
                           ${errors.mobile ? "border-red-500" : "border-gray-300"} 
                           focus:border-[#3e66f3] 
                           ${isPhoneVerified
-                            ? "bg-gray-100 text-gray-500 cursor-not-allowed"
-                            : ""
-                          }`}
-                      />
-                      <label
-                        htmlFor="phone"
-                        className="absolute left-3 top-2 bg-white px-1 text-gray-500 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-focus:-top-2 peer-focus:text-sm peer-focus:text-[#3e66f3] peer-[&:not(:placeholder-shown)]:-top-2 peer-[&:not(:placeholder-shown)]:text-sm peer-[&:not(:placeholder-shown)]:text-gray-500"
-                      >
-                        Phone Number
-                      </label>
+                              ? "bg-gray-100 text-gray-500 cursor-not-allowed"
+                              : ""
+                            }`}
+                        />
+                        <label
+                          htmlFor="phone"
+                          className="absolute left-3 top-2 bg-white px-1 text-gray-500 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-focus:-top-2 peer-focus:text-sm peer-focus:text-[#3e66f3] peer-[&:not(:placeholder-shown)]:-top-2 peer-[&:not(:placeholder-shown)]:text-sm peer-[&:not(:placeholder-shown)]:text-gray-500"
+                        >
+                          Phone Number
+                        </label>
+                      </div>
+
+                      {!isPhoneVerified ? (
+                        <button
+                          type="button"
+                          onClick={handleVerifyClick}
+                          disabled={showOtpInput || isSendingOtp}
+                          className={`relative poppins text-nowrap inline-flex items-center justify-center py-2 px-4 text-base open-sans rounded-lg text-white overflow-hidden transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] active:scale-95 group
+                          ${showOtpInput || isSendingOtp
+                              ? "bg-gray-400 cursor-not-allowed"
+                              : "bg-[#3e66f3] hover:text-white cursor-pointer"
+                            }
+                        `}
+                        >
+                          <span className="relative z-10 flex items-center gap-2">
+
+                            {isSendingOtp ? (
+                              <>
+                                {/* Spinner */}
+                                <svg
+                                  className="animate-spin h-6 w-10 text-white"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <circle
+                                    className="opacity-25"
+                                    cx="12"
+                                    cy="12"
+                                    r="10"
+                                    stroke="currentColor"
+                                    strokeWidth="4"
+                                    fill="none"
+                                  />
+                                  <path
+                                    className="opacity-75"
+                                    fill="currentColor"
+                                    d="M4 12a8 8 0 018-8v8z"
+                                  />
+                                </svg>
+
+
+                              </>
+                            ) : showOtpInput ? (
+                              "OTP Sent"
+                            ) : (
+                              "Verify"
+                            )}
+
+                          </span>
+
+                          {/* Hover Effect (Disable when loading) */}
+                          {!isSendingOtp && !showOtpInput && (
+                            <span className="absolute left-0 top-1/2 w-full h-[10px] bg-black opacity-0 transition-all duration-[800ms] ease-[cubic-bezier(0.23,1,0.32,1)] -translate-y-1/2 group-hover:h-full group-hover:opacity-100 rounded"></span>
+                          )}
+                        </button>
+                      ) : (
+                        <CheckCircle className="text-green-500 w-6 h-6" />
+                      )}
                     </div>
 
-                    {!isPhoneVerified ? (
-                      <button
-                        type="button"
-                        onClick={handleVerifyClick}
-                        disabled={showOtpInput || isSendingOtp}
-                        className={`relative poppins text-nowrap inline-flex items-center justify-center py-2 px-4 text-base open-sans rounded-lg text-white overflow-hidden transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] active:scale-95 group
-                          ${showOtpInput || isSendingOtp
-                            ? "bg-gray-400 cursor-not-allowed"
-                            : "bg-[#3e66f3] hover:text-white cursor-pointer"
-                          }
-                        `}
-                      >
-                        <span className="relative z-10 flex items-center gap-2">
+                    {/* OTP Section (unchanged) */}
+                    {showOtpInput && !isPhoneVerified && (
+                      <div className="flex flex-col gap-3 mt-2">
+                        <p className="open-sans text-sm">
+                          Please enter your{" "}
+                          <span className="text-[#3e66f3]">6 Digit</span> OTP.
+                        </p>
 
-                          {isSendingOtp ? (
-                            <>
-                              {/* Spinner */}
-                              <svg
-                                className="animate-spin h-6 w-10 text-white"
-                                viewBox="0 0 24 24"
-                              >
-                                <circle
-                                  className="opacity-25"
-                                  cx="12"
-                                  cy="12"
-                                  r="10"
-                                  stroke="currentColor"
-                                  strokeWidth="4"
-                                  fill="none"
-                                />
-                                <path
-                                  className="opacity-75"
-                                  fill="currentColor"
-                                  d="M4 12a8 8 0 018-8v8z"
-                                />
-                              </svg>
-
-
-                            </>
-                          ) : showOtpInput ? (
-                            "OTP Sent"
-                          ) : (
-                            "Verify"
-                          )}
-
-                        </span>
-
-                        {/* Hover Effect (Disable when loading) */}
-                        {!isSendingOtp && !showOtpInput && (
-                          <span className="absolute left-0 top-1/2 w-full h-[10px] bg-black opacity-0 transition-all duration-[800ms] ease-[cubic-bezier(0.23,1,0.32,1)] -translate-y-1/2 group-hover:h-full group-hover:opacity-100 rounded"></span>
-                        )}
-                      </button>
-                    ) : (
-                      <CheckCircle className="text-green-500 w-6 h-6" />
-                    )}
-                  </div>
-
-                  {/* OTP Section (unchanged) */}
-                  {showOtpInput && !isPhoneVerified && (
-                    <div className="flex flex-col gap-3 mt-2">
-                      <p className="open-sans text-sm">
-                        Please enter your{" "}
-                        <span className="text-[#3e66f3]">6 Digit</span> OTP.
-                      </p>
-
-                      {/* <div className="flex flex-col md:flex-row gap-3 items-center">
+                        {/* <div className="flex flex-col md:flex-row gap-3 items-center">
                         <InputOtp
                           value={otp}
                           onChange={(e) => setOtp(e.value)}
@@ -1462,204 +1475,204 @@ function page() {
                         </div>
                       </div> */}
 
-                      {/* OTP Input + Submit */}
-                      <div className="flex flex-col md:flex-row gap-3">
-                        <InputOtp
-                          ref={otpRef}
-                          value={otp}
-                          onChange={(e) => {
-                            setOtp(e.value);
-                          }}
-                          length={6}
-                          integerOnly
-                          inputStyle={{
-                            border: "1.5px solid #9ca3af",
-                            borderRadius: "8px",
-                            width: "45px",
-                            height: "45px",
-                            textAlign: "center",
-                          }}
-                        />
-                        <div className="flex gap-3">
-                          <button
-                            type="button"
-                            onClick={handleOtpVerify}
-                            disabled={isVerifyingOtp}
-                            className={`relative poppins inline-flex items-center justify-center py-2 px-4 rounded-lg text-white 
-                              ${isVerifyingOtp
-                                ? "bg-gray-400 cursor-not-allowed"
-                                : "bg-[#3e66f3]"
-                              }`}
-                          >
-                            <span className="relative z-10">{isVerifyingOtp ? "Verifying..." : "Submit"}</span>
-                            <span className="absolute left-0 top-1/2 w-full h-[10px] bg-black opacity-0 transition-all duration-[800ms] ease-[cubic-bezier(0.23,1,0.32,1)] -translate-y-1/2 group-hover:h-full group-hover:opacity-100 rounded"></span>
-                          </button>
-
-                          {/* ✅ Show resend button ONLY when timer finished AND not locked */}
-                          {canResend && !isLocked && (
+                        {/* OTP Input + Submit */}
+                        <div className="flex flex-col md:flex-row gap-3">
+                          <InputOtp
+                            ref={otpRef}
+                            value={otp}
+                            onChange={(e) => {
+                              setOtp(e.value);
+                            }}
+                            length={6}
+                            integerOnly
+                            inputStyle={{
+                              border: "1.5px solid #9ca3af",
+                              borderRadius: "8px",
+                              width: "45px",
+                              height: "45px",
+                              textAlign: "center",
+                            }}
+                          />
+                          <div className="flex gap-3">
                             <button
                               type="button"
-                              onClick={handleResendOtp}
-                              className=" rounded-md poppins text-nowrap px-4 py-2 bg-gray-200"
+                              onClick={handleOtpVerify}
+                              disabled={isVerifyingOtp}
+                              className={`relative poppins inline-flex items-center justify-center py-2 px-4 rounded-lg text-white 
+                              ${isVerifyingOtp
+                                  ? "bg-gray-400 cursor-not-allowed"
+                                  : "bg-[#3e66f3]"
+                                }`}
                             >
-                              Resend
+                              <span className="relative z-10">{isVerifyingOtp ? "Verifying..." : "Submit"}</span>
+                              <span className="absolute left-0 top-1/2 w-full h-[10px] bg-black opacity-0 transition-all duration-[800ms] ease-[cubic-bezier(0.23,1,0.32,1)] -translate-y-1/2 group-hover:h-full group-hover:opacity-100 rounded"></span>
                             </button>
+
+                            {/* ✅ Show resend button ONLY when timer finished AND not locked */}
+                            {canResend && !isLocked && (
+                              <button
+                                type="button"
+                                onClick={handleResendOtp}
+                                className=" rounded-md poppins text-nowrap px-4 py-2 bg-gray-200"
+                              >
+                                Resend
+                              </button>
+                            )}
+                          </div>
+                        </div>
+
+                        {/* ✅ Resend timer below the OTP fields */}
+                        <div className="">
+                          {/* Show timer only when counting down */}
+                          {!canResend && !isLocked && (
+                            <p className="text-sm text-gray-600 poppins">
+                              Resend OTP in{" "}
+                              <span className="font-semibold">{timer}s</span>
+                            </p>
+                          )}
+
+                          {/* Show locked message */}
+                          {isLocked && (
+                            <p className="text-sm text-red-500 poppins">
+                              Try again in {Math.floor(lockTimer / 60)}m{" "}
+                              {lockTimer % 60}s
+                            </p>
                           )}
                         </div>
                       </div>
+                    )}
+                  </div>
 
-                      {/* ✅ Resend timer below the OTP fields */}
-                      <div className="">
-                        {/* Show timer only when counting down */}
-                        {!canResend && !isLocked && (
-                          <p className="text-sm text-gray-600 poppins">
-                            Resend OTP in{" "}
-                            <span className="font-semibold">{timer}s</span>
-                          </p>
-                        )}
-
-                        {/* Show locked message */}
-                        {isLocked && (
-                          <p className="text-sm text-red-500 poppins">
-                            Try again in {Math.floor(lockTimer / 60)}m{" "}
-                            {lockTimer % 60}s
-                          </p>
-                        )}
-                      </div>
-                    </div>
-                  )}
-                </div>
-
-                {/* Designation & Experience */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {/* Designation */}
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Designation
-                    </label>
-                    <select
-                      name="designation"
-                      value={formData.designation}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      className={`form-select w-full border rounded-md p-2 ${errors.designation
+                  {/* Designation & Experience */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {/* Designation */}
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Designation
+                      </label>
+                      <select
+                        name="designation"
+                        value={formData.designation}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        className={`form-select w-full border rounded-md p-2 ${errors.designation
                           ? "border-red-500"
                           : "border-gray-300"
-                        }`}
-                    >
-                      <option value="">Please Choose an option</option>
+                          }`}
+                      >
+                        <option value="">Please Choose an option</option>
 
-                      {jobs.map((job) => (
-                        <option key={job._id} value={job.title}>
-                          {job.title}
-                        </option>
-                      ))}
-                    </select>
+                        {jobs.map((job) => (
+                          <option key={job._id} value={job.title}>
+                            {job.title}
+                          </option>
+                        ))}
+                      </select>
 
-                    {/* {errors.designation && (
+                      {/* {errors.designation && (
                       <p className="text-red-500 text-sm mt-1">
                         {errors.designation}
                       </p>
                     )} */}
-                  </div>
+                    </div>
 
-                  {/* Experience */}
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Experience Years
-                    </label>
-                    <select
-                      name="selectExpyrs"
-                      value={formData.selectExpyrs}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      className={`form-select w-full border rounded-md p-2 ${errors.selectExpyrs
-                        ? "border-red-500"
-                        : "border-gray-300"
-                        }`}
-                    >
-                      <option value="">Please Choose an option</option>
-                      {[...Array(11).keys()].map((num) => (
-                        <option key={num} value={num}>
-                          {num}
-                        </option>
-                      ))}
-                    </select>
-                    {/* {errors.selectExpyrs && (
+                    {/* Experience */}
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Experience Years
+                      </label>
+                      <select
+                        name="selectExpyrs"
+                        value={formData.selectExpyrs}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        className={`form-select w-full border rounded-md p-2 ${errors.selectExpyrs
+                          ? "border-red-500"
+                          : "border-gray-300"
+                          }`}
+                      >
+                        <option value="">Please Choose an option</option>
+                        {[...Array(11).keys()].map((num) => (
+                          <option key={num} value={num}>
+                            {num}
+                          </option>
+                        ))}
+                      </select>
+                      {/* {errors.selectExpyrs && (
                       <p className="text-red-500 text-sm mt-1">
                         {errors.selectExpyrs}
                       </p>
                     )} */}
-                  </div>
-                </div>
-
-                {/* Resume */}
-                <div className="w-full">
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Upload Resume
-                  </label>
-                  <div className="relative border border-dashed border-gray-400 rounded-md p-4 text-center cursor-pointer hover:border-[#3e66f3] hover:bg-blue-50">
-                    <input
-                      type="file"
-                      name="resume"
-                      accept=".pdf,.doc,.docx"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      className="absolute inset-0 opacity-0 w-full h-full cursor-pointer"
-                    />
-                    <div className="flex flex-col items-center justify-center text-gray-500">
-                      <RiUploadCloud2Line className="w-14 h-14" />
-                      <span className="text-sm">
-                        Click to upload or drag your file here
-                      </span>
-                      <span className="text-xs text-gray-400">
-                        (PDF, DOC, DOCX - max 2MB)
-                      </span>
-                      {formData.resume && (
-                        <p className="open-sans mt-2 text-sm md:text-base text-[#3e66f3]">
-                          <span className=" poppins font-semibold">
-                            {" "}
-                            Selected:{" "}
-                          </span>
-                          {formData.resume.name}
-                        </p>
-                      )}
                     </div>
                   </div>
-                  {/* {errors.resume && (
+
+                  {/* Resume */}
+                  <div className="w-full">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Upload Resume
+                    </label>
+                    <div className="relative border border-dashed border-gray-400 rounded-md p-4 text-center cursor-pointer hover:border-[#3e66f3] hover:bg-blue-50">
+                      <input
+                        type="file"
+                        name="resume"
+                        accept=".pdf,.doc,.docx"
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        className="absolute inset-0 opacity-0 w-full h-full cursor-pointer"
+                      />
+                      <div className="flex flex-col items-center justify-center text-gray-500">
+                        <RiUploadCloud2Line className="w-14 h-14" />
+                        <span className="text-sm">
+                          Click to upload or drag your file here
+                        </span>
+                        <span className="text-xs text-gray-400">
+                          (PDF, DOC, DOCX - max 2MB)
+                        </span>
+                        {formData.resume && (
+                          <p className="open-sans mt-2 text-sm md:text-base text-[#3e66f3]">
+                            <span className=" poppins font-semibold">
+                              {" "}
+                              Selected:{" "}
+                            </span>
+                            {formData.resume.name}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                    {/* {errors.resume && (
                     <p className="text-red-500 text-sm mt-1">{errors.resume}</p>
                   )} */}
-                </div>
+                  </div>
 
-                {/* Message */}
-                <div className="relative w-full">
-                  <textarea
-                    name="message"
-                    id="message"
-                    rows="3"
-                    value={formData.message}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    placeholder=" "
-                    className={`peer w-full border rounded-md p-2 placeholder-transparent resize-none focus:outline-none ${errors.message ? "border-red-500" : "border-gray-300"
-                      } focus:border-[#3e66f3]`}
-                  />
-                  <label
-                    htmlFor="message"
-                    className="absolute left-3 top-2 bg-white px-1 text-gray-500 transition-all duration-200 ease-in-out peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-focus:-top-2 peer-focus:text-sm peer-focus:text-[#3e66f3] peer-[&:not(:placeholder-shown)]:-top-2 peer-[&:not(:placeholder-shown)]:text-sm peer-[&:not(:placeholder-shown)]:text-gray-500"
-                  >
-                    How can we help you?
-                  </label>
-                  {/* {errors.message && (
+                  {/* Message */}
+                  <div className="relative w-full">
+                    <textarea
+                      name="message"
+                      id="message"
+                      rows="3"
+                      value={formData.message}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      placeholder=" "
+                      className={`peer w-full border rounded-md p-2 placeholder-transparent resize-none focus:outline-none ${errors.message ? "border-red-500" : "border-gray-300"
+                        } focus:border-[#3e66f3]`}
+                    />
+                    <label
+                      htmlFor="message"
+                      className="absolute left-3 top-2 bg-white px-1 text-gray-500 transition-all duration-200 ease-in-out peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-focus:-top-2 peer-focus:text-sm peer-focus:text-[#3e66f3] peer-[&:not(:placeholder-shown)]:-top-2 peer-[&:not(:placeholder-shown)]:text-sm peer-[&:not(:placeholder-shown)]:text-gray-500"
+                    >
+                      How can we help you?
+                    </label>
+                    {/* {errors.message && (
                     <p className="text-red-500 text-sm mt-1">
                       {errors.message}
                     </p>
                   )} */}
-                </div>
+                  </div>
 
-                {/* Submit */}
-                <div className="flex justify-center">
-                  {/* <button
+                  {/* Submit */}
+                  <div className="flex justify-center">
+                    {/* <button
                         type="button"
                         onClick={handleVerifyClick}
                         disabled={showOtpInput}
@@ -1671,55 +1684,57 @@ function page() {
                         </span>
                         <span className="absolute left-0 top-1/2 w-full h-[10px] bg-black opacity-0 transition-all duration-[800ms] ease-[cubic-bezier(0.23,1,0.32,1)] -translate-y-1/2 group-hover:h-full group-hover:opacity-100 rounded"></span>
                       </button> */}
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className={`relative poppins inline-flex items-center justify-center py-2 px-4 text-base open-sans rounded-lg text-white overflow-hidden transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] active:scale-95 group 
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className={`relative poppins inline-flex items-center justify-center py-2 px-4 text-base open-sans rounded-lg text-white overflow-hidden transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] active:scale-95 group 
                       ${isSubmitting
-                        ? "bg-gray-400 cursor-not-allowed"
-                        : "bg-[#3e66f3] hover:text-white cursor-pointer"
-                      } `}
-                  >
-                    <span className="relative z-10 flex items-center gap-2">
-                      {isSubmitting ? (
-                        <>
-                          <svg
-                            className="animate-spin h-4 w-4 text-white"
-                            viewBox="0 0 24 24"
-                          >
-                            <circle
-                              className="opacity-25"
-                              cx="12"
-                              cy="12"
-                              r="10"
-                              stroke="currentColor"
-                              strokeWidth="4"
-                              fill="none"
-                            />
-                            <path
-                              className="opacity-75"
-                              fill="currentColor"
-                              d="M4 12a8 8 0 018-8v8z"
-                            />
-                          </svg>
+                          ? "bg-gray-400 cursor-not-allowed"
+                          : "bg-[#3e66f3] hover:text-white cursor-pointer"
+                        } `}
+                    >
+                      <span className="relative z-10 flex items-center gap-2">
+                        {isSubmitting ? (
+                          <>
+                            <svg
+                              className="animate-spin h-4 w-4 text-white"
+                              viewBox="0 0 24 24"
+                            >
+                              <circle
+                                className="opacity-25"
+                                cx="12"
+                                cy="12"
+                                r="10"
+                                stroke="currentColor"
+                                strokeWidth="4"
+                                fill="none"
+                              />
+                              <path
+                                className="opacity-75"
+                                fill="currentColor"
+                                d="M4 12a8 8 0 018-8v8z"
+                              />
+                            </svg>
 
-                          Submitting...
-                        </>
-                      ) : (
-                        "Submit"
+                            Submitting...
+                          </>
+                        ) : (
+                          "Submit"
+                        )}
+                      </span>
+
+                      {/* Hover Effect (disabled when loading) */}
+                      {!isSubmitting && (
+                        <span className="absolute left-0 top-1/2 w-full h-[10px] bg-black opacity-0 transition-all duration-[800ms] ease-[cubic-bezier(0.23,1,0.32,1)] -translate-y-1/2 group-hover:h-full group-hover:opacity-100 rounded"></span>
                       )}
-                    </span>
-
-                    {/* Hover Effect (disabled when loading) */}
-                    {!isSubmitting && (
-                      <span className="absolute left-0 top-1/2 w-full h-[10px] bg-black opacity-0 transition-all duration-[800ms] ease-[cubic-bezier(0.23,1,0.32,1)] -translate-y-1/2 group-hover:h-full group-hover:opacity-100 rounded"></span>
-                    )}
-                  </button>
-                </div>
-              </form>
+                    </button>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
-        </div>
+        )}
+        
       </section>
 
       {/* Otp Modal */}

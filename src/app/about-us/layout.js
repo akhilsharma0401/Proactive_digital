@@ -3,7 +3,7 @@ export const metadata = {
   title: "About Proactive | Web Design & web development Experts",
   description: " Learn about Proactive - a full-service web design and web development agency passionate about building brands and lasting impact.",
   alternates: {
-    canonical: "",
+    canonical: "https://www.proactivedigital.in/about-us",
   },
   openGraph: {
     title: "About Proactive | Web Design & web development Experts",

@@ -3,7 +3,7 @@ export const metadata = {
   title: "SMS-Based Coupon Management System Development | Proactive",
   description: " Proactive offers custom SMS-based coupon management system development with secure coupon generation, verification, fraud prevention, and API integration.",
   alternates: {
-    canonical: "",
+    canonical: "https://www.proactivedigital.in/sms-based-coupon-management-system",
   },
   openGraph: {
     title: "SMS-Based Coupon Management System Development | Proactive",

@@ -156,7 +156,6 @@ const page = () => {
     }
   };
 
-
   const handleVerifyClick = async () => {
     if (isSendingOtp) return;
 
@@ -164,7 +163,6 @@ const page = () => {
       toast.error("Please enter a valid 10-digit phone number");
       return;
     }
-
 
     setShowOtpInput(true);
     setTimer(30);
@@ -182,7 +180,6 @@ const page = () => {
       if (!res?.data?.status) {
         toast.error(res?.data?.message || "Failed to send OTP");
 
-
         setShowOtpInput(false);
         return;
       }
@@ -195,13 +192,10 @@ const page = () => {
       toast.error("Failed to send OTP. Try again.");
 
       setShowOtpInput(false);
-
     } finally {
       setIsSendingOtp(false);
     }
   };
-
-
 
   const handleOtpVerify = async () => {
     if (!otp || otp.length !== 6) {
@@ -234,12 +228,10 @@ const page = () => {
       setShowOtpInput(false);
       setOtp("");
       setOtpId(null); // reset
-
     } catch (err) {
       toast.error("OTP verification failed. Try again.");
     }
   };
-
 
   useEffect(() => {
     if (showOtpInput) {
@@ -249,11 +241,10 @@ const page = () => {
     }
   }, [showOtpInput]);
 
-
   const handleResendOtp = () => {
     if (isLocked) {
       toast.error(
-        "You have reached the resend OTP limit! Please try again after 1 hour..."
+        "You have reached the resend OTP limit! Please try again after 1 hour...",
       );
       return;
     }
@@ -263,11 +254,10 @@ const page = () => {
       setIsLocked(true);
       setCanResend(false);
       toast.error(
-        "You have reached the resend OTP limit! Please try again after 1 hour..."
+        "You have reached the resend OTP limit! Please try again after 1 hour...",
       );
       return;
     }
-
 
     const remaining = MAX_ATTEMPTS - (resendAttempts + 1);
 
@@ -280,15 +270,13 @@ const page = () => {
     toast.success(
       remaining > 0
         ? `OTP resent successfully! ${remaining} attempts remaining`
-        : "you have reached resend OTP limit! Please try again after 1 hour..."
+        : "you have reached resend OTP limit! Please try again after 1 hour...",
     );
-
 
     if (remaining === 0) {
       setIsLocked(true);
     }
   };
-
 
   useEffect(() => {
     if (isLocked) {
@@ -348,7 +336,6 @@ const page = () => {
 
       toast.success("Form submitted successfully!");
 
-
       setFormData({
         firstName: "",
         lastName: "",
@@ -369,15 +356,12 @@ const page = () => {
       setCanResend(false);
       setIsLocked(false);
       setLockTimer(3600);
-
     } catch (error) {
       toast.error("Something Went Wrong.");
     } finally {
       setIsSubmitting(false);
     }
   };
-
-
 
   return (
     <div>
@@ -393,7 +377,9 @@ const page = () => {
           </h1>
 
           <p className="open-sans text-sm sm:text-base md:text-lg text-center max-w-xl  text-gray-700 leading-relaxed">
-            We value meaningful collaboration by listening carefully understanding your goals and creating solutions that are truly tailored to your needs.
+            We value meaningful collaboration by listening carefully
+            understanding your goals and creating solutions that are truly
+            tailored to your needs.
           </p>
         </div>
         <div className="rounded-2xl overflow-hidden shadow-xl grid grid-cols-1 lg:grid-cols-2 bg-white relative">
@@ -564,7 +550,7 @@ const page = () => {
                       onChange={handleChange}
                       onBlur={handleBlur}
                       placeholder=" "
-                      //    className={`peer w-full border rounded-md p-2 placeholder-transparent resize-none focus:outline-none 
+                      //    className={`peer w-full border rounded-md p-2 placeholder-transparent resize-none focus:outline-none
                       //     ${
                       //       errors.message ? "border-red-500" : "border-gray-300"
                       //     } focus:border-[#3e66f3]`}
@@ -577,10 +563,11 @@ const page = () => {
                       //   </label>
                       // </div>
                       className={`peer w-full border rounded-md p-2 placeholder-transparent focus:border-[#3e66f3] focus:outline-none
-                            ${errors.firstName
-                          ? "border-red-500"
-                          : "border-gray-300"
-                        } `}
+                            ${
+                              errors.firstName
+                                ? "border-red-500"
+                                : "border-gray-300"
+                            } `}
                     />
                     <label
                       htmlFor="firstName"
@@ -600,9 +587,9 @@ const page = () => {
                       onChange={handleChange}
                       onBlur={handleBlur}
                       placeholder=" "
-                      className={`peer w-full border rounded-md p-2 placeholder-transparent focus:outline-none
-        ${errors.lastName ? "border-red-500" : "border-gray-300"} 
-        focus:border-[#3e66f3]`}
+                      className={`peer w-full border rounded-md p-2 placeholder-transparent focus:outline-none focus:border-[#3e66f3]
+                        ${errors.lastName ? "border-red-500" : "border-gray-300"} 
+                        `}
                     />
                     <label
                       htmlFor="lastName"
@@ -624,9 +611,9 @@ const page = () => {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     placeholder=" "
-                    className={`peer w-full border rounded-md p-2 placeholder-transparent focus:outline-none 
-      ${errors.email ? "border-red-500" : "border-gray-300"} 
-      focus:border-[#3e66f3]`}
+                    className={`peer w-full border rounded-md p-2 placeholder-transparent focus:outline-none focus:border-[#3e66f3] 
+                      ${errors.email ? "border-red-500" : "border-gray-300"} 
+                      `}
                   />
                   <label
                     htmlFor="email"
@@ -651,11 +638,12 @@ const page = () => {
                         placeholder=" "
                         disabled={isPhoneVerified}
                         className={`peer w-full border rounded-md p-2 placeholder-transparent  focus:outline-none 
-          ${errors.phone ? "border-red-500" : "border-gray-300"} 
-          focus:border-[#3e66f3] ${isPhoneVerified
+                          ${errors.phone ? "border-red-500" : "border-gray-300"} 
+                        focus:border-[#3e66f3] ${
+                          isPhoneVerified
                             ? "bg-gray-100 text-gray-500 cursor-not-allowed"
                             : ""
-                          }`}
+                        }`}
                       />
                       <label
                         htmlFor="phone"
@@ -671,14 +659,14 @@ const page = () => {
                         onClick={handleVerifyClick}
                         disabled={showOtpInput || isSendingOtp}
                         className={`relative poppins text-nowrap inline-flex items-center justify-center py-2 px-4 text-base open-sans rounded-lg text-white overflow-hidden transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] active:scale-95 group
-      ${showOtpInput || isSendingOtp
-                            ? "bg-gray-400 cursor-not-allowed"
-                            : "bg-[#3e66f3] hover:text-white cursor-pointer"
-                          }
+      ${
+        showOtpInput || isSendingOtp
+          ? "bg-gray-400 cursor-not-allowed"
+          : "bg-[#3e66f3] hover:text-white cursor-pointer"
+      }
     `}
                       >
                         <span className="relative z-10 flex items-center gap-2">
-
                           {isSendingOtp ? (
                             <>
                               {/* Spinner */}
@@ -701,15 +689,12 @@ const page = () => {
                                   d="M4 12a8 8 0 018-8v8z"
                                 />
                               </svg>
-
-
                             </>
                           ) : showOtpInput ? (
                             "OTP Sent"
                           ) : (
                             "Verify"
                           )}
-
                         </span>
 
                         {/* Hover Effect (Disable when loading) */}
@@ -720,7 +705,6 @@ const page = () => {
                     ) : (
                       <CheckCircle className="text-green-500 w-6 h-6" />
                     )}
-
                   </div>
 
                   {/* OTP Section (unchanged) */}
@@ -730,8 +714,6 @@ const page = () => {
                         Please enter your{" "}
                         <span className="text-[#3e66f3]">6 Digit</span> OTP.
                       </p>
-
-
 
                       {/* OTP Input + Submit */}
                       <div className="flex flex-col md:flex-row gap-3">
@@ -752,7 +734,6 @@ const page = () => {
                           }}
                         />
                         <div className="flex gap-3">
-
                           <button
                             type="button"
                             onClick={handleOtpVerify}
@@ -829,8 +810,9 @@ const page = () => {
                     value={formData.service}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    className={`form-select w-full border rounded-md p-3 text-base  focus:outline-none focus:border-[#3e66f3] ${errors.service ? "border-red-500" : "border-gray-300"
-                      }`}
+                    className={`form-select w-full border rounded-md p-3 text-base  focus:outline-none focus:border-[#3e66f3] ${
+                      errors.service ? "border-red-500" : "border-gray-300"
+                    }`}
                   >
                     <option value="">Select Service</option>
                     <option value={"Web Solutions "}>Web Solutions</option>
@@ -878,8 +860,9 @@ const page = () => {
                     onBlur={handleBlur}
                     placeholder=" "
                     className={`peer w-full border rounded-md p-2 placeholder-transparent resize-none focus:outline-none 
-                    ${errors.message ? "border-red-500" : "border-gray-300"
-                      } focus:border-[#3e66f3]`}
+                    ${
+                      errors.message ? "border-red-500" : "border-gray-300"
+                    } focus:border-[#3e66f3]`}
                   />
                   <label
                     htmlFor="message"
@@ -894,10 +877,11 @@ const page = () => {
                     type="submit"
                     disabled={isSubmitting}
                     className={`relative poppins inline-flex items-center justify-center py-2 px-4 text-base open-sans rounded-lg text-white overflow-hidden transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] active:scale-95 group
-    ${isSubmitting
-                        ? "bg-gray-400 cursor-not-allowed"
-                        : "bg-[#3e66f3] hover:text-white cursor-pointer"
-                      }
+    ${
+      isSubmitting
+        ? "bg-gray-400 cursor-not-allowed"
+        : "bg-[#3e66f3] hover:text-white cursor-pointer"
+    }
   `}
                   >
                     <span className="relative z-10 flex items-center gap-2">
@@ -922,7 +906,6 @@ const page = () => {
                               d="M4 12a8 8 0 018-8v8z"
                             />
                           </svg>
-
                           Submitting...
                         </>
                       ) : (
@@ -935,7 +918,6 @@ const page = () => {
                       <span className="absolute left-0 top-1/2 w-full h-[10px] bg-black opacity-0 transition-all duration-[800ms] ease-[cubic-bezier(0.23,1,0.32,1)] -translate-y-1/2 group-hover:h-full group-hover:opacity-100 rounded"></span>
                     )}
                   </button>
-
                 </div>
               </form>
             </div>

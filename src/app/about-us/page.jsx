@@ -400,7 +400,7 @@ function page() {
               className="flex justify-between items-start gap-4"
             >
               <h2
-                className={`text-4xl sm:text-7xl md:text-8xl lg:text-[7.5rem] font-extrabold leading-none ${textColor}`}
+                className={`text-5xl sm:text-7xl md:text-8xl lg:text-[7.5rem] font-extrabold leading-none ${textColor}`}
               >
                 Fuel Your
               </h2>
@@ -422,7 +422,7 @@ function page() {
                 className="w-20 sm:w-36 md:w-38 object-cover mt-0 md:mt-1 lg:mt-3"
               />
               <h2
-                className={`text-4xl sm:text-7xl md:text-8xl lg:text-[7.5rem] font-extrabold leading-none ${textColor}`}
+                className={`text-5xl sm:text-7xl md:text-8xl lg:text-[7.5rem] font-extrabold leading-none ${textColor}`}
               >
                 Business
               </h2>
@@ -430,7 +430,7 @@ function page() {
 
             <motion.h3
               style={{ x: xExpansion }}
-              className={`text-4xl sm:text-7xl md:text-8xl lg:text-[7.5rem] font-extrabold leading-none ${textColor}`}
+              className={`text-5xl sm:text-7xl md:text-8xl lg:text-[7.5rem] font-extrabold leading-none ${textColor}`}
             >
               Expansion
             </motion.h3>
@@ -514,7 +514,7 @@ function page() {
             className="flex items-center justify-center gap-3"
           >
             <Sparkles className="text-[#0E76CD] w-8 h-8" />
-            <h2 className="text-3xl md:text-6xl font-extrabold bg-gradient-to-r from-[#0E76CD] via-[#3EA7FF] to-[#0056B3] bg-clip-text text-transparent leading-">
+            <h2 className="text-4xl md:text-6xl font-extrabold bg-linear-to-r from-[#0E76CD] via-[#3EA7FF] to-[#0056B3] bg-clip-text text-transparent leading-relaxed">
               Our Journey
             </h2>
 

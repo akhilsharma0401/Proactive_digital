@@ -550,7 +550,7 @@ function page() {
         ? res.data.data
         : [];
 
-      // ✅ Filter only PUBLISHED jobs
+      // Filter only PUBLISHED jobs
       const publishedJobs = rows.filter(
         (job) => job.status === "PUBLISHED"
       );

@@ -3,8 +3,13 @@ import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Lottie from "lottie-react";
-import { motion, AnimatePresence, useAnimation, useScroll, useTransform } from "framer-motion";
-
+import {
+  motion,
+  AnimatePresence,
+  useAnimation,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 
 // import CardSwap, { Card } from "./components/CardSwap";
 // import { ClipPathCard } from "../components/ClipPathCard";
@@ -48,7 +53,6 @@ import cpassSolution from "../../../public/icons/cpassSolution.jpg";
 import servicesIconDeliver from "../../../public/icons/servicesIconDeliver.png";
 import servicesIconScale from "../../../public/icons/servicesIconScale.png";
 
-
 // components
 import { ClipPathCard } from "../components/ClipPathCard";
 import FaqItem from "./../components/FaqItem";
@@ -59,7 +63,7 @@ import { BsArrowRight } from "react-icons/bs";
 import { PiArrowElbowRightDown } from "react-icons/pi";
 
 // image pass for rotating cards
-const data = [webSolutionServices, webDesignServices, cpassSolutionServices,];
+const data = [webSolutionServices, webDesignServices, cpassSolutionServices];
 
 // our Process
 const ourProcess = [
@@ -210,7 +214,6 @@ const App = () => {
 
   // Timeline ends
 
-
   return (
     <div className="space-y-14">
       {/* <section className="bg-linear-to-t from-[#EBF3FF] to-[#DDE8FF] "> */}
@@ -232,31 +235,27 @@ const App = () => {
               <div className="hidden lg:block absolute right-70 xl:right-90 2xl:right-110  top-0 2xl:-top-10  ">
                 <FaLaptopCode className="text-4xl text-[#ab4aff] float-medium " />
               </div>
-              <div className="hidden lg:block absolute right-35 xl:right-70 2xl:right-30 bottom-5  2xl:bottom-5 ">
+              <div className="hidden lg:block absolute top-15 xl:right-40 xl:top-25 2xl:right-50 2xl:top-10 ">
                 {/* <LuClipboardPenLine className="text-4xl text-[#55a0ff] float-medium " /> */}
-                <RiRobot2Line className="text-4xl text-[#55a0ff] float-medium " />
+                <RiRobot2Line className="text-4xl text-[#fc4453] float-medium " />
               </div>
-              <div className="hidden lg:block absolute right-40 bottom-57 xl:right-40 xl:bottom-35 2xl:right-25 2xl:bottom-70   ">
+              {/* <div className="hidden lg:block absolute right-40 bottom-57 xl:right-40 xl:bottom-35 2xl:right-25 2xl:bottom-70   ">
                 <FaChartLine className="text-3xl text-[#ff52f2] float-medium " />
-              </div>
-              <div className="hidden lg:block absolute top-15 xl:right-40 xl:top-25 2xl:right-50 2xl:top-10">
+              </div> */}
+              {/* <div className="hidden lg:block absolute top-15 xl:right-40 xl:top-25 2xl:right-50 2xl:top-10">
                 <FaNetworkWired className="text-4xl text-[#fc4453] float-medium " />
-              </div>
+              </div> */}
               {/* content */}
               <div className="flex flex-col gap-4  max-w-4xl 2xl:min-w-4xl  z-100 ">
                 <div className="">
                   <h1 className="text-[30px] md:text-[42px] 2xl:text-[52px] text-center lg:text-start poppins font-medium text-gray-900">
                     Website{" "}
                     <span className="font-semibold text-[#3e66f3]">
-                      Development,{" "}
-                      Redesign
-                    </span>
-                    {" "} & {" "}
-                    <span className="font-semibold text-[#3e66f3]">
-
-                      CPaaS
-                    </span>
-                    {" "} Solution {" "}
+                      Development, Redesign
+                    </span>{" "}
+                    &{" "}
+                    <span className="font-semibold text-[#3e66f3]">CPaaS</span>{" "}
+                    Solution{" "}
                     {/* <span className="inline-block">
                       Redesign &  CPaaS Solution
                     </span> */}
@@ -264,7 +263,9 @@ const App = () => {
                 </div>
                 <div className=" space-y-2">
                   <p className="text-[14px] md:text-[16px] 2xl:text-[22px] text-gray-700 open-sans text-center lg:text-start pe-2">
-                    Offering  website design, web solutions & CPaaS services to help businesses grow online with strategy, creativity & technology.
+                    Offering website design, web solutions & CPaaS services to
+                    help businesses grow online with strategy, creativity &
+                    technology.
                   </p>
                 </div>
                 <div className="flex w-full justify-center lg:justify-start">
@@ -402,7 +403,9 @@ const App = () => {
                     Web Development
                   </h2>
                   <p className="md:text-[16px] text-[14px] text-center sm:text-start text-black open-sans leading-relaxed">
-                    Boost your digital presence with responsive, high-performing websites built for businesses - from corporate sites and product showcases to custom web solutions
+                    Boost your digital presence with responsive, high-performing
+                    websites built for businesses - from corporate sites and
+                    product showcases to custom web solutions
                   </p>
                 </motion.div>
               )}
@@ -420,7 +423,9 @@ const App = () => {
                     Web Design
                   </h2>
                   <p className="md:text-[16px] text-[14px] text-center sm:text-start open-sans text-black leading-relaxed ">
-                    Build a strong brand identity with creative design solutions. Convert PSD to responsive HTML and boost engagement with impactful animations.
+                    Build a strong brand identity with creative design
+                    solutions. Convert PSD to responsive HTML and boost
+                    engagement with impactful animations.
                   </p>
                 </motion.div>
               )}
@@ -438,11 +443,12 @@ const App = () => {
                     Cpass Solutions
                   </h2>
                   <p className="md:text-[16px] text-[14px] text-center sm:text-start open-sans text-black leading-relaxed">
-                    Celitix CPaaS empowers businesses with SMS, WhatsApp, RCS, and voice solutions - enabling seamless communication, lead management, automation, and customer engagement.
+                    Celitix CPaaS empowers businesses with SMS, WhatsApp, RCS,
+                    and voice solutions - enabling seamless communication, lead
+                    management, automation, and customer engagement.
                   </p>
                 </motion.div>
               )}
-
             </AnimatePresence>
           </div>
         </div>
@@ -468,13 +474,13 @@ const App = () => {
             <div className="flex flex-col gap-3">
               <h2 className="text-[28px] lg:text-[35px] poppins font-medium  text-center lg:text-start">
                 Elevate Your Brand with
-                <span className=" text-[#3e66f3] ">
-                  {" "}
-                  Our Web Solutions {" "}
-                </span>
+                <span className=" text-[#3e66f3] "> Our Web Solutions </span>
               </h2>
               <p className="text-gray-700 text-[14px] md:text-[16px] open-sans">
-                We design and develop high-performance websites and web applications that help businesses grow. From modern UI/UX design to scalable development solutions, we combine creativity with technology.
+                We design and develop high-performance websites and web
+                applications that help businesses grow. From modern UI/UX design
+                to scalable development solutions, we combine creativity with
+                technology.
               </p>
             </div>
 
@@ -483,7 +489,8 @@ const App = () => {
               {/* card1 */}
               <Link
                 href="/web-development"
-                className="relative py-2 flex justify-between items-center border-b border-gray-400 group cursor-pointer overflow-hidden before:absolute before:bottom-0 before:left-0 before:w-full before:h-0 before:bg-[#E5F0FF] before:rounded-t-2xl before:transition-all before:duration-500 before:ease-[cubic-bezier(0.25,1,0.5,1)] before:z-0 hover:before:h-full" >
+                className="relative py-2 flex justify-between items-center border-b border-gray-400 group cursor-pointer overflow-hidden before:absolute before:bottom-0 before:left-0 before:w-full before:h-0 before:bg-[#E5F0FF] before:rounded-t-2xl before:transition-all before:duration-500 before:ease-[cubic-bezier(0.25,1,0.5,1)] before:z-0 hover:before:h-full"
+              >
                 {/* Heading text */}
                 <h3 className="relative z-10 text-[16px] md:text-[18px] poppins font-medium text-[#3e66f3] transition-all duration-300 group-hover:translate-x-3">
                   Website Development
@@ -509,7 +516,8 @@ const App = () => {
               {/* card 2  */}
               <Link
                 href="/web-design"
-                className="relative py-2 flex justify-between items-center border-b border-gray-400 group cursor-pointer overflow-hidden before:absolute before:bottom-0 before:left-0 before:w-full before:h-0 before:bg-[#E5F0FF] before:rounded-t-2xl  before:transition-all before:duration-500 before:ease-[cubic-bezier(0.25,1,0.5,1)] before:z-0 hover:before:h-full " >
+                className="relative py-2 flex justify-between items-center border-b border-gray-400 group cursor-pointer overflow-hidden before:absolute before:bottom-0 before:left-0 before:w-full before:h-0 before:bg-[#E5F0FF] before:rounded-t-2xl  before:transition-all before:duration-500 before:ease-[cubic-bezier(0.25,1,0.5,1)] before:z-0 hover:before:h-full "
+              >
                 <h3 className="relative z-10 text-[16px] md:text-[18px] poppins font-medium text-[#3e66f3] transition-all duration-300 group-hover:translate-x-3">
                   Website Design
                 </h3>
@@ -528,7 +536,8 @@ const App = () => {
               {/* card 3 */}
               <Link
                 href="/ecommerce"
-                className="relative py-2 flex justify-between items-center border-b border-gray-400 group cursor-pointer overflow-hidden before:absolute before:bottom-0 before:left-0 before:w-full before:h-0 before:bg-[#E5F0FF] before:rounded-t-2xl before:transition-all before:duration-500 before:ease-[cubic-bezier(0.25,1,0.5,1)] before:z-0 hover:before:h-full" >
+                className="relative py-2 flex justify-between items-center border-b border-gray-400 group cursor-pointer overflow-hidden before:absolute before:bottom-0 before:left-0 before:w-full before:h-0 before:bg-[#E5F0FF] before:rounded-t-2xl before:transition-all before:duration-500 before:ease-[cubic-bezier(0.25,1,0.5,1)] before:z-0 hover:before:h-full"
+              >
                 <h3 className="relative z-10 text-[16px] md:text-[18px] poppins font-medium text-[#3e66f3] transition-all duration-300 group-hover:translate-x-3">
                   Ecommerce
                 </h3>
@@ -547,7 +556,8 @@ const App = () => {
               {/* card 4 */}
               <Link
                 href="/custom-development"
-                className="relative py-2 flex justify-between items-center border-b border-gray-400 group cursor-pointer overflow-hidden before:absolute before:bottom-0 before:left-0 before:w-full before:h-0 before:bg-[#E5F0FF] before:rounded-t-2xl before:transition-all before:duration-500 before:ease-[cubic-bezier(0.25,1,0.5,1)] before:z-0 hover:before:h-full" >
+                className="relative py-2 flex justify-between items-center border-b border-gray-400 group cursor-pointer overflow-hidden before:absolute before:bottom-0 before:left-0 before:w-full before:h-0 before:bg-[#E5F0FF] before:rounded-t-2xl before:transition-all before:duration-500 before:ease-[cubic-bezier(0.25,1,0.5,1)] before:z-0 hover:before:h-full"
+              >
                 <h3 className="relative z-10 text-[16px] md:text-[18px] poppins font-medium text-[#3e66f3] transition-all duration-300 group-hover:translate-x-3">
                   Custom Development
                 </h3>
@@ -597,7 +607,12 @@ const App = () => {
 
           <div className="flex flex-col gap-4">
             <p className="text-gray-900 text-[14px] open-sans md:text-[16px]  leading-relaxed w-full text-center md:text-start">
-              At Proactive Digital Solutions, we specialize in website development, modern web design, and CPaaS communication solutions to help businesses build a strong and reliable digital presence. We create websites that are visually engaging, performance-driven, and built to scale, while enabling seamless communication through API-powered messaging platforms.
+              At Proactive Digital Solutions, we specialize in website
+              development, modern web design, and CPaaS communication solutions
+              to help businesses build a strong and reliable digital presence.
+              We create websites that are visually engaging, performance-driven,
+              and built to scale, while enabling seamless communication through
+              API-powered messaging platforms.
             </p>
 
             <div className="w-full flex justify-center md:justify-start ">
@@ -611,7 +626,6 @@ const App = () => {
               </Link>
             </div>
           </div>
-
         </div>
 
         {/* Right Image */}
@@ -627,7 +641,8 @@ const App = () => {
       {/* Our Process */}
       <section
         ref={containerRef}
-        className="relative px-6 lg:px-10 xl:px-20  max-w-7xl mx-auto" >
+        className="relative px-6 lg:px-10 xl:px-20  max-w-7xl mx-auto"
+      >
         <div className="grid grid-cols-1 lg:grid-cols-[30%_65%] gap-15 ">
           {/* Left label */}
           <div className="lg:sticky top-30 text-center lg:text-start lg:self-start text-4xl lg:text-5xl font-semibold  text-[#3e66f3]  lg:text-gray-900">
@@ -642,7 +657,8 @@ const App = () => {
             {/* Blue animated fill */}
             <motion.div
               style={{ height: lineHeight }}
-              className="absolute left-27 lg:left-35 top-0 w-1 bg-[#3e66f3] origin-top " >
+              className="absolute left-27 lg:left-35 top-0 w-1 bg-[#3e66f3] origin-top "
+            >
               <motion.div
                 style={{ y: lineHeight }}
                 className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-[#3e66f3]"
@@ -854,9 +870,8 @@ const App = () => {
           </div>
         </div>
       </section>
-      <section className="bg-[url('/images/diagonalStripes.svg')] bg-repeat bg-auto py-10 px-6 lg:px-10" >
-        <div className="relative flex flex-col md:flex-row bg-gradient-to-r from-blue-50 to-blue-50 shadow-lg h-auto md:h-[300px] max-w-6xl 2xl:max-w-7xl mx-auto rounded-3xl md:rounded-4xl overflow-hidden justify-between">
-          {/* background svg */}
+      {/* <section className="bg-[url('/images/diagonalStripes.svg')] bg-repeat bg-auto py-10 px-6 lg:px-10" >
+        <div className="relative flex flex-col md:flex-row bg-gradient-to-r from-blue-50 to-blue-50 shadow-lg h-auto md:h-[300px] max-w-6xl 2xl:max-w-7xl mx-auto rounded-3xl md:rounded-4xl overflow-hidden justify-between"> 
           <svg
             className="absolute top-15 left-0 w-[500px] h-[350px] opacity-10 pointer-events-none -translate-y-1/4 -translate-x-1/4"
             viewBox="0 0 16 16"
@@ -865,13 +880,12 @@ const App = () => {
             <path d="M10,1L3,9h4.5L6,15l7-8H8.5L10,1z" fill="#60A5FA" />
           </svg>
 
-          <div className="relative flex z-10 items-start">
-            {/* rocket animation */}
+          <div className="relative flex z-10 items-start"> 
             <div className="md:flex absolute -top-7 -left-7 md:-left-2 md:top-0 w-[150px] h-[150px] md:w-auto md:h-[110px] lg:h-[120px] opacity-25 md:opacity-100   ">
               <Lottie animationData={rocket} loop={true} />
             </div>
 
-            {/* content */}
+          
             <div className="flex flex-col  justify-center py-10 md:py-0 px-10 md:px-18  gap-4  h-full ">
               <div className="flex flex-col gap-2">
                 <h2 className="text-[24px] md:text-[30px] lg:text-[35px] text-center md:text-start font-medium poppins text-[#1d4ed8]">
@@ -882,7 +896,7 @@ const App = () => {
                 </p>
               </div>
 
-              {/* cta button */}
+               
               <div className="flex justify-center md:justify-start">
                 <Link href="/contact-us" >
                   <button
@@ -896,13 +910,13 @@ const App = () => {
                   </button>
                 </Link>
 
-                {/* cta form component */}
-                {/* <BookDemoDialog visible={visible} setVisible={setVisible} /> */}
+               
+                 
               </div>
             </div>
           </div>
 
-          {/* right rounded svg */}
+ 
           <div className="relative items-center justify-center hidden md:flex z-10">
             <svg
               className="h-full w-full"
@@ -930,7 +944,7 @@ const App = () => {
             </svg>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* cta */}
       <section
@@ -939,7 +953,8 @@ const App = () => {
           backgroundImage: "url('/images/diagonalStripes.svg')",
           backgroundRepeat: "repeat",
           backgroundSize: "auto",
-        }} >
+        }}
+      >
         <div className="relative flex flex-col md:flex-row bg-linear-to-r from-blue-50 to-blue-50 shadow-lg h-auto md:h-[320px] max-w-7xl 2xl:max-w-7xl mx-auto rounded-3xl md:rounded-4xl overflow-hidden justify-between">
           {/* background svg */}
           <svg

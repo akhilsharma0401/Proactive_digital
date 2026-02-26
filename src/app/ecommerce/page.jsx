@@ -38,31 +38,38 @@ const page = () => {
   const faqs = [
     {
       question: "What is eCommerce website development?",
-      answer: "eCommerce website development involves creating a fully functional online store with product management, secure checkout, and a user-friendly, conversion-focused design.",
+      answer:
+        "eCommerce website development involves creating a fully functional online store with product management, secure checkout, and a user-friendly, conversion-focused design.",
     },
     {
       question: "Do you provide custom eCommerce development services?",
-      answer: "Yes. We offer custom eCommerce development with tailored layouts, advanced filters, product features, and integrations designed to boost online sales and business growth.",
+      answer:
+        "Yes. We offer custom eCommerce development with tailored layouts, advanced filters, product features, and integrations designed to boost online sales and business growth.",
     },
     {
       question: "Which platforms do you use for eCommerce store development?",
-      answer: "We build online stores using Shopify, WooCommerce, Magento, OpenCart, and Laravel, ensuring scalable, flexible, and high-performance eCommerce websites.",
+      answer:
+        "We build online stores using Shopify, WooCommerce, Magento, OpenCart, and Laravel, ensuring scalable, flexible, and high-performance eCommerce websites.",
     },
     {
       question: "Will my eCommerce website be mobile-friendly and fast?",
-      answer: "Absolutely. We create mobile-friendly eCommerce websites optimized for speed, smooth navigation, and a seamless shopping experience across all devices.",
+      answer:
+        "Absolutely. We create mobile-friendly eCommerce websites optimized for speed, smooth navigation, and a seamless shopping experience across all devices.",
     },
     {
       question: "How long does eCommerce website development take?",
-      answer: "A basic eCommerce store takes about 2–3 weeks, while custom eCommerce solutions may require 4–8 weeks, depending on features and design complexity.",
+      answer:
+        "A basic eCommerce store takes about 2–3 weeks, while custom eCommerce solutions may require 4–8 weeks, depending on features and design complexity.",
     },
     {
       question: "How secure are your eCommerce websites?",
-      answer: "Our eCommerce websites include SSL security, encrypted payments, secure coding, firewalls, and regular updates, ensuring safe online transactions and data protection.",
+      answer:
+        "Our eCommerce websites include SSL security, encrypted payments, secure coding, firewalls, and regular updates, ensuring safe online transactions and data protection.",
     },
     {
       question: "Do you offer eCommerce website maintenance and support?",
-      answer: "Yes. We provide complete eCommerce maintenance services, including updates, bug fixes, speed optimization, security patches, and ongoing technical support.",
+      answer:
+        "Yes. We provide complete eCommerce maintenance services, including updates, bug fixes, speed optimization, security patches, and ongoing technical support.",
     },
   ];
   // FAQs Ends
@@ -133,44 +140,50 @@ const page = () => {
       step: "step-1",
       title: "Discovery & Requirement Analysis",
       icon: <IoSearch className="text-xl text-white" />,
-      description: "We start by understanding your business goals, target audience, and technical requirements to define a clear project roadmap tailored to your vision. ",
+      description:
+        "We start by understanding your business goals, target audience, and technical requirements to define a clear project roadmap tailored to your vision. ",
     },
     {
       id: 2,
       step: "step-2",
       title: "Strategy & UI/UX Design",
       icon: <CgWebsite className="text-xl text-white" />,
-      description: "Our team crafts a strategic plan and creates an intuitive, conversion-focused design that reflects your brand identity and enhances customer experience.",
+      description:
+        "Our team crafts a strategic plan and creates an intuitive, conversion-focused design that reflects your brand identity and enhances customer experience.",
     },
     {
       id: 3,
       step: "step-3",
       title: "Development & System Integration",
       icon: <IoCodeSlash className="text-xl text-white" />,
-      description: "We build your e-commerce platform using modern technologies and integrate essential tools, payment gateways, and APIs to ensure seamless functionality.",
+      description:
+        "We build your e-commerce platform using modern technologies and integrate essential tools, payment gateways, and APIs to ensure seamless functionality.",
     },
     {
       id: 4,
       step: "step-4",
       title: "Testing & Performance Optimization",
       icon: <RiQrScan2Line className="text-xl text-white" />,
-      description: "Every feature is thoroughly tested for functionality, speed, security, and cross-device compatibility to ensure a flawless user experience.",
+      description:
+        "Every feature is thoroughly tested for functionality, speed, security, and cross-device compatibility to ensure a flawless user experience.",
     },
     {
       id: 5,
       step: "step-5",
       title: "Launch & Deployment",
       icon: <HiOutlineRocketLaunch className="text-xl text-white" />,
-      description: "Once approved, we deploy your website smoothly, ensuring secure hosting setup and a seamless transition to live operations.",
+      description:
+        "Once approved, we deploy your website smoothly, ensuring secure hosting setup and a seamless transition to live operations.",
     },
     {
       id: 6,
       step: "step-6",
       title: "Ongoing Support & Maintenance",
       icon: <FaRegCircleCheck className="text-xl text-white" />,
-      description: "After launch, we provide continuous technical support, updates, and performance monitoring to keep your e-commerce platform optimized and competitive.",
-    }
-  ]
+      description:
+        "After launch, we provide continuous technical support, updates, and performance monitoring to keep your e-commerce platform optimized and competitive.",
+    },
+  ];
 
   const benefits = [
     {
@@ -189,13 +202,14 @@ const page = () => {
       // title: "Large Enterprises",
       title: "Corporates",
       des: "Enterprise-grade commerce with high-volume performance, multi-store management, advanced APIs, and secure scalable infrastructure.",
-    }
-  ]
+    },
+  ];
 
   return (
     <>
       {/* Hero Section */}
-      <section className="bg-cover bg-center bg-no-repeat lg:px-10"
+      <section
+        className="bg-cover bg-center bg-no-repeat lg:px-10"
         style={{ backgroundImage: "url('/images/heroAnimateBg.svg')" }}
       >
         <div className=" container mx-auto flex flex-col md:flex-row gap-10 items-center justify-between px-6 lg:px-10 xl:px-20 lg:py-12 py-10 ">
@@ -248,7 +262,6 @@ const page = () => {
           </div>
         </div>
       </section>
-
 
       {/* why choose web development */}
       {/* <section className="bg-gradient-to-r from-[#f2f6ff] via-[#f5f6fe] to-[#e8edfd]"> */}
@@ -340,12 +353,10 @@ const page = () => {
         </div>
       </section>
 
-
       {/* who can get benifits */}
 
       <section className="container mx-auto px-6 lg:px-10 2xl:px-15  ">
         <div className=" grid grid-cols-1 lg:grid-cols-2 gap-10 items-center ">
-
           {/* LEFT */}
           <div className="lg:sticky lg:top-28">
             <div className="inline-flex items-center gap-2 bg-blue-50 text-[#3e66f3] px-4 py-2 rounded-full text-sm font-semibold">
@@ -354,12 +365,16 @@ const page = () => {
 
             <h2 className="poppins text-3xl sm:text-4xl xl:text-5xl font-semibold leading-tight mt-6">
               Who can get Benefits
-              <span className="text-[#3e66f3] lg:block"> {" "} E-commerce Development {" "} </span> Services?
+              <span className="text-[#3e66f3] lg:block">
+                {" "}
+                E-commerce Development{" "}
+              </span>{" "}
+              Services?
             </h2>
 
             <p className="open-sans text-gray-600 text-base lg:text-lg leading-relaxed mt-5 max-w-xl">
-              A structured eCommerce build for growth — whether you’re launching,
-              scaling, or managing enterprise-level operations.
+              A structured eCommerce build for growth — whether you’re
+              launching, scaling, or managing enterprise-level operations.
             </p>
           </div>
 
@@ -371,7 +386,9 @@ const page = () => {
                   <h4 className="poppins text-lg lg:text-xl font-medium group-hover:text-[#3e66f3] transition">
                     {benefit.title}
                   </h4>
-                  <span className="text-4xl font-bold text-gray-200 leading-none">{benefit.step}</span>
+                  <span className="text-4xl font-bold text-gray-200 leading-none">
+                    {benefit.step}
+                  </span>
                 </div>
 
                 <p className="open-sans text-sm text-gray-600 leading-relaxed">
@@ -432,11 +449,8 @@ const page = () => {
               </div>
             </div> */}
           </div>
-
         </div>
       </section>
-
-
 
       {/* <div className="container mx-auto py-10 px-6 lg:px-10">
         <div className="flex flex-col gap-10">
@@ -501,31 +515,36 @@ const page = () => {
             <h2 className="poppins text-4xl max-w-xl leading-relaxed">
               Our
               <span className="text-[#3e66f3] font-semibold">
-                {" "} E-commerce Development {" "}
+                {" "}
+                E-commerce Development{" "}
               </span>
               Process
             </h2>
             <p className="open-sans text-lg">
-              Our simple development process makes sure your project is finished smoothly and efficiently.
+              Our simple development process makes sure your project is finished
+              smoothly and efficiently.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-4">
             {process.map((process) => (
-              <div key={process.id} className="flex flex-col gap-2 rounded-xl  p-4 hover:shadow-xl transition-all duration-500 hover:bg-[#f5f9ff] ">
+              <div
+                key={process.id}
+                className="flex flex-col gap-2 rounded-xl  p-4 hover:shadow-xl transition-all duration-500 hover:bg-[#f5f9ff] "
+              >
                 <div className="flex flex-col gap-1.5 items-start">
                   <div className="flex justify-center items-center p-2 bg-[#3e66f3] rounded-lg ">
                     {/* <IoSearch className="text-xl text-white" /> */}
                     {process.icon}
                   </div>
-                  <span className="open-sans text-sm font-medium text-red-600" >
+                  <span className="open-sans text-sm font-medium text-red-600">
                     {process.step}
                   </span>
                 </div>
                 <div className="flex flex-col gap-2">
-                  <h4 className="poppins text-lg font-medium text-[#3e66f3] " >
+                  <h4 className="poppins text-lg font-medium text-[#3e66f3] ">
                     {process.title}
                   </h4>
-                  <p className="open-sans text-gray-600" >
+                  <p className="open-sans text-gray-600">
                     {process.description}
                   </p>
                 </div>
@@ -578,7 +597,9 @@ const page = () => {
         </div>
       </section>
 
-          <section className="bg-[url('/images/diagonalStripes.svg')] bg-repeat bg-auto py-10 px-6 lg:px-10" >
+      {/* cta */}
+
+      <section className="bg-[url('/images/diagonalStripes.svg')] bg-repeat bg-auto py-10 px-6 lg:px-10">
         <div className="relative flex flex-col md:flex-row bg-gradient-to-r from-blue-50 to-blue-50 shadow-lg h-auto md:h-[300px] max-w-6xl 2xl:max-w-7xl mx-auto rounded-3xl md:rounded-4xl overflow-hidden justify-between">
           {/* background svg */}
           <svg
@@ -591,7 +612,7 @@ const page = () => {
 
           <div className="relative flex z-10 items-start">
             {/* rocket animation */}
-            <div className="md:flex absolute -top-7 -left-7 md:-left-2 md:top-0 w-[150px] h-[150px] md:w-auto md:h-[110px] lg:h-[120px] opacity-25 md:opacity-100   ">
+            <div className="md:flex absolute -top-7 -left-7 md:left-0 md:top-0 w-[150px] h-[150px] md:w-auto md:h-[110px] lg:h-[120px] opacity-25 md:opacity-100   ">
               <Lottie animationData={rocket} loop={true} />
             </div>
 
@@ -599,29 +620,23 @@ const page = () => {
             <div className="flex flex-col  justify-center py-10 md:py-0 px-10 md:px-18  gap-4  h-full ">
               <div className="flex flex-col gap-2">
                 <h2 className="text-[24px] md:text-[30px] lg:text-[35px] text-center md:text-start font-medium poppins text-[#1d4ed8]">
-                  Let's Get In Touch
+                  Improve Your Customer Experience
                 </h2>
                 <p className="text-[16px] lg:text-[18px] text-black open-sans  text-center md:text-start">
-                  Your digital presence deserves more than just a website it deserves a performance web solution built to grow your business.Let's build, optimize, and scale your online success.
+                  Your online presence needs more than a website. It needs real
+                  growth. Let us work together to build, refine, and scale your
+                  digital success.
                 </p>
               </div>
 
               {/* cta button */}
               <div className="flex justify-center md:justify-start">
-                <Link href="/contact-us" >
-                  <button
-                    aria-label="Start Now"
-                    onClick={() => setVisible(true)}
-                    className="relative inline-flex items-center justify-center px-4 py-2 text-base md:text-[16px] open-sans rounded-lg text-white bg-[#1d4ed8] cursor-pointer overflow-hidden transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:text-white active:scale-95 group "
-                  >
+                <Link href="/contact-us">
+                  <button className="relative inline-flex items-center justify-center px-4 py-2 text-base md:text-[16px] open-sans rounded-lg text-white bg-[#1d4ed8] cursor-pointer overflow-hidden transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:text-white active:scale-95 group ">
                     <span className="relative z-10">Start Now</span>
-
                     <span className="absolute left-0 top-1/2 w-full h-[10px] bg-black opacity-0 transition-all duration-[800ms] ease-[cubic-bezier(0.23,1,0.32,1)] -translate-y-1/2 group-hover:h-full group-hover:opacity-100 rounded"></span>
                   </button>
                 </Link>
-
-                {/* cta form component */}
-                {/* <BookDemoDialog visible={visible} setVisible={setVisible} /> */}
               </div>
             </div>
           </div>
@@ -647,72 +662,6 @@ const page = () => {
                 fill="#93C5FD"
                 opacity="0.8"
               />
-              <circle cx="1200" cy="500" r="800" fill="#60A5FA" opacity="0.8" />
-              <circle cx="1200" cy="500" r="600" fill="#3E66F3" opacity="0.8" />
-              <circle cx="1200" cy="500" r="400" fill="#2563EB" opacity="0.8" />
-              <circle cx="1200" cy="500" r="200" fill="#324CA2" opacity="0.8" />
-            </svg>
-          </div>
-        </div>
-      </section>
-
-      {/* cta */}
-      <section className="py-12 px-6"
-        style={{
-          backgroundImage: "url('/images/diagonalStripes.svg')",
-          backgroundRepeat: "repeat",
-          backgroundSize: "auto",
-        }}
-        >
-        <div className="relative flex flex-col md:flex-row bg-gradient-to-r from-blue-50 to-blue-50 shadow-lg h-auto md:h-[300px] max-w-5xl 2xl:max-w-6xl mx-auto rounded-3xl md:rounded-4xl overflow-hidden justify-between">
-
-          {/* background svg */}
-          <svg
-            className="absolute top-15 left-0 w-[500px] h-[350px] opacity-10 pointer-events-none -translate-y-1/4 -translate-x-1/4"
-            viewBox="0 0 16 16"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M10,1L3,9h4.5L6,15l7-8H8.5L10,1z" fill="#60A5FA" />
-          </svg>
-
-          <div className="relative flex z-10 items-start">
-            {/* rocket animation */}
-            <div className="md:flex absolute -top-7 -left-7 md:left-0 md:top-0 w-[150px] h-[150px] md:w-auto md:h-[110px] lg:h-[120px] opacity-25 md:opacity-100   ">
-              <Lottie animationData={rocket} loop={true} />
-            </div>
-
-            {/* content */}
-            <div className="flex flex-col  justify-center py-10 md:py-0 px-10 md:px-18  gap-4  h-full ">
-              <div className="flex flex-col gap-2">
-                <h2 className="text-[24px] md:text-[30px] lg:text-[35px] text-center md:text-start font-medium poppins text-[#1d4ed8]">
-                  Improve Your Customer Experience
-                </h2>
-                <p className="text-[16px] lg:text-[18px] text-black open-sans  text-center md:text-start">
-                  Your online presence needs more than a website. It needs real growth. Let us work together to build, refine, and scale your digital success.
-                </p>
-              </div>
-
-              {/* cta button */}
-              <div className="flex justify-center md:justify-start">
-                <Link href="/contact-us" >
-                  <button className="relative inline-flex items-center justify-center px-4 py-2 text-base md:text-[16px] open-sans rounded-lg text-white bg-[#1d4ed8] cursor-pointer overflow-hidden transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:text-white active:scale-95 group " >
-                    <span className="relative z-10">Start Now</span>
-                    <span className="absolute left-0 top-1/2 w-full h-[10px] bg-black opacity-0 transition-all duration-[800ms] ease-[cubic-bezier(0.23,1,0.32,1)] -translate-y-1/2 group-hover:h-full group-hover:opacity-100 rounded"></span>
-                  </button>
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          {/* right rounded svg */}
-          <div className="relative items-center justify-center hidden md:flex z-10">
-            <svg
-              className="h-full w-full"
-              viewBox="0 0 1200 1000"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <circle cx="1200" cy="500" r="1200" fill="#DBEAFE" opacity="0.8" />
-              <circle cx="1200" cy="500" r="1000" fill="#93C5FD" opacity="0.8" />
               <circle cx="1200" cy="500" r="800" fill="#60A5FA" opacity="0.8" />
               <circle cx="1200" cy="500" r="600" fill="#3E66F3" opacity="0.8" />
               <circle cx="1200" cy="500" r="400" fill="#2563EB" opacity="0.8" />

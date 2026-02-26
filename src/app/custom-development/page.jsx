@@ -13,14 +13,8 @@ import FaqItem from "../components/FaqItem.jsx";
 
 
 // images
-import whyChooseOpenSource from "../../../public/images/whyChooseOpenSource.jpg";
 import whyChooseCustomDevelopment from "../../../public/images/whyChooseCustomDevelopment.jpg";
-import openSourceHero from "../../../public/images/openSourceHero.png";
 import customDevelopmentHero from "../../../public/images/customDevelopmentHero.png";
-import openSourceWordpress01 from "../../../public/images/openSourceWordpress01.jpg";
-import openSourceWordpress02 from "../../../public/images/openSourceWordpress02.jpg";
-import openSourceWordpress03 from "../../../public/images/openSourceWordpress03.jpg";
-import openSourceWordpress04 from "../../../public/images/openSourceWordpress04.jpg";
 import customDevelopment01 from "../../../public/images/customDevelopment01.jpg";
 import customDevelopment02 from "../../../public/images/customDevelopment02.jpg";
 import customDevelopment03 from "../../../public/images/customDevelopment03.jpg";

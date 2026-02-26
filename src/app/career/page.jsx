@@ -530,7 +530,7 @@ function page() {
     try {
       setLoading(true);
 
-      const res = await axiosInstance.get("/job?type=admin");
+      const res = await axiosInstance.get("/job");
 
       if (!res?.data?.status) {
         toast.error(res?.data?.message || "Failed to fetch jobs");

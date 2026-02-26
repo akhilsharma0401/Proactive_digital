@@ -210,7 +210,8 @@ function page() {
 
       case "message":
         if (!value.trim()) return "Message field cannot be empty";
-        if (value.trim().length < 30) return "Message must be at least 30 characters";
+        if (value.trim().length < 30)
+          return "Message must be at least 30 characters";
         break;
 
       default:
@@ -285,7 +286,6 @@ function page() {
       return;
     }
 
-
     setShowOtpInput(true);
     setTimer(30);
     setCanResend(false);
@@ -299,12 +299,10 @@ function page() {
         otpId,
       };
 
-
       const res = await axiosInstance.post("/otp/sendOtp", payload);
 
       if (!res?.data?.status) {
         toast.error(res?.data?.message || "Failed to send OTP");
-
 
         setShowOtpInput(false);
         return;
@@ -318,7 +316,6 @@ function page() {
       toast.error("Failed to send OTP. Try again.");
 
       setShowOtpInput(false);
-
     } finally {
       setIsSendingOtp(false);
     }
@@ -360,14 +357,12 @@ function page() {
       setCanResend(false);
       setOtp("");
       setOtpId(null);
-
     } catch {
       toast.error("OTP verification failed");
     } finally {
       setIsVerifyingOtp(false);
     }
   };
-
 
   useEffect(() => {
     if (showOtpInput) {
@@ -383,7 +378,7 @@ function page() {
     // If already locked → always show limit message
     if (isLocked) {
       toast.error(
-        "You have reached the resend OTP limit! Please try again after 1 hour..."
+        "You have reached the resend OTP limit! Please try again after 1 hour...",
       );
       return;
     }
@@ -393,7 +388,7 @@ function page() {
       setIsLocked(true); // lock the user
       setCanResend(false); // disable resend button
       toast.error(
-        "You have reached the resend OTP limit! Please try again after 1 hour..."
+        "You have reached the resend OTP limit! Please try again after 1 hour...",
       );
       return;
     }
@@ -410,7 +405,7 @@ function page() {
     toast.success(
       remaining > 0
         ? `OTP resent successfully! ${remaining} attempts remaining`
-        : "you have reached resend OTP limit! Please try again after 1 hour..."
+        : "you have reached resend OTP limit! Please try again after 1 hour...",
     );
 
     // If just used last attempt → lock the user
@@ -472,18 +467,17 @@ function page() {
 
       if (!formData.resume) {
       }
-      console.log("dviusdvuisd", formData.resume)
+      console.log("dviusdvuisd", formData.resume);
       const form = new FormData();
-      form.append('firstName', formData.firstName)
-      form.append('lastName', formData.lastName)
-      form.append('email', formData.email)
-      form.append('mobile', formData.mobile)
-      form.append('designation', formData.designation)
-      form.append('expInYears', formData.selectExpyrs)
-      form.append('message', formData.message)
-      form.append('resume', formData.resume)
-      form.append('jobTitle', "-")
-
+      form.append("firstName", formData.firstName);
+      form.append("lastName", formData.lastName);
+      form.append("email", formData.email);
+      form.append("mobile", formData.mobile);
+      form.append("designation", formData.designation);
+      form.append("expInYears", formData.selectExpyrs);
+      form.append("message", formData.message);
+      form.append("resume", formData.resume);
+      form.append("jobTitle", "-");
 
       const res = await axiosInstance.post("/enquiry/career", form);
 
@@ -508,7 +502,6 @@ function page() {
       } else {
         toast.error(res?.data?.message || "Submission failed");
       }
-
     } catch (err) {
       console.log("err", err);
       toast.error("Server error. Please try again.");
@@ -516,7 +509,6 @@ function page() {
       setIsSubmitting(false); // stop loading
     }
   };
-
 
   // ends Job Application form
 
@@ -546,17 +538,12 @@ function page() {
         return;
       }
 
-      const rows = Array.isArray(res.data.data)
-        ? res.data.data
-        : [];
+      const rows = Array.isArray(res.data.data) ? res.data.data : [];
 
       // Filter only PUBLISHED jobs
-      const publishedJobs = rows.filter(
-        (job) => job.status === "PUBLISHED"
-      );
+      const publishedJobs = rows.filter((job) => job.status === "PUBLISHED");
 
       setJobs(publishedJobs);
-
     } catch (error) {
       console.error("Fetch Jobs Error:", error);
       toast.error("Something went wrong");
@@ -565,9 +552,6 @@ function page() {
       setLoading(false);
     }
   }, []);
-
-
-
 
   useEffect(() => {
     fetchJobs();
@@ -579,9 +563,9 @@ function page() {
       {/* Hero Section */}
       <section
         className="bg-cover bg-center bg-no-repeat lg:px-10  "
-      // style={{
-      //   backgroundImage: "url('/images/heroAnimateBg.svg')",
-      // }}
+        // style={{
+        //   backgroundImage: "url('/images/heroAnimateBg.svg')",
+        // }}
       >
         <div className=" container mx-auto flex flex-col md:flex-col lg:flex-row items-center justify-between px-6 md:px-12 lg:py-12 py-10 ">
           {/* Left Text Section */}
@@ -649,14 +633,12 @@ function page() {
                   {/* Front face (visible initially) */}
                   <div className="absolute inset-0 flex items-center justify-center [backface-visibility:hidden]">
                     <FaChartLine className="text-white w-9 h-9 lg:w-10 lg:h-10" />
-
                   </div>
 
                   {/* Back face (rotated so after the wrapper rotation it appears upright) */}
 
                   <div className="absolute inset-0 flex items-center justify-center [transform:rotateY(180deg)] [backface-visibility:hidden]">
                     <FaChartLine className="text-white w-9 h-9 lg:w-10 lg:h-10" />
-
                   </div>
                 </div>
               </div>
@@ -690,13 +672,10 @@ function page() {
                   {/* Front face */}
                   <div className="absolute inset-0 flex items-center justify-center [backface-visibility:hidden]">
                     <HiOutlineUsers className="text-white w-9 h-9 lg:w-10 lg:h-10" />
-
-
                   </div>
                   {/* Back face */}
                   <div className="absolute inset-0 flex items-center justify-center [transform:rotateY(180deg)] [backface-visibility:hidden]">
                     <HiOutlineUsers className="text-white w-9 h-9 lg:w-10 lg:h-10" />
-
                   </div>
                 </div>
               </div>
@@ -729,14 +708,10 @@ function page() {
                   {/* Front face */}
                   <div className="absolute inset-0 flex items-center justify-center [backface-visibility:hidden]">
                     <FaRegHandshake className="text-white w-9 h-9 lg:w-10 lg:h-10" />
-
-
                   </div>
                   {/* Back face */}
                   <div className="absolute inset-0 flex items-center justify-center [transform:rotateY(180deg)] [backface-visibility:hidden]">
                     <FaRegHandshake className="text-white w-9 h-9 lg:w-10 lg:h-10" />
-
-
                   </div>
                 </div>
               </div>
@@ -786,8 +761,9 @@ function page() {
               Opportunities Coming Soon
             </h2>
             <p className="text-gray-500 mb-6">
-              We're not hiring right now, but we’re always excited to meet talented people.
-            </p> 
+              We're not hiring right now, but we’re always excited to meet
+              talented people.
+            </p>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-10 2xl:gap-10 ">
@@ -799,23 +775,21 @@ function page() {
                   Openings{" "}
                 </span>
               </h2>
-              {
-                jobs.map((job, idx) => (
-                  <div className="">
-                    <CareerOpeningItem
-                      key={job.id}
-                      question={job.title}
-                      Location={job.location}
-                      Term={job.type}
-                      description={job.jobDesc}
-                      Responsibilities={job.responsibilities}
-                      Qualifications={job.qualifications}
-                      isOpen={openIndex === idx}
-                      onClick={() => toggle(idx)}
-                    />
-                  </div>
-                ))
-              }
+              {jobs.map((job, idx) => (
+                <div className="">
+                  <CareerOpeningItem
+                    key={job.id}
+                    question={job.title}
+                    Location={job.location}
+                    Term={job.type}
+                    description={job.jobDesc}
+                    Responsibilities={job.responsibilities}
+                    Qualifications={job.qualifications}
+                    isOpen={openIndex === idx}
+                    onClick={() => toggle(idx)}
+                  />
+                </div>
+              ))}
             </div>
 
             <div className="w-full space-y-10  " id="form">
@@ -1258,8 +1232,11 @@ function page() {
                         onChange={handleChange}
                         onBlur={handleBlur}
                         placeholder=" "
-                        className={`peer w-full border rounded-md p-2 placeholder-transparent focus:outline-none ${errors.firstName ? "border-red-500" : "border-gray-300"
-                          } focus:border-[#3e66f3]`}
+                        className={`peer w-full border rounded-md p-2 placeholder-transparent focus:outline-none ${
+                          errors.firstName
+                            ? "border-red-500"
+                            : "border-gray-300"
+                        } focus:border-[#3e66f3]`}
                       />
                       <label
                         // peer-placeholder-shown:text-gray-400
@@ -1285,8 +1262,9 @@ function page() {
                         onChange={handleChange}
                         onBlur={handleBlur}
                         placeholder=" "
-                        className={`peer w-full border rounded-md p-2 placeholder-transparent focus:outline-none ${errors.lastName ? "border-red-500" : "border-gray-300"
-                          } focus:border-[#3e66f3]`}
+                        className={`peer w-full border rounded-md p-2 placeholder-transparent focus:outline-none ${
+                          errors.lastName ? "border-red-500" : "border-gray-300"
+                        } focus:border-[#3e66f3]`}
                       />
                       <label
                         htmlFor="lastName"
@@ -1312,8 +1290,9 @@ function page() {
                       onChange={handleChange}
                       onBlur={handleBlur}
                       placeholder=" "
-                      className={`peer w-full border rounded-md p-2 placeholder-transparent focus:outline-none ${errors.email ? "border-red-500" : "border-gray-300"
-                        } focus:border-[#3e66f3]`}
+                      className={`peer w-full border rounded-md p-2 placeholder-transparent focus:outline-none ${
+                        errors.email ? "border-red-500" : "border-gray-300"
+                      } focus:border-[#3e66f3]`}
                     />
                     <label
                       htmlFor="email"
@@ -1344,10 +1323,11 @@ function page() {
                           className={`peer w-full border rounded-md p-2 placeholder-transparent  focus:outline-none  
                           ${errors.mobile ? "border-red-500" : "border-gray-300"} 
                           focus:border-[#3e66f3] 
-                          ${isPhoneVerified
+                          ${
+                            isPhoneVerified
                               ? "bg-gray-100 text-gray-500 cursor-not-allowed"
                               : ""
-                            }`}
+                          }`}
                         />
                         <label
                           htmlFor="phone"
@@ -1363,14 +1343,14 @@ function page() {
                           onClick={handleVerifyClick}
                           disabled={showOtpInput || isSendingOtp}
                           className={`relative poppins text-nowrap inline-flex items-center justify-center py-2 px-4 text-base open-sans rounded-lg text-white overflow-hidden transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] active:scale-95 group
-                          ${showOtpInput || isSendingOtp
+                          ${
+                            showOtpInput || isSendingOtp
                               ? "bg-gray-400 cursor-not-allowed"
                               : "bg-[#3e66f3] hover:text-white cursor-pointer"
-                            }
+                          }
                         `}
                         >
                           <span className="relative z-10 flex items-center gap-2">
-
                             {isSendingOtp ? (
                               <>
                                 {/* Spinner */}
@@ -1393,15 +1373,12 @@ function page() {
                                     d="M4 12a8 8 0 018-8v8z"
                                   />
                                 </svg>
-
-
                               </>
                             ) : showOtpInput ? (
                               "OTP Sent"
                             ) : (
                               "Verify"
                             )}
-
                           </span>
 
                           {/* Hover Effect (Disable when loading) */}
@@ -1495,12 +1472,15 @@ function page() {
                               onClick={handleOtpVerify}
                               disabled={isVerifyingOtp}
                               className={`relative poppins inline-flex items-center justify-center py-2 px-4 rounded-lg text-white 
-                              ${isVerifyingOtp
+                              ${
+                                isVerifyingOtp
                                   ? "bg-gray-400 cursor-not-allowed"
                                   : "bg-[#3e66f3]"
-                                }`}
+                              }`}
                             >
-                              <span className="relative z-10">{isVerifyingOtp ? "Verifying..." : "Submit"}</span>
+                              <span className="relative z-10">
+                                {isVerifyingOtp ? "Verifying..." : "Submit"}
+                              </span>
                               <span className="absolute left-0 top-1/2 w-full h-[10px] bg-black opacity-0 transition-all duration-[800ms] ease-[cubic-bezier(0.23,1,0.32,1)] -translate-y-1/2 group-hover:h-full group-hover:opacity-100 rounded"></span>
                             </button>
 
@@ -1551,10 +1531,11 @@ function page() {
                         value={formData.designation}
                         onChange={handleChange}
                         onBlur={handleBlur}
-                        className={`form-select w-full border rounded-md p-2 ${errors.designation
-                          ? "border-red-500"
-                          : "border-gray-300"
-                          }`}
+                        className={`form-select w-full border rounded-md p-2 ${
+                          errors.designation
+                            ? "border-red-500"
+                            : "border-gray-300"
+                        }`}
                       >
                         <option value="">Please Choose an option</option>
 
@@ -1582,10 +1563,11 @@ function page() {
                         value={formData.selectExpyrs}
                         onChange={handleChange}
                         onBlur={handleBlur}
-                        className={`form-select w-full border rounded-md p-2 ${errors.selectExpyrs
-                          ? "border-red-500"
-                          : "border-gray-300"
-                          }`}
+                        className={`form-select w-full border rounded-md p-2 ${
+                          errors.selectExpyrs
+                            ? "border-red-500"
+                            : "border-gray-300"
+                        }`}
                       >
                         <option value="">Please Choose an option</option>
                         {[...Array(11).keys()].map((num) => (
@@ -1650,8 +1632,9 @@ function page() {
                       onChange={handleChange}
                       onBlur={handleBlur}
                       placeholder=" "
-                      className={`peer w-full border rounded-md p-2 placeholder-transparent resize-none focus:outline-none ${errors.message ? "border-red-500" : "border-gray-300"
-                        } focus:border-[#3e66f3]`}
+                      className={`peer w-full border rounded-md p-2 placeholder-transparent resize-none focus:outline-none ${
+                        errors.message ? "border-red-500" : "border-gray-300"
+                      } focus:border-[#3e66f3]`}
                     />
                     <label
                       htmlFor="message"
@@ -1684,10 +1667,11 @@ function page() {
                       type="submit"
                       disabled={isSubmitting}
                       className={`relative poppins inline-flex items-center justify-center py-2 px-4 text-base open-sans rounded-lg text-white overflow-hidden transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] active:scale-95 group 
-                      ${isSubmitting
+                      ${
+                        isSubmitting
                           ? "bg-gray-400 cursor-not-allowed"
                           : "bg-[#3e66f3] hover:text-white cursor-pointer"
-                        } `}
+                      } `}
                     >
                       <span className="relative z-10 flex items-center gap-2">
                         {isSubmitting ? (
@@ -1711,7 +1695,6 @@ function page() {
                                 d="M4 12a8 8 0 018-8v8z"
                               />
                             </svg>
-
                             Submitting...
                           </>
                         ) : (
@@ -1730,7 +1713,6 @@ function page() {
             </div>
           </div>
         )}
-        
       </section>
 
       {/* Otp Modal */}

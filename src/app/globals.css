@@ -1,10 +1,8 @@
 @import "tailwindcss";
-@import "flowbite-react/plugin/tailwindcss";
 @import "tw-animate-css";
 /* 
 ---break--- */
-@custom-variant dark (&:is(.dark *));
-@source "../../.flowbite-react/class-list.json";
+
 
 body {
   width: 100%;

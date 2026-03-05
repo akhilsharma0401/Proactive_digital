@@ -1,14 +1,10 @@
- /** @type {import('next-sitemap').IConfig} */
+/** @type {import('next-sitemap').IConfig} */
 module.exports = {
   siteUrl: "https://www.proactivedigital.in",
   generateRobotsTxt: true,
   sitemapSize: 5000,
   changefreq: "weekly",
   priority: 0.9,
-  exclude: [
-   '/admin*',        
-    '/admin/*',
-    '/admin/**',
-  ],
+  exclude: ["/admin*", "/admin/*", "/admin/**", "/privacy-policy", "/tnc"],
   alternateRefs: [],
 };

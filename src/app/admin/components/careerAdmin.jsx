@@ -1,4 +1,3 @@
-"use client";
 import React, { useEffect, useState } from "react";
 import { Dialog } from "primereact/dialog";
 import { Plus, X } from "lucide-react";
@@ -10,6 +9,7 @@ import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 import { FiPlusCircle, } from "react-icons/fi";
+
 const CareerAdmin = () => {
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -381,7 +381,7 @@ const CareerAdmin = () => {
       )} */}
 
       <Dialog
-        header={isEdit ? "Update Job Details" : "Add Contact Details"}
+        header={isEdit ? "Update Job Details" : "Add Job Details"}
         visible={open}
          draggable={false}
         onHide={() => {

@@ -7,7 +7,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 import ViewAdmin from "../viewAdmin/page";
-import CareerAdmin from "../careerAdmin/page";
+import CareerAdmin from "../components/careerAdmin";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;

@@ -735,9 +735,9 @@ const Footer = () => {
                   <span className="text-base font-medium text-gray-700 group-hover:text-[#3e66f3] transition-colors">Services</span>
                 </a>
 
-                <a href="/solutions" className="poppins group flex items-center gap-2 px-3 py-1.5 rounded-xl hover:bg-white hover:shadow-md transition-all duration-300">
+                <a href="https://www.celitix.com" className="poppins group flex items-center gap-2 px-3 py-1.5 rounded-xl hover:bg-white hover:shadow-md transition-all duration-300">
                   <div className="w-2 h-2 rounded-full bg-[#3e66f3] group-hover:w-6 transition-all duration-300" />
-                  <span className="text-base font-medium text-gray-700 group-hover:text-[#3e66f3] transition-colors">Solutions</span>
+                  <span className="text-base font-medium text-gray-700 group-hover:text-[#3e66f3] transition-colors">CPaaS</span>
                 </a>
 
                 <a href="/portfolio" className="poppins group flex items-center gap-2 px-3 py-1.5 rounded-xl hover:bg-white hover:shadow-md transition-all duration-300">

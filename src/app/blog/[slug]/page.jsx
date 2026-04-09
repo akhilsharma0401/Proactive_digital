@@ -129,9 +129,7 @@ if (loading) {
 
         <div
           className="grid grid-cols-1 lg:grid-cols-2 gap-8 p-10 rounded-xl"
-          style={{
-            background:
-              "linear-gradient(90deg,rgba(171,209,237,0.6) 13%, rgba(222,245,250,0.5) 58%, rgba(249,250,246,0.6) 100%)",
+          style={{background:"linear-gradient(90deg,rgba(171,209,237,0.6) 13%, rgba(222,245,250,0.5) 58%, rgba(249,250,246,0.6) 100%)",
           }}
         >
 

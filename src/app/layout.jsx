@@ -61,7 +61,6 @@ export default function RootLayout({ children }) {
         {/* scroll JS cdn  */}
         {/* <script src="https://unpkg.com/scrollreveal"></script> */}
 
-
         {/* <!-- Google Tag Manager --> */}
         <Script
           id="gtm-init"
@@ -99,6 +98,38 @@ export default function RootLayout({ children }) {
             gtag('config', 'G-LMFQX09GG7');
           `}
         </Script>
+
+        {/* META PIXEL TAGS */}
+
+        {/* <Script id="fb-pixel" strategy="afterInteractive">
+          {`
+           !function(f,b,e,v,n,t,s)
+            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+            n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)}(window, document,'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '902119379291874');
+            fbq('track', 'PageView');
+          `}
+        </Script> */}
+
+        <script>
+          {`
+              !function(f,b,e,v,n,t,s)
+              {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+              n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+              if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+              n.queue=[];t=b.createElement(e);t.async=!0;
+              t.src=v;s=b.getElementsByTagName(e)[0];
+              s.parentNode.insertBefore(t,s)}(window, document,'script',
+              'https://connect.facebook.net/en_US/fbevents.js');
+              fbq('init', '902119379291874');
+              fbq('track', 'PageView');
+        `}
+        </script>
       </head>
       <body className="font-sans">
         {/* <!-- Google Tag Manager (noscript) --> */}
@@ -108,6 +139,25 @@ export default function RootLayout({ children }) {
             height="0"
             width="0"
           ></iframe>
+        </noscript>
+
+        {/* META PIXEL (noscript) */}
+        {/* <noscript>
+          <img
+            height="1"
+            width="1"
+            style="display:none"
+            src="https://www.facebook.com/tr?id=902119379291874&ev=PageView&noscript=1"
+          />
+        </noscript> */}
+
+        <noscript>
+          <img
+            height="1"
+            width="1"
+            style="display:none"
+            src="https://www.facebook.com/tr?id=902119379291874&ev=PageView&noscript=1"
+          />
         </noscript>
 
         <ClientProviders />

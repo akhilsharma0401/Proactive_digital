@@ -561,12 +561,7 @@ function page() {
   return (
     <div className="">
       {/* Hero Section */}
-      <section
-        className="bg-cover bg-center bg-no-repeat lg:px-10  "
-        // style={{
-        //   backgroundImage: "url('/images/heroAnimateBg.svg')",
-        // }}
-      >
+      <section className="bg-cover bg-center bg-no-repeat lg:px-10" >
         <div className=" container mx-auto flex flex-col md:flex-col lg:flex-row items-center justify-between px-6 md:px-12 lg:py-12 py-10 ">
           {/* Left Text Section */}
           <div className="w-full lg:w-1/2 flex items-center justify-center px-4 sm:px-6 md:px-10 xl:px-16">

@@ -223,16 +223,16 @@ const App = () => {
           <div className="grid grid-cols-1 lg:grid-cols-[60%_40%] relative ">
             {/* left content */}
             <div className=" relative flex items-center justify-end mb-28 md:mb-45 lg:mb-0 px-6 md:px-20 2xl:px-0 2xl:ps-90  ">
-              <div className="hidden lg:block absolute left-30 bottom-0 xl:bottom-15 2xl:left-65 2xl:bottom-5 ">
+              {/* <div className="hidden lg:block absolute left-30 bottom-0 xl:bottom-15 2xl:left-65 2xl:bottom-5 ">
                 <FaMagnifyingGlass className="text-4xl text-[#f95d64] float-slow" />
-              </div>
-              <div className="hidden lg:block absolute left-30 top-7 xl:left-50 xl:top-15 2xl:left-45  2xl:top-10  rotate-30  ">
+              </div> */}
+              <div className="hidden lg:block absolute left-30 top-7 xl:left-50 xl:top-15 2xl:left-60  2xl:top-10  rotate-30  ">
                 <FaCode className="text-4xl text-[#ee40a5] float-fast" />
               </div>
-              <div className="hidden lg:block absolute left-90 bottom-25 2xl:left-150 2xl:bottom-20  ">
+              {/* <div className="hidden lg:block absolute left-90 bottom-25 2xl:left-150 2xl:bottom-20  ">
                 <FaGears className="text-4xl 2xl:text-[42px] text-[#9276ff] float-medium " />
-              </div>
-              <div className="hidden lg:block absolute right-70 xl:right-90 2xl:right-110  top-0 2xl:-top-10  ">
+              </div> */}
+              <div className="hidden lg:block absolute right-70 xl:right-90 2xl:right-90  bottom-0 2xl:bottom-20  ">
                 <FaLaptopCode className="text-4xl text-[#ab4aff] float-medium " />
               </div>
               <div className="hidden lg:block absolute top-15 xl:right-40 xl:top-25 2xl:right-50 2xl:top-10 ">

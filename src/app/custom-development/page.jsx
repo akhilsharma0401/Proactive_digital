@@ -272,7 +272,7 @@ function page() {
       <section className=" container mx-auto py-10 md:py-12 px-6 lg:px-10 xl:px-20 ">
         <div className="flex flex-col gap-10">
           <AutoPlaySection
-            heading="Api Integration"
+            heading="API Integration"
             sections={apiIntegration}
             intervalDuration={3000}
           />

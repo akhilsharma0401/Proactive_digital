@@ -1,3 +1,1309 @@
+// "use client";
+// import React, { useState, useMemo, useEffect, useRef } from "react";
+// import Image from "next/image";
+// import Link from "next/link";
+// import { usePathname } from "next/navigation";
+
+// // import celitixlogo from "../public/logo/celitixlogo.svg";
+// import proactiveLogo from "../../../../../public/images/proactiveLogo.png";
+// import proactivedigital_logo from "../../../../../public/images/proactivedigital_logo.png";
+// // import MetaLogowhite from "../public/logo/MetaLogowhite.webp";
+// // import footerimg from "../public/image/footerimg.svg";
+
+// import {
+//   Menu,
+//   X,
+//   ChevronDown,
+//   Code,
+//   Smartphone,
+//   Palette,
+//   Layers,
+// } from "lucide-react";
+// // import BookDemoDialog from "./../components/BookDemoDialog";
+// import BookDemoDialog from "../../BookDemoDialog";
+
+// // icons
+// // web solutions
+// import { FaLaptopCode } from "react-icons/fa";
+// import { TbSourceCode } from "react-icons/tb";
+// import { TbShoppingCartCog } from "react-icons/tb";
+
+// // design
+// import { RiTerminalWindowLine } from "react-icons/ri";
+
+// // solutions
+// import { MdOutlineEngineering } from "react-icons/md";
+// import { LuBadgePercent } from "react-icons/lu";
+// import { PiCarProfileBold } from "react-icons/pi";
+
+// // cpass
+// import navbarCelitix from "../../../../../public/icons/navbarCelitix.png";
+
+// const navLinks = [
+//   { name: "Home", href: "/" },
+//   { name: "About", href: "/about-us" },
+//   { name: "Services", href: "/services", dropdown: true },
+//   { name: "Solution", dropdown: true },
+//   { name: "Portfolio", href: "/portfolio" },
+//   { name: "Blog", href: "/blog" },
+//   { name: "Career", href: "/career" },
+//   { name: "Contact", href: "/contact-us" },
+// ];
+
+// const routeParentMap = {
+//   // SOLUTIONS
+//   "/sms-based-coupon-management-system": "Solution",
+//   "/employee-cab-management-system": "Solution",
+//   "/worker-loyalty-reward-app": "Solution",
+
+//   // SERVICES
+//   "/web-development": "Services",
+//   "/custom-development": "Services",
+//   "/ecommerce": "Services",
+//   "/web-design": "Services",
+// };
+
+// function Navbar() {
+//   const [visible, setVisible] = useState(false);
+//   const [open, setOpen] = useState(false);
+//   // const [activeLink, setActiveLink] = useState("Home");
+//   const [activeSub, setActiveSub] = useState(null);
+//   const [scrolled, setScrolled] = useState(false);
+//   const [dropdown, setDropdown] = useState(null);
+//   const underlineRef = useRef(null);
+//   const navRef = useRef(null);
+//   const pathname = usePathname();
+
+//   useEffect(() => {
+//     const handleScroll = () => setScrolled(window.scrollY > 50);
+//     window.addEventListener("scroll", handleScroll);
+//     return () => window.removeEventListener("scroll", handleScroll);
+//   }, []);
+
+//   // const navLinks = [
+//   //   { name: "Home", href: "/" },
+//   //   { name: "About", href: "/about-us" },
+//   //   { name: "Services", href: "/services", dropdown: true },
+//   //   { name: "Solution", href: "/solutions" },
+//   //   { name: "Portfolio", href: "/portfolio" },
+//   //   { name: "Blog", href: "/blog" },
+//   //   { name: "Career", href: "/career" },
+//   //   { name: "Contact", href: "/contact-us" },
+//   // ];
+
+//   //  Floating Grid Dropdown Data
+//   const dropdownItems = {
+//     Services: [
+//       {
+//         name: "WEB & APPLICATION",
+//         desc: "Increasing your online presence.",
+//         icon: <Code size={22} className="text-[#3e66f3]" />,
+//         // sub: ["Web development", "Open Source", "Ecommerce"],
+
+//         sub: [
+//           {
+//             name: "Web Development",
+//             href: "/web-development",
+//             icon: <FaLaptopCode size={20} className="text-[#3e66f3]" />,
+//           },
+//           {
+//             name: "Custom Development",
+//             href: "/custom-development",
+//             icon: <TbSourceCode size={20} className="text-[#3e66f3]" />,
+//           },
+//           {
+//             name: "E-commerce",
+//             href: "/ecommerce",
+//             icon: <TbShoppingCartCog size={20} className="text-[#3e66f3]" />,
+//           },
+//         ],
+//       },
+//       {
+//         name: "DESIGN",
+//         desc: "Design your presence.",
+//         icon: <Smartphone size={22} className="text-[#3e66f3]" />,
+//         sub: [
+//           {
+//             name: "Website Design",
+//             href: "/web-design",
+//             icon: <RiTerminalWindowLine size={20} className="text-[#3e66f3]" />,
+//           },
+//         ],
+//       },
+//       // {
+//       //   name: "CPaaS",
+//       //   desc: "All-in-one Communication.",
+//       //   icon: <Layers size={22} className="text-[#3e66f3]" />,
+//       //   sub: [
+//       //     {
+//       //       name: "Celitix.com",
+//       //       href: "https://celitix.com/",
+//       //       image: navbarCelitix,
+//       //     },
+//       //   ],
+//       // },
+//     ],
+//     Solution: [
+//       {
+//         name: "APPLICATION",
+//         desc: "Custom Solution for enterprises.",
+//         icon: <Code size={22} className="text-[#3e66f3]" />,
+//         // sub: ["Web development", "Open Source", "Ecommerce"],
+
+//         sub: [
+//           {
+//             name: "Sms Based Coupon Management System",
+//             href: "/sms-based-coupon-management-system",
+//             icon: <LuBadgePercent size={20} className="text-[#3e66f3]" />,
+//           },
+//           {
+//             name: "Employee Cab Management System",
+//             href: "/employee-cab-management-system",
+//             icon: <PiCarProfileBold size={20} className="text-[#3e66f3]" />,
+//             // image: navbarOpenSource,
+//           },
+//           {
+//             name: "Worker Loyalty Reward App",
+//             href: "/worker-loyalty-reward-app",
+//             icon: <MdOutlineEngineering size={20} className="text-[#3e66f3]" />,
+//             // image: navbarEcommerce,
+//           },
+//         ],
+//       },
+//       {
+//         name: "CPaaS",
+//         desc: "All-in-one Communication.",
+//         icon: <Layers size={22} className="text-[#3e66f3]" />,
+//         sub: [
+//           {
+//             name: "Celitix.com",
+//             href: "https://celitix.com/",
+//             image: navbarCelitix,
+//           },
+//         ],
+//       },
+//     ],
+//   };
+
+//   const moveUnderline = (element) => {
+//     if (underlineRef.current && element) {
+//       const underline = underlineRef.current;
+//       const { offsetLeft, offsetWidth } = element;
+//       underline.style.transform = `translateX(${offsetLeft}px)`;
+//       underline.style.width = `${offsetWidth}px`;
+//       underline.style.opacity = 1;
+//     }
+//   };
+
+//   // const handleClick = (e, link) => {
+//   //   setActiveLink(link.name);
+//   //   moveUnderline(e.currentTarget);
+//   // };
+
+//   const handleClick = (e) => {
+//     moveUnderline(e.currentTarget);
+//   };
+
+//   // const getActiveLink = () => {
+//   //   return navLinks.find(link =>
+//   //     link.href === "/"
+//   //       ? pathname === "/"
+//   //       : pathname.startsWith(link.href)
+//   //   );
+//   // };
+//   const getActiveLink = () => {
+//     // Exact top-level match
+//     const direct = navLinks.find(link =>
+//       link.href === "/"
+//         ? pathname === "/"
+//         : pathname === link.href
+//     );
+
+//     if (direct) return direct;
+
+//     // Dropdown child → parent match
+//     const parentName = routeParentMap[pathname];
+
+//     if (parentName) {
+//       return navLinks.find(link => link.name === parentName);
+//     }
+
+//     return null;
+//   };
+
+//   useEffect(() => {
+//     const active = getActiveLink();
+//     if (!active) return;
+
+//     if (active) {
+//       const activeElement = navRef.current?.querySelector(
+//         `[data-link='${active.name}']`
+//       );
+
+//       if (activeElement) moveUnderline(activeElement);
+//     }
+//   }, [pathname]);
+
+//   // useEffect(() => {
+//   //   const activeElement = navRef.current?.querySelector(
+//   //     `[data-link='${activeLink}']`
+//   //   );
+//   //   if (activeElement) moveUnderline(activeElement);
+//   // }, [activeLink]);
+
+//   // useEffect(() => {
+//   //   const current = navLinks.find(link => link.href === pathname);
+
+//   //   if (current) {
+//   //     setActiveLink(current.name);
+
+//   //     const activeElement = navRef.current?.querySelector(
+//   //       `[data-link='${current.name}']`
+//   //     );
+
+//   //     if (activeElement) moveUnderline(activeElement);
+//   //   }
+//   // }, [pathname]);
+
+//   return (
+//     <>
+//       {/* Navbar */}
+//       {/* <nav className="w-full sticky top-0 left-0 px-4 z-[1000] bg-[#F3F4F6] shadow-md transition-all duration-300"> */}
+//       <nav className="w-full sticky top-0 left-0 px-6 z-[1000] bg-white shadow-md transition-all duration-300">
+//         <div className="container mx-auto py-4 flex justify-between items-center">
+//           {/* Logo */}
+//           <div className="flex items-center">
+//             <Link href="/" aria-label="Home Page">
+//               <Image
+//                 // src={proactiveLogo}
+//                 src={proactivedigital_logo}
+//                 alt="Proactive Digital Logo"
+//                 className="w-40 lg:w-36 xl:w-44"
+//               />
+//             </Link>
+//           </div>
+
+//           {/* Desktop Menu */}
+//           <ul
+//             ref={navRef}
+//             className="hidden lg:flex h-full items-center lg:gap-2 2xl:gap-4 relative"
+//           >
+//             {/* Animated underline */}
+//             <span
+//               ref={underlineRef}
+//               className="absolute bottom-0 h-[3px] bg-[#3e66f3] transition-all duration-700 ease-in-out rounded-full"
+//               style={{
+//                 width: 0,
+//                 transform: "translateX(0px)",
+//                 opacity: 0,
+//               }}
+//             ></span>
+
+//             {navLinks.map((link) => (
+//               <li
+//                 key={link.name}
+//                 className="relative text-[16px] xl:text-[18px] text-gray-800 cursor-pointer h-full p-2"
+//                 data-link={link.name}
+//                 onMouseEnter={(e) => {
+//                   moveUnderline(e.currentTarget);
+//                   if (link.dropdown) setDropdown(link.name);
+//                 }}
+//                 // onMouseLeave={() => {
+//                 //   if (link.dropdown) setDropdown(null);
+//                 //   // moveUnderline(
+//                 //   //   navRef.current.querySelector(`[data-link='${activeLink}']`)
+//                 //   // );
+//                 //   const active = getActiveLink();
+//                 //   const el = navRef.current?.querySelector(`[data-link='${active?.name}']`);
+//                 //   if (el) moveUnderline(el);
+
+//                 // }}
+//                 onMouseLeave={() => {
+//                   if (link.dropdown) setDropdown(null);
+
+//                   const active = getActiveLink();
+//                   if (!active) return;
+
+//                   const el = navRef.current?.querySelector(
+//                     `[data-link='${active.name}']`
+//                   );
+
+//                   if (el) moveUnderline(el);
+//                 }}
+
+//                 onClick={(e) => handleClick(e, link)}
+//               >
+//                 <div className="flex items-center">
+//                   <Link
+//                     href={link.href || "#"}
+//                     className="poppins flex items-center"
+//                   >
+//                     {link.name}
+//                     {link.dropdown && (
+//                       <ChevronDown
+//                         size={16}
+//                         className={`ml-1 transition-transform duration-400 ${dropdown === link.name ? "rotate-180" : ""
+//                           }`}
+//                       />
+//                     )}
+//                   </Link>
+//                 </div>
+
+//                 {/* Dropdown Menu */}
+//                 {link.dropdown && (
+//                   // <div
+//                   //   className={`absolute left-4/2 -translate-x-1/2 mt-3 w-[95vw] sm:w-[700px] md:w-[1000px] lg:w-[1200px] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 bg-white/80 backdrop-blur-sm border border-blue-100 shadow-lg rounded-2xl p-4 transition-all duration-500 ${
+//                   //     dropdown === link.name
+//                   //       ? "opacity-100 translate-y-0 scale-100"
+//                   //       : "opacity-0 -translate-y-3 scale-95 pointer-events-none"
+//                   //   }`}
+//                   // >
+
+//                   // <div
+//                   //   className={`absolute left-4/2 -translate-x-1/2 mt-3 lg:w-[900px] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 bg-white/70 backdrop-blur-sm border border-blue-100 shadow-lg rounded-2xl p-4 transition-all duration-500 ${dropdown === link.name
+//                   //     ? "opacity-100 translate-y-0 scale-100"
+//                   //     : "opacity-0 -translate-y-3 scale-95 pointer-events-none"
+//                   //     }`}
+//                   // >
+//                   <div
+//                     className={`absolute left-1/2 -translate-x-1/2 mt-2.5  lg:w-[850px] grid md:grid-cols-2 gap-4 bg-white/70 backdrop-blur-sm border border-blue-100 shadow-lg rounded-2xl p-4 transition-all duration-500 ${dropdown === link.name
+//                       ? "opacity-100 translate-y-0 scale-100"
+//                       : "opacity-0 -translate-y-3 scale-95 pointer-events-none"
+//                       }`}
+//                   >
+//                     {/* // <div
+//                   //   className={`absolute left-1/2 -translate-x-1/2 mt-3 inline-grid grid-flow-col auto-cols-max gap-4 bg-white/70 backdrop-blur-sm border border-blue-100 shadow-lg rounded-2xl p-4 transition-all duration-500
+//                   //     ${dropdown === link.name
+//                   //       ? "opacity-100 translate-y-0 scale-100"
+//                   //       : "opacity-0 -translate-y-3 scale-95 pointer-events-none"
+//                   //     }`}
+//                   // > */}
+
+//                     {dropdownItems[link.name]?.map((item, index) => (
+//                       <div
+//                         key={index}
+//                         className="flex flex-col items-start gap-2 p-3 bg-white hover:bg-blue-50/80 hover:border-blue-700 border border-transparent rounded-2xl transition-all duration-300 shadow-sm hover:shadow-md hover:scale-[1.02] "
+//                         style={{ transitionDelay: `${index * 60}ms` }}
+//                       >
+//                         <div className="flex items-center justify-between w-full">
+//                           <p className="poppins font-semibold text-gray-800 text-[16px] sm:text-[17px]">
+//                             {item.name}
+//                           </p>
+//                           <div className="flex items-center justify-center w-9 h-9 rounded-xl bg-gradient-to-tr from-blue-100 to-white shadow-inner">
+//                             {item.icon}
+//                           </div>
+//                         </div>
+//                         <p className="open-sans text-[16px] text-gray-500">
+//                           {item.desc}
+//                         </p>
+
+//                         {item.sub && (
+//                           <ul className="text-[16px] text-gray-600 space-y-1">
+//                             {item.sub.map((s, i) => (
+//                               <Link
+//                                 href={s.href}
+//                                 key={i}
+//                                 target={
+//                                   s.name === "Celitix.com" ? "_blank" : "_self"
+//                                 }
+//                               >
+//                                 <li className="flex items-center py-1 gap-2 relative group cursor-pointer transition-all">
+//                                   {s.image ? (
+//                                     <Image
+//                                       src={s.image}
+//                                       alt={s.name}
+//                                       width={20}
+//                                       height={20}
+//                                       className="object-contain rounded-sm"
+//                                     />
+//                                   ) : (
+//                                     s.icon
+//                                   )}
+//                                   <span className="poppins relative text-gray-700 group-hover:text-[#3e66f3] transition">
+//                                     {s.name}
+//                                     <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-blue-600 transition-all duration-300 group-hover:w-full rounded-full mt-1 "></span>
+//                                   </span>
+//                                 </li>
+//                               </Link>
+//                             ))}
+//                           </ul>
+//                         )}
+//                       </div>
+//                     ))}
+//                   </div>
+//                 )}
+//               </li>
+//             ))}
+//           </ul>
+
+//           {/* Desktop Right Button */}
+//           <div className="hidden lg:flex items-center space-x-4">
+//             <div className="flex items-center justify-center gap-4">
+//               <button
+//                 aria-label="Get In Touch"
+//                 onClick={() => setVisible(true)}
+//                 className="relative poppins inline-flex items-center justify-center px-4 py-2 text-base open-sans rounded-lg text-white bg-[#3e66f3] cursor-pointer overflow-hidden transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:text-white active:scale-95 group"
+//               >
+//                 <span className="relative z-10 text-nowrap">Get in touch</span>
+
+//                 {/* Vertical expanding background */}
+//                 <span className="absolute left-0 top-1/2 w-full h-[10px] bg-black opacity-0 transition-all duration-[800ms] ease-[cubic-bezier(0.23,1,0.32,1)] -translate-y-1/2 group-hover:h-full group-hover:opacity-100 rounded"></span>
+//               </button>
+//               <BookDemoDialog
+//                 visible={visible}
+//                 setVisible={setVisible}
+//               />
+//             </div>
+//           </div>
+
+//           {/* Mobile & Tablet Menu Button */}
+//           <button
+//             aria-label="Open menu"
+//             className="lg:hidden text-gray-700"
+//             onClick={() => setOpen(!open)}
+//           >
+
+//             {open ? <X size={24} /> : <Menu size={24} />}
+//           </button>
+//         </div>
+
+//         {/* ===== Off-Canvas Menu (Mobile & Tablet) ===== */}
+//         <div
+//           className={`fixed top-0 right-0 h-full w-72 sm:w-80 bg-white shadow-2xl border-l border-blue-100 transform transition-transform duration-500 ease-in-out z-[9999] ${open ? "translate-x-0" : "translate-x-full"
+//             } lg:hidden`}
+//         >
+//           <div className="flex justify-between items-center p-4 border-b border-gray-200">
+//             <h2 className="text-lg font-semibold text-gray-800">Menu</h2>
+//             <button aria-label="Close Menu" onClick={() => setOpen(false)}>
+//               <X size={24} />
+//             </button>
+//           </div>
+
+//           {/* MOBILE MENU ITEMS */}
+//           <div className="flex flex-col p-4 space-y-2 overflow-y-auto h-[calc(100%-60px)]">
+//             {navLinks.map((link) => (
+//               <div key={link.name} className="w-full">
+//                 {/* -------- MAIN LINK + DROPDOWN BUTTON -------- */}
+//                 <div className="w-full flex justify-between items-center text-gray-800 font-medium text-[18px] py-2 border-b border-gray-300">
+//                   {/* Clicking title = navigate */}
+//                   <Link
+//                     href={link.href || "#"}
+//                     onClick={() => setOpen(false)}
+//                     className="flex-1 text-left"
+//                   >
+//                     {link.name}
+//                   </Link>
+
+//                   {/* Clicking arrow = open submenu */}
+//                   {link.dropdown && (
+//                     <button
+//                       aria-label="DropDown Button"
+//                       onClick={(e) => {
+//                         e.preventDefault();
+//                         e.stopPropagation();
+//                         setDropdown(dropdown === link.name ? null : link.name);
+//                       }}
+//                       className="p-2"
+//                     >
+//                       <ChevronDown
+//                         size={16}
+//                         className={`transition-transform duration-300 ${dropdown === link.name ? "rotate-180" : ""
+//                           }`}
+//                       />
+//                     </button>
+//                   )}
+//                 </div>
+
+//                 {/* -------- FIRST LEVEL DROPDOWN -------- */}
+//                 {link.dropdown && dropdown === link.name && (
+//                   <div className="pl-4 space-y-2 mt-2">
+//                     {dropdownItems[link.name]?.map((item, index) => (
+//                       <div key={index} className="flex flex-col gap-1">
+//                         {/* Subcategory Title */}
+//                         <button
+//                           aria-label="Sub Category Dropdown"
+//                           onClick={() =>
+//                             setActiveSub(
+//                               activeSub === `${link.name}-${item.name}`
+//                                 ? null
+//                                 : `${link.name}-${item.name}`
+//                             )
+//                           }
+//                           className="w-full flex justify-between items-center font-semibold text-gray-700 text-[16px] py-1"
+//                         >
+//                           {item.name}
+
+//                           {item.sub && (
+//                             <ChevronDown
+//                               size={14}
+//                               className={`transition-transform duration-300 ${activeSub === `${link.name}-${item.name}`
+//                                 ? "rotate-180"
+//                                 : ""
+//                                 }`}
+//                             />
+//                           )}
+//                         </button>
+
+//                         {/* -------- SECOND LEVEL DROPDOWN -------- */}
+//                         {item.sub &&
+//                           activeSub === `${link.name}-${item.name}` && (
+//                             <ul className="text-gray-600 text-[16px] space-y-1 pl-4 mt-1">
+//                               {item.sub.map((s, i) => (
+//                                 <li
+//                                   key={i}
+//                                   className="hover:text-[#3e66f3] cursor-pointer flex items-center gap-2"
+//                                 >
+//                                   <Link
+//                                     href={s.href}
+//                                     target={
+//                                       s.name === "Celitix.com"
+//                                         ? "_blank"
+//                                         : "_self"
+//                                     }
+//                                     onClick={() => {
+//                                       setOpen(false);
+//                                       setDropdown(null);
+//                                       setActiveSub(null);
+//                                     }}
+//                                     className="flex items-center gap-2"
+//                                   >
+//                                     {s.image ? (
+//                                       <Image
+//                                         src={s.image}
+//                                         alt={s.name}
+//                                         width={20}
+//                                         height={20}
+//                                         className="object-contain rounded-sm"
+//                                       />
+//                                     ) : (
+//                                       s.icon
+//                                     )}
+//                                     <span>{s.name}</span>
+//                                   </Link>
+//                                 </li>
+//                               ))}
+//                             </ul>
+//                           )}
+//                       </div>
+//                     ))}
+//                   </div>
+//                 )}
+//               </div>
+//             ))}
+
+//             {/* Book Demo Button */}
+//             <div className="flex items-center justify-start gap-4 mt-4">
+//               <button
+//                 aria-label="Book Demo"
+//                 onClick={() => {
+//                   setOpen(false);
+//                   setVisible(true);
+//                 }}
+//                 className="relative poppins inline-flex items-center justify-center px-4 py-2 text-base open-sans rounded-lg text-white bg-[#3e66f3] cursor-pointer overflow-hidden transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:text-white active:scale-95 group"
+//               >
+//                 <span className="relative z-10">Book Demo</span>
+//                 <span className="absolute left-0 top-1/2 w-full h-[10px] bg-black opacity-0 transition-all duration-[800ms] ease-[cubic-bezier(0.23,1,0.32,1)] -translate-y-1/2 group-hover:h-full group-hover:opacity-100 rounded"></span>
+//               </button>
+//               {/* <BookDemoDialog visible={visible} setVisible={setVisible} /> */}
+//             </div>
+//           </div>
+//         </div>
+
+//         {/* Overlay */}
+//         {open && (
+//           <div
+//             onClick={() => setOpen(false)}
+//             className="fixed inset-0 bg-black/40 z-[9998] lg:hidden transition-opacity duration-300"
+//           ></div>
+//         )}
+//       </nav>
+//     </>
+//   );
+// }
+
+// export default Navbar;
+
+// Hover Dropdown Version 2.0 without Image
+// "use client";
+// import React, { useState, useMemo, useEffect, useRef } from "react";
+// import Image from "next/image";
+// import Link from "next/link";
+// import { usePathname } from "next/navigation";
+
+// // import celitixlogo from "../public/logo/celitixlogo.svg";
+// import proactiveLogo from "../../../../../public/images/proactiveLogo.png";
+// import proactivedigital_logo from "../../../../../public/images/proactivedigital_logo.png";
+// // import MetaLogowhite from "../public/logo/MetaLogowhite.webp";
+// // import footerimg from "../public/image/footerimg.svg";
+
+// import {
+//   Menu,
+//   X,
+//   ChevronDown,
+//   Code,
+//   Smartphone,
+//   Palette,
+//   Layers,
+// } from "lucide-react";
+// // import BookDemoDialog from "./../components/BookDemoDialog";
+// import BookDemoDialog from "../../BookDemoDialog";
+
+// // icons
+// // web solutions
+// import { FaLaptopCode } from "react-icons/fa";
+// import { TbSourceCode } from "react-icons/tb";
+// import { TbShoppingCartCog } from "react-icons/tb";
+
+// // design
+// import { RiTerminalWindowLine } from "react-icons/ri";
+
+// // solutions
+// import { MdOutlineEngineering } from "react-icons/md";
+// import { LuBadgePercent } from "react-icons/lu";
+// import { PiCarProfileBold } from "react-icons/pi";
+
+// // cpass
+// import navbarCelitix from "../../../../../public/icons/navbarCelitix.png";
+
+// const navLinks = [
+//   { name: "Home", href: "/" },
+//   { name: "About", href: "/about-us" },
+//   { name: "Services", href: "/services", dropdown: true },
+//   { name: "Solution", dropdown: true },
+//   { name: "Portfolio", href: "/portfolio" },
+//   { name: "Blog", href: "/blog" },
+//   { name: "Career", href: "/career" },
+//   { name: "Contact", href: "/contact-us" },
+// ];
+
+// const routeParentMap = {
+//   // SOLUTIONS
+//   "/sms-based-coupon-management-system": "Solution",
+//   "/employee-cab-management-system": "Solution",
+//   "/worker-loyalty-reward-app": "Solution",
+
+//   // SERVICES
+//   "/web-development": "Services",
+//   "/custom-development": "Services",
+//   "/ecommerce": "Services",
+//   "/web-design": "Services",
+// };
+
+// function Navbar() {
+//   const [visible, setVisible] = useState(false);
+//   const [open, setOpen] = useState(false);
+//   // const [activeLink, setActiveLink] = useState("Home");
+//   const [activeSub, setActiveSub] = useState(null);
+//   const [scrolled, setScrolled] = useState(false);
+//   const [dropdown, setDropdown] = useState(null);
+//   const underlineRef = useRef(null);
+//   const navRef = useRef(null);
+//   const pathname = usePathname();
+
+//   useEffect(() => {
+//     const handleScroll = () => setScrolled(window.scrollY > 50);
+//     window.addEventListener("scroll", handleScroll);
+//     return () => window.removeEventListener("scroll", handleScroll);
+//   }, []);
+
+//   // const navLinks = [
+//   //   { name: "Home", href: "/" },
+//   //   { name: "About", href: "/about-us" },
+//   //   { name: "Services", href: "/services", dropdown: true },
+//   //   { name: "Solution", href: "/solutions" },
+//   //   { name: "Portfolio", href: "/portfolio" },
+//   //   { name: "Blog", href: "/blog" },
+//   //   { name: "Career", href: "/career" },
+//   //   { name: "Contact", href: "/contact-us" },
+//   // ];
+
+//   //  Floating Grid Dropdown Data
+//   const dropdownItems = {
+//     Services: [
+//       {
+//         name: "WEB & APPLICATION",
+//         desc: "Increasing your online presence.",
+//         icon: <Code size={22} className="text-[#3e66f3]" />,
+//         // sub: ["Web development", "Open Source", "Ecommerce"],
+
+//         sub: [
+//           {
+//             name: "Web Development",
+//             href: "/web-development",
+//             icon: <FaLaptopCode size={20} className="text-[#3e66f3]" />,
+//           },
+//           {
+//             name: "Custom Development",
+//             href: "/custom-development",
+//             icon: <TbSourceCode size={20} className="text-[#3e66f3]" />,
+//           },
+//           {
+//             name: "E-commerce",
+//             href: "/ecommerce",
+//             icon: <TbShoppingCartCog size={20} className="text-[#3e66f3]" />,
+//           },
+//         ],
+//       },
+//       {
+//         name: "DESIGN",
+//         desc: "Design your presence.",
+//         icon: <Smartphone size={22} className="text-[#3e66f3]" />,
+//         sub: [
+//           {
+//             name: "Website Design",
+//             href: "/web-design",
+//             icon: <RiTerminalWindowLine size={20} className="text-[#3e66f3]" />,
+//           },
+//         ],
+//       },
+//       // {
+//       //   name: "CPaaS",
+//       //   desc: "All-in-one Communication.",
+//       //   icon: <Layers size={22} className="text-[#3e66f3]" />,
+//       //   sub: [
+//       //     {
+//       //       name: "Celitix.com",
+//       //       href: "https://celitix.com/",
+//       //       image: navbarCelitix,
+//       //     },
+//       //   ],
+//       // },
+//     ],
+//     Solution: [
+//       {
+//         name: "APPLICATION",
+//         desc: "Custom Solution for enterprises.",
+//         icon: <Code size={22} className="text-[#3e66f3]" />,
+//         // sub: ["Web development", "Open Source", "Ecommerce"],
+
+//         sub: [
+//           {
+//             name: "Sms Based Coupon Management System",
+//             href: "/sms-based-coupon-management-system",
+//             icon: <LuBadgePercent size={20} className="text-[#3e66f3]" />,
+//           },
+//           {
+//             name: "Employee Cab Management System",
+//             href: "/employee-cab-management-system",
+//             icon: <PiCarProfileBold size={20} className="text-[#3e66f3]" />,
+//             // image: navbarOpenSource,
+//           },
+//           {
+//             name: "Worker Loyalty Reward App",
+//             href: "/worker-loyalty-reward-app",
+//             icon: <MdOutlineEngineering size={20} className="text-[#3e66f3]" />,
+//             // image: navbarEcommerce,
+//           },
+//         ],
+//       },
+//       {
+//         name: "CPaaS",
+//         desc: "All-in-one Communication.",
+//         icon: <Layers size={22} className="text-[#3e66f3]" />,
+//         sub: [
+//           {
+//             name: "Celitix.com",
+//             href: "https://celitix.com/",
+//             image: navbarCelitix,
+//           },
+//         ],
+//       },
+//     ],
+//   };
+
+//   const moveUnderline = (element) => {
+//     if (underlineRef.current && element) {
+//       const underline = underlineRef.current;
+//       const { offsetLeft, offsetWidth } = element;
+//       underline.style.transform = `translateX(${offsetLeft}px)`;
+//       underline.style.width = `${offsetWidth}px`;
+//       underline.style.opacity = 1;
+//     }
+//   };
+
+//   // const handleClick = (e, link) => {
+//   //   setActiveLink(link.name);
+//   //   moveUnderline(e.currentTarget);
+//   // };
+
+//   const handleClick = (e) => {
+//     moveUnderline(e.currentTarget);
+//   };
+
+//   // const getActiveLink = () => {
+//   //   return navLinks.find(link =>
+//   //     link.href === "/"
+//   //       ? pathname === "/"
+//   //       : pathname.startsWith(link.href)
+//   //   );
+//   // };
+//   const getActiveLink = () => {
+//     // Exact top-level match
+//     const direct = navLinks.find((link) =>
+//       link.href === "/" ? pathname === "/" : pathname === link.href,
+//     );
+
+//     if (direct) return direct;
+
+//     // Dropdown child → parent match
+//     const parentName = routeParentMap[pathname];
+
+//     if (parentName) {
+//       return navLinks.find((link) => link.name === parentName);
+//     }
+
+//     return null;
+//   };
+
+//   useEffect(() => {
+//     const active = getActiveLink();
+//     if (!active) return;
+
+//     if (active) {
+//       const activeElement = navRef.current?.querySelector(
+//         `[data-link='${active.name}']`,
+//       );
+
+//       if (activeElement) moveUnderline(activeElement);
+//     }
+//   }, [pathname]);
+
+//   // useEffect(() => {
+//   //   const activeElement = navRef.current?.querySelector(
+//   //     `[data-link='${activeLink}']`
+//   //   );
+//   //   if (activeElement) moveUnderline(activeElement);
+//   // }, [activeLink]);
+
+//   // useEffect(() => {
+//   //   const current = navLinks.find(link => link.href === pathname);
+
+//   //   if (current) {
+//   //     setActiveLink(current.name);
+
+//   //     const activeElement = navRef.current?.querySelector(
+//   //       `[data-link='${current.name}']`
+//   //     );
+
+//   //     if (activeElement) moveUnderline(activeElement);
+//   //   }
+//   // }, [pathname]);
+
+//   return (
+//     <>
+//       {/* Navbar */}
+//       {/* <nav className="w-full sticky top-0 left-0 px-4 z-[1000] bg-[#F3F4F6] shadow-md transition-all duration-300"> */}
+//       <nav className="w-full sticky top-0 left-0 px-6 z-[1000] bg-white shadow-md transition-all duration-300">
+//         <div className="container mx-auto py-4 flex justify-between items-center">
+//           {/* Logo */}
+//           <div className="flex items-center">
+//             <Link href="/" aria-label="Home Page">
+//               <Image
+//                 // src={proactiveLogo}
+//                 src={proactivedigital_logo}
+//                 alt="Proactive Digital Logo"
+//                 className="w-40 lg:w-36 xl:w-44"
+//               />
+//             </Link>
+//           </div>
+
+//           {/* Desktop Menu */}
+//           <ul
+//             ref={navRef}
+//             className="hidden lg:flex h-full items-center lg:gap-2 2xl:gap-4 relative"
+//           >
+//             {/* Animated underline */}
+//             <span
+//               ref={underlineRef}
+//               className="absolute bottom-0 h-[3px] bg-[#3e66f3] transition-all duration-700 ease-in-out rounded-full"
+//               style={{
+//                 width: 0,
+//                 transform: "translateX(0px)",
+//                 opacity: 0,
+//               }}
+//             ></span>
+
+//             {navLinks.map((link) => (
+//               <li
+//                 key={link.name}
+//                 className="relative text-[16px] xl:text-[18px] text-gray-800 cursor-pointer h-full p-2"
+//                 data-link={link.name}
+//                 onMouseEnter={(e) => {
+//                   moveUnderline(e.currentTarget);
+
+//                   if (link.dropdown) {
+//                     setDropdown(link.name);
+
+//                     // Select first tab by default
+//                     const firstItem = dropdownItems[link.name]?.[0];
+
+//                     if (firstItem) {
+//                       setActiveSub(firstItem.name);
+//                     }
+//                   }
+//                 }}
+//                 // onMouseLeave={() => {
+//                 //   if (link.dropdown) setDropdown(null);
+//                 //   // moveUnderline(
+//                 //   //   navRef.current.querySelector(`[data-link='${activeLink}']`)
+//                 //   // );
+//                 //   const active = getActiveLink();
+//                 //   const el = navRef.current?.querySelector(`[data-link='${active?.name}']`);
+//                 //   if (el) moveUnderline(el);
+
+//                 // }}
+//                 onMouseLeave={() => {
+//                   if (link.dropdown) setDropdown(null);
+
+//                   const active = getActiveLink();
+//                   if (!active) return;
+
+//                   const el = navRef.current?.querySelector(
+//                     `[data-link='${active.name}']`,
+//                   );
+
+//                   if (el) moveUnderline(el);
+//                 }}
+//                 onClick={(e) => handleClick(e, link)}
+//               >
+//                 <div className="flex items-center">
+//                   <Link
+//                     href={link.href || "#"}
+//                     className="poppins flex items-center"
+//                   >
+//                     {link.name}
+//                     {link.dropdown && (
+//                       <ChevronDown
+//                         size={16}
+//                         className={`ml-1 transition-transform duration-400 ${
+//                           dropdown === link.name ? "rotate-180" : ""
+//                         }`}
+//                       />
+//                     )}
+//                   </Link>
+//                 </div>
+
+//                 {/* Dropdown Menu */}
+//                 {link.dropdown && (
+//                   // <div
+//                   //   className={`absolute left-4/2 -translate-x-1/2 mt-3 w-[95vw] sm:w-[700px] md:w-[1000px] lg:w-[1200px] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 bg-white/80 backdrop-blur-sm border border-blue-100 shadow-lg rounded-2xl p-4 transition-all duration-500 ${
+//                   //     dropdown === link.name
+//                   //       ? "opacity-100 translate-y-0 scale-100"
+//                   //       : "opacity-0 -translate-y-3 scale-95 pointer-events-none"
+//                   //   }`}
+//                   // >
+
+//                   // <div
+//                   //   className={`absolute left-4/2 -translate-x-1/2 mt-3 lg:w-[900px] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 bg-white/70 backdrop-blur-sm border border-blue-100 shadow-lg rounded-2xl p-4 transition-all duration-500 ${dropdown === link.name
+//                   //     ? "opacity-100 translate-y-0 scale-100"
+//                   //     : "opacity-0 -translate-y-3 scale-95 pointer-events-none"
+//                   //     }`}
+//                   // >
+//                   <div
+//                     className={`absolute w-full h-full pt-4
+//                     ${
+//                       dropdown === link.name
+//                         ? "opacity-100 translate-y-0"
+//                         : "opacity-0 translate-y-4 pointer-events-none"
+//                     }`}
+//                   >
+//                     <div
+//                       className={`absolute left-1/2 -translate-x-1/2 mt-0 w-[750px] rounded-3xl border border-gray-200 bg-white shadow-2xl overflow-hidden transition-all duration-300
+//                       ${
+//                         dropdown === link.name
+//                           ? "opacity-100 translate-y-0"
+//                           : "opacity-0 translate-y-4 pointer-events-none"
+//                       }`}
+//                     >
+//                       <div className="grid grid-cols-[280px_1fr] ">
+//                         {/* LEFT SIDEBAR */}
+//                         <div className="bg-gray-50 border-r border-gray-200 p-4">
+//                           <div className="space-y-2">
+//                             {dropdownItems[link.name]?.map((item, index) => (
+//                               <button
+//                                 key={index}
+//                                 onMouseEnter={() => setActiveSub(item.name)}
+//                                 className={`w-full text-left p-3 rounded-2xl transition-all duration-200 group
+//                               ${
+//                                 activeSub === item.name
+//                                   ? "bg-white shadow-sm"
+//                                   : "hover:bg-white"
+//                               }`}
+//                               >
+//                                 <div className="flex items-start gap-3">
+//                                   <div className="mt-1 text-[#3e66f3]">
+//                                     {item.icon}
+//                                   </div>
+
+//                                   <div>
+//                                     <h4 className="font-semibold text-gray-900">
+//                                       {item.name}
+//                                     </h4>
+
+//                                     <p className="text-sm text-gray-500 mt-1">
+//                                       {item.desc}
+//                                     </p>
+//                                   </div>
+//                                 </div>
+//                               </button>
+//                             ))}
+//                           </div>
+//                         </div>
+
+//                         {/* RIGHT CONTENT */}
+//                         {/* RIGHT CONTENT */}
+//                         <div className="p-4 flex flex-col justify-between">
+//                           {(() => {
+//                             const activeItem =
+//                               dropdownItems[link.name]?.find(
+//                                 (x) => x.name === activeSub,
+//                               ) || dropdownItems[link.name]?.[0];
+
+//                             return (
+//                               activeItem?.sub && (
+//                                 <>
+//                                   <div className="flex flex-col gap-3">
+//                                     <div className="flex flex-col gap-0">
+//                                       <h3 className="text-lg font-semibold text-gray-900 poppins">
+//                                         {activeItem.name}
+//                                       </h3>
+
+//                                       <p className="text-gray-500 text-sm open-sans">
+//                                         Explore our{" "}
+//                                         {activeItem.name.toLowerCase()}{" "}
+//                                         services.
+//                                       </p>
+//                                     </div>
+
+//                                     <div className="flex flex-col gap-2">
+//                                       {activeItem.sub.map((s, i) => (
+//                                         <Link
+//                                           key={i}
+//                                           href={s.href}
+//                                           className="group border border-gray-200 rounded-2xl p-3 hover:border-blue-500 hover:shadow-md transition-all"
+//                                         >
+//                                           <div className="flex items-center gap-3">
+//                                             <div className="text-[#3e66f3]">
+//                                               {s.image ? (
+//                                                 <Image
+//                                                   src={s.image}
+//                                                   alt={s.name}
+//                                                   width={20}
+//                                                   height={20}
+//                                                 />
+//                                               ) : (
+//                                                 s.icon
+//                                               )}
+//                                             </div>
+
+//                                             <div>
+//                                               <h4 className="font-medium text-gray-600 group-hover:text-[#3e66f3]">
+//                                                 {s.name}
+//                                               </h4>
+//                                             </div>
+//                                           </div>
+//                                         </Link>
+//                                       ))}
+//                                     </div>
+//                                   </div>
+//                                 </>
+//                               )
+//                             );
+//                           })()}
+//                         </div>
+//                       </div>
+//                     </div>
+//                   </div>
+//                 )}
+//               </li>
+//             ))}
+//           </ul>
+
+//           {/* Desktop Right Button */}
+//           <div className="hidden lg:flex items-center space-x-4">
+//             <div className="flex items-center justify-center gap-4">
+//               <button
+//                 aria-label="Get In Touch"
+//                 onClick={() => setVisible(true)}
+//                 className="relative poppins inline-flex items-center justify-center px-4 py-2 text-base open-sans rounded-lg text-white bg-[#3e66f3] cursor-pointer overflow-hidden transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:text-white active:scale-95 group"
+//               >
+//                 <span className="relative z-10 text-nowrap">Get in touch</span>
+
+//                 {/* Vertical expanding background */}
+//                 <span className="absolute left-0 top-1/2 w-full h-[10px] bg-black opacity-0 transition-all duration-[800ms] ease-[cubic-bezier(0.23,1,0.32,1)] -translate-y-1/2 group-hover:h-full group-hover:opacity-100 rounded"></span>
+//               </button>
+//               <BookDemoDialog visible={visible} setVisible={setVisible} />
+//             </div>
+//           </div>
+
+//           {/* Mobile & Tablet Menu Button */}
+//           <button
+//             aria-label="Open menu"
+//             className="lg:hidden text-gray-700"
+//             onClick={() => setOpen(!open)}
+//           >
+//             {open ? <X size={24} /> : <Menu size={24} />}
+//           </button>
+//         </div>
+
+//         {/* ===== Off-Canvas Menu (Mobile & Tablet) ===== */}
+//         <div
+//           className={`fixed top-0 right-0 h-full w-72 sm:w-80 bg-white shadow-2xl border-l border-blue-100 transform transition-transform duration-500 ease-in-out z-[9999] ${
+//             open ? "translate-x-0" : "translate-x-full"
+//           } lg:hidden`}
+//         >
+//           <div className="flex justify-between items-center p-4 border-b border-gray-200">
+//             <h2 className="text-lg font-semibold text-gray-800">Menu</h2>
+//             <button aria-label="Close Menu" onClick={() => setOpen(false)}>
+//               <X size={24} />
+//             </button>
+//           </div>
+
+//           {/* MOBILE MENU ITEMS */}
+//           <div className="flex flex-col p-4 space-y-2 overflow-y-auto h-[calc(100%-60px)]">
+//             {navLinks.map((link) => (
+//               <div key={link.name} className="w-full">
+//                 {/* -------- MAIN LINK + DROPDOWN BUTTON -------- */}
+//                 <div className="w-full flex justify-between items-center text-gray-800 font-medium text-[18px] py-2 border-b border-gray-300">
+//                   {/* Clicking title = navigate */}
+//                   <Link
+//                     href={link.href || "#"}
+//                     onClick={() => setOpen(false)}
+//                     className="flex-1 text-left"
+//                   >
+//                     {link.name}
+//                   </Link>
+
+//                   {/* Clicking arrow = open submenu */}
+//                   {link.dropdown && (
+//                     <button
+//                       aria-label="DropDown Button"
+//                       onClick={(e) => {
+//                         e.preventDefault();
+//                         e.stopPropagation();
+//                         setDropdown(dropdown === link.name ? null : link.name);
+//                       }}
+//                       className="p-2"
+//                     >
+//                       <ChevronDown
+//                         size={16}
+//                         className={`transition-transform duration-300 ${
+//                           dropdown === link.name ? "rotate-180" : ""
+//                         }`}
+//                       />
+//                     </button>
+//                   )}
+//                 </div>
+
+//                 {/* -------- FIRST LEVEL DROPDOWN -------- */}
+//                 {link.dropdown && dropdown === link.name && (
+//                   <div className="pl-4 space-y-2 mt-2">
+//                     {dropdownItems[link.name]?.map((item, index) => (
+//                       <div key={index} className="flex flex-col gap-1">
+//                         {/* Subcategory Title */}
+//                         <button
+//                           aria-label="Sub Category Dropdown"
+//                           onClick={() =>
+//                             setActiveSub(
+//                               activeSub === `${link.name}-${item.name}`
+//                                 ? null
+//                                 : `${link.name}-${item.name}`,
+//                             )
+//                           }
+//                           className="w-full flex justify-between items-center font-semibold text-gray-700 text-[16px] py-1"
+//                         >
+//                           {item.name}
+
+//                           {item.sub && (
+//                             <ChevronDown
+//                               size={14}
+//                               className={`transition-transform duration-300 ${
+//                                 activeSub === `${link.name}-${item.name}`
+//                                   ? "rotate-180"
+//                                   : ""
+//                               }`}
+//                             />
+//                           )}
+//                         </button>
+
+//                         {/* -------- SECOND LEVEL DROPDOWN -------- */}
+//                         {item.sub &&
+//                           activeSub === `${link.name}-${item.name}` && (
+//                             <ul className="text-gray-600 text-[16px] space-y-1 pl-4 mt-1">
+//                               {item.sub.map((s, i) => (
+//                                 <li
+//                                   key={i}
+//                                   className="hover:text-[#3e66f3] cursor-pointer flex items-center gap-2"
+//                                 >
+//                                   <Link
+//                                     href={s.href}
+//                                     target={
+//                                       s.name === "Celitix.com"
+//                                         ? "_blank"
+//                                         : "_self"
+//                                     }
+//                                     onClick={() => {
+//                                       setOpen(false);
+//                                       setDropdown(null);
+//                                       setActiveSub(null);
+//                                     }}
+//                                     className="flex items-center gap-2"
+//                                   >
+//                                     {s.image ? (
+//                                       <Image
+//                                         src={s.image}
+//                                         alt={s.name}
+//                                         width={20}
+//                                         height={20}
+//                                         className="object-contain rounded-sm"
+//                                       />
+//                                     ) : (
+//                                       s.icon
+//                                     )}
+//                                     <span>{s.name}</span>
+//                                   </Link>
+//                                 </li>
+//                               ))}
+//                             </ul>
+//                           )}
+//                       </div>
+//                     ))}
+//                   </div>
+//                 )}
+//               </div>
+//             ))}
+
+//             {/* Get in touch Button */}
+//             <div className="flex items-center justify-start gap-4 mt-4">
+//               <button
+//                 aria-label="Get in touch"
+//                 onClick={() => {
+//                   setOpen(false);
+//                   setVisible(true);
+//                 }}
+//                 className="relative poppins inline-flex items-center justify-center px-4 py-2 text-base open-sans rounded-lg text-white bg-[#3e66f3] cursor-pointer overflow-hidden transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:text-white active:scale-95 group"
+//               >
+//                 <span className="relative z-10">Get in touch</span>
+//                 <span className="absolute left-0 top-1/2 w-full h-[10px] bg-black opacity-0 transition-all duration-[800ms] ease-[cubic-bezier(0.23,1,0.32,1)] -translate-y-1/2 group-hover:h-full group-hover:opacity-100 rounded"></span>
+//               </button>
+//               {/* <BookDemoDialog visible={visible} setVisible={setVisible} /> */}
+//             </div>
+//           </div>
+//         </div>
+
+//         {/* Overlay */}
+//         {open && (
+//           <div
+//             onClick={() => setOpen(false)}
+//             className="fixed inset-0 bg-black/40 z-[9998] lg:hidden transition-opacity duration-300"
+//           ></div>
+//         )}
+//       </nav>
+//     </>
+//   );
+// }
+
+// export default Navbar;
 
 "use client";
 import React, { useState, useMemo, useEffect, useRef } from "react";
@@ -5,12 +1311,15 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-
 // import celitixlogo from "../public/logo/celitixlogo.svg";
 import proactiveLogo from "../../../../../public/images/proactiveLogo.png";
 import proactivedigital_logo from "../../../../../public/images/proactivedigital_logo.png";
 // import MetaLogowhite from "../public/logo/MetaLogowhite.webp";
 // import footerimg from "../public/image/footerimg.svg";
+import aboutMission01 from "../../../../../public/images/aboutMission01.jpg";
+import aboutMission02 from "../../../../../public/images/aboutMission02.jpg";
+import aboutMission03 from "../../../../../public/images/aboutMission03.jpg";
+
 import {
   Menu,
   X,
@@ -23,7 +1332,7 @@ import {
 // import BookDemoDialog from "./../components/BookDemoDialog";
 import BookDemoDialog from "../../BookDemoDialog";
 
-// icons 
+// icons
 // web solutions
 import { FaLaptopCode } from "react-icons/fa";
 import { TbSourceCode } from "react-icons/tb";
@@ -39,7 +1348,6 @@ import { PiCarProfileBold } from "react-icons/pi";
 
 // cpass
 import navbarCelitix from "../../../../../public/icons/navbarCelitix.png";
-
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -65,7 +1373,6 @@ const routeParentMap = {
   "/web-design": "Services",
 };
 
-
 function Navbar() {
   const [visible, setVisible] = useState(false);
   const [open, setOpen] = useState(false);
@@ -77,6 +1384,7 @@ function Navbar() {
   const navRef = useRef(null);
   const pathname = usePathname();
 
+  const [hoveredSub, setHoveredSub] = useState("");
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -95,14 +1403,105 @@ function Navbar() {
   //   { name: "Contact", href: "/contact-us" },
   // ];
 
-
   //  Floating Grid Dropdown Data
+  // const dropdownItems = {
+  //   Services: [
+  //     {
+  //       name: "WEB & APPLICATION",
+  //       desc: "Increasing your online presence.",
+  //       icon: <Code size={22} className="text-[#3e66f3]" />,
+  //       // sub: ["Web development", "Open Source", "Ecommerce"],
+
+  //       sub: [
+  //         {
+  //           name: "Web Development",
+  //           href: "/web-development",
+  //           icon: <FaLaptopCode size={20} className="text-[#3e66f3]" />,
+  //         },
+  //         {
+  //           name: "Custom Development",
+  //           href: "/custom-development",
+  //           icon: <TbSourceCode size={20} className="text-[#3e66f3]" />,
+  //         },
+  //         {
+  //           name: "E-commerce",
+  //           href: "/ecommerce",
+  //           icon: <TbShoppingCartCog size={20} className="text-[#3e66f3]" />,
+  //         },
+  //       ],
+  //     },
+  //     {
+  //       name: "DESIGN",
+  //       desc: "Design your presence.",
+  //       icon: <Smartphone size={22} className="text-[#3e66f3]" />,
+  //       sub: [
+  //         {
+  //           name: "Website Design",
+  //           href: "/web-design",
+  //           icon: <RiTerminalWindowLine size={20} className="text-[#3e66f3]" />,
+  //         },
+  //       ],
+  //     },
+  //     // {
+  //     //   name: "CPaaS",
+  //     //   desc: "All-in-one Communication.",
+  //     //   icon: <Layers size={22} className="text-[#3e66f3]" />,
+  //     //   sub: [
+  //     //     {
+  //     //       name: "Celitix.com",
+  //     //       href: "https://celitix.com/",
+  //     //       image: navbarCelitix,
+  //     //     },
+  //     //   ],
+  //     // },
+  //   ],
+  //   Solution: [
+  //     {
+  //       name: "APPLICATION",
+  //       desc: "Custom Solution for enterprises.",
+  //       icon: <Code size={22} className="text-[#3e66f3]" />,
+  //       // sub: ["Web development", "Open Source", "Ecommerce"],
+
+  //       sub: [
+  //         {
+  //           name: "Sms Based Coupon Management System",
+  //           href: "/sms-based-coupon-management-system",
+  //           icon: <LuBadgePercent size={20} className="text-[#3e66f3]" />,
+  //         },
+  //         {
+  //           name: "Employee Cab Management System",
+  //           href: "/employee-cab-management-system",
+  //           icon: <PiCarProfileBold size={20} className="text-[#3e66f3]" />,
+  //           // image: navbarOpenSource,
+  //         },
+  //         {
+  //           name: "Worker Loyalty Reward App",
+  //           href: "/worker-loyalty-reward-app",
+  //           icon: <MdOutlineEngineering size={20} className="text-[#3e66f3]" />,
+  //           // image: navbarEcommerce,
+  //         },
+  //       ],
+  //     },
+  //     {
+  //       name: "CPaaS",
+  //       desc: "All-in-one Communication.",
+  //       icon: <Layers size={22} className="text-[#3e66f3]" />,
+  //       sub: [
+  //         {
+  //           name: "Celitix.com",
+  //           href: "https://celitix.com/",
+  //           image: navbarCelitix,
+  //         },
+  //       ],
+  //     },
+  //   ],
+  // };
   const dropdownItems = {
     Services: [
       {
         name: "WEB & APPLICATION",
-        desc: "Increasing your online presence.",
-        icon: <Code size={22} className="text-[#3e66f3]" />,
+        // desc: "Increasing your online presence.",
+        // icon: <Code size={22} className="text-[#3e66f3]" />,
         // sub: ["Web development", "Open Source", "Ecommerce"],
 
         sub: [
@@ -110,31 +1509,48 @@ function Navbar() {
             name: "Web Development",
             href: "/web-development",
             icon: <FaLaptopCode size={20} className="text-[#3e66f3]" />,
+            rightImage: aboutMission01,
+            title: "Web Development",
+            desc: "Build fast, secure, and scalable websites designed to grow your business online.",
           },
           {
             name: "Custom Development",
             href: "/custom-development",
             icon: <TbSourceCode size={20} className="text-[#3e66f3]" />,
+            rightImage: aboutMission02,
+            title: "Custom Development",
+            desc: "Custom software and automation solutions designed to streamline business operations and improve efficiency.",
           },
           {
             name: "E-commerce",
             href: "/ecommerce",
             icon: <TbShoppingCartCog size={20} className="text-[#3e66f3]" />,
+            rightImage: aboutMission03,
+            title: "E-commerce",
+            desc: "Integrated CRM, CMS, and secure payment gateways for seamless eCommerce management and customer experiences.",
           },
-        ],
-      },
-      {
-        name: "DESIGN",
-        desc: "Design your presence.",
-        icon: <Smartphone size={22} className="text-[#3e66f3]" />,
-        sub: [
           {
             name: "Website Design",
             href: "/web-design",
             icon: <RiTerminalWindowLine size={20} className="text-[#3e66f3]" />,
+            rightImage: aboutMission01,
+            title: "Website Design",
+            desc: "Create stunning, responsive website designs that enhance user experience, strengthen branding, and drive business growth.",
           },
         ],
       },
+      // {
+      //   name: "DESIGN",
+      //   desc: "Design your presence.",
+      //   icon: <Smartphone size={22} className="text-[#3e66f3]" />,
+      //   sub: [
+      //     {
+      //       name: "Website Design",
+      //       href: "/web-design",
+      //       icon: <RiTerminalWindowLine size={20} className="text-[#3e66f3]" />,
+      //     },
+      //   ],
+      // },
       // {
       //   name: "CPaaS",
       //   desc: "All-in-one Communication.",
@@ -151,42 +1567,63 @@ function Navbar() {
     Solution: [
       {
         name: "APPLICATION",
-        desc: "Custom Solution for enterprises.",
-        icon: <Code size={22} className="text-[#3e66f3]" />,
+        // desc: "Custom Solution for enterprises.",
+        // icon: <Code size={22} className="text-[#3e66f3]" />,
         // sub: ["Web development", "Open Source", "Ecommerce"],
 
         sub: [
           {
-            name: "Sms Based Coupon Management System",
+            // name: "Sms Based Coupon Management System",
+            name: "SMS Coupon System",
             href: "/sms-based-coupon-management-system",
             icon: <LuBadgePercent size={20} className="text-[#3e66f3]" />,
+            rightImage: aboutMission01,
+            title: "Sms Based Coupon Management System",
+            desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, voluptates ut at unde reiciendis voluptatum!",
           },
           {
-            name: "Employee Cab Management System",
+            // name: "Employee Cab Management System",
+            name: "Employee Cab System",
             href: "/employee-cab-management-system",
             icon: <PiCarProfileBold size={20} className="text-[#3e66f3]" />,
+            rightImage: aboutMission02,
+            title: "Employee Cab Management System",
+            desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, voluptates ut at unde reiciendis voluptatum!",
             // image: navbarOpenSource,
           },
           {
-            name: "Worker Loyalty Reward App",
+            // name: "Worker Loyalty Reward App",
+            name: "Loyalty Reward App",
             href: "/worker-loyalty-reward-app",
             icon: <MdOutlineEngineering size={20} className="text-[#3e66f3]" />,
+            rightImage: aboutMission03,
+            title: "Worker Loyalty Reward App",
+            desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, voluptates ut at unde reiciendis voluptatum!",
             // image: navbarEcommerce,
           },
-        ],
-      },
-      {
-        name: "CPaaS",
-        desc: "All-in-one Communication.",
-        icon: <Layers size={22} className="text-[#3e66f3]" />,
-        sub: [
           {
             name: "Celitix.com",
             href: "https://celitix.com/",
             image: navbarCelitix,
+            rightImage: aboutMission03,
+            title: "Celitix.com",
+            desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, voluptates ut at unde reiciendis voluptatum!",
+            // image: navbarEcommerce,
           },
         ],
       },
+      // {
+      //   name: "CPaaS",
+      //   desc: "All-in-one Communication.",
+      //   icon: <Layers size={22} className="text-[#3e66f3]" />,
+      //   sub: [
+      //     {
+      //       name: "Celitix.com",
+      //       href: "https://celitix.com/",
+      //       image: navbarCelitix,
+      //     },
+      //   ],
+      // },
     ],
   };
 
@@ -209,7 +1646,6 @@ function Navbar() {
     moveUnderline(e.currentTarget);
   };
 
-
   // const getActiveLink = () => {
   //   return navLinks.find(link =>
   //     link.href === "/"
@@ -219,10 +1655,8 @@ function Navbar() {
   // };
   const getActiveLink = () => {
     // Exact top-level match
-    const direct = navLinks.find(link =>
-      link.href === "/"
-        ? pathname === "/"
-        : pathname === link.href
+    const direct = navLinks.find((link) =>
+      link.href === "/" ? pathname === "/" : pathname === link.href,
     );
 
     if (direct) return direct;
@@ -231,12 +1665,11 @@ function Navbar() {
     const parentName = routeParentMap[pathname];
 
     if (parentName) {
-      return navLinks.find(link => link.name === parentName);
+      return navLinks.find((link) => link.name === parentName);
     }
 
     return null;
   };
- 
 
   useEffect(() => {
     const active = getActiveLink();
@@ -244,14 +1677,12 @@ function Navbar() {
 
     if (active) {
       const activeElement = navRef.current?.querySelector(
-        `[data-link='${active.name}']`
+        `[data-link='${active.name}']`,
       );
 
       if (activeElement) moveUnderline(activeElement);
     }
   }, [pathname]);
-
-
 
   // useEffect(() => {
   //   const activeElement = navRef.current?.querySelector(
@@ -274,12 +1705,11 @@ function Navbar() {
   //   }
   // }, [pathname]);
 
-
   return (
     <>
       {/* Navbar */}
       {/* <nav className="w-full sticky top-0 left-0 px-4 z-[1000] bg-[#F3F4F6] shadow-md transition-all duration-300"> */}
-      <nav className="w-full sticky top-0 left-0 px-6 z-[1000] bg-white shadow-md transition-all duration-300">
+      <nav className="w-full sticky top-0 left-0 px-6 z-[1000] bg-white  shadow-md  transition-all duration-300">
         <div className="container mx-auto py-4 flex justify-between items-center">
           {/* Logo */}
           <div className="flex items-center">
@@ -316,7 +1746,24 @@ function Navbar() {
                 data-link={link.name}
                 onMouseEnter={(e) => {
                   moveUnderline(e.currentTarget);
-                  if (link.dropdown) setDropdown(link.name);
+
+                  if (link.dropdown) {
+                    setDropdown(link.name);
+
+                    // Select first tab by default
+                    const firstItem = dropdownItems[link.name]?.[0];
+
+                    if (firstItem) {
+                      setActiveSub(firstItem.name);
+
+                      // Reset first submenu preview
+                      const firstSub = firstItem?.sub?.[0];
+
+                      if (firstSub) {
+                        setHoveredSub(firstSub.name);
+                      }
+                    }
+                  }
                 }}
                 // onMouseLeave={() => {
                 //   if (link.dropdown) setDropdown(null);
@@ -335,13 +1782,11 @@ function Navbar() {
                   if (!active) return;
 
                   const el = navRef.current?.querySelector(
-                    `[data-link='${active.name}']`
+                    `[data-link='${active.name}']`,
                   );
 
                   if (el) moveUnderline(el);
                 }}
-
-
                 onClick={(e) => handleClick(e, link)}
               >
                 <div className="flex items-center">
@@ -353,8 +1798,9 @@ function Navbar() {
                     {link.dropdown && (
                       <ChevronDown
                         size={16}
-                        className={`ml-1 transition-transform duration-400 ${dropdown === link.name ? "rotate-180" : ""
-                          }`}
+                        className={`ml-1 transition-transform duration-400 ${
+                          dropdown === link.name ? "rotate-180" : ""
+                        }`}
                       />
                     )}
                   </Link>
@@ -370,7 +1816,6 @@ function Navbar() {
                   //   }`}
                   // >
 
-
                   // <div
                   //   className={`absolute left-4/2 -translate-x-1/2 mt-3 lg:w-[900px] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 bg-white/70 backdrop-blur-sm border border-blue-100 shadow-lg rounded-2xl p-4 transition-all duration-500 ${dropdown === link.name
                   //     ? "opacity-100 translate-y-0 scale-100"
@@ -378,70 +1823,127 @@ function Navbar() {
                   //     }`}
                   // >
                   <div
-                    className={`absolute left-1/2 -translate-x-1/2 mt-2.5  lg:w-[850px] grid md:grid-cols-2 gap-4 bg-white/70 backdrop-blur-sm border border-blue-100 shadow-lg rounded-2xl p-4 transition-all duration-500 ${dropdown === link.name
-                      ? "opacity-100 translate-y-0 scale-100"
-                      : "opacity-0 -translate-y-3 scale-95 pointer-events-none"
-                      }`}
+                    className={`absolute w-full h-full pt-4
+                    ${
+                      dropdown === link.name
+                        ? "opacity-100 translate-y-0"
+                        : "opacity-0 translate-y-4 pointer-events-none"
+                    }`}
                   >
-                    {/* // <div
-                  //   className={`absolute left-1/2 -translate-x-1/2 mt-3 inline-grid grid-flow-col auto-cols-max gap-4 bg-white/70 backdrop-blur-sm border border-blue-100 shadow-lg rounded-2xl p-4 transition-all duration-500
-                  //     ${dropdown === link.name
-                  //       ? "opacity-100 translate-y-0 scale-100"
-                  //       : "opacity-0 -translate-y-3 scale-95 pointer-events-none"
-                  //     }`}
-                  // > */}
+                    <div
+                      className={`absolute left-1/2 -translate-x-1/2 mt-0 w-[850px] rounded-3xl border border-gray-200 bg-white shadow-2xl overflow-hidden transition-all duration-300
+                      ${
+                        dropdown === link.name
+                          ? "opacity-100 translate-y-0"
+                          : "opacity-0 translate-y-4 pointer-events-none"
+                      }`}
+                    >
+                      <div className="grid grid-cols-[340px_1fr] min-h-[360px]">
+                        {/* LEFT SIDE */}
+                        <div className="border-r border-gray-200 bg-gray-50 p-4">
+                          {(() => {
+                            const activeItem =
+                              dropdownItems[link.name]?.find(
+                                (x) => x.name === activeSub,
+                              ) || dropdownItems[link.name]?.[0];
 
-                    {dropdownItems[link.name]?.map((item, index) => (
-                      <div
-                        key={index}
-                        className="flex flex-col items-start gap-2 p-3 bg-white hover:bg-blue-50/80 hover:border-blue-700 border border-transparent rounded-2xl transition-all duration-300 shadow-sm hover:shadow-md hover:scale-[1.02] "
-                        style={{ transitionDelay: `${index * 60}ms` }}
-                      >
-                        <div className="flex items-center justify-between w-full">
-                          <p className="poppins font-semibold text-gray-800 text-[16px] sm:text-[17px]">
-                            {item.name}
-                          </p>
-                          <div className="flex items-center justify-center w-9 h-9 rounded-xl bg-gradient-to-tr from-blue-100 to-white shadow-inner">
-                            {item.icon}
-                          </div>
+                            return (
+                              <div className="space-y-1">
+                                {activeItem?.sub?.map((s, i) => (
+                                  <Link
+                                    key={i}
+                                    href={s.href}
+                                    onMouseEnter={() => setHoveredSub(s.name)}
+                                    className={`flex items-start gap-3 rounded-2xl border px-3 py-2 transition-all duration-200 group
+                                      ${
+                                        hoveredSub === s.name
+                                          ? "bg-white border-gray-200 shadow-sm"
+                                          : "border-transparent hover:bg-white"
+                                      }`}
+                                  >
+                                    {/* ICON */}
+                                    <div className="mt-1 text-[#3e66f3]">
+                                      {s.image ? (
+                                        <Image
+                                          src={s.image}
+                                          alt={s.name}
+                                          width={22}
+                                          height={22}
+                                        />
+                                      ) : (
+                                        s.icon
+                                      )}
+                                    </div>
+
+                                    {/* TEXT */}
+                                    <div>
+                                      <h4 className="font-medium text-gray-900 group-hover:text-[#3e66f3]">
+                                        {s.name}
+                                      </h4>
+
+                                      {/* <p className="text-sm text-gray-500 mt-1 line-clamp-2">
+                                        {s.desc}
+                                      </p> */}
+                                    </div>
+                                  </Link>
+                                ))}
+                              </div>
+                            );
+                          })()}
                         </div>
-                        <p className="open-sans text-[16px] text-gray-500">
-                          {item.desc}
-                        </p>
 
-                        {item.sub && (
-                          <ul className="text-[16px] text-gray-600 space-y-1">
-                            {item.sub.map((s, i) => (
-                              <Link
-                                href={s.href}
-                                key={i}
-                                target={
-                                  s.name === "Celitix.com" ? "_blank" : "_self"
-                                }
-                              >
-                                <li className="flex items-center py-1 gap-2 relative group cursor-pointer transition-all">
-                                  {s.image ? (
-                                    <Image
-                                      src={s.image}
-                                      alt={s.name}
-                                      width={20}
-                                      height={20}
-                                      className="object-contain rounded-sm"
-                                    />
-                                  ) : (
-                                    s.icon
-                                  )}
-                                  <span className="poppins relative text-gray-700 group-hover:text-[#3e66f3] transition">
-                                    {s.name}
-                                    <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-blue-600 transition-all duration-300 group-hover:w-full rounded-full mt-1 "></span>
-                                  </span>
-                                </li>
-                              </Link>
-                            ))}
-                          </ul>
-                        )}
+                        {/* RIGHT SIDE */}
+                        <div className="p-5 flex items-center">
+                          {(() => {
+                            const activeItem =
+                              dropdownItems[link.name]?.find(
+                                (x) => x.name === activeSub,
+                              ) || dropdownItems[link.name]?.[0];
+
+                            const activePreview =
+                              activeItem?.sub?.find(
+                                (s) => s.name === hoveredSub,
+                              ) || activeItem?.sub?.[0];
+
+                            return (
+                              activePreview && (
+                                <div className="w-full">
+                                  <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white group">
+                                    {/* IMAGE */}
+                                    <div className="relative h-[180px] w-full bg-gray-100 overflow-hidden">
+                                      <Image
+                                        src={activePreview.rightImage}
+                                        alt={activePreview.title}
+                                        fill
+                                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                      />
+                                    </div>
+
+                                    {/* CONTENT */}
+                                    <div className="flex flex-col gap-1 p-3">
+                                      <h3 className="text-xl font-medium text-gray-900">
+                                        {activePreview.title}
+                                      </h3>
+
+                                      <p className="text-gray-500 text-[15px] ">
+                                        {activePreview.desc}
+                                      </p>
+
+                                      <Link
+                                        href={activePreview.href}
+                                        className="inline-flex items-center gap-2 text-[#3e66f3] font-medium hover:underline transition-all"
+                                      >
+                                        Learn more →
+                                      </Link>
+                                    </div>
+                                  </div>
+                                </div>
+                              )
+                            );
+                          })()}
+                        </div>
                       </div>
-                    ))}
+                    </div>
                   </div>
                 )}
               </li>
@@ -452,11 +1954,11 @@ function Navbar() {
           <div className="hidden lg:flex items-center space-x-4">
             <div className="flex items-center justify-center gap-4">
               <button
-                aria-label="Book Demo"
+                aria-label="Get In Touch"
                 onClick={() => setVisible(true)}
                 className="relative poppins inline-flex items-center justify-center px-4 py-2 text-base open-sans rounded-lg text-white bg-[#3e66f3] cursor-pointer overflow-hidden transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:text-white active:scale-95 group"
               >
-                <span className="relative z-10 text-nowrap">Book Demo</span>
+                <span className="relative z-10 text-nowrap">Get in touch</span>
 
                 {/* Vertical expanding background */}
                 <span className="absolute left-0 top-1/2 w-full h-[10px] bg-black opacity-0 transition-all duration-[800ms] ease-[cubic-bezier(0.23,1,0.32,1)] -translate-y-1/2 group-hover:h-full group-hover:opacity-100 rounded"></span>
@@ -471,15 +1973,15 @@ function Navbar() {
             className="lg:hidden text-gray-700"
             onClick={() => setOpen(!open)}
           >
-
             {open ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
 
         {/* ===== Off-Canvas Menu (Mobile & Tablet) ===== */}
         <div
-          className={`fixed top-0 right-0 h-full w-72 sm:w-80 bg-white shadow-2xl border-l border-blue-100 transform transition-transform duration-500 ease-in-out z-[9999] ${open ? "translate-x-0" : "translate-x-full"
-            } lg:hidden`}
+          className={`fixed top-0 right-0 h-full w-72 sm:w-80 bg-white shadow-2xl border-l border-blue-100 transform transition-transform duration-500 ease-in-out z-[9999] ${
+            open ? "translate-x-0" : "translate-x-full"
+          } lg:hidden`}
         >
           <div className="flex justify-between items-center p-4 border-b border-gray-200">
             <h2 className="text-lg font-semibold text-gray-800">Menu</h2>
@@ -516,8 +2018,9 @@ function Navbar() {
                     >
                       <ChevronDown
                         size={16}
-                        className={`transition-transform duration-300 ${dropdown === link.name ? "rotate-180" : ""
-                          }`}
+                        className={`transition-transform duration-300 ${
+                          dropdown === link.name ? "rotate-180" : ""
+                        }`}
                       />
                     </button>
                   )}
@@ -535,7 +2038,7 @@ function Navbar() {
                             setActiveSub(
                               activeSub === `${link.name}-${item.name}`
                                 ? null
-                                : `${link.name}-${item.name}`
+                                : `${link.name}-${item.name}`,
                             )
                           }
                           className="w-full flex justify-between items-center font-semibold text-gray-700 text-[16px] py-1"
@@ -545,10 +2048,11 @@ function Navbar() {
                           {item.sub && (
                             <ChevronDown
                               size={14}
-                              className={`transition-transform duration-300 ${activeSub === `${link.name}-${item.name}`
-                                ? "rotate-180"
-                                : ""
-                                }`}
+                              className={`transition-transform duration-300 ${
+                                activeSub === `${link.name}-${item.name}`
+                                  ? "rotate-180"
+                                  : ""
+                              }`}
                             />
                           )}
                         </button>
@@ -600,17 +2104,17 @@ function Navbar() {
               </div>
             ))}
 
-            {/* Book Demo Button */}
+            {/* Get in touch Button */}
             <div className="flex items-center justify-start gap-4 mt-4">
               <button
-                aria-label="Book Demo"
+                aria-label="Get in touch"
                 onClick={() => {
                   setOpen(false);
                   setVisible(true);
                 }}
                 className="relative poppins inline-flex items-center justify-center px-4 py-2 text-base open-sans rounded-lg text-white bg-[#3e66f3] cursor-pointer overflow-hidden transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:text-white active:scale-95 group"
               >
-                <span className="relative z-10">Book Demo</span>
+                <span className="relative z-10">Get in touch</span>
                 <span className="absolute left-0 top-1/2 w-full h-[10px] bg-black opacity-0 transition-all duration-[800ms] ease-[cubic-bezier(0.23,1,0.32,1)] -translate-y-1/2 group-hover:h-full group-hover:opacity-100 rounded"></span>
               </button>
               {/* <BookDemoDialog visible={visible} setVisible={setVisible} /> */}

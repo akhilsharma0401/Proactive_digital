@@ -82,13 +82,7 @@ const Benefits = [
     des: "Our platform powers fast, reliable, and scalable websites that adapt to your growth while delivering consistent top-level performance.",
     // designation: "Satisfied Customer",
     src: "/images/highPerformance.jpg",
-  },
-  // {
-  //   title: "Modern Features & Seamless Integration",
-  //   des: "From UI/UX design to WordPress and advanced tools, we integrate modern features to create websites that look great and work flawlessly.",
-  //   // designation: "Satisfied Customer",
-  //   src: "/images/homeBenifits4.jpg",
-  // },
+  }, 
 ];
 // Our Benifits Ends
 

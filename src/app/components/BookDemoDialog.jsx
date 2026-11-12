@@ -840,13 +840,14 @@ import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 import { InputOtp } from "primereact/inputotp";
 // icons
-
 import { CiUser } from "react-icons/ci";
 import { FiMail } from "react-icons/fi";
 import { MdOutlineMapsHomeWork } from "react-icons/md";
 import { RiMessage2Line } from "react-icons/ri";
 import { AiOutlineCustomerService } from "react-icons/ai";
 import { CiPhone } from "react-icons/ci";
+import { GrServices } from "react-icons/gr";
+
 import { axiosInstance } from "@/lib/axios";
 
 const BookDemoDialog = ({ visible, setVisible }) => {
@@ -874,6 +875,7 @@ const BookDemoDialog = ({ visible, setVisible }) => {
     source: "book-demo",
   });
   const otpRef = useRef(null);
+  const dropdownRef = useRef(null);
   const [open, setOpen] = useState(false);
   // dropdown state
   const services = [
@@ -1201,6 +1203,23 @@ const BookDemoDialog = ({ visible, setVisible }) => {
 
   // CTA form ends here
 
+  useEffect(() => {
+  const handleClickOutside = (event) => {
+    if (
+      dropdownRef.current &&
+      !dropdownRef.current.contains(event.target)
+    ) {
+      setOpen(false);
+    }
+  };
+
+  document.addEventListener("mousedown", handleClickOutside);
+
+  return () => {
+    document.removeEventListener("mousedown", handleClickOutside);
+  };
+}, []);
+
   return (
     <>
       {/* <Toast ref={toastRef} /> */}
@@ -1209,6 +1228,7 @@ const BookDemoDialog = ({ visible, setVisible }) => {
         visible={visible}
         draggable={false}
         onHide={() => setVisible(false)}
+        dismissableMask={true} 
         className="p-5 h-auto bg-white"
         header={
           <div className="flex justify-between items-center w-full mb-1">
@@ -1419,13 +1439,13 @@ const BookDemoDialog = ({ visible, setVisible }) => {
                 </div>
               </div>
 
-              <div className="flex flex-col w-full max-w-sm">
+              <div ref={dropdownRef} className="flex flex-col w-full max-w-sm">
                 <label className="mb-1 text-sm font-medium text-gray-700">
                   Services
                 </label>
                 <div className="relative">
                   <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
-                    <AiOutlineCustomerService size={20} />
+                    <GrServices size={20} />
                   </span>
                   <button
                     aria-label="Open Services DropDown"

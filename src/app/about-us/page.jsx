@@ -12,8 +12,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Sparkles } from "lucide-react";
 import "react-vertical-timeline-component/style.min.css";
 
-
-// components
+// Components
 import FaqItem from "../components/FaqItem.jsx";
 import ParticleBackground from "../components/ParticleBackground";
 
